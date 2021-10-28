@@ -1,244 +1,223 @@
 <HTML>
+
 <HEAD title='Matte 2'>
 
-<style type="text/css">
-    .Table
-    {
-        display: table;
-        padding-bottom: 5px;
-    }
-    .Title
-    {
-        display: table-caption;
-        text-align: center;
-        font-weight: bold;
-        font-size: larger;
-    }
-    .Heading
-    {
-        display: table-row;
-        font-weight: bold;
-        text-align: center;
-    }
-    .Row
-    {
-        display: table-row;
-    }
-    .Cell
-    {
-        display: table-cell;
-        border-bottom: solid;
-        border-width: thin;
-        padding-top: 2px;
-        padding-bottom: 2px;
-        padding-left: 5px;
-        padding-right: 5px;
-        text-align: right;
-    }
-    .Result
-    {
-        display: table-cell;
-        border-bottom: solid;
-        border-width: thin;
-        padding-top: 2px;
-        padding-bottom: 2px;
-        padding-left: 5px;
-        padding-right: 5px;
-        text-align: left;
-    }    
-    .TableSelect
-    {
-        background-color:green;
-    }
-    
-    .CellSelect
-    {
-        display: table-cell;
-        border: solid;
-        border-width: thin;
-        padding-top: 2px;
-        padding-bottom: 2px;
-        padding-left: 5px;
-        padding-right: 5px;
-        text-align: right;
-        cursor: default;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }    
-    
-</style>
+    <style type="text/css">
+        .Table {
+            display: table;
+            padding-bottom: 5px;
+        }
+
+        .Title {
+            display: table-caption;
+            text-align: center;
+            font-weight: bold;
+            font-size: larger;
+        }
+
+        .Heading {
+            display: table-row;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .Row {
+            display: table-row;
+        }
+
+        .Cell {
+            display: table-cell;
+            border-bottom: solid;
+            border-width: thin;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            padding-left: 5px;
+            padding-right: 5px;
+            text-align: right;
+        }
+
+        .Result {
+            display: table-cell;
+            border-bottom: solid;
+            border-width: thin;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            padding-left: 5px;
+            padding-right: 5px;
+            text-align: left;
+        }
+
+        .TableSelect {
+            background-color: green;
+        }
+
+        .CellSelect {
+            display: table-cell;
+            border: solid;
+            border-width: thin;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            padding-left: 5px;
+            padding-right: 5px;
+            text-align: right;
+            cursor: default;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
 
 
-<script>
-    
-    var selectedTables = [false,false,false,false,false,false,false,false,false,false ];
-    var firsts = [0,0,0,0,0,0,0,0,0,0 ];
-    var seconds = [0,0,0,0,0,0,0,0,0,0];
-    var first, second;
-    var score = 0;
-    
-    function init()
-    {
-        document.getElementById('start').hidden=false;
-        document.getElementById('game').hidden=true;
-        score = 0;
-        firsts = [0,0,0,0,0,0,0,0,0,0 ];
-        seconds = [0,0,0,0,0,0,0,0,0,0];
-    }
-    
-    function begin() 
-    {
-       /** document.getElementById('start').hidden=true; */
-       document.getElementById('again').hidden = true;
-       document.getElementById('check').hidden = false;       
-       var counter;
-       for (counter=1;counter<=10;counter++)
-       {
-           var next = 't'+counter;
-           if ( document.getElementById(next).checked ) 
-           {
-                selectedTables[counter-1] = true;
-           }
-       }
-       document.getElementById('game').hidden=false;
-       document.getElementById('start').hidden=true;
-       
+    <script>
 
-       var questionsHTML = '';
-       
-       for (i=0; i<10; i++)
-       {
-            questionsHTML+='<DIV class="Row">';
-            getNext();
-            while (alreadyExists(first, second))
-            {
+        var selectedTables = [false, false, false, false, false, false, false, false, false, false];
+        var firsts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var seconds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var first, second;
+        var score = 0;
+
+        function init() {
+            document.getElementById('start').hidden = false;
+            document.getElementById('game').hidden = true;
+            score = 0;
+            firsts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            seconds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        }
+
+        function begin() {
+            /** document.getElementById('start').hidden=true; */
+            document.getElementById('again').hidden = true;
+            document.getElementById('check').hidden = false;
+            var counter;
+            for (counter = 1; counter <= 10; counter++) {
+                var next = 't' + counter;
+                if (document.getElementById(next).checked) {
+                    selectedTables[counter - 1] = true;
+                }
+            }
+            document.getElementById('game').hidden = false;
+            document.getElementById('start').hidden = true;
+
+
+            var questionsHTML = '';
+
+            for (i = 0; i < 10; i++) {
+                questionsHTML += '<DIV class="Row">';
                 getNext();
+                while (alreadyExists(first, second)) {
+                    getNext();
+                }
+                firsts[i] = first;
+                seconds[i] = second;
+
+                questionsHTML += '<DIV class="Cell">' + first + '</DIV>';
+                questionsHTML += '<DIV class="Cell">' + '*' + '</DIV>';
+                questionsHTML += '<DIV class="Cell">' + second + '</DIV>';
+                questionsHTML += '<DIV class="Cell">' + '=' + '</DIV>';
+                questionsHTML += '<DIV class="Cell">' + '<INPUT type="number" id="a' + (i + 1) + '" size="2"/>' + '</DIV>';
+                questionsHTML += '<DIV class="Result">' + '<LABEL id="r' + (i + 1) + '"/>' + '</DIV>';
+                questionsHTML += '</DIV>';
             }
-            firsts[i] = first;
-            seconds[i] = second;
-            
-            questionsHTML += '<DIV class="Cell">'+first+'</DIV>';
-            questionsHTML += '<DIV class="Cell">'+'*'+'</DIV>';
-            questionsHTML += '<DIV class="Cell">'+second+'</DIV>';
-            questionsHTML += '<DIV class="Cell">'+'='+'</DIV>';
-            questionsHTML += '<DIV class="Cell">'+ '<INPUT id="a'+(i+1)+'" size="2"/>'+'</DIV>';
-            questionsHTML += '<DIV class="Result">'+'<LABEL id="r'+(i+1)+'"/>'+'</DIV>';            
-            questionsHTML+='</DIV>';
-       }
-       
-       document.getElementById('questions').innerHTML = questionsHTML;
-       
-    }
-    
-    function alreadyExists(first, second) 
-    {
-        for (i=0; i<10; i++)
-        {
-            if (firsts[i] == first && seconds[i] == second)
-            {
-                return true;
-            }
-            else if (firsts[i] == 0 || seconds[i] == 0)
-            {
-                return false;
-            }
-        }
-        return false;
-    }
-    
-    function getNext() 
-    {
-        first = Math.floor(Math.random() * 10) + 1; 
-        var valid = false;
-        while (!valid) 
-        {
-            second = Math.floor(Math.random() * 10) + 1; 
-            if (selectedTables[second-1])
-            {
-                valid = true;
-            }
-        }
-    }
-    
-    function checkResults() 
-    {
-        var done = true;
-        for (i=0; i<10; i++)
-        {
-            var answer = document.getElementById('a'+(i+1)).value;
-            var resultText;
-            if (answer == firsts[i]*seconds[i])
-            {
-                document.getElementById('r'+(i+1)).innerHTML = 'Rätt!';
-                document.getElementById('r'+(i+1)).style.color="green";
-                
-            }
-            else
-            {
-                document.getElementById('r'+(i+1)).innerHTML = 'Fel! ';
-                document.getElementById('r'+(i+1)).style.color="red";
-                done = false;
-            }            
+
+            document.getElementById('questions').innerHTML = questionsHTML;
 
         }
-         if (done)
-        {
-            document.getElementById('again').hidden = false;
-            document.getElementById('check').hidden = true;
-        }
-    }
-  
-    function selectTable(tableNumber)
-    {
-       
-        selectedTables[tableNumber-1] = !selectedTables[tableNumber-1];
-        if (selectedTables[tableNumber-1])
-        {
-            document.getElementById('t'+tableNumber).style.backgroundColor = 'green';
-        }
-        else
-        {
-            document.getElementById('t'+tableNumber).style.backgroundColor = '';
+
+        function alreadyExists(first, second) {
+            for (i = 0; i < 10; i++) {
+                if (firsts[i] == first && seconds[i] == second) {
+                    return true;
+                }
+                else if (firsts[i] == 0 || seconds[i] == 0) {
+                    return false;
+                }
+            }
+            return false;
         }
 
-    }
-  
+        function getNext() {
+            first = Math.floor(Math.random() * 10) + 1;
+            var valid = false;
+            while (!valid) {
+                second = Math.floor(Math.random() * 10) + 1;
+                if (selectedTables[second - 1]) {
+                    valid = true;
+                }
+            }
+        }
 
-</script>
+        function checkResults() {
+            var done = true;
+            for (i = 0; i < 10; i++) {
+                var answer = document.getElementById('a' + (i + 1)).value;
+                var resultText;
+                if (answer == firsts[i] * seconds[i]) {
+                    document.getElementById('r' + (i + 1)).innerHTML = 'Rätt!';
+                    document.getElementById('r' + (i + 1)).style.color = "green";
+
+                }
+                else {
+                    document.getElementById('r' + (i + 1)).innerHTML = 'Fel! ';
+                    document.getElementById('r' + (i + 1)).style.color = "red";
+                    done = false;
+                }
+
+            }
+            if (done) {
+                document.getElementById('again').hidden = false;
+                document.getElementById('check').hidden = true;
+            }
+        }
+
+        function selectTable(tableNumber) {
+
+            selectedTables[tableNumber - 1] = !selectedTables[tableNumber - 1];
+            if (selectedTables[tableNumber - 1]) {
+                document.getElementById('t' + tableNumber).style.backgroundColor = 'green';
+            }
+            else {
+                document.getElementById('t' + tableNumber).style.backgroundColor = '';
+            }
+
+        }
+
+
+    </script>
 </HEAD>
+
 <BODY onLoad="init()">
-<DIV id="start">
-<B>Vilka tabeller vill du öva på?</B><br>
-<DIV class="Table"/>
+    <DIV id="start">
+        <B>Vilka tabeller vill du öva på?</B><br>
+        <DIV class="Table" />
 
-    <DIV class='CellSelect' id='t1' onClick='selectTable(1)'>1</DIV>
-    <DIV class='CellSelect' id='t2' onClick='selectTable(2)'>2</DIV>
-    <DIV class='CellSelect' id='t3' onClick='selectTable(3)'>3</DIV> 
-    <DIV class='CellSelect' id='t4' onClick='selectTable(4)'>4</DIV>
-    <DIV class='CellSelect' id='t5' onClick='selectTable(5)'>5</DIV>
-    <DIV class='CellSelect' id='t6' onClick='selectTable(6)'>6</DIV> 
-    <DIV class='CellSelect' id='t7' onClick='selectTable(7)'>7</DIV>
-    <DIV class='CellSelect' id='t8' onClick='selectTable(8)'>8</DIV>
-    <DIV class='CellSelect' id='t9' onClick='selectTable(9)'>9</DIV> 
-    <DIV class='CellSelect' id='t10' onClick='selectTable(10)'>10</DIV>      
-  
-</DIV>
-  
+        <DIV class='CellSelect' id='t1' onClick='selectTable(1)'>1</DIV>
+        <DIV class='CellSelect' id='t2' onClick='selectTable(2)'>2</DIV>
+        <DIV class='CellSelect' id='t3' onClick='selectTable(3)'>3</DIV>
+        <DIV class='CellSelect' id='t4' onClick='selectTable(4)'>4</DIV>
+        <DIV class='CellSelect' id='t5' onClick='selectTable(5)'>5</DIV>
+        <DIV class='CellSelect' id='t6' onClick='selectTable(6)'>6</DIV>
+        <DIV class='CellSelect' id='t7' onClick='selectTable(7)'>7</DIV>
+        <DIV class='CellSelect' id='t8' onClick='selectTable(8)'>8</DIV>
+        <DIV class='CellSelect' id='t9' onClick='selectTable(9)'>9</DIV>
+        <DIV class='CellSelect' id='t10' onClick='selectTable(10)'>10</DIV>
+
+    </DIV>
+
     <br>
-<BUTTON onClick="begin()">Börja!</BUTTON>   
-</DIV>
+    <BUTTON onClick="begin()">Börja!</BUTTON>
+    </DIV>
 
-<DIV id='game'>
-    <DIV id='questions' class='Table'></DIV>
-    <BUTTON id='check' onClick='checkResults()'>Kolla svaren!</BUTTON>
-    <BUTTON id='again' onClick='init()'/>Spela igen!</BUTTON> 
-</DIV>
+    <DIV id='game'>
+        <DIV id='questions' class='Table'></DIV>
+        <BUTTON id='check' onClick='checkResults()'>Kolla svaren!</BUTTON>
+        <BUTTON id='again' onClick='init()' />Spela igen!</BUTTON>
+    </DIV>
 
 
-<LABEL id='debug'/>
+    <LABEL id='debug' />
 </BODY>
+
 </HTML>
