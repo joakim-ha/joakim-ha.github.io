@@ -1,223 +1,378 @@
-<HTML>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Finland och världen runtomkring</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: one narrow study column; a flag-cross band heads the page, then one question card at a time */
+:root{
+  --bg:#f3f6fa; --surface:#ffffff; --fg:#13233b; --muted:#56657c; --line:#d8e0ea;
+  --blue:#0b4fa8; --blue-soft:#e3ecf8; --ok:#1d7a46; --ok-soft:#e2f3e9; --bad:#b3261e; --bad-soft:#fbe6e4;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1522; --surface:#152133; --fg:#e7edf6; --muted:#9aa9be; --line:#27364c;
+  --blue:#6fa8ff; --blue-soft:#1b2d4a; --ok:#5fd08f; --ok-soft:#14321f; --bad:#ff8a80; --bad-soft:#3a1a19; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1522; --surface:#152133; --fg:#e7edf6; --muted:#9aa9be; --line:#27364c;
+  --blue:#6fa8ff; --blue-soft:#1b2d4a; --ok:#5fd08f; --ok-soft:#14321f; --bad:#ff8a80; --bad-soft:#3a1a19; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.5}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+header{position:relative;padding-block:28px 22px;overflow:hidden}
+.cross{position:absolute;inset:0;pointer-events:none;opacity:.12}
+.cross::before,.cross::after{content:"";position:absolute;background:var(--blue)}
+.cross::before{left:22%;top:0;bottom:0;width:44px}
+.cross::after{top:44%;left:0;right:0;height:44px}
+.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);font-weight:700;position:relative}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,6vw,42px);line-height:1.08;margin:6px 0 8px;text-wrap:balance;position:relative}
+.lede{color:var(--muted);margin:0;max-width:60ch;position:relative}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+h2{font-family:var(--display);font-weight:600;font-size:20px;margin:0 0 12px;text-wrap:balance}
+.topics{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:999px;padding:7px 13px;font:inherit;font-size:15px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--surface)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{font:inherit;font-weight:700;border-radius:10px;padding:11px 18px;cursor:pointer;border:1px solid var(--blue);background:var(--blue);color:var(--surface)}
+.btn.ghost{background:transparent;color:var(--blue)}
+.btn:disabled{opacity:.45;cursor:default}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.meta{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted);margin-bottom:10px;font-variant-numeric:tabular-nums}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:18px}
+.bar i{display:block;height:100%;background:var(--blue);transition:width .3s}
+.tag{display:inline-block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--blue);background:var(--blue-soft);border-radius:6px;padding:2px 8px}
+.q{font-family:var(--display);font-weight:600;font-size:clamp(20px,4.5vw,25px);line-height:1.25;margin:10px 0 16px;text-wrap:balance}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;font:inherit;color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+.opt b{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:14px;background:var(--surface);border:1px solid var(--line)}
+.opt:hover:not(:disabled){border-color:var(--blue)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.right b{background:var(--ok);color:var(--surface);border-color:var(--ok)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.wrong b{background:var(--bad);color:var(--surface);border-color:var(--bad)}
+.explain{margin-top:16px;padding:14px 16px;border-radius:10px;background:var(--blue-soft)}
+.explain strong{display:block;margin-bottom:4px}
+.explain .page{font-size:14px;color:var(--muted);margin-top:6px}
+.nav{margin-top:18px;display:flex;justify-content:flex-end}
+.score{font-family:var(--display);font-weight:800;font-size:56px;line-height:1;font-variant-numeric:tabular-nums}
+.score small{font-size:24px;color:var(--muted);font-weight:600}
+.verdict{margin:8px 0 18px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-bottom:18px}
+td{padding:8px 0;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;white-space:nowrap}
+.mini{display:inline-block;width:70px;height:6px;background:var(--line);border-radius:3px;vertical-align:middle;margin-left:8px;overflow:hidden}
+.mini i{display:block;height:100%;background:var(--ok)}
+.review{display:grid;gap:10px;margin-top:6px}
+.review div{border-left:3px solid var(--bad);padding:4px 0 4px 12px}
+.review p{margin:2px 0;font-size:15px}
+.note{font-size:14px;color:var(--muted);margin-top:14px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
 
-<HEAD title='Matte 2'>
+<div class="wrap">
+  <header>
+    <div class="cross"></div>
+    <div class="eyebrow">I tiden 9 Samhällslära · s. 8–30</div>
+    <h1>Finland och världen runtomkring</h1>
+    <p class="lede">Öva inför provet. Frågorna bygger på bokens sidor och läshjälpen: nation och stat, suverän stat, nationalsymboler, demokrati och diktatur, statsskick, direkt och representativ demokrati, mänskliga rättigheter, barnkonventionen och diskriminering.</p>
+  </header>
 
-    <style type="text/css">
-        .Table {
-            display: table;
-            padding-bottom: 5px;
-        }
+  <section id="start" class="panel">
+    <h2>Välj vad du vill öva på</h2>
+    <div class="topics" id="topics"></div>
+    <div class="row">
+      <label for="len" style="font-weight:600">Antal frågor</label>
+      <select id="len" style="font:inherit;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg)">
+        <option value="15">15</option><option value="25" selected>25</option><option value="50">50</option><option value="all">Alla</option>
+      </select>
+      <button class="btn" id="go">Starta quizen</button>
+      <span id="count" class="note" style="margin:0"></span>
+    </div>
+    <p class="note">Frågorna och svarsalternativen blandas varje gång. Efter varje svar får du en förklaring och vilken sida i boken du ska läsa.</p>
+  </section>
 
-        .Title {
-            display: table-caption;
-            text-align: center;
-            font-weight: bold;
-            font-size: larger;
-        }
+  <section id="quiz" class="panel" hidden>
+    <div class="meta"><span id="pos"></span><span id="pts"></span></div>
+    <div class="bar"><i id="prog"></i></div>
+    <span class="tag" id="qtag"></span>
+    <div class="q" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="explain" id="explain" hidden></div>
+    <div class="nav"><button class="btn" id="next" hidden>Nästa fråga</button></div>
+  </section>
 
-        .Heading {
-            display: table-row;
-            font-weight: bold;
-            text-align: center;
-        }
+  <section id="result" class="panel" hidden>
+    <h2>Ditt resultat</h2>
+    <div class="score" id="score"></div>
+    <p class="verdict" id="verdict"></p>
+    <table id="bytopic"></table>
+    <div class="row">
+      <button class="btn" id="retryWrong">Öva på de jag svarade fel på</button>
+      <button class="btn ghost" id="again">Börja om</button>
+    </div>
+    <div id="wrongWrap" hidden>
+      <h2 style="margin-top:22px">Det här ska du repetera</h2>
+      <div class="review" id="wrongList"></div>
+    </div>
+  </section>
+</div>
 
-        .Row {
-            display: table-row;
-        }
+<script>
+const T = {
+  nation:"Nation, land eller stat",
+  suv:"Suverän stat",
+  sym:"Nationalsymboler",
+  dem:"Demokrati och diktatur",
+  skick:"Olika statsskick",
+  dir:"Direkt eller representativ demokrati",
+  mr:"Mänskliga rättigheter",
+  barn:"Barnkonventionen",
+  disk:"Diskriminering"
+};
+// a = index of the correct option in o (options are shuffled at runtime)
+const Q = [
+ {t:"nation",p:"s. 8",q:"Ordet nation kommer från latinets natio. Vad betyder natio?",o:["Folk","Land","Gräns","Kung"],a:0,e:"Nation kommer från latinets natio som betyder folk."},
+ {t:"nation",p:"s. 8",q:"Vad är en nation enligt boken?",o:["Ett område där en grupp människor känner samhörighet eftersom de förenas av samma religion, historia, traditioner eller kultur","Ett självständigt land med eget styre och egna gränser","Ett geografiskt område som har varit självstyrande till vissa delar","En organisation där världens stater samarbetar"],a:0,e:"En nation är ett område där människor känner samhörighet genom religion, historia, traditioner eller kultur. De har ofta ett gemensamt språk, men inte alltid."},
+ {t:"nation",p:"s. 8",q:"Vad kallas människor som känner samhörighet med varandra genom samma religion, historia, traditioner eller kultur?",o:["Etniska grupper eller etniciteter","Förtroendevalda","Medborgare","Minoritetsstater"],a:0,e:"Människor som känner den här samhörigheten kallas etniska grupper eller etniciteter."},
+ {t:"nation",p:"s. 8",q:"Vilka nämner boken som exempel på etniska grupper i Finland?",o:["Samer och romer","Ålänningar och karelare","Svenskar och norrmän","Tavaster och savolaxare"],a:0,e:"Samer och romer är exempel på etniska grupper i Finland. Finlandssvenskarna uppfyller kriterierna, men de flesta identifierar sig inte som en egen etnisk grupp."},
+ {t:"nation",p:"s. 8",q:"Vad är en nationalstat?",o:["En stat där invånarna talar samma språk och har en gemensam historia","En stat som styrs av FN","En stat med flera presidenter","Ett område som har autonomi"],a:0,e:"Idén om nationalstater uppkom i Europa på 1800-talet: invånarna skulle tala samma språk och ha en gemensam historia. I verkligheten är det nästan omöjligt att skapa en stat med bara en etnicitet."},
+ {t:"nation",p:"s. 8",q:"När brukar man säga att Finland växte fram som en nation?",o:["Under 1800-talet","Under 1500-talet","År 1995","Efter andra världskriget"],a:0,e:"Under 1800-talet skrev konstnärer, historiker och författare vår historia och skapade en egen kultur som gjorde invånarna till finländare, ett folk i ett land."},
+ {t:"nation",p:"s. 8",q:"Vad är ett land enligt boken?",o:["Ett geografiskt område som är eller har varit självstyrande, helt eller till vissa delar","Ett folk med samma religion","Ett självständigt område som erkänns av alla stater","En stad med egen regering"],a:0,e:"Ett land är ett geografiskt område som är eller har varit självstyrande helt eller till vissa delar. Därför varierar antalet länder beroende på vem man frågar."},
+ {t:"nation",p:"s. 8",q:"Vad betyder autonomi?",o:["Självstyre inom vissa områden","Fullständig självständighet","Att en kung styr landet","Att landet saknar gränser"],a:0,e:"Autonomi betyder självstyre inom vissa områden. Åland har till exempel autonomi."},
+ {t:"nation",p:"s. 8",q:"Vilket av dessa är ett exempel på ett område som räknas som land i vissa sammanhang, men inte erkänns som stat?",o:["Åland","Finland","Sverige","Norge"],a:0,e:"Åland, Färöarna, Skottland, Hongkong och Gibraltar betraktas som länder i vissa sammanhang men är inte stater. De har autonomi."},
+ {t:"nation",p:"s. 8",q:"Vad är en stat enligt boken?",o:["Ett självständigt land med eget styre och egna gränser","Ett folk som känner samhörighet","Ett område med självstyre inom vissa områden","Ett område som har ett eget fotbollslag i FIFA"],a:0,e:"En stat är ett självständigt land med eget styre och egna gränser."},
+ {t:"nation",p:"s. 8",q:"Finland erkänner 196 stater, medan Sverige erkänner 197. Vilken stat är skillnaden?",o:["Palestina","Kosovo","Taiwan","Israel"],a:0,e:"Palestina är skillnaden. Kosovo, Cypern, Israel, Kina och Taiwan är andra exempel på stater som inte är erkända av alla."},
 
-        .Cell {
-            display: table-cell;
-            border-bottom: solid;
-            border-width: thin;
-            padding-top: 2px;
-            padding-bottom: 2px;
-            padding-left: 5px;
-            padding-right: 5px;
-            text-align: right;
-        }
+ {t:"suv",p:"s. 10–11",q:"Vad betyder det att en stat är suverän?",o:["Den är självständig och har en egen regering som inte är underordnad någon annan stats regering","Den är enastående och fantastisk","Den har en enväldig härskare","Den är medlem i EU"],a:0,e:"En suverän stat är självständig. Den har en egen regering som inte är underordnad någon annan stats regering."},
+ {t:"suv",p:"s. 11",q:"Enligt rutan på s. 11: vilket av följande hör INTE till kännetecknen på en suverän stat?",o:["Den har en kung eller drottning som statschef","Den väljer sitt eget styre","Den stiftar egna lagar och fattar egna beslut","Den har gränser som är erkända av andra"],a:0,e:"En suverän stat väljer sitt eget styre, stiftar egna lagar och fattar egna beslut och har gränser som är erkända av andra. Statsskicket spelar ingen roll."},
+ {t:"suv",p:"s. 10",q:"Var står det hur Finland ska styras?",o:["I grundlagen","I barnkonventionen","I EU:s fördrag","I Kalevala"],a:0,e:"Finland har en egen grundlag där det står hur landet ska styras. Vi har regering och parlament, riksdagen."},
+ {t:"suv",p:"s. 10",q:"Får en annan stat skicka polis till Finland för att arrestera personer här?",o:["Nej, ingen annan stat får överskrida våra gränser utan lov","Ja, om det är ett EU-land","Ja, alltid","Bara om personen är utländsk medborgare"],a:0,e:"Andra stater måste respektera våra gränser. Ingen annan stat får överskrida dem utan lov, till exempel för att arrestera personer i Finland."},
+ {t:"suv",p:"s. 10",q:"Vad har Finland ett eget försvar till?",o:["Att bevaka och beskydda gränserna","Att stifta lagar","Att välja president","Att övervaka barnens rättigheter"],a:0,e:"Som suverän stat har Finland ett eget försvar med rätt att bevaka och beskydda gränserna."},
+ {t:"suv",p:"s. 11",q:"Inom vilken organisation samarbetar Finland kring försvarsfrågor?",o:["Nato","Nordiska rådet","Unicef","Freedom House"],a:0,e:"Inom Nato samarbetar Finland kring försvarsfrågor. Nordiska rådet är för de nordiska länderna, i EU samarbetar vi med europeiska länder och i FN samarbetar alla världens stater."},
+ {t:"suv",p:"s. 11",q:"Vad är Nordiska rådet?",o:["Ett samarbetsforum för de nordiska länderna","FN:s barnfond","Finlands regering","En domstol i EU"],a:0,e:"Nordiska rådet är ett samarbetsforum för de nordiska länderna. Norden var till exempel först i världen med passfrihet efter andra världskriget."},
 
-        .Result {
-            display: table-cell;
-            border-bottom: solid;
-            border-width: thin;
-            padding-top: 2px;
-            padding-bottom: 2px;
-            padding-left: 5px;
-            padding-right: 5px;
-            text-align: left;
-        }
+ {t:"sym",p:"s. 12",q:"Varför har alla stater nationella symboler?",o:["För att skapa en känsla av samhörighet bland invånarna","För att visa hur stort landet är","För att FN kräver det","För att locka turister"],a:0,e:"Nationalsymbolerna finns till för att skapa en känsla av samhörighet bland invånarna."},
+ {t:"sym",p:"s. 12",q:"Vilken av dessa hör INTE till de fyra viktigaste officiella nationalsymbolerna?",o:["Nationalfågeln","Flaggan","Statsvapnet","Nationalsången"],a:0,e:"De fyra viktigaste officiella nationalsymbolerna är flagga, statsvapen, nationalsång och nationaldag."},
+ {t:"sym",p:"s. 12",q:"Vad sägs färgerna i Finlands flagga symbolisera?",o:["Den vita bottnen de snöiga vintrarna och det blå korset de tusentals sjöarna","Den vita bottnen freden och det blå korset havet","Den vita bottnen kyrkan och det blå korset himlen","Den vita bottnen Lappland och det blå korset Östersjön"],a:0,e:"Den vita bottnen sägs symbolisera de snöiga vintrarna och det blå korset de flera tusen sjöarna."},
+ {t:"sym",p:"s. 12",q:"Från vilket år är Finlands flagga?",o:["1918","1809","1906","1948"],a:0,e:"Flaggan är från 1918."},
+ {t:"sym",p:"s. 12",q:"Hur ser Finlands statsvapen ut?",o:["Ett lejon med svärd i rött och guld","En björn på blå botten","En svan med krona","Ett blått kors med en stjärna"],a:0,e:"Statsvapnet är lejonet med svärdet i rött och guld. Det var en symbol för Finland redan under svenska tiden."},
+ {t:"sym",p:"s. 12",q:"Vem skrev texten till nationalsången Vårt land?",o:["Johan Ludvig Runeberg","Fredrik Pacius","Elias Lönnrot","Jean Sibelius"],a:0,e:"Vårt land är den första dikten i nationalskalden J.L. Runebergs diktsamling Fänrik Ståls sägner. Fredrik Pacius tonsatte den 1848."},
+ {t:"sym",p:"s. 12",q:"Vem tonsatte (skrev musiken till) Vårt land?",o:["Fredrik Pacius","Johan Ludvig Runeberg","Jean Sibelius","Eleanor Roosevelt"],a:0,e:"Fredrik Pacius tonsatte Vårt land år 1848."},
+ {t:"sym",p:"s. 12",q:"Vilken dag är Finlands nationaldag?",o:["6 december","24 juni","1 maj","5 juni"],a:0,e:"Nationaldagen, självständighetsdagen, firas 6 december. Samma dag godkände lantdagen självständighetsförklaringen 1917."},
+ {t:"sym",p:"s. 12",q:"Vilken är Finlands nationalfågel?",o:["Sångsvanen","Talgoxen","Tranan","Havsörnen"],a:0,e:"Nationalfågeln är sångsvanen."},
+ {t:"sym",p:"s. 12",q:"Vilken är Finlands nationalblomma?",o:["Liljekonvaljen","Blåklinten","Prästkragen","Linnean"],a:0,e:"Nationalblomman är liljekonvaljen."},
+ {t:"sym",p:"s. 12",q:"Vilket är Finlands nationaldjur?",o:["Brunbjörnen","Älgen","Vargen","Renen"],a:0,e:"Nationaldjuret är brunbjörnen."},
+ {t:"sym",p:"s. 12",q:"Vilken är Finlands nationalsport?",o:["Boboll","Ishockey","Skidåkning","Fotboll"],a:0,e:"Nationalsporten är boboll."},
+ {t:"sym",p:"s. 12",q:"Vilken är Finlands nationalmaträtt?",o:["Rågbrödet","Karelska piroger","Laxsoppa","Mämmi"],a:0,e:"Nationalmaträtten är rågbrödet."},
+ {t:"sym",p:"s. 12",q:"Varför har Finlands mö (Suomi-neito) blivit en symbol för Finland?",o:["Finlands gränser liknar en kvinna med en utsträckt arm","Hon var Finlands första president","Hon skrev nationalsången","Hon finns på flaggan"],a:0,e:"Finlands mö har blivit en symbol för Finland, vars gränser liknar en kvinna med en utsträckt arm."},
+ {t:"sym",p:"s. 12",q:"Hur valdes flera av Finlands inofficiella nationalsymboler?",o:["Genom omröstningar inför Finlands hundraårsjubileum 2017","Av presidenten 1917","Av FN","Av Sverige under svenska tiden"],a:0,e:"Flera av de inofficiella symbolerna utsågs genom omröstningar inför Finlands hundraårsjubileum 2017."},
 
-        .TableSelect {
-            background-color: green;
-        }
+ {t:"dem",p:"s. 16",q:"Vilket är ett tecken på demokrati?",o:["Folket väljer vem som stiftar lagarna i fria, hemliga, lika och allmänna val","Den som stiftar lagarna har ärvt sin makt","Makten är koncentrerad till ett parti","Censur förekommer"],a:0,e:"I en demokrati väljer folket vem som stiftar lagarna i fria, hemliga, lika och allmänna val som hålls regelbundet. Alla myndiga medborgare är valbara och har rösträtt."},
+ {t:"dem",p:"s. 16",q:"Vad innebär majoritetsprincipen?",o:["Att minst hälften av ledamöterna i ett parlament måste godkänna alla beslut","Att den största staten bestämmer","Att presidenten kan stoppa beslut","Att alla måste vara överens"],a:0,e:"Majoritetsprincipen innebär att minst hälften av ledamöterna i ett parlament måste godkänna alla beslut."},
+ {t:"dem",p:"s. 16",q:"I en demokrati är makten delad mellan olika organ. Vad gör de?",o:["Stiftar lagar, verkställer lagar och dömer lagbrott","Väljer kung, präst och general","Bestämmer över tidningar, tv och radio","Övervakar barnens rättigheter"],a:0,e:"Makten är delad mellan olika organ som stiftar och verkställer lagar och dömer lagbrott."},
+ {t:"dem",p:"s. 16",q:"Vilket år blev Finland det första landet i världen med allmän och lika rösträtt i parlamentsval?",o:["1906","1917","1789","1948"],a:0,e:"Finland var det första landet i världen som införde allmän och lika rösträtt i parlamentsval, år 1906. Då hette parlamentet lantdag, i dag riksdag."},
+ {t:"dem",p:"s. 16",q:"Hur var rösträtten ofta tidigare, innan allmän och lika rösträtt?",o:["Starkt begränsad och gällde bara män som ägde jord eller annan egendom","Alla över 12 år fick rösta","Bara kvinnor fick rösta","Det fanns ingen rösträtt alls"],a:0,e:"Rösträtten var tidigare starkt begränsad och gällde bara män som ägde jord eller annan egendom."},
+ {t:"dem",p:"s. 16",q:"Vad bygger kraven för att ett land ska klassas som en demokrati på?",o:["FN:s förklaring om de mänskliga rättigheterna från 1948","Finlands grundlag från 1918","Barnkonventionen från 1989","EU:s lagar från 1995"],a:0,e:"Kraven bygger på FN:s förklaring om de mänskliga rättigheterna från 1948, som i sin tur bygger på deklarationen från franska revolutionen 1789."},
+ {t:"dem",p:"s. 16",q:"Vad betyder näringsfrihet?",o:["Att alla har rätt att grunda företag och äga egendom","Att alla har rätt till gratis mat","Att man får resa fritt","Att man får säga vad man tycker"],a:0,e:"Alla har rätt att grunda företag och äga egendom. Det kallas näringsfrihet."},
+ {t:"dem",p:"s. 16",q:"Vilket hör till tecknen på demokrati?",o:["Domstolarna är fria och oberoende och alla kan överklaga domstolsbeslut","Domstolarnas arbete kontrolleras av makthavarna","Folk kan sitta fängslade i många år utan rättegång","Skrivna lagar saknas"],a:0,e:"I en demokrati är domstolarna fria och oberoende. Ingen kan straffas utan rättegång och alla kan överklaga."},
+ {t:"dem",p:"s. 17",q:"Vilket är ett tecken på diktatur?",o:["Den högsta ledaren kan stoppa parlamentets beslut (vetorätt)","Alla har rätt att bilda och gå med i föreningar","Det finns effektiva system för att motarbeta korruption","Alla medborgare har rätt att få pass"],a:0,e:"I en diktatur kan lagar godkännas direkt av den högsta ledaren, som också kan stoppa parlamentets beslut. Det kallas vetorätt."},
+ {t:"dem",p:"s. 17",q:"Vad menas med censur, som förekommer i diktaturer?",o:["Media ägs eller kontrolleras av makthavarna och det är inte tillåtet att kritisera ledningen","Att alla får skriva vad de vill","Att domstolar är oberoende","Att val hålls regelbundet"],a:0,e:"I en diktatur förekommer censur. Media ägs eller kontrolleras av makthavarna, det är inte tillåtet att kritisera ledningen och oliktänkare förföljs."},
+ {t:"dem",p:"s. 17",q:"Hur har de som stiftar lagarna fått sin makt i en diktatur?",o:["De har ärvt makten, fått den av personer som inte är folkvalda, eller valts i val med valfusk","De har valts i fria och hemliga val","De har lottats fram bland alla medborgare","De har utsetts av FN"],a:0,e:"I en diktatur har makthavarna ärvt sin makt, tilldelats den av icke folkvalda, eller valts i val med valfusk, manipulation eller begränsad rösträtt."},
+ {t:"dem",p:"s. 17",q:"Vilket hör till tecknen på diktatur?",o:["Resemöjligheterna är begränsade och alla får inte pass","Alla har rätt att säga sin åsikt","Alla invånare behandlas jämlikt","Alla har samma möjligheter till utbildning och sjukvård"],a:0,e:"I en diktatur är resemöjligheterna begränsade. I en demokrati har alla medborgare rätt att få pass och resa fritt."},
+ {t:"dem",p:"s. 17",q:"Kartan på s. 17 kommer från Freedom House. I vilka tre grupper delas länderna in?",o:["Fria, delvis fria och ofria länder","Rika, medelrika och fattiga länder","Republiker, monarkier och teokratier","Stora, mellanstora och små länder"],a:0,e:"Freedom House klassar länderna som fria (demokratier), delvis fria (demokratier med vissa problem) och ofria (diktaturer)."},
+ {t:"dem",p:"s. 16",q:"Vad kallas ett land som uppfyller alla kännetecken för en diktatur?",o:["En totalitär eller auktoritär regim","En parlamentarisk monarki","En nationalstat","En representativ demokrati"],a:0,e:"Ett land som uppfyller alla kännetecken för en diktatur är en totalitär eller auktoritär regim, men det är ovanligt."},
+ {t:"dem",p:"s. 16",q:"Vad säger boken om länder där det ibland finns korruption eller fattigdom?",o:["Så länge makten utgår från folket och demokratins kännetecken uppfylls i hög utsträckning är landet en demokrati","De är automatiskt diktaturer","De får inte vara med i FN","De räknas inte som stater"],a:0,e:"Få stater uppfyller alltid alla kännetecken. Så länge makten utgår från folket och kännetecknen uppfylls i hög utsträckning är landet en demokrati."},
 
-        .CellSelect {
-            display: table-cell;
-            border: solid;
-            border-width: thin;
-            padding-top: 2px;
-            padding-bottom: 2px;
-            padding-left: 5px;
-            padding-right: 5px;
-            text-align: right;
-            cursor: default;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-    </style>
+ {t:"skick",p:"s. 18–19",q:"Hur blir man statschef i en republik?",o:["Folket väljer statschefen för en viss tid","Man ärver ämbetet","Generalerna utser statschefen","Religiösa ledare utser statschefen"],a:0,e:"I en republik väljer folket landets officiella statschef för en viss tid. I en republik är statschefen folkvald."},
+ {t:"skick",p:"s. 18–19",q:"Hur blir man statschef i en monarki?",o:["Man ärver ämbetet eller så utser statschefen själv sin efterträdare","Folket röstar vart fjärde år","Riksdagen väljer","Man utses av FN"],a:0,e:"I en monarki ärver statschefen sitt ämbete eller utser själv sin efterträdare."},
+ {t:"skick",p:"s. 18",q:"Vilka av Finlands grannländer är monarkier med arvkungadöme?",o:["Sverige, Norge och Danmark","Sverige, Estland och Ryssland","Norge, Island och Estland","Inga av dem"],a:0,e:"Finland är en republik med folkvald president, medan Sverige, Norge och Danmark är monarkier med arvkungadöme."},
+ {t:"skick",p:"s. 18",q:"Vad betyder det att ett land är parlamentariskt styrt?",o:["Det finns en regering som styr landet med stöd av ett folkvalt parlament","Kungen styr ensam","Presidenten utser alla ministrar","Präster har den högsta makten"],a:0,e:"Parlamentariskt styrt betyder att en regering styr landet med stöd av ett folkvalt parlament. Sverige och alla andra monarkier i Europa är parlamentariskt styrda."},
+ {t:"skick",p:"s. 18",q:"Hur mycket politisk makt har monarken (t.ex. drottningen) i en demokrati?",o:["Ingen egentlig politisk makt","All makt","Makt över domstolarna","Vetorätt mot alla lagar"],a:0,e:"I demokratier har monarken ingen egentlig politisk makt."},
+ {t:"skick",p:"s. 18",q:"Vilka länder är exempel på presidentstyrda stater?",o:["Frankrike, Ryssland och USA","Tyskland och Italien","Sverige, Norge och Danmark","Iran och Vatikanstaten"],a:0,e:"Presidentstyre betyder att folket direkt väljer en president som sedan utser ministrarna i regeringen. Frankrike, Ryssland och USA är presidentstyrda."},
+ {t:"skick",p:"s. 18",q:"Tyskland och Italien har en president. Varför är de ändå inte presidentstyrda?",o:["Presidenten saknar politisk makt, så länderna är parlamentariskt styrda","De är monarkier","De är militärdiktaturer","Presidenten väljs av FN"],a:0,e:"I Tyskland och Italien saknar presidenten politisk makt, så länderna är parlamentariskt styrda."},
+ {t:"skick",p:"s. 18",q:"Vem leder regeringen och väljer ministrarna i Finland?",o:["Statsministern","Presidenten","Talmannen","Kungen"],a:0,e:"Finland är ett mellanting mellan presidentstyre och parlamentarism. Presidenten är folkvald och deltar i regeringens arbete, men det är statsministern som leder regeringen och väljer ministrarna. Regeringen måste godkännas av riksdagen."},
+ {t:"skick",p:"s. 19",q:"Kina och Nordkorea är exempel på...",o:["enpartistater (enpartidiktaturer)","militärdiktaturer","teokratier","monarkier"],a:0,e:"Kina och Nordkorea är enpartistater där kommunistpartiet är det enda tillåtna. Landets högsta ledare utses inom partiet."},
+ {t:"skick",p:"s. 19",q:"Vem styr en militärdiktatur?",o:["Generaler (armén)","Präster","Ett kungahus","Folkvalda politiker"],a:0,e:"Länder som styrs av generaler kallas militärdiktaturer. Egypten och Thailand är exempel där armén har den högsta makten."},
+ {t:"skick",p:"s. 19",q:"Vilka länder nämner boken som exempel där armén har den högsta makten?",o:["Egypten och Thailand","Kina och Nordkorea","Iran och Vatikanstaten","Tyskland och Italien"],a:0,e:"I Egypten och Thailand är det armén som har den högsta makten."},
+ {t:"skick",p:"s. 19",q:"Vad betyder teokrati?",o:["Gudsvälde: landet styrs av religiösa ledare och prästerna har den högsta makten","Folkstyre","Militärstyre","Ensamstyre av en president"],a:0,e:"Teokrati betyder gudsvälde. Landet styrs av religiösa ledare som upplevs ha fått sin makt direkt av Gud."},
+ {t:"skick",p:"s. 19",q:"Vilka länder är exempel på teokratier?",o:["Iran och Vatikanstaten","Egypten och Thailand","Frankrike och USA","Kina och Nordkorea"],a:0,e:"Iran och Vatikanstaten är exempel på teokratier."},
+ {t:"skick",p:"s. 19",q:"Vem är landets högsta chef i Iran?",o:["Ayatollan, den andliga ledaren","Presidenten","Påven","Kungen"],a:0,e:"I Iran är den andliga ledaren, ayatollan, landets högsta chef. Han står över både presidenten och parlamentet."},
+ {t:"skick",p:"s. 19",q:"Vem är statschef i Vatikanstaten?",o:["Påven","En folkvald president","En general","Italiens president"],a:0,e:"I Vatikanstaten, världens minsta stat både till yta och antal invånare, är påven statschef."},
+ {t:"skick",p:"s. 19",q:"Vad är personkult, som är viktigt i diktaturer?",o:["Att ledaren hyllas och dyrkas, till exempel med gigantiska statyer","Att alla får rösta personligen","Att domstolarna är oberoende","Att alla har rätt till ett privatliv"],a:0,e:"I diktaturer är personkulten viktig. Bilden i boken visar soldater som bugar för en jättestaty av Kim Il Sung, Nordkoreas ledare 1948–1994."},
 
+ {t:"dir",p:"s. 20",q:"Vad är direkt demokrati?",o:["Folket tar ställning till en fråga genom att direkt rösta","Folket väljer representanter som fattar besluten","Riksdagen bestämmer allt utan val","Presidenten fattar alla beslut"],a:0,e:"Direkt demokrati betyder att folket tar ställning till en fråga genom att direkt rösta. Den enklaste formen är att skolelever röstar genom handuppräckning."},
+ {t:"dir",p:"s. 20",q:"Hur sker direkt demokrati på nationell nivå?",o:["Genom folkomröstningar","Genom riksdagsval","Genom att presidenten bestämmer","Genom kommunfullmäktige"],a:0,e:"Direkt demokrati på nationell nivå sker genom folkomröstningar."},
+ {t:"dir",p:"s. 20",q:"Vad betyder det att folkomröstningar i Finland är rådgivande?",o:["Riksdagen måste inte följa valresultatet","Resultatet är alltid bindande","Bara barn får rösta","EU bestämmer resultatet"],a:0,e:"I Finland får riksdagen ordna rådgivande folkomröstningar. Riksdagen måste inte följa resultatet, men parlamenten brukar ändå oftast respektera folkets val."},
+ {t:"dir",p:"s. 20",q:"Vilka två nationella folkomröstningar har ordnats i Finland?",o:["1932 om alkoholförsäljning och 1994 om EU-medlemskap","1917 om självständighet och 1995 om euron","1906 om rösträtt och 1948 om mänskliga rättigheter","2017 om nationalsymboler och 2020 om Brexit"],a:0,e:"År 1932 röstade folket ja till en legalisering av alkoholförsäljning och 1994 godkände de Finlands EU-medlemskap."},
+ {t:"dir",p:"s. 20",q:"Vad är representativ demokrati?",o:["Folket väljer representanter som sedan fattar besluten","Folket röstar själva om varje fråga","En person har all makt","Generaler fattar besluten"],a:0,e:"I en representativ demokrati väljer folket representanter som sedan fattar beslut. På nationell nivå väljer vi vem som ska stifta våra lagar i riksdagen."},
+ {t:"dir",p:"s. 20",q:"Varje klass utser en representant till skolans elevkårsstyrelse. Vad är det ett exempel på?",o:["Representativ demokrati","Direkt demokrati","Diktatur","Teokrati"],a:0,e:"När klassen väljer en representant som beslutar i elevkårsstyrelsen är det representativ demokrati. Om alla elever röstar med handuppräckning är det direkt demokrati."},
+ {t:"dir",p:"s. 20",q:"Vad kallas folkvalda beslutsfattare?",o:["Förtroendevalda","Ombudsmän","Ministrar","Ayatollor"],a:0,e:"Folkvalda beslutsfattare kallas förtroendevalda. De har fått vårt förtroende att fatta beslut för vår del."},
+ {t:"dir",p:"s. 20",q:"Vilken är en fördel med representativ demokrati enligt boken?",o:["Besluten blir ofta mer genomtänkta och minoriteter blir lättare hörda","Besluten fattas alltid snabbare","Folket behöver aldrig rösta","Det behövs inga kompromisser"],a:0,e:"Det kan ta längre tid, men besluten är ofta mer genomtänkta och analyserade. Det är också lättare för minoriteter att bli hörda och besluten innehåller ofta kompromisser."},
+ {t:"dir",p:"s. 20",q:"Vilken är en nackdel med representativ demokrati enligt boken?",o:["Det kan ta längre tid att fatta beslut","Minoriteter blir aldrig hörda","Folket får inte rösta","Besluten blir mindre genomtänkta"],a:0,e:"Det kan ta längre tid att fatta beslut i en representativ demokrati."},
 
-    <script>
+ {t:"mr",p:"s. 24",q:"Vad handlar de mänskliga rättigheterna i grund och botten om?",o:["Att alla är lika mycket värda och ska behandlas med respekt, oberoende av vem man är","Att varje land får göra som det vill","Att vuxna har fler rättigheter än barn","Att bara medborgare har rättigheter"],a:0,e:"Mänskliga rättigheter handlar om att alla är lika mycket värda och ska behandlas med respekt, oberoende av vem man är, hur man ser ut eller var man bor."},
+ {t:"mr",p:"s. 24",q:"Vad fick många att inse att det behövdes gemensamma regler för hur människor ska behandlas?",o:["Förintelsen och andra grymma brott mot civila under andra världskriget","Brexit","Franska revolutionen 1789","Finlands självständighet"],a:0,e:"Under andra världskriget mördades miljontals människor. Förintelsen och andra grymma brott fick många att inse att gemensamma regler behövdes."},
+ {t:"mr",p:"s. 24",q:"Vem ledde FN:s arbetsgrupp som skrev de mänskliga rättigheterna?",o:["Eleanor Roosevelt","Johan Ludvig Runeberg","Hosni Mubarak","Kim Il Sung"],a:0,e:"En arbetsgrupp inom FN bildades under ledning av Eleanor Roosevelt."},
+ {t:"mr",p:"s. 24",q:"Hur många artiklar har FN:s förklaring om de mänskliga rättigheterna?",o:["30","10","54","196"],a:0,e:"Arbetsgruppen författade 30 artiklar med rättigheter som skulle gälla alla människor överallt på jorden."},
+ {t:"mr",p:"s. 24",q:"Vad handlar de första 21 artiklarna om?",o:["Vad vi inte får göra mot varandra, till exempel döda, tortera eller stjäla","Rätten till mat, bostad och sjukvård","Hur riksdagsval går till","Vilka länder som är medlemmar i FN"],a:0,e:"De första 21 artiklarna handlar om vad vi inte får göra mot varandra. De följande är positiva rättigheter, eller välfärdsrättigheter, som mat, utbildning, bostad och sjukvård."},
+ {t:"mr",p:"s. 24–25",q:"Vad kallas de rättigheter som handlar om vad var och en har rätt till för att leva ett gott liv, till exempel mat, utbildning och sjukvård?",o:["Positiva rättigheter eller välfärdsrättigheter","Medborgarplikter","Vetorätt","Näringsfrihet"],a:0,e:"De kallas positiva rättigheter eller välfärdsrättigheter. De kom till på initiativ av Sovjetunionen."},
+ {t:"mr",p:"s. 25",q:"Vad är skillnaden mellan förklaringen och en konvention?",o:["Ett land som undertecknar en konvention förbinder sig att följa den, förklaringen var bara ett erkännande av att rättigheterna är viktiga","Det finns ingen skillnad","En konvention gäller bara barn","Förklaringen är en lag i varje land"],a:0,e:"Länderna som godkände förklaringen erkände bara att rättigheterna var viktiga. Ett land som undertecknar en konvention förbinder sig att följa dem."},
+ {t:"mr",p:"s. 25",q:"Hur övervakar FN att de mänskliga rättigheterna följs?",o:["Stater som undertecknat konventionerna måste regelbundet rapportera till FN hur de arbetar","FN skickar polis till alla länder","FN stiftar lagarna i varje land","FN gör ingenting"],a:0,e:"Alla stater som undertecknat konventionerna är skyldiga att regelbundet rapportera till FN hur de arbetar för de mänskliga rättigheterna. Finland har undertecknat alla."},
+ {t:"mr",p:"s. 24",q:"Vad innebär det att de mänskliga rättigheterna är universella?",o:["De gäller överallt och för alla människor","De gäller bara i Europa","De gäller bara vuxna","De kan ändras av varje parlament"],a:0,e:"De mänskliga rättigheterna gäller överallt (artikel 6) och för alla människor oberoende av hur de ser ut, hur mycket pengar de har eller vad de tror på."},
+ {t:"mr",p:"s. 25",q:"Kan majoriteten i ett demokratiskt valt parlament upphäva de mänskliga rättigheterna?",o:["Nej, ingen kan upphäva dem","Ja, om över hälften röstar för","Ja, om presidenten godkänner","Ja, vid en folkomröstning"],a:0,e:"Enligt artikel 30 kan ingen upphäva de mänskliga rättigheterna, inte ens majoriteten i ett demokratiskt valt parlament."},
+ {t:"mr",p:"s. 24–25",q:"Vilken av dessa finns med bland de mänskliga rättigheterna?",o:["Alla är oskyldiga tills motsatsen bevisas","Alla har rätt till en egen bil","Alla har rätt att slippa skatt","Alla har rätt att bestämma över andra"],a:0,e:"Att alla är oskyldiga tills motsatsen bevisas är en av rättigheterna. Andra är till exempel frihet från slaveri och tortyr, rätt till utbildning, att tro på vad man vill och att uttala sina åsikter."},
+ {t:"mr",p:"s. 24–25",q:"Vilken av dessa finns INTE med bland de mänskliga rättigheterna?",o:["Rätten att alltid få som man vill","Ingen får utsättas för tortyr","Alla har rätt att fly till ett annat land för att få skydd","Alla har rätt till fritid"],a:0,e:"Frihet från tortyr, rätten att fly för att få skydd och rätten till fritid finns alla med i FN:s förklaring."},
+ {t:"mr",p:"s. 24–25",q:"Vilken rättighet står i FN:s förklaring?",o:["Man får gifta sig med vem man vill","Man får straffas utan rättegång","Man får fängslas utan goda skäl","Staten får ta ens egendom utan anledning"],a:0,e:"Man får gifta sig med vem man vill. I förklaringen står också att ingen får fängslas utan goda skäl och att ingen får beslagta vår egendom utan god anledning."},
 
-        var selectedTables = [false, false, false, false, false, false, false, false, false, false];
-        var firsts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        var seconds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        var first, second;
-        var score = 0;
+ {t:"barn",p:"s. 26",q:"Vilken konvention har överlägset flest länder undertecknat?",o:["Barnkonventionen","Diskrimineringslagen","Lagen om jämställdhet","Nordiska rådets avtal"],a:0,e:"Barnkonventionen är den konvention som överlägset flest länder har undertecknat."},
+ {t:"barn",p:"s. 26",q:"Vilket land hade 2019 som enda land inte undertecknat barnkonventionen?",o:["USA","Kina","Ryssland","Iran"],a:0,e:"År 2019 var det bara USA som inte hade undertecknat barnkonventionen."},
+ {t:"barn",p:"s. 26",q:"När skrevs barnkonventionen och varför?",o:["1989, eftersom barn var speciellt utsatta i många länder och behövde ett särskilt skydd","1948, efter andra världskriget","1917, när Finland blev självständigt","2019, på grund av klimatet"],a:0,e:"Barnkonventionen skrevs 1989 eftersom FN upplevde att barn var speciellt utsatta i många länder och behövde ett särskilt skydd."},
+ {t:"barn",p:"s. 26",q:"Vem övervakar att barnens rättigheter respekteras?",o:["Unicef, FN:s barnfond","Nato","Nordiska rådet","Freedom House"],a:0,e:"Unicef, som är FN:s barnfond, övervakar att barnens rättigheter respekteras. Unicef grundades för att hjälpa de europeiska barnen efter andra världskriget."},
+ {t:"barn",p:"s. 26",q:"Vem övervakar barnens rättigheter särskilt i Finland?",o:["Barnombudsmannen","Diskrimineringsombudsmannen","Presidenten","Försvarsmakten"],a:0,e:"I Finland finns en speciell barnombudsman som övervakar barnens rättigheter."},
+ {t:"barn",p:"s. 26",q:"Vem räknas som barn enligt barnkonventionen?",o:["Den som inte ännu har fyllt 18 år","Den som är under 12 år","Den som är under 15 år","Den som går i grundskolan"],a:0,e:"Man är ett barn om man inte ännu har fyllt 18 år."},
+ {t:"barn",p:"s. 26",q:"Boken säger att barnens rättigheter är detsamma som...",o:["de vuxnas skyldigheter","statens lagar","barnens skyldigheter","föräldrarnas rättigheter"],a:0,e:"Barnens rättigheter är det samma som de vuxnas skyldigheter. De vuxna ska sköta om barnen och beskydda dem, och staten ska ta hand om barn som far illa i hemmen."},
+ {t:"barn",p:"s. 26",q:"Vilken rättighet slår barnkonventionen fast att alla barn har från början?",o:["Rätt till ett namn och födelseregistrering","Rätt att rösta","Rätt till körkort","Rätt att arbeta heltid"],a:0,e:"Alla barn har rätt till ett namn och födelseregistrering. Utan registrering kan man nekas hälsovård och skolgång. I Finland registreras alla barn som föds på sjukhus automatiskt och får ett personnummer."},
+ {t:"barn",p:"s. 27",q:"När börjar läroplikten i Finland enligt boken?",o:["Samma år som barnet fyller sex år","När barnet fyller tio år","När barnet fyller tre år","Läroplikt finns inte i Finland"],a:0,e:"Läroplikten börjar samma år som barnet fyller sex år. Alla barn har rätt att gå i avgiftsfri grundskola."},
+ {t:"barn",p:"s. 27",q:"Vilken ålder är en viktig åldersgräns för barn i Finland, till exempel i vårdnadstvister?",o:["12 år","7 år","15 år","18 år"],a:0,e:"I Finland är 12 år en viktig åldersgräns. En tolvåring måste höras när det gäller vårdnadstvister vid skilsmässor, umgängesrätt och omhändertaganden."},
+ {t:"barn",p:"s. 27",q:"Enligt rutan på s. 27 har barn rätt till...",o:["trygghet, utbildning, vård och en egen åsikt","rösträtt, körkort, lön och pass","egen bostad, bil, mobil och fritid","att bestämma över sina föräldrar"],a:0,e:"Barn har rätt till trygghet, utbildning, vård och en egen åsikt."},
+ {t:"barn",p:"s. 27",q:"Hur kan unga under 18 år påverka i många kommuner, trots att de inte har rösträtt?",o:["Genom ungdomsfullmäktige, som kommer med utlåtanden till beslutsfattarna","Genom att rösta i riksdagsval","Genom att bli statsminister","De kan inte påverka alls"],a:0,e:"I många kommuner finns ett ungdomsfullmäktige dit personer under 18 år är valbara. Medlemmarna får komma med utlåtanden till beslutsfattarna."},
+ {t:"barn",p:"s. 27",q:"Varför går färre flickor än pojkar i skola i fattiga länder enligt boken?",o:["Flickorna måste ofta hämta vatten, vilket kan ta flera timmar per dag","Flickor får inte gå i skola enligt barnkonventionen","Det finns inga skolor","Flickorna arbetar i fabriker"],a:0,e:"I många fattiga länder är det flickornas uppgift att hämta vatten, vilket kan ta flera timmar per dag. Det är en stor orsak till att färre flickor går i skola."},
 
-        function init() {
-            document.getElementById('start').hidden = false;
-            document.getElementById('game').hidden = true;
-            score = 0;
-            firsts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-            seconds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        }
+ {t:"disk",p:"s. 28",q:"Vad betyder diskriminering enligt boken?",o:["Att människor bemöts på ett ojämlikt sätt eller försätts i en ojämlik ställning på grund av en personlig egenskap","Att två personer har olika åsikter","Att man får sämre betyg för att man inte pluggat","Att man röstar på olika partier"],a:0,e:"Diskriminering betyder kort och gott att människor bemöts på ett ojämlikt sätt eller försätts i en ojämlik ställning på grund av en personlig egenskap."},
+ {t:"disk",p:"s. 28",q:"Vilket av följande är ett exempel på diskriminering?",o:["En mörkhyad person blir inte insläppt på en nattklubb på grund av sitt utseende","En person får vänta i kön för att hen kom sist","En elev får sämre betyg för att hen inte lämnat in uppgifter","En person utan körkort får inte jobb som busschaufför"],a:0,e:"Att nekas inträde på grund av sitt utseende är diskriminering. I de andra fallen finns ett sakligt skäl."},
+ {t:"disk",p:"s. 28",q:"Ett bussbolag annonserar efter en manlig busschaufför. Är det diskriminering?",o:["Ja, det är diskriminering på grund av kön","Nej, det är helt tillåtet","Bara om bussbolaget är statligt","Nej, eftersom det gäller ett jobb"],a:0,e:"Att söka just en man till jobbet är diskriminering på grund av kön. Det är ett av exemplen i boken."},
+ {t:"disk",p:"s. 28",q:"Vilket av bokens exempel visar diskriminering på grund av funktionsnedsättning?",o:["En arbetsgivare vägrar anpassa arbetsplatsen så att en person i rullstol kan arbeta där","En äldre person väljs inte till en tjänst trots bäst meriter","En skola ordnar inget alternativ till religiösa evenemang","De kvinnliga sommararbetarna får lägre lön"],a:0,e:"Att vägra anpassa arbetsplatsen för en person i rullstol är diskriminering på grund av funktionsnedsättning. De andra exemplen gäller ålder, religion och kön."},
+ {t:"disk",p:"s. 28",q:"Vilka är speciellt utsatta för diskriminering enligt boken?",o:["Synliga minoriteter, alltså personer som till det yttre avviker från majoritetsbefolkningen","Personer som bor i stora städer","Personer som har fyllt 18 år","Personer med högre utbildning"],a:0,e:"Alla kan bli utsatta för diskriminering, men synliga minoriteter är speciellt utsatta."},
+ {t:"disk",p:"s. 28",q:"Vilket straff kan man få i Finland för diskriminering?",o:["Böter eller fängelse i högst sex månader","Livstids fängelse","Inget straff alls","Utvisning ur landet"],a:0,e:"Den som gör sig skyldig till diskriminering kan dömas till böter eller fängelse i högst sex månader. Den som diskriminerats har vanligtvis också rätt till skadestånd."},
+ {t:"disk",p:"s. 28",q:"Var tryggas de mänskliga rättigheterna och allas rätt till lika behandling i Finland?",o:["I grundlagen och en rad andra lagar","Bara i barnkonventionen","I Kalevala","Bara i EU:s lagar"],a:0,e:"I Finland tryggas de mänskliga rättigheterna och allas rätt till lika behandling i grundlagen och en rad andra lagar."},
+ {t:"disk",p:"s. 29",q:"Vad övervakar diskrimineringsombudsmannen?",o:["Att minoriteter inte diskrimineras på grund av etnicitet eller annan jämförbar orsak","Att barnen får gå i skola","Att ingen diskrimineras på grund av kön","Att valen går rätt till"],a:0,e:"Diskrimineringsombudsmannen övervakar att minoriteter inte diskrimineras på grund av etnicitet eller annan jämförbar orsak."},
+ {t:"disk",p:"s. 29",q:"Vad övervakar jämställdhetsombudsmannen?",o:["Att ingen diskrimineras på grund av kön eller sexuell identitet","Att barnens rättigheter respekteras","Att EU:s lagar följs","Att alla får pass"],a:0,e:"Jämställdhetsombudsmannen övervakar att ingen diskrimineras på grund av kön eller sexuell identitet. Båda ombudsmännen tar emot klagomål och hjälper vid rättegångar."},
+ {t:"disk",p:"s. 29",q:"Vilka är de två mest centrala lagarna mot diskriminering i Finland?",o:["Diskrimineringslagen och lagen om jämställdhet mellan kvinnor och män","Grundlagen och barnkonventionen","Diskrimineringslagen och Nato-avtalet","Lagen om folkomröstning och vallagen"],a:0,e:"De två mest centrala lagarna är diskrimineringslagen (§8) och lagen om jämställdhet mellan kvinnor och män (§7)."},
+ {t:"disk",p:"s. 29",q:"Vilket av följande nämns INTE i diskrimineringslagen §8 som en grund man inte får diskrimineras för?",o:["Skolbetyg","Ålder","Språk","Sexuell läggning"],a:0,e:"Enligt §8 får ingen diskrimineras på grund av ålder, ursprung, nationalitet, språk, religion, övertygelse, åsikt, politisk verksamhet, fackföreningsverksamhet, familjeförhållanden, hälsotillstånd, funktionsnedsättning, sexuell läggning eller annan omständighet som gäller personen."},
+ {t:"disk",p:"s. 29",q:"En chef omplacerar en gravid kvinna till en tjänst med lägre lön. Vilken lag bryter chefen mot?",o:["Lagen om jämställdhet mellan kvinnor och män","Ingen lag","Barnkonventionen","Lagen om folkomröstningar"],a:0,e:"Enligt jämställdhetslagen §7 får kvinnor inte försättas i olika ställning på grund av graviditet eller förlossning."}
+];
 
-        function begin() {
-            /** document.getElementById('start').hidden=true; */
-            document.getElementById('again').hidden = true;
-            document.getElementById('check').hidden = false;
-            var counter;
-            for (counter = 1; counter <= 10; counter++) {
-                var next = 't' + counter;
-                if (document.getElementById(next).checked) {
-                    selectedTables[counter - 1] = true;
-                }
-            }
-            document.getElementById('game').hidden = false;
-            document.getElementById('start').hidden = true;
+const $ = id => document.getElementById(id);
+const shuffle = arr => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+let chosen = new Set(Object.keys(T));
+let run = [], idx = 0, results = [];
 
+function renderTopics(){
+  const box = $("topics"); box.innerHTML = "";
+  const all = document.createElement("button");
+  all.className = "chip"; all.textContent = "Alla teman";
+  all.setAttribute("aria-pressed", chosen.size === Object.keys(T).length);
+  all.onclick = () => { chosen = new Set(Object.keys(T)); renderTopics(); };
+  box.appendChild(all);
+  for (const [k, name] of Object.entries(T)) {
+    const b = document.createElement("button");
+    b.className = "chip"; b.textContent = name;
+    b.setAttribute("aria-pressed", chosen.size !== Object.keys(T).length && chosen.has(k));
+    b.onclick = () => {
+      if (chosen.size === Object.keys(T).length) chosen = new Set([k]);
+      else if (chosen.has(k)) { chosen.delete(k); if (!chosen.size) chosen = new Set(Object.keys(T)); }
+      else chosen.add(k);
+      renderTopics();
+    };
+    box.appendChild(b);
+  }
+  const n = Q.filter(q => chosen.has(q.t)).length;
+  $("count").textContent = n + " frågor finns i valda teman";
+}
 
-            var questionsHTML = '';
+function start(list){
+  run = shuffle(list).map(q => {
+    const order = shuffle(q.o.map((_, i) => i));
+    return { ...q, order };
+  });
+  idx = 0; results = [];
+  $("start").hidden = true; $("result").hidden = true; $("quiz").hidden = false;
+  show();
+}
 
-            for (i = 0; i < 10; i++) {
-                questionsHTML += '<DIV class="Row">';
-                getNext();
-                while (alreadyExists(first, second)) {
-                    getNext();
-                }
-                firsts[i] = first;
-                seconds[i] = second;
+function show(){
+  const q = run[idx];
+  $("pos").textContent = "Fråga " + (idx + 1) + " av " + run.length;
+  $("pts").textContent = results.filter(r => r.ok).length + " rätt";
+  $("prog").style.width = (idx / run.length * 100) + "%";
+  $("qtag").textContent = T[q.t];
+  $("qtext").textContent = q.q;
+  $("explain").hidden = true; $("next").hidden = true;
+  const box = $("opts"); box.innerHTML = "";
+  q.order.forEach((oi, n) => {
+    const b = document.createElement("button");
+    b.className = "opt"; b.dataset.oi = oi;
+    b.innerHTML = "<b>" + "ABCD"[n] + "</b><span></span>";
+    b.querySelector("span").textContent = q.o[oi];
+    b.onclick = () => answer(oi);
+    box.appendChild(b);
+  });
+  box.querySelector("button").focus({ preventScroll: true });
+}
 
-                questionsHTML += '<DIV class="Cell">' + first + '</DIV>';
-                questionsHTML += '<DIV class="Cell">' + '*' + '</DIV>';
-                questionsHTML += '<DIV class="Cell">' + second + '</DIV>';
-                questionsHTML += '<DIV class="Cell">' + '=' + '</DIV>';
-                questionsHTML += '<DIV class="Cell">' + '<INPUT type="number" id="a' + (i + 1) + '" min="0" max="100"/>' + '</DIV>';
-                questionsHTML += '<DIV class="Result">' + '<LABEL id="r' + (i + 1) + '"/>' + '</DIV>';
-                questionsHTML += '</DIV>';
-            }
+function answer(oi){
+  const q = run[idx], ok = oi === q.a;
+  results.push({ q, ok, picked: oi });
+  document.querySelectorAll(".opt").forEach(b => {
+    b.disabled = true;
+    const v = +b.dataset.oi;
+    if (v === q.a) b.classList.add("right");
+    else if (v === oi) b.classList.add("wrong");
+  });
+  const ex = $("explain");
+  ex.innerHTML = "";
+  const s = document.createElement("strong"); s.textContent = ok ? "Rätt!" : "Inte riktigt. Rätt svar: " + q.o[q.a];
+  const p = document.createElement("div"); p.textContent = q.e;
+  const pg = document.createElement("div"); pg.className = "page"; pg.textContent = "Läs mer i boken " + q.p;
+  ex.append(s, p, pg); ex.hidden = false;
+  $("pts").textContent = results.filter(r => r.ok).length + " rätt";
+  $("prog").style.width = ((idx + 1) / run.length * 100) + "%";
+  const nx = $("next"); nx.hidden = false;
+  nx.textContent = idx + 1 < run.length ? "Nästa fråga" : "Se resultatet";
+  nx.focus({ preventScroll: true });
+}
 
-            document.getElementById('questions').innerHTML = questionsHTML;
+function finish(){
+  $("quiz").hidden = true; $("result").hidden = false;
+  const right = results.filter(r => r.ok).length, tot = results.length;
+  $("score").innerHTML = right + "<small> / " + tot + "</small>";
+  const pct = right / tot;
+  $("verdict").textContent = pct === 1 ? "Alla rätt! Du är redo för provet."
+    : pct >= .8 ? "Mycket bra! Repetera de frågor du missade nedan."
+    : pct >= .5 ? "Bra början. Läs sidorna för de teman där du fick minst rätt och försök igen."
+    : "Läs igenom häftet och sidorna i boken, och kör quizen igen.";
+  const tb = $("bytopic"); tb.innerHTML = "";
+  for (const k of Object.keys(T)) {
+    const rs = results.filter(r => r.q.t === k); if (!rs.length) continue;
+    const r = rs.filter(x => x.ok).length;
+    const tr = document.createElement("tr");
+    tr.innerHTML = "<td></td><td>" + r + " / " + rs.length + '<span class="mini"><i style="width:' + (r / rs.length * 100) + '%"></i></span></td>';
+    tr.firstChild.textContent = T[k];
+    tb.appendChild(tr);
+  }
+  const wrong = results.filter(r => !r.ok);
+  $("retryWrong").hidden = !wrong.length;
+  $("wrongWrap").hidden = !wrong.length;
+  const wl = $("wrongList"); wl.innerHTML = "";
+  wrong.forEach(r => {
+    const d = document.createElement("div");
+    const a = document.createElement("p"); a.innerHTML = "<strong></strong>"; a.firstChild.textContent = r.q.q;
+    const b = document.createElement("p"); b.textContent = "Rätt svar: " + r.q.o[r.q.a] + " (" + r.q.p + ")";
+    d.append(a, b); wl.appendChild(d);
+  });
+}
 
-        }
+$("go").onclick = () => {
+  const pool = shuffle(Q.filter(q => chosen.has(q.t)));
+  const v = $("len").value;
+  start(v === "all" ? pool : pool.slice(0, +v));
+};
+$("next").onclick = () => { idx++; idx < run.length ? show() : finish(); };
+$("retryWrong").onclick = () => start(results.filter(r => !r.ok).map(r => r.q));
+$("again").onclick = () => { $("result").hidden = true; $("start").hidden = false; renderTopics(); };
+renderTopics();
+</script>
 
-        function alreadyExists(first, second) {
-            for (i = 0; i < 10; i++) {
-                if (firsts[i] == first && seconds[i] == second) {
-                    return true;
-                }
-                else if (firsts[i] == 0 || seconds[i] == 0) {
-                    return false;
-                }
-            }
-            return false;
-        }
-
-        function getNext() {
-            first = Math.floor(Math.random() * 10) + 1;
-            var valid = false;
-            while (!valid) {
-                second = Math.floor(Math.random() * 10) + 1;
-                if (selectedTables[second - 1]) {
-                    valid = true;
-                }
-            }
-        }
-
-        function checkResults() {
-            var done = true;
-            for (i = 0; i < 10; i++) {
-                var answer = document.getElementById('a' + (i + 1)).value;
-                var resultText;
-                if (answer == firsts[i] * seconds[i]) {
-                    document.getElementById('r' + (i + 1)).innerHTML = 'Rätt!';
-                    document.getElementById('r' + (i + 1)).style.color = "green";
-
-                }
-                else {
-                    document.getElementById('r' + (i + 1)).innerHTML = 'Fel! ';
-                    document.getElementById('r' + (i + 1)).style.color = "red";
-                    done = false;
-                }
-
-            }
-            if (done) {
-                document.getElementById('again').hidden = false;
-                document.getElementById('check').hidden = true;
-            }
-        }
-
-        function selectTable(tableNumber) {
-
-            selectedTables[tableNumber - 1] = !selectedTables[tableNumber - 1];
-            if (selectedTables[tableNumber - 1]) {
-                document.getElementById('t' + tableNumber).style.backgroundColor = 'green';
-            }
-            else {
-                document.getElementById('t' + tableNumber).style.backgroundColor = '';
-            }
-
-        }
-
-
-    </script>
-</HEAD>
-
-<BODY onLoad="init()">
-    <DIV id="start">
-        <B>Vilka tabeller vill du öva på?</B><br>
-        <DIV class="Table" />
-
-        <DIV class='CellSelect' id='t1' onClick='selectTable(1)'>1</DIV>
-        <DIV class='CellSelect' id='t2' onClick='selectTable(2)'>2</DIV>
-        <DIV class='CellSelect' id='t3' onClick='selectTable(3)'>3</DIV>
-        <DIV class='CellSelect' id='t4' onClick='selectTable(4)'>4</DIV>
-        <DIV class='CellSelect' id='t5' onClick='selectTable(5)'>5</DIV>
-        <DIV class='CellSelect' id='t6' onClick='selectTable(6)'>6</DIV>
-        <DIV class='CellSelect' id='t7' onClick='selectTable(7)'>7</DIV>
-        <DIV class='CellSelect' id='t8' onClick='selectTable(8)'>8</DIV>
-        <DIV class='CellSelect' id='t9' onClick='selectTable(9)'>9</DIV>
-        <DIV class='CellSelect' id='t10' onClick='selectTable(10)'>10</DIV>
-
-    </DIV>
-
-    <br>
-    <BUTTON onClick="begin()">Börja!</BUTTON>
-    </DIV>
-
-    <DIV id='game'>
-        <DIV id='questions' class='Table'></DIV>
-        <BUTTON id='check' onClick='checkResults()'>Kolla svaren!</BUTTON>
-        <BUTTON id='again' onClick='init()' />Spela igen!</BUTTON>
-    </DIV>
-
-
-    <LABEL id='debug' />
-</BODY>
-
-</HTML>
+</body></html>
