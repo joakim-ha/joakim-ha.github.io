@@ -1,58 +1,74 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Finland och världen runtomkring</title>
+<title>Celler och växter</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600;700&display=swap">
 <style>
-/* Layout: one narrow study column; a flag-cross band heads the page, then one question card at a time */
+/* Layout: one narrow study column; tabs switch between the quiz and labelled diagrams to study from */
 :root{
-  --bg:#f3f6fa; --surface:#ffffff; --fg:#13233b; --muted:#56657c; --line:#d8e0ea;
-  --blue:#0b4fa8; --blue-soft:#e3ecf8; --ok:#1d7a46; --ok-soft:#e2f3e9; --bad:#b3261e; --bad-soft:#fbe6e4;
+  --bg:#f2f6f1; --surface:#ffffff; --fg:#17281d; --muted:#57685c; --line:#d5e0d6;
+  --accent:#1f7a4d; --accent-soft:#e1f0e6; --ok:#1d7a46; --ok-soft:#e2f3e9; --bad:#b3261e; --bad-soft:#fbe6e4;
+  --hl:#d9480f;
+  --d-wall:#8fbf6a; --d-cyto:#f6f3dc; --d-mem:#3d6b8c; --d-nuc:#5b4a6b; --d-nucl:#2e2438; --d-vac:#9fd0ea;
+  --d-chl:#3f9a3a; --d-chl2:#2a6e28; --d-org:#e39a4b; --d-dna:#b0306b; --d-bwall:#e9a75a; --d-fwall:#c9b48a;
+  --d-petal:#f4d35e; --d-petal2:#e0b52c; --d-stem:#4f8f3a; --d-soil:#a07a55; --d-root:#8a6a48; --d-sun:#f2a62b;
+  --d-pistil:#7fb069; --d-anther:#c98a1b; --d-ink:#2b3a2f; --d-mark:#ffffff;
   --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0d1522; --surface:#152133; --fg:#e7edf6; --muted:#9aa9be; --line:#27364c;
-  --blue:#6fa8ff; --blue-soft:#1b2d4a; --ok:#5fd08f; --ok-soft:#14321f; --bad:#ff8a80; --bad-soft:#3a1a19; color-scheme:dark}}
+  --bg:#0f1712; --surface:#17221b; --fg:#e6efe7; --muted:#9cb0a1; --line:#2a3a2f;
+  --accent:#6fd39b; --accent-soft:#1b3326; --ok:#5fd08f; --ok-soft:#14321f; --bad:#ff8a80; --bad-soft:#3a1a19;
+  --hl:#ff8a4c;
+  --d-wall:#5f8f45; --d-cyto:#2c3326; --d-mem:#7fb3d9; --d-nuc:#9a86ad; --d-nucl:#d8cbe6; --d-vac:#2f5f7a;
+  --d-chl:#5cbf55; --d-chl2:#8fe08a; --d-org:#d68a3c; --d-dna:#f06fa8; --d-bwall:#b9813e; --d-fwall:#8f7d58;
+  --d-petal:#d9b53a; --d-petal2:#b8921d; --d-stem:#6aae52; --d-soil:#6e533a; --d-root:#b8956d; --d-sun:#f2a62b;
+  --d-pistil:#6c9d58; --d-anther:#e0a33a; --d-ink:#d9e6dc; --d-mark:#17221b; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0d1522; --surface:#152133; --fg:#e7edf6; --muted:#9aa9be; --line:#27364c;
-  --blue:#6fa8ff; --blue-soft:#1b2d4a; --ok:#5fd08f; --ok-soft:#14321f; --bad:#ff8a80; --bad-soft:#3a1a19; color-scheme:dark}
+  --bg:#0f1712; --surface:#17221b; --fg:#e6efe7; --muted:#9cb0a1; --line:#2a3a2f;
+  --accent:#6fd39b; --accent-soft:#1b3326; --ok:#5fd08f; --ok-soft:#14321f; --bad:#ff8a80; --bad-soft:#3a1a19;
+  --hl:#ff8a4c;
+  --d-wall:#5f8f45; --d-cyto:#2c3326; --d-mem:#7fb3d9; --d-nuc:#9a86ad; --d-nucl:#d8cbe6; --d-vac:#2f5f7a;
+  --d-chl:#5cbf55; --d-chl2:#8fe08a; --d-org:#d68a3c; --d-dna:#f06fa8; --d-bwall:#b9813e; --d-fwall:#8f7d58;
+  --d-petal:#d9b53a; --d-petal2:#b8921d; --d-stem:#6aae52; --d-soil:#6e533a; --d-root:#b8956d; --d-sun:#f2a62b;
+  --d-pistil:#6c9d58; --d-anther:#e0a33a; --d-ink:#d9e6dc; --d-mark:#17221b; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.5}
 .wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
-header{position:relative;padding-block:28px 22px;overflow:hidden}
-.cross{position:absolute;inset:0;pointer-events:none;opacity:.12}
-.cross::before,.cross::after{content:"";position:absolute;background:var(--blue)}
-.cross::before{left:22%;top:0;bottom:0;width:44px}
-.cross::after{top:44%;left:0;right:0;height:44px}
-.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);font-weight:700;position:relative}
-h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,6vw,42px);line-height:1.08;margin:6px 0 8px;text-wrap:balance;position:relative}
-.lede{color:var(--muted);margin:0;max-width:60ch;position:relative}
+header{padding-block:28px 18px}
+.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,6vw,42px);line-height:1.08;margin:6px 0 8px;text-wrap:balance}
+.lede{color:var(--muted);margin:0;max-width:60ch}
+.tabs{display:flex;gap:6px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.tab{font:inherit;font-weight:700;background:none;border:none;color:var(--muted);padding:10px 14px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
 h2{font-family:var(--display);font-weight:600;font-size:20px;margin:0 0 12px;text-wrap:balance}
 .topics{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .chip{border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:999px;padding:7px 13px;font:inherit;font-size:15px;cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--surface)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
 .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.btn{font:inherit;font-weight:700;border-radius:10px;padding:11px 18px;cursor:pointer;border:1px solid var(--blue);background:var(--blue);color:var(--surface)}
-.btn.ghost{background:transparent;color:var(--blue)}
-.btn:disabled{opacity:.45;cursor:default}
-:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.btn{font:inherit;font-weight:700;border-radius:10px;padding:11px 18px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--surface)}
+.btn.ghost{background:transparent;color:var(--accent)}
+select{font:inherit;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .meta{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted);margin-bottom:10px;font-variant-numeric:tabular-nums}
 .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:18px}
-.bar i{display:block;height:100%;background:var(--blue);transition:width .3s}
-.tag{display:inline-block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--blue);background:var(--blue-soft);border-radius:6px;padding:2px 8px}
+.bar i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.tag{display:inline-block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:2px 8px}
 .q{font-family:var(--display);font-weight:600;font-size:clamp(20px,4.5vw,25px);line-height:1.25;margin:10px 0 16px;text-wrap:balance}
+.fig{margin:0 0 16px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px}
+.fig svg{display:block;width:100%;height:auto;max-height:340px}
 .opts{display:grid;gap:10px}
 .opt{text-align:left;font:inherit;color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;display:flex;gap:10px;align-items:flex-start}
 .opt b{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:14px;background:var(--surface);border:1px solid var(--line)}
-.opt:hover:not(:disabled){border-color:var(--blue)}
+.opt:hover:not(:disabled){border-color:var(--accent)}
 .opt:disabled{cursor:default}
 .opt.right{border-color:var(--ok);background:var(--ok-soft)}
 .opt.right b{background:var(--ok);color:var(--surface);border-color:var(--ok)}
 .opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
 .opt.wrong b{background:var(--bad);color:var(--surface);border-color:var(--bad)}
-.explain{margin-top:16px;padding:14px 16px;border-radius:10px;background:var(--blue-soft)}
+.explain{margin-top:16px;padding:14px 16px;border-radius:10px;background:var(--accent-soft)}
 .explain strong{display:block;margin-bottom:4px}
 .explain .page{font-size:14px;color:var(--muted);margin-top:6px}
 .nav{margin-top:18px;display:flex;justify-content:flex-end}
@@ -68,225 +84,365 @@ td:last-child{text-align:right;white-space:nowrap}
 .review div{border-left:3px solid var(--bad);padding:4px 0 4px 12px}
 .review p{margin:2px 0;font-size:15px}
 .note{font-size:14px;color:var(--muted);margin-top:14px}
+.study{display:grid;gap:22px}
+.study section h3{font-family:var(--display);font-weight:600;font-size:19px;margin:0 0 8px}
+.legend{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:6px}
+.legend li{display:flex;gap:10px;align-items:baseline}
+.legend .n{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;border:2px solid var(--d-ink);font-variant-numeric:tabular-nums}
+.callout{border-left:3px solid var(--hl);padding:8px 12px;background:var(--bg);border-radius:0 8px 8px 0;font-size:15px}
+/* diagram marks */
+.mk line{stroke:var(--d-ink);stroke-width:1.5}
+.mk circle{fill:var(--d-mark);stroke:var(--d-ink);stroke-width:2}
+.mk text{fill:var(--d-ink);font:700 14px var(--body);text-anchor:middle;dominant-baseline:central}
+.dim .mk{opacity:.35}
+.dim .mk.hl{opacity:1}
+.mk.hl line{stroke:var(--hl);stroke-width:3}
+.mk.hl circle{stroke:var(--hl);stroke-width:3.5;fill:var(--hl)}
+.mk.hl text{fill:#fff}
+.lbl{fill:var(--d-ink);font:600 14px var(--body);text-anchor:middle}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 
 <div class="wrap">
   <header>
-    <div class="cross"></div>
-    <div class="eyebrow">I tiden 9 Samhällslära · s. 8–30</div>
-    <h1>Finland och världen runtomkring</h1>
-    <p class="lede">Öva inför provet. Frågorna bygger på bokens sidor och läshjälpen: nation och stat, suverän stat, nationalsymboler, demokrati och diktatur, statsskick, direkt och representativ demokrati, mänskliga rättigheter, barnkonventionen och diskriminering.</p>
+    <div class="eyebrow">Biologi · kapitel 1–3</div>
+    <h1>Celler och växter</h1>
+    <p class="lede">Öva inför provet: livets mångfald, cellerna och deras delar, fotosyntesen, växtens delar och hur växter förökar sig.</p>
   </header>
 
-  <section id="start" class="panel">
-    <h2>Välj vad du vill öva på</h2>
-    <div class="topics" id="topics"></div>
-    <div class="row">
-      <label for="len" style="font-weight:600">Antal frågor</label>
-      <select id="len" style="font:inherit;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg)">
-        <option value="15">15</option><option value="25" selected>25</option><option value="50">50</option><option value="all">Alla</option>
-      </select>
-      <button class="btn" id="go">Starta quizen</button>
-      <span id="count" class="note" style="margin:0"></span>
-    </div>
-    <p class="note">Frågorna och svarsalternativen blandas varje gång. Efter varje svar får du en förklaring och vilken sida i boken du ska läsa.</p>
-  </section>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tabQuiz" aria-selected="true">Quiz</button>
+    <button class="tab" role="tab" id="tabStudy" aria-selected="false">Bilder att plugga på</button>
+  </div>
 
-  <section id="quiz" class="panel" hidden>
-    <div class="meta"><span id="pos"></span><span id="pts"></span></div>
-    <div class="bar"><i id="prog"></i></div>
-    <span class="tag" id="qtag"></span>
-    <div class="q" id="qtext"></div>
-    <div class="opts" id="opts"></div>
-    <div class="explain" id="explain" hidden></div>
-    <div class="nav"><button class="btn" id="next" hidden>Nästa fråga</button></div>
-  </section>
+  <div id="quizView">
+    <section id="start" class="panel">
+      <h2>Välj vad du vill öva på</h2>
+      <div class="topics" id="topics"></div>
+      <div class="row">
+        <label for="len" style="font-weight:600">Antal frågor</label>
+        <select id="len"><option value="15">15</option><option value="25" selected>25</option><option value="40">40</option><option value="all">Alla</option></select>
+        <button class="btn" id="go">Starta quizen</button>
+        <span id="count" class="note" style="margin:0"></span>
+      </div>
+      <p class="note">Frågorna och svarsalternativen blandas varje gång. Många frågor har en bild där en del är markerad med orange.</p>
+    </section>
 
-  <section id="result" class="panel" hidden>
-    <h2>Ditt resultat</h2>
-    <div class="score" id="score"></div>
-    <p class="verdict" id="verdict"></p>
-    <table id="bytopic"></table>
-    <div class="row">
-      <button class="btn" id="retryWrong">Öva på de jag svarade fel på</button>
-      <button class="btn ghost" id="again">Börja om</button>
-    </div>
-    <div id="wrongWrap" hidden>
-      <h2 style="margin-top:22px">Det här ska du repetera</h2>
-      <div class="review" id="wrongList"></div>
-    </div>
-  </section>
+    <section id="quiz" class="panel" hidden>
+      <div class="meta"><span id="pos"></span><span id="pts"></span></div>
+      <div class="bar"><i id="prog"></i></div>
+      <span class="tag" id="qtag"></span>
+      <div class="q" id="qtext"></div>
+      <div class="fig" id="qfig" hidden></div>
+      <div class="opts" id="opts"></div>
+      <div class="explain" id="explain" hidden></div>
+      <div class="nav"><button class="btn" id="next" hidden>Nästa fråga</button></div>
+    </section>
+
+    <section id="result" class="panel" hidden>
+      <h2>Ditt resultat</h2>
+      <div class="score" id="score"></div>
+      <p class="verdict" id="verdict"></p>
+      <table id="bytopic"></table>
+      <div class="row">
+        <button class="btn" id="retryWrong">Öva på de jag svarade fel på</button>
+        <button class="btn ghost" id="again">Börja om</button>
+      </div>
+      <div id="wrongWrap" hidden>
+        <h2 style="margin-top:22px">Det här ska du repetera</h2>
+        <div class="review" id="wrongList"></div>
+      </div>
+    </section>
+  </div>
+
+  <div id="studyView" class="panel" hidden>
+    <div class="study" id="study"></div>
+  </div>
 </div>
 
 <script>
-const T = {
-  nation:"Nation, land eller stat",
-  suv:"Suverän stat",
-  sym:"Nationalsymboler",
-  dem:"Demokrati och diktatur",
-  skick:"Olika statsskick",
-  dir:"Direkt eller representativ demokrati",
-  mr:"Mänskliga rättigheter",
-  barn:"Barnkonventionen",
-  disk:"Diskriminering"
+// ---------- diagrams ----------
+// mk(n, labelX, labelY, partX, partY): a leader line from the part to a numbered marker
+const mk = (n, lx, ly, px, py) => `<g class="mk" data-n="${n}"><line x1="${px}" y1="${py}" x2="${lx}" y2="${ly}"/><circle cx="${lx}" cy="${ly}" r="13"/><text x="${lx}" y="${ly}">${n}</text></g>`;
+const chl = (x, y, r = 0) => `<g transform="rotate(${r} ${x} ${y})"><ellipse cx="${x}" cy="${y}" rx="16" ry="8" fill="var(--d-chl)"/><path d="M${x-10} ${y} h20 M${x-7} ${y-3} h14 M${x-7} ${y+3} h14" stroke="var(--d-chl2)" stroke-width="1.2"/></g>`;
+const org = (x, y, r = 0) => `<rect x="${x-7}" y="${y-3.5}" width="14" height="7" rx="3.5" fill="var(--d-org)" transform="rotate(${r} ${x} ${y})"/>`;
+
+const D = {
+  vaxtcell: {
+    title: "Växtcell",
+    parts: {1:["Cellvägg","Ger växtcellen dess form och fungerar som stöd och skydd."],2:["Cellmembran","En tunn hinna som bestämmer vilka ämnen som ska in i och ut ur cellen."],3:["Cytoplasma","Geléaktig vätska där organellerna (cellens organ) finns."],4:["Cellkärna","Innehåller DNA och styr cellens funktioner."],5:["Vakuol","En blåsa där växten lagrar vatten och lösta ämnen."],6:["Kloroplast","Sköter fotosyntesen."]},
+    svg: () => `<svg viewBox="0 0 480 300" role="img" aria-label="Växtcell">
+      <rect x="110" y="40" width="260" height="200" rx="14" fill="var(--d-wall)"/>
+      <rect x="123" y="53" width="234" height="174" rx="8" fill="var(--d-cyto)" stroke="var(--d-mem)" stroke-width="3"/>
+      <ellipse cx="285" cy="140" rx="55" ry="60" fill="var(--d-vac)"/>
+      <circle cx="180" cy="120" r="30" fill="var(--d-nuc)"/><circle cx="188" cy="114" r="8" fill="var(--d-nucl)"/>
+      ${chl(160,195,-10)}${chl(215,207,8)}${chl(345,80,20)}${chl(235,72,-5)}${chl(347,205,-25)}
+      ${org(230,112,30)}${org(222,160,-20)}${org(150,165,10)}${org(260,215,0)}
+      ${mk(1,40,80,115,80)}${mk(2,200,282,200,227)}${mk(3,40,165,140,165)}${mk(4,180,18,180,90)}${mk(5,440,140,300,140)}${mk(6,440,62,358,78)}
+    </svg>`
+  },
+  djurcell: {
+    title: "Djurcell",
+    parts: {1:["Cellmembran","Tunn hinna som bestämmer vad som kommer in i och ut ur cellen. Djurceller har ingen cellvägg."],2:["Cytoplasma","Geléaktig vätska som innehåller organellerna."],3:["Cellkärna","Innehåller DNA och styr allt som händer i cellen."],4:["Organell","Cellens små organ. De bygger upp och bryter ner kemiska ämnen."]},
+    svg: () => `<svg viewBox="0 0 480 300" role="img" aria-label="Djurcell">
+      <path d="M150,80 C200,30 330,40 360,90 C400,150 370,230 300,245 C220,262 130,240 115,180 C105,135 120,105 150,80 Z" fill="var(--d-cyto)" stroke="var(--d-mem)" stroke-width="3.5"/>
+      <circle cx="230" cy="150" r="34" fill="var(--d-nuc)"/><circle cx="240" cy="142" r="9" fill="var(--d-nucl)"/>
+      ${org(300,110,30)}${org(322,180,-15)}${org(170,200,20)}${org(282,215,0)}${org(180,110,-30)}${org(150,150,70)}${org(330,140,80)}
+      ${mk(1,440,147,377,147)}${mk(2,230,285,230,218)}${mk(3,230,18,230,116)}${mk(4,40,110,173,110)}
+    </svg>`
+  },
+  bakteriecell: {
+    title: "Bakteriecell",
+    parts: {1:["Cellvägg","Ger stöd och skydd. Bakterieceller har cellvägg precis som växtceller."],2:["Cellmembran","Bestämmer vad som kommer in i och ut ur cellen."],3:["Cytoplasma","Vätskan inne i cellen."],4:["Kromosom (DNA)","Bakterien saknar cellkärna, men har DNA i en kromosom som ligger fritt i cytoplasman."],5:["Flagell","Ett piskliknande utskott som bakterien kan röra sig med."]},
+    svg: () => `<svg viewBox="0 0 480 260" role="img" aria-label="Bakteriecell">
+      <path d="M110,125 C80,110 70,150 40,135 M110,135 C85,160 60,140 30,165 M112,116 C90,90 70,108 48,88" fill="none" stroke="var(--d-ink)" stroke-width="2.5"/>
+      <rect x="110" y="80" width="260" height="100" rx="50" fill="var(--d-bwall)"/>
+      <rect x="121" y="91" width="238" height="78" rx="39" fill="var(--d-cyto)" stroke="var(--d-mem)" stroke-width="2.5"/>
+      <path d="M170,130 q15,-25 30,0 t30,0 t30,0 t30,0 t30,0" fill="none" stroke="var(--d-dna)" stroke-width="3"/>
+      <g fill="var(--d-ink)" opacity=".5"><circle cx="150" cy="115" r="2"/><circle cx="160" cy="148" r="2"/><circle cx="335" cy="112" r="2"/><circle cx="320" cy="155" r="2"/><circle cx="250" cy="155" r="2"/></g>
+      ${mk(1,200,232,200,177)}${mk(2,300,232,300,168)}${mk(3,440,150,340,150)}${mk(4,230,25,230,120)}${mk(5,30,40,60,96)}
+    </svg>`
+  },
+  svampcell: {
+    title: "Svampcell (jästcell)",
+    parts: {1:["Cellvägg","Svampceller har cellvägg, men inga kloroplaster."],2:["Cellmembran","Bestämmer vad som kommer in i och ut ur cellen."],3:["Cytoplasma","Vätskan som innehåller organellerna."],4:["Cellkärna","Innehåller DNA och styr cellen."],5:["Vakuol","Blåsa som lagrar vatten och lösta ämnen."]},
+    svg: () => `<svg viewBox="0 0 480 280" role="img" aria-label="Svampcell">
+      <ellipse cx="240" cy="140" rx="150" ry="95" fill="var(--d-fwall)"/>
+      <ellipse cx="240" cy="140" rx="138" ry="83" fill="var(--d-cyto)" stroke="var(--d-mem)" stroke-width="2.5"/>
+      <circle cx="200" cy="130" r="28" fill="var(--d-nuc)"/><circle cx="207" cy="124" r="7" fill="var(--d-nucl)"/>
+      <ellipse cx="295" cy="150" rx="40" ry="34" fill="var(--d-vac)"/>
+      ${org(160,100,20)}${org(250,195,-10)}${org(330,100,40)}
+      ${mk(1,240,268,240,231)}${mk(2,30,100,103,125)}${mk(3,30,190,150,175)}${mk(4,200,16,200,102)}${mk(5,450,150,310,150)}
+    </svg>`
+  },
+  vaxt: {
+    title: "Växtens delar",
+    parts: {1:["Blomma","Växtens könsorgan. Sköter den könliga förökningen."],2:["Blad","Samlar solljus för fotosyntesen, tar upp koldioxid, avger syre och avdunstar vatten."],3:["Stam","Styv. Lyfter blad och blommor mot solen och innehåller ledningsvävnad."],4:["Rot","Fäster växten i marken och tar upp vatten och mineraler, som kväve och fosfor."]},
+    svg: () => `<svg viewBox="0 0 480 380" role="img" aria-label="Växt med blomma, blad, stam och rot">
+      <rect x="0" y="270" width="480" height="110" fill="var(--d-soil)" opacity=".35"/>
+      <path d="M240,270 L240,92" stroke="var(--d-stem)" stroke-width="8" stroke-linecap="round"/>
+      <path d="M240,200 C200,170 150,175 130,200 C160,225 210,225 240,200 Z" fill="var(--d-stem)"/>
+      <path d="M240,160 C280,130 330,135 350,160 C320,185 270,185 240,160 Z" fill="var(--d-stem)"/>
+      <path d="M240,200 C200,195 170,200 135,200 M240,160 C280,158 310,160 345,160" stroke="var(--d-chl2)" stroke-width="1.5" fill="none"/>
+      <g fill="var(--d-petal)" stroke="var(--d-petal2)" stroke-width="1.5">
+        <ellipse cx="240" cy="48" rx="13" ry="24"/><ellipse cx="240" cy="48" rx="13" ry="24" transform="rotate(72 240 70)"/><ellipse cx="240" cy="48" rx="13" ry="24" transform="rotate(144 240 70)"/><ellipse cx="240" cy="48" rx="13" ry="24" transform="rotate(216 240 70)"/><ellipse cx="240" cy="48" rx="13" ry="24" transform="rotate(288 240 70)"/>
+      </g>
+      <circle cx="240" cy="70" r="11" fill="var(--d-anther)"/>
+      <path d="M240,270 C235,300 215,315 190,335 M240,270 C245,305 265,320 290,345 M240,270 L240,350 M226,300 C210,305 200,300 185,310 M252,305 C268,308 280,300 300,305" stroke="var(--d-root)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      ${mk(1,420,60,262,66)}${mk(2,50,200,165,200)}${mk(3,420,232,244,232)}${mk(4,420,325,265,320)}
+    </svg>`
+  },
+  blomma: {
+    title: "Blommans delar",
+    parts: {1:["Märke","Pistillens klibbiga topp. Här fastnar pollenet vid pollineringen."],2:["Stift","Pistillens smala del. Pollenslangen växer ner genom stiftet."],3:["Fruktämne","Nedersta delen av pistillen. Här inne finns fröämnena med äggcellerna. Fröämnet blir ett frö och fruktämnet blir en frukt."],4:["Ståndare","Blommans hanliga del. Bildar pollen."],5:["Kronblad","Färgglada blad som lockar insekter."]},
+    note: "Märke, stift och fruktämne bildar tillsammans pistillen, blommans honliga del.",
+    svg: () => `<svg viewBox="0 0 480 340" role="img" aria-label="Blomma i genomskärning">
+      <path d="M240,340 L240,250" stroke="var(--d-stem)" stroke-width="8"/>
+      <path d="M226,236 C150,232 105,150 135,105 C175,135 210,190 230,226 Z" fill="var(--d-petal)" stroke="var(--d-petal2)" stroke-width="1.5"/>
+      <path d="M254,236 C330,232 375,150 345,105 C305,135 270,190 250,226 Z" fill="var(--d-petal)" stroke="var(--d-petal2)" stroke-width="1.5"/>
+      <path d="M232,248 C195,258 172,244 165,228 C195,232 215,236 234,242 Z M248,248 C285,258 308,244 315,228 C285,232 265,236 246,242 Z" fill="var(--d-stem)"/>
+      <path d="M232,232 L200,142 M248,232 L280,142" stroke="var(--d-ink)" stroke-width="2"/>
+      <ellipse cx="200" cy="136" rx="11" ry="7" fill="var(--d-anther)"/><ellipse cx="280" cy="136" rx="11" ry="7" fill="var(--d-anther)"/>
+      <ellipse cx="240" cy="215" rx="26" ry="30" fill="var(--d-pistil)" stroke="var(--d-chl2)" stroke-width="1.5"/>
+      <g fill="var(--d-cyto)" stroke="var(--d-chl2)"><circle cx="232" cy="205" r="5"/><circle cx="248" cy="212" r="5"/><circle cx="236" cy="226" r="5"/></g>
+      <rect x="236" y="128" width="8" height="60" fill="var(--d-pistil)"/>
+      <ellipse cx="240" cy="125" rx="17" ry="8" fill="var(--d-pistil)" stroke="var(--d-chl2)" stroke-width="1.5"/>
+      ${mk(1,240,22,240,117)}${mk(2,440,160,244,160)}${mk(3,440,222,266,218)}${mk(4,40,150,192,138)}${mk(5,40,75,145,125)}
+    </svg>`
+  },
+  foto: {
+    title: "Fotosyntesen",
+    parts: {1:["Solljus","Energin. Kloroplasterna fångar upp solenergin."],2:["Koldioxid","Råvara som tas in från luften genom klyvöppningarna."],3:["Vatten","Råvara som tas upp av rötterna och förs till bladen genom ledningsvävnaden."],4:["Syre","Biprodukt som släpps ut genom klyvöppningarna."],5:["Socker (glukos)","Produkten som växten använder som energi och byggmaterial."]},
+    note: "Solenergi + koldioxid + vatten → socker (glukos) + syre",
+    svg: () => `<svg viewBox="0 0 480 300" role="img" aria-label="Fotosyntesen i ett blad">
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--d-ink)"/></marker></defs>
+      <circle cx="70" cy="60" r="26" fill="var(--d-sun)"/>
+      <g stroke="var(--d-sun)" stroke-width="3">${[0,45,90,135,180,225,270,315].map(a=>{const r=a*Math.PI/180;return `<line x1="${70+34*Math.cos(r)}" y1="${60+34*Math.sin(r)}" x2="${70+44*Math.cos(r)}" y2="${60+44*Math.sin(r)}"/>`}).join("")}</g>
+      <path d="M250,290 L250,215" stroke="var(--d-stem)" stroke-width="6"/>
+      <path d="M250,215 C170,200 160,110 250,70 C340,110 330,200 250,215 Z" fill="var(--d-stem)"/>
+      <path d="M250,212 L250,80" stroke="var(--d-chl2)" stroke-width="1.5"/>
+      <rect x="226" y="132" width="48" height="26" rx="6" fill="var(--d-cyto)"/>
+      <text class="lbl" x="250" y="150" style="font-size:12px">C₆H₁₂O₆</text>
+      <path d="M105,85 L190,120" stroke="var(--d-sun)" stroke-width="3" marker-end="url(#ah)"/>
+      <path d="M40,190 L180,170" stroke="var(--d-ink)" stroke-width="2.5" marker-end="url(#ah)"/>
+      <path d="M268,282 C290,250 285,230 262,214" stroke="var(--d-mem)" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+      <path d="M318,130 L440,95" stroke="var(--d-ink)" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+      ${mk(1,150,40,150,103)}${mk(2,60,230,90,183)}${mk(3,330,270,285,250)}${mk(4,400,150,380,112)}${mk(5,250,22,250,132)}
+    </svg>`
+  }
 };
-// a = index of the correct option in o (options are shuffled at runtime)
+function fig(name, hl){
+  const d = D[name]; const s = d.svg();
+  return hl ? s.replace('<svg ', '<svg class="dim" ').replace(`class="mk" data-n="${hl}"`, `class="mk hl" data-n="${hl}"`) : s;
+}
+
+// ---------- questions ----------
+const T = {
+  liv:"Livets mångfald",
+  cell:"Cellerna",
+  bild:"Cellens delar (bilder)",
+  forsk:"Hur man studerar liv",
+  foto:"Fotosyntesen",
+  vaxt:"Växtens delar",
+  forok:"Växternas förökning"
+};
+// a = index of the correct option in o (options are shuffled at runtime); img/hl = diagram and highlighted marker
 const Q = [
- {t:"nation",p:"s. 8",q:"Ordet nation kommer från latinets natio. Vad betyder natio?",o:["Folk","Land","Gräns","Kung"],a:0,e:"Nation kommer från latinets natio som betyder folk."},
- {t:"nation",p:"s. 8",q:"Vad är en nation enligt boken?",o:["Ett område där en grupp människor känner samhörighet eftersom de förenas av samma religion, historia, traditioner eller kultur","Ett självständigt land med eget styre och egna gränser","Ett geografiskt område som har varit självstyrande till vissa delar","En organisation där världens stater samarbetar"],a:0,e:"En nation är ett område där människor känner samhörighet genom religion, historia, traditioner eller kultur. De har ofta ett gemensamt språk, men inte alltid."},
- {t:"nation",p:"s. 8",q:"Vad kallas människor som känner samhörighet med varandra genom samma religion, historia, traditioner eller kultur?",o:["Etniska grupper eller etniciteter","Förtroendevalda","Medborgare","Minoritetsstater"],a:0,e:"Människor som känner den här samhörigheten kallas etniska grupper eller etniciteter."},
- {t:"nation",p:"s. 8",q:"Vilka nämner boken som exempel på etniska grupper i Finland?",o:["Samer och romer","Ålänningar och karelare","Svenskar och norrmän","Tavaster och savolaxare"],a:0,e:"Samer och romer är exempel på etniska grupper i Finland. Finlandssvenskarna uppfyller kriterierna, men de flesta identifierar sig inte som en egen etnisk grupp."},
- {t:"nation",p:"s. 8",q:"Vad är en nationalstat?",o:["En stat där invånarna talar samma språk och har en gemensam historia","En stat som styrs av FN","En stat med flera presidenter","Ett område som har autonomi"],a:0,e:"Idén om nationalstater uppkom i Europa på 1800-talet: invånarna skulle tala samma språk och ha en gemensam historia. I verkligheten är det nästan omöjligt att skapa en stat med bara en etnicitet."},
- {t:"nation",p:"s. 8",q:"När brukar man säga att Finland växte fram som en nation?",o:["Under 1800-talet","Under 1500-talet","År 1995","Efter andra världskriget"],a:0,e:"Under 1800-talet skrev konstnärer, historiker och författare vår historia och skapade en egen kultur som gjorde invånarna till finländare, ett folk i ett land."},
- {t:"nation",p:"s. 8",q:"Vad är ett land enligt boken?",o:["Ett geografiskt område som är eller har varit självstyrande, helt eller till vissa delar","Ett folk med samma religion","Ett självständigt område som erkänns av alla stater","En stad med egen regering"],a:0,e:"Ett land är ett geografiskt område som är eller har varit självstyrande helt eller till vissa delar. Därför varierar antalet länder beroende på vem man frågar."},
- {t:"nation",p:"s. 8",q:"Vad betyder autonomi?",o:["Självstyre inom vissa områden","Fullständig självständighet","Att en kung styr landet","Att landet saknar gränser"],a:0,e:"Autonomi betyder självstyre inom vissa områden. Åland har till exempel autonomi."},
- {t:"nation",p:"s. 8",q:"Vilket av dessa är ett exempel på ett område som räknas som land i vissa sammanhang, men inte erkänns som stat?",o:["Åland","Finland","Sverige","Norge"],a:0,e:"Åland, Färöarna, Skottland, Hongkong och Gibraltar betraktas som länder i vissa sammanhang men är inte stater. De har autonomi."},
- {t:"nation",p:"s. 8",q:"Vad är en stat enligt boken?",o:["Ett självständigt land med eget styre och egna gränser","Ett folk som känner samhörighet","Ett område med självstyre inom vissa områden","Ett område som har ett eget fotbollslag i FIFA"],a:0,e:"En stat är ett självständigt land med eget styre och egna gränser."},
- {t:"nation",p:"s. 8",q:"Finland erkänner 196 stater, medan Sverige erkänner 197. Vilken stat är skillnaden?",o:["Palestina","Kosovo","Taiwan","Israel"],a:0,e:"Palestina är skillnaden. Kosovo, Cypern, Israel, Kina och Taiwan är andra exempel på stater som inte är erkända av alla."},
+ {t:"liv",p:"s. 4",q:"Ungefär hur länge sedan uppkom livet på jorden?",o:["För nästan 4 000 miljoner år sedan","För 6 000 år sedan","För 450 miljoner år sedan","För 2 miljoner år sedan"],a:0,e:"Livet på jorden uppkom för nästan 4 000 miljoner år sedan."},
+ {t:"liv",p:"s. 4",q:"Vad kallas den långsamma utveckling som sker när organismerna anpassar sig till en livsmiljö som förändras?",o:["Evolution","Fotosyntes","Klassificering","Celldelning"],a:0,e:"När livsmiljön förändras måste organismerna anpassa sig. Förändringarna leder till en långsam utveckling som kallas evolution. Den fortsätter än i dag."},
+ {t:"liv",p:"s. 4",q:"Vad är klassificering?",o:["Att placera organismerna i grupper enligt hur de är släkt med varandra","Att räkna hur många celler en organism har","Att undersöka celler i mikroskop","Att ge varje växt ett eget nummer"],a:0,e:"Klassificering handlar om att placera organismerna i grupper enligt släktskap. Så har man konstruerat ett släktträd över alla kända arter."},
+ {t:"liv",p:"s. 4",q:"Ungefär hur många arter har man hittills upptäckt och namngett?",o:["Ungefär två miljoner","Ungefär tvåtusen","Ungefär tvåhundra miljoner","Exakt sex"],a:0,e:"Man har upptäckt ungefär två miljoner arter, men det finns säkert över tio gånger så många."},
+ {t:"liv",p:"s. 4",q:"I hur många huvudgrupper, riken, delas allt levande in?",o:["Sex","Två","Fyra","Tio"],a:0,e:"Allt levande delas in i sex riken: arkéer, bakterier, protister, svampar, växter och djur."},
+ {t:"liv",p:"s. 4",q:"Vilket av följande är INTE ett av de sex rikena?",o:["Fåglar","Svampar","Protister","Arkéer"],a:0,e:"De sex rikena är arkéer, bakterier, protister, svampar, växter och djur. Fåglar är en grupp inom djurriket."},
+ {t:"liv",p:"s. 4",q:"Vilka två riken har celler som saknar kärna?",o:["Arkéer och bakterier","Svampar och växter","Protister och djur","Växter och djur"],a:0,e:"Arkéer och bakterier saknar cellkärna. Protister, svampar, växter och djur har en kärna i sina celler."},
+ {t:"liv",p:"s. 5",q:"När hör två organismer till samma art?",o:["När de naturligt kan föröka sig med varandra och få ungar som också kan föröka sig","När de har samma färg","När de lever på samma plats","När de är lika stora"],a:0,e:"Arten är det biologiska systemets grundenhet. Om två organismer naturligt kan föröka sig och få ungar som också kan föröka sig hör de till samma art."},
+ {t:"liv",p:"s. 5",q:"Varför finns det liv på jorden?",o:["Jorden har ett lämpligt avstånd från solen, så det finns flytande vatten","Jorden är den största planeten","Jorden saknar atmosfär","Jorden ligger närmast solen"],a:0,e:"Jorden ligger på ett för liv lämpligt avstånd från solen. Vi får tillräckligt med värme för att det ska finnas flytande vatten, något som är avgörande för allt liv."},
+ {t:"liv",p:"s. 5",q:"Vilken grupp är störst, alltså innehåller flest arter?",o:["Ryggradslösa djur","Insekter","Skalbaggar","Dykare"],a:0,e:"Grupperna ligger inuti varandra: djurriket → ryggradslösa djur → leddjur → insekter → skalbaggar → dykare → gulbrämad dykare. Ju längre ut, desto större grupp."},
+ {t:"liv",p:"s. 5",q:"Ett djur har fenor. I vilken grupp skulle du börja leta efter dess namn?",o:["Fiskar","Insekter","Groddjur","Blötdjur"],a:0,e:"Arter identifieras utifrån sina kännetecken. Ett djur med fenor letar man efter bland fiskarna, som hör till ryggradsdjuren."},
+ {t:"liv",p:"s. 4",q:"Vilken grupp hör spindeldjur, insekter och kräftdjur till?",o:["Ryggradslösa djur","Ryggradsdjur","Växter","Svampar"],a:0,e:"Spindeldjur, insekter och kräftdjur är ryggradslösa djur. Tillsammans kallas de leddjur."},
 
- {t:"suv",p:"s. 10–11",q:"Vad betyder det att en stat är suverän?",o:["Den är självständig och har en egen regering som inte är underordnad någon annan stats regering","Den är enastående och fantastisk","Den har en enväldig härskare","Den är medlem i EU"],a:0,e:"En suverän stat är självständig. Den har en egen regering som inte är underordnad någon annan stats regering."},
- {t:"suv",p:"s. 11",q:"Enligt rutan på s. 11: vilket av följande hör INTE till kännetecknen på en suverän stat?",o:["Den har en kung eller drottning som statschef","Den väljer sitt eget styre","Den stiftar egna lagar och fattar egna beslut","Den har gränser som är erkända av andra"],a:0,e:"En suverän stat väljer sitt eget styre, stiftar egna lagar och fattar egna beslut och har gränser som är erkända av andra. Statsskicket spelar ingen roll."},
- {t:"suv",p:"s. 10",q:"Var står det hur Finland ska styras?",o:["I grundlagen","I barnkonventionen","I EU:s fördrag","I Kalevala"],a:0,e:"Finland har en egen grundlag där det står hur landet ska styras. Vi har regering och parlament, riksdagen."},
- {t:"suv",p:"s. 10",q:"Får en annan stat skicka polis till Finland för att arrestera personer här?",o:["Nej, ingen annan stat får överskrida våra gränser utan lov","Ja, om det är ett EU-land","Ja, alltid","Bara om personen är utländsk medborgare"],a:0,e:"Andra stater måste respektera våra gränser. Ingen annan stat får överskrida dem utan lov, till exempel för att arrestera personer i Finland."},
- {t:"suv",p:"s. 10",q:"Vad har Finland ett eget försvar till?",o:["Att bevaka och beskydda gränserna","Att stifta lagar","Att välja president","Att övervaka barnens rättigheter"],a:0,e:"Som suverän stat har Finland ett eget försvar med rätt att bevaka och beskydda gränserna."},
- {t:"suv",p:"s. 11",q:"Inom vilken organisation samarbetar Finland kring försvarsfrågor?",o:["Nato","Nordiska rådet","Unicef","Freedom House"],a:0,e:"Inom Nato samarbetar Finland kring försvarsfrågor. Nordiska rådet är för de nordiska länderna, i EU samarbetar vi med europeiska länder och i FN samarbetar alla världens stater."},
- {t:"suv",p:"s. 11",q:"Vad är Nordiska rådet?",o:["Ett samarbetsforum för de nordiska länderna","FN:s barnfond","Finlands regering","En domstol i EU"],a:0,e:"Nordiska rådet är ett samarbetsforum för de nordiska länderna. Norden var till exempel först i världen med passfrihet efter andra världskriget."},
+ {t:"cell",p:"s. 12",q:"Varför kallas cellerna livets byggklossar?",o:["Alla organismer består av celler","Cellerna är fyrkantiga","Celler finns bara i växter","Cellerna bygger hus åt djuren"],a:0,e:"Cellerna är livets byggklossar eftersom alla organismer består av celler."},
+ {t:"cell",p:"s. 12",q:"Vad kallas alla levande varelser?",o:["Organismer","Organeller","Vävnader","Kromosomer"],a:0,e:"Alla levande varelser kallas organismer."},
+ {t:"cell",p:"s. 12",q:"Vilket är ett exempel på en encellig organism?",o:["Toffeldjuret","Kon","Maskrosen","Människan"],a:0,e:"Encelliga organismer, som toffeldjuret, klarar sig med en enda cell. Även bakterier och amöbor är encelliga."},
+ {t:"cell",p:"s. 12",q:"Hur många celler består en stor, flercellig organism av?",o:["Flera miljarder","Ungefär tio","Exakt en","Ungefär hundra"],a:0,e:"Stora, flercelliga organismer, som kon och människan, består av flera miljarder celler."},
+ {t:"cell",p:"s. 12",q:"Hur stora är de flesta celler?",o:["Inte mer än en hundradels millimeter i diameter","Ungefär en centimeter","Lika stora som ett sandkorn","Ungefär en meter"],a:0,e:"Celler är så små att de oftast bara kan ses med mikroskop. De flesta är inte mer än en hundradels millimeter i diameter."},
+ {t:"cell",p:"s. 12",q:"Vilken är världens största äggcell?",o:["Strutsägget","Hönsägget","Grodans äggcell","Människans äggcell"],a:0,e:"Strutsägget är världens största äggcell."},
+ {t:"cell",p:"s. 13",q:"Vilka två delar har ALLA celler?",o:["Cytoplasma och cellmembran","Cellvägg och kloroplaster","Vakuol och kärna","Kloroplaster och flagell"],a:0,e:"Alla celler har till exempel cytoplasma och cellmembran."},
+ {t:"cell",p:"s. 13",q:"Vad saknar djurceller som växtceller har?",o:["Cellvägg, vakuol och kloroplaster","Cellkärna och cytoplasma","Cellmembran","Organeller"],a:0,e:"Djurceller har varken cellvägg, vakuoler eller kloroplaster."},
+ {t:"cell",p:"s. 13–14",q:"Vilka celler har cellvägg?",o:["Växtceller, bakterieceller och svampceller","Bara djurceller","Bara bakterieceller","Alla celler"],a:0,e:"Växt- och bakterieceller har en cellvägg, och det har även svampceller. Djurceller saknar cellvägg."},
+ {t:"cell",p:"s. 4, 14",q:"Vilken typ av cell saknar kärna?",o:["Bakteriecellen","Växtcellen","Djurcellen","Svampcellen"],a:0,e:"Bakteriecellen saknar cellkärna, men den har DNA i en kromosom som ligger fritt i cytoplasman."},
+ {t:"cell",p:"s. 14",q:"Vilken celldel finns BARA i växtcellen, men inte i djur- eller svampcellen?",o:["Kloroplast","Vakuol","Cellvägg","Cellkärna"],a:0,e:"Kloroplasterna finns bara i växtceller (och alger). Svampceller har cellvägg och vakuol, men inga kloroplaster, eftersom svampar inte kan fotosyntetisera."},
+ {t:"cell",p:"s. 13",q:"Vad är en vävnad?",o:["Celler som liknar varandra och sitter tillsammans","En enda stor cell","En del inne i cellkärnan","Ett annat ord för organism"],a:0,e:"Celler som liknar varandra bildar vävnader, till exempel hudvävnad hos människan eller ledningsvävnad hos en maskros."},
+ {t:"cell",p:"anteckningarna",q:"Vad bygger upp kroppens olika organ?",o:["Olika vävnader","Bara en sorts cell","Organeller","Kloroplaster"],a:0,e:"Celler bildar vävnader, och olika vävnader bygger upp kroppens organ."},
+ {t:"cell",p:"s. 13",q:"Vilket är ett exempel på en vävnad hos en växt?",o:["Ledningsvävnad hos en maskros","Hudvävnad hos en människa","Ett toffeldjur","En bakterie"],a:0,e:"Ledningsvävnad hos en maskros är en växtvävnad. Hudvävnad är ett exempel hos människan."},
+ {t:"cell",p:"s. 14",q:"Vad händer när en cell delar sig?",o:["Det uppkommer två likadana nya celler","Cellen dör","Det blir en större cell","Cellen blir en vävnad"],a:0,e:"När en cell delar sig uppkommer två likadana nya celler. Cellerna förnyar sig genom delning."},
+ {t:"cell",p:"s. 14",q:"Hur ofta kan bakterier dela sig?",o:["Ungefär var tjugonde minut","En gång om året","En gång i timmen","Varje sekund"],a:0,e:"Encelliga organismer, till exempel bakterier, kan dela sig ungefär var tjugonde minut."},
+ {t:"cell",p:"s. 14",q:"Vad delas först när en cell delar sig?",o:["Kärnan","Cellväggen","Vakuolen","Kloroplasterna"],a:0,e:"Först delas kärnan och sedan resten av cellen."},
+ {t:"cell",p:"s. 14",q:"Hur växer en flercellig organism?",o:["Genom att dess celler delar sig och bildar nya vävnader","Genom att cellerna blir större och större","Genom fotosyntes i djurceller","Genom att den äter andra celler"],a:0,e:"En flercellig organism växer genom att dess celler delar sig och bildar nya vävnader."},
+ {t:"cell",p:"s. 12",q:"Vad såg man när man undersökte lökceller i mikroskop?",o:["Många celler med väggar och en kärna i varje","En enda stor cell","Inga celler alls","Celler utan kärna"],a:0,e:"I lökceller ser man tydligt cellväggarna och en mörk prick, kärnan, i varje cell. Lök är en flercellig växt."},
 
- {t:"sym",p:"s. 12",q:"Varför har alla stater nationella symboler?",o:["För att skapa en känsla av samhörighet bland invånarna","För att visa hur stort landet är","För att FN kräver det","För att locka turister"],a:0,e:"Nationalsymbolerna finns till för att skapa en känsla av samhörighet bland invånarna."},
- {t:"sym",p:"s. 12",q:"Vilken av dessa hör INTE till de fyra viktigaste officiella nationalsymbolerna?",o:["Nationalfågeln","Flaggan","Statsvapnet","Nationalsången"],a:0,e:"De fyra viktigaste officiella nationalsymbolerna är flagga, statsvapen, nationalsång och nationaldag."},
- {t:"sym",p:"s. 12",q:"Vad sägs färgerna i Finlands flagga symbolisera?",o:["Den vita bottnen de snöiga vintrarna och det blå korset de tusentals sjöarna","Den vita bottnen freden och det blå korset havet","Den vita bottnen kyrkan och det blå korset himlen","Den vita bottnen Lappland och det blå korset Östersjön"],a:0,e:"Den vita bottnen sägs symbolisera de snöiga vintrarna och det blå korset de flera tusen sjöarna."},
- {t:"sym",p:"s. 12",q:"Från vilket år är Finlands flagga?",o:["1918","1809","1906","1948"],a:0,e:"Flaggan är från 1918."},
- {t:"sym",p:"s. 12",q:"Hur ser Finlands statsvapen ut?",o:["Ett lejon med svärd i rött och guld","En björn på blå botten","En svan med krona","Ett blått kors med en stjärna"],a:0,e:"Statsvapnet är lejonet med svärdet i rött och guld. Det var en symbol för Finland redan under svenska tiden."},
- {t:"sym",p:"s. 12",q:"Vem skrev texten till nationalsången Vårt land?",o:["Johan Ludvig Runeberg","Fredrik Pacius","Elias Lönnrot","Jean Sibelius"],a:0,e:"Vårt land är den första dikten i nationalskalden J.L. Runebergs diktsamling Fänrik Ståls sägner. Fredrik Pacius tonsatte den 1848."},
- {t:"sym",p:"s. 12",q:"Vem tonsatte (skrev musiken till) Vårt land?",o:["Fredrik Pacius","Johan Ludvig Runeberg","Jean Sibelius","Eleanor Roosevelt"],a:0,e:"Fredrik Pacius tonsatte Vårt land år 1848."},
- {t:"sym",p:"s. 12",q:"Vilken dag är Finlands nationaldag?",o:["6 december","24 juni","1 maj","5 juni"],a:0,e:"Nationaldagen, självständighetsdagen, firas 6 december. Samma dag godkände lantdagen självständighetsförklaringen 1917."},
- {t:"sym",p:"s. 12",q:"Vilken är Finlands nationalfågel?",o:["Sångsvanen","Talgoxen","Tranan","Havsörnen"],a:0,e:"Nationalfågeln är sångsvanen."},
- {t:"sym",p:"s. 12",q:"Vilken är Finlands nationalblomma?",o:["Liljekonvaljen","Blåklinten","Prästkragen","Linnean"],a:0,e:"Nationalblomman är liljekonvaljen."},
- {t:"sym",p:"s. 12",q:"Vilket är Finlands nationaldjur?",o:["Brunbjörnen","Älgen","Vargen","Renen"],a:0,e:"Nationaldjuret är brunbjörnen."},
- {t:"sym",p:"s. 12",q:"Vilken är Finlands nationalsport?",o:["Boboll","Ishockey","Skidåkning","Fotboll"],a:0,e:"Nationalsporten är boboll."},
- {t:"sym",p:"s. 12",q:"Vilken är Finlands nationalmaträtt?",o:["Rågbrödet","Karelska piroger","Laxsoppa","Mämmi"],a:0,e:"Nationalmaträtten är rågbrödet."},
- {t:"sym",p:"s. 12",q:"Varför har Finlands mö (Suomi-neito) blivit en symbol för Finland?",o:["Finlands gränser liknar en kvinna med en utsträckt arm","Hon var Finlands första president","Hon skrev nationalsången","Hon finns på flaggan"],a:0,e:"Finlands mö har blivit en symbol för Finland, vars gränser liknar en kvinna med en utsträckt arm."},
- {t:"sym",p:"s. 12",q:"Hur valdes flera av Finlands inofficiella nationalsymboler?",o:["Genom omröstningar inför Finlands hundraårsjubileum 2017","Av presidenten 1917","Av FN","Av Sverige under svenska tiden"],a:0,e:"Flera av de inofficiella symbolerna utsågs genom omröstningar inför Finlands hundraårsjubileum 2017."},
+ {t:"bild",p:"s. 14",img:"vaxtcell",hl:1,q:"Vilken del av växtcellen är markerad?",o:["Cellvägg","Cellmembran","Vakuol","Cytoplasma"],a:0,e:"Cellväggen är det tjocka yttre lagret. Den ger växtcellen dess form och fungerar som stöd och skydd."},
+ {t:"bild",p:"s. 14",img:"vaxtcell",hl:2,q:"Vilken del av växtcellen är markerad?",o:["Cellmembran","Cellvägg","Kloroplast","Cellkärna"],a:0,e:"Cellmembranet är en tunn hinna innanför cellväggen. Det bestämmer vilka ämnen som ska in i och ut ur cellen."},
+ {t:"bild",p:"s. 14",img:"vaxtcell",hl:3,q:"Vilken del av växtcellen är markerad?",o:["Cytoplasma","Vakuol","Cellkärna","Cellvägg"],a:0,e:"Cytoplasman är den geléaktiga vätskan som fyller cellen. I den finns organellerna."},
+ {t:"bild",p:"s. 14",img:"vaxtcell",hl:4,q:"Vilken del av växtcellen är markerad?",o:["Cellkärna","Vakuol","Kloroplast","Organell"],a:0,e:"Cellkärnan innehåller DNA och styr cellens funktioner."},
+ {t:"bild",p:"s. 14",img:"vaxtcell",hl:5,q:"Vilken del av växtcellen är markerad?",o:["Vakuol","Cellkärna","Kloroplast","Cellmembran"],a:0,e:"Vakuolen är en stor blåsa där växten lagrar vatten och lösta ämnen."},
+ {t:"bild",p:"s. 14",img:"vaxtcell",hl:6,q:"Vilken del av växtcellen är markerad?",o:["Kloroplast","Vakuol","Cellkärna","Cellvägg"],a:0,e:"Kloroplasterna är gröna och sköter fotosyntesen."},
+ {t:"bild",p:"s. 14",img:"vaxtcell",hl:5,q:"Vad gör den markerade delen?",o:["Lagrar vatten och lösta ämnen","Sköter fotosyntesen","Styr cellens funktioner","Ger cellen stöd och skydd"],a:0,e:"Den markerade delen är vakuolen. Den lagrar vatten och lösta ämnen."},
+ {t:"bild",p:"s. 14",img:"vaxtcell",hl:6,q:"Vad gör den markerade delen?",o:["Sköter fotosyntesen","Lagrar vatten","Bestämmer vad som kommer in i cellen","Innehåller DNA"],a:0,e:"Den markerade delen är en kloroplast. Kloroplasterna sköter fotosyntesen."},
+ {t:"bild",p:"s. 14",img:"vaxtcell",hl:4,q:"Vad gör den markerade delen?",o:["Innehåller DNA och styr cellens funktioner","Lagrar vatten och lösta ämnen","Sköter fotosyntesen","Ger cellen dess form"],a:0,e:"Den markerade delen är cellkärnan. Den innehåller DNA och styr allt som händer i cellen."},
+ {t:"bild",p:"s. 14",img:"vaxtcell",hl:1,q:"Vad gör den markerade delen?",o:["Ger cellen dess form och fungerar som stöd och skydd","Bestämmer vilka ämnen som ska in och ut","Lagrar vatten","Styr cellen"],a:0,e:"Den markerade delen är cellväggen. Den ger växtcellen dess form och fungerar som stöd och skydd."},
+ {t:"bild",p:"s. 14",img:"djurcell",hl:1,q:"Vilken del av djurcellen är markerad?",o:["Cellmembran","Cellvägg","Cytoplasma","Vakuol"],a:0,e:"Det yttersta lagret på en djurcell är cellmembranet. Djurceller har ingen cellvägg."},
+ {t:"bild",p:"s. 14",img:"djurcell",hl:3,q:"Vilken del av djurcellen är markerad?",o:["Cellkärna","Vakuol","Kloroplast","Cellmembran"],a:0,e:"Cellkärnan innehåller DNA och styr allt som händer i cellen."},
+ {t:"bild",p:"s. 14",img:"djurcell",hl:4,q:"Vad kallas de små delarna som är markerade i djurcellen?",o:["Organeller","Kloroplaster","Vakuoler","Flageller"],a:0,e:"Organeller är cellens små organ. De finns i cytoplasman och bygger upp och bryter ner kemiska ämnen."},
+ {t:"bild",p:"s. 14",img:"djurcell",hl:2,q:"Vilken del av djurcellen är markerad?",o:["Cytoplasma","Cellkärna","Cellmembran","Cellvägg"],a:0,e:"Cytoplasman är den geléaktiga vätskan som innehåller organellerna."},
+ {t:"bild",p:"s. 14",img:"djurcell",q:"Vilken sorts cell visar bilden?",o:["Djurcell","Växtcell","Bakteriecell","Svampcell"],a:0,e:"Det är en djurcell: den har cellkärna, cytoplasma och cellmembran, men ingen cellvägg, inga kloroplaster och ingen stor vakuol."},
+ {t:"bild",p:"s. 14",img:"bakteriecell",q:"Vilken sorts cell visar bilden?",o:["Bakteriecell","Växtcell","Djurcell","Svampcell"],a:0,e:"Det är en bakteriecell. Den saknar cellkärna, har DNA i en kromosom och har en flagell som den kan röra sig med."},
+ {t:"bild",p:"s. 14",img:"bakteriecell",hl:5,q:"Vad kallas den markerade delen av bakteriecellen?",o:["Flagell","Kromosom","Cellvägg","Organell"],a:0,e:"Flagellen är ett piskliknande utskott som bakterien kan röra sig med."},
+ {t:"bild",p:"s. 14",img:"bakteriecell",hl:4,q:"Vad är den markerade delen i bakteriecellen?",o:["Kromosom med DNA","Cellkärna","Kloroplast","Vakuol"],a:0,e:"Bakterien saknar cellkärna, men har sitt DNA i en kromosom som ligger fritt i cytoplasman."},
+ {t:"bild",p:"s. 14",img:"bakteriecell",hl:1,q:"Vilken del av bakteriecellen är markerad?",o:["Cellvägg","Cellmembran","Cytoplasma","Flagell"],a:0,e:"Det yttersta lagret är cellväggen. Bakterieceller har cellvägg, precis som växtceller."},
+ {t:"bild",p:"anteckningarna",img:"svampcell",q:"Bilden visar en svampcell. Vilken del saknar den jämfört med en växtcell?",o:["Kloroplaster","Cellvägg","Vakuol","Cellkärna"],a:0,e:"En svampcell har cellkärna, cytoplasma, cellmembran, cellvägg och vakuol, men inga kloroplaster. Svampar kan inte fotosyntetisera."},
+ {t:"bild",p:"anteckningarna",img:"svampcell",hl:5,q:"Vilken del av svampcellen är markerad?",o:["Vakuol","Cellkärna","Kloroplast","Cellvägg"],a:0,e:"Det är vakuolen, en blåsa som lagrar vatten och lösta ämnen."},
 
- {t:"dem",p:"s. 16",q:"Vilket är ett tecken på demokrati?",o:["Folket väljer vem som stiftar lagarna i fria, hemliga, lika och allmänna val","Den som stiftar lagarna har ärvt sin makt","Makten är koncentrerad till ett parti","Censur förekommer"],a:0,e:"I en demokrati väljer folket vem som stiftar lagarna i fria, hemliga, lika och allmänna val som hålls regelbundet. Alla myndiga medborgare är valbara och har rösträtt."},
- {t:"dem",p:"s. 16",q:"Vad innebär majoritetsprincipen?",o:["Att minst hälften av ledamöterna i ett parlament måste godkänna alla beslut","Att den största staten bestämmer","Att presidenten kan stoppa beslut","Att alla måste vara överens"],a:0,e:"Majoritetsprincipen innebär att minst hälften av ledamöterna i ett parlament måste godkänna alla beslut."},
- {t:"dem",p:"s. 16",q:"I en demokrati är makten delad mellan olika organ. Vad gör de?",o:["Stiftar lagar, verkställer lagar och dömer lagbrott","Väljer kung, präst och general","Bestämmer över tidningar, tv och radio","Övervakar barnens rättigheter"],a:0,e:"Makten är delad mellan olika organ som stiftar och verkställer lagar och dömer lagbrott."},
- {t:"dem",p:"s. 16",q:"Vilket år blev Finland det första landet i världen med allmän och lika rösträtt i parlamentsval?",o:["1906","1917","1789","1948"],a:0,e:"Finland var det första landet i världen som införde allmän och lika rösträtt i parlamentsval, år 1906. Då hette parlamentet lantdag, i dag riksdag."},
- {t:"dem",p:"s. 16",q:"Hur var rösträtten ofta tidigare, innan allmän och lika rösträtt?",o:["Starkt begränsad och gällde bara män som ägde jord eller annan egendom","Alla över 12 år fick rösta","Bara kvinnor fick rösta","Det fanns ingen rösträtt alls"],a:0,e:"Rösträtten var tidigare starkt begränsad och gällde bara män som ägde jord eller annan egendom."},
- {t:"dem",p:"s. 16",q:"Vad bygger kraven för att ett land ska klassas som en demokrati på?",o:["FN:s förklaring om de mänskliga rättigheterna från 1948","Finlands grundlag från 1918","Barnkonventionen från 1989","EU:s lagar från 1995"],a:0,e:"Kraven bygger på FN:s förklaring om de mänskliga rättigheterna från 1948, som i sin tur bygger på deklarationen från franska revolutionen 1789."},
- {t:"dem",p:"s. 16",q:"Vad betyder näringsfrihet?",o:["Att alla har rätt att grunda företag och äga egendom","Att alla har rätt till gratis mat","Att man får resa fritt","Att man får säga vad man tycker"],a:0,e:"Alla har rätt att grunda företag och äga egendom. Det kallas näringsfrihet."},
- {t:"dem",p:"s. 16",q:"Vilket hör till tecknen på demokrati?",o:["Domstolarna är fria och oberoende och alla kan överklaga domstolsbeslut","Domstolarnas arbete kontrolleras av makthavarna","Folk kan sitta fängslade i många år utan rättegång","Skrivna lagar saknas"],a:0,e:"I en demokrati är domstolarna fria och oberoende. Ingen kan straffas utan rättegång och alla kan överklaga."},
- {t:"dem",p:"s. 17",q:"Vilket är ett tecken på diktatur?",o:["Den högsta ledaren kan stoppa parlamentets beslut (vetorätt)","Alla har rätt att bilda och gå med i föreningar","Det finns effektiva system för att motarbeta korruption","Alla medborgare har rätt att få pass"],a:0,e:"I en diktatur kan lagar godkännas direkt av den högsta ledaren, som också kan stoppa parlamentets beslut. Det kallas vetorätt."},
- {t:"dem",p:"s. 17",q:"Vad menas med censur, som förekommer i diktaturer?",o:["Media ägs eller kontrolleras av makthavarna och det är inte tillåtet att kritisera ledningen","Att alla får skriva vad de vill","Att domstolar är oberoende","Att val hålls regelbundet"],a:0,e:"I en diktatur förekommer censur. Media ägs eller kontrolleras av makthavarna, det är inte tillåtet att kritisera ledningen och oliktänkare förföljs."},
- {t:"dem",p:"s. 17",q:"Hur har de som stiftar lagarna fått sin makt i en diktatur?",o:["De har ärvt makten, fått den av personer som inte är folkvalda, eller valts i val med valfusk","De har valts i fria och hemliga val","De har lottats fram bland alla medborgare","De har utsetts av FN"],a:0,e:"I en diktatur har makthavarna ärvt sin makt, tilldelats den av icke folkvalda, eller valts i val med valfusk, manipulation eller begränsad rösträtt."},
- {t:"dem",p:"s. 17",q:"Vilket hör till tecknen på diktatur?",o:["Resemöjligheterna är begränsade och alla får inte pass","Alla har rätt att säga sin åsikt","Alla invånare behandlas jämlikt","Alla har samma möjligheter till utbildning och sjukvård"],a:0,e:"I en diktatur är resemöjligheterna begränsade. I en demokrati har alla medborgare rätt att få pass och resa fritt."},
- {t:"dem",p:"s. 17",q:"Kartan på s. 17 kommer från Freedom House. I vilka tre grupper delas länderna in?",o:["Fria, delvis fria och ofria länder","Rika, medelrika och fattiga länder","Republiker, monarkier och teokratier","Stora, mellanstora och små länder"],a:0,e:"Freedom House klassar länderna som fria (demokratier), delvis fria (demokratier med vissa problem) och ofria (diktaturer)."},
- {t:"dem",p:"s. 16",q:"Vad kallas ett land som uppfyller alla kännetecken för en diktatur?",o:["En totalitär eller auktoritär regim","En parlamentarisk monarki","En nationalstat","En representativ demokrati"],a:0,e:"Ett land som uppfyller alla kännetecken för en diktatur är en totalitär eller auktoritär regim, men det är ovanligt."},
- {t:"dem",p:"s. 16",q:"Vad säger boken om länder där det ibland finns korruption eller fattigdom?",o:["Så länge makten utgår från folket och demokratins kännetecken uppfylls i hög utsträckning är landet en demokrati","De är automatiskt diktaturer","De får inte vara med i FN","De räknas inte som stater"],a:0,e:"Få stater uppfyller alltid alla kännetecken. Så länge makten utgår från folket och kännetecknen uppfylls i hög utsträckning är landet en demokrati."},
+ {t:"forsk",p:"s. 13",q:"Vad är det första steget när en forskare studerar livet?",o:["Forskaren gör en intressant observation","Forskaren publicerar sina resultat","Forskaren drar slutsatser","Forskaren testar hypotesen"],a:0,e:"Stegen är: 1 observation, 2 ta reda på vad andra skrivit, 3 hypotes, 4 testa med observationer och experiment, 5 undersöka faktorer och dra slutsatser, 6 publicera."},
+ {t:"forsk",p:"s. 13",q:"Vad är en hypotes?",o:["En sannolik förklaring som forskaren tänker ut","Ett slutgiltigt resultat","En bild i mikroskop","En sorts cell"],a:0,e:"En hypotes är en sannolik förklaring. Den testas sedan med observationer och experiment."},
+ {t:"forsk",p:"s. 13",q:"Hur testar forskaren sin hypotes?",o:["Genom flera observationer och experiment","Genom att gissa","Genom att fråga en kompis","Genom att publicera den direkt"],a:0,e:"Forskaren testar hypotesen genom flera observationer och experiment, undersöker vilka faktorer som kan inverka och drar slutsatser."},
+ {t:"forsk",p:"s. 13",q:"Vad gör forskaren i det sista steget?",o:["Publicerar sina resultat, metoder och slutsatser","Gör en intressant observation","Tänker ut en hypotes","Tar reda på vad andra skrivit"],a:0,e:"I sista steget publicerar forskaren sina resultat, metoder och slutsatser."},
+ {t:"forsk",p:"s. 13",q:"Vad gör forskaren direkt efter den första observationen?",o:["Tar reda på vad andra skrivit i ämnet","Publicerar resultaten","Drar slutsatser","Gör experiment"],a:0,e:"Steg 2 är att ta reda på vad andra skrivit i ämnet. Först därefter tänker forskaren ut en hypotes."},
+ {t:"forsk",p:"s. 13",q:"Vad kan man undersöka för att få veta hur Östersjön mår?",o:["Mängden cyanobakterier (blågröna alger)","Antalet båtar","Vattnets färg på bilder","Hur många som badar"],a:0,e:"Man kan ta prover och göra observationer av mängden cyanobakterier (blågröna alger) och sedan fundera på hur olika miljöfaktorer påverkar mängden."},
 
- {t:"skick",p:"s. 18–19",q:"Hur blir man statschef i en republik?",o:["Folket väljer statschefen för en viss tid","Man ärver ämbetet","Generalerna utser statschefen","Religiösa ledare utser statschefen"],a:0,e:"I en republik väljer folket landets officiella statschef för en viss tid. I en republik är statschefen folkvald."},
- {t:"skick",p:"s. 18–19",q:"Hur blir man statschef i en monarki?",o:["Man ärver ämbetet eller så utser statschefen själv sin efterträdare","Folket röstar vart fjärde år","Riksdagen väljer","Man utses av FN"],a:0,e:"I en monarki ärver statschefen sitt ämbete eller utser själv sin efterträdare."},
- {t:"skick",p:"s. 18",q:"Vilka av Finlands grannländer är monarkier med arvkungadöme?",o:["Sverige, Norge och Danmark","Sverige, Estland och Ryssland","Norge, Island och Estland","Inga av dem"],a:0,e:"Finland är en republik med folkvald president, medan Sverige, Norge och Danmark är monarkier med arvkungadöme."},
- {t:"skick",p:"s. 18",q:"Vad betyder det att ett land är parlamentariskt styrt?",o:["Det finns en regering som styr landet med stöd av ett folkvalt parlament","Kungen styr ensam","Presidenten utser alla ministrar","Präster har den högsta makten"],a:0,e:"Parlamentariskt styrt betyder att en regering styr landet med stöd av ett folkvalt parlament. Sverige och alla andra monarkier i Europa är parlamentariskt styrda."},
- {t:"skick",p:"s. 18",q:"Hur mycket politisk makt har monarken (t.ex. drottningen) i en demokrati?",o:["Ingen egentlig politisk makt","All makt","Makt över domstolarna","Vetorätt mot alla lagar"],a:0,e:"I demokratier har monarken ingen egentlig politisk makt."},
- {t:"skick",p:"s. 18",q:"Vilka länder är exempel på presidentstyrda stater?",o:["Frankrike, Ryssland och USA","Tyskland och Italien","Sverige, Norge och Danmark","Iran och Vatikanstaten"],a:0,e:"Presidentstyre betyder att folket direkt väljer en president som sedan utser ministrarna i regeringen. Frankrike, Ryssland och USA är presidentstyrda."},
- {t:"skick",p:"s. 18",q:"Tyskland och Italien har en president. Varför är de ändå inte presidentstyrda?",o:["Presidenten saknar politisk makt, så länderna är parlamentariskt styrda","De är monarkier","De är militärdiktaturer","Presidenten väljs av FN"],a:0,e:"I Tyskland och Italien saknar presidenten politisk makt, så länderna är parlamentariskt styrda."},
- {t:"skick",p:"s. 18",q:"Vem leder regeringen och väljer ministrarna i Finland?",o:["Statsministern","Presidenten","Talmannen","Kungen"],a:0,e:"Finland är ett mellanting mellan presidentstyre och parlamentarism. Presidenten är folkvald och deltar i regeringens arbete, men det är statsministern som leder regeringen och väljer ministrarna. Regeringen måste godkännas av riksdagen."},
- {t:"skick",p:"s. 19",q:"Kina och Nordkorea är exempel på...",o:["enpartistater (enpartidiktaturer)","militärdiktaturer","teokratier","monarkier"],a:0,e:"Kina och Nordkorea är enpartistater där kommunistpartiet är det enda tillåtna. Landets högsta ledare utses inom partiet."},
- {t:"skick",p:"s. 19",q:"Vem styr en militärdiktatur?",o:["Generaler (armén)","Präster","Ett kungahus","Folkvalda politiker"],a:0,e:"Länder som styrs av generaler kallas militärdiktaturer. Egypten och Thailand är exempel där armén har den högsta makten."},
- {t:"skick",p:"s. 19",q:"Vilka länder nämner boken som exempel där armén har den högsta makten?",o:["Egypten och Thailand","Kina och Nordkorea","Iran och Vatikanstaten","Tyskland och Italien"],a:0,e:"I Egypten och Thailand är det armén som har den högsta makten."},
- {t:"skick",p:"s. 19",q:"Vad betyder teokrati?",o:["Gudsvälde: landet styrs av religiösa ledare och prästerna har den högsta makten","Folkstyre","Militärstyre","Ensamstyre av en president"],a:0,e:"Teokrati betyder gudsvälde. Landet styrs av religiösa ledare som upplevs ha fått sin makt direkt av Gud."},
- {t:"skick",p:"s. 19",q:"Vilka länder är exempel på teokratier?",o:["Iran och Vatikanstaten","Egypten och Thailand","Frankrike och USA","Kina och Nordkorea"],a:0,e:"Iran och Vatikanstaten är exempel på teokratier."},
- {t:"skick",p:"s. 19",q:"Vem är landets högsta chef i Iran?",o:["Ayatollan, den andliga ledaren","Presidenten","Påven","Kungen"],a:0,e:"I Iran är den andliga ledaren, ayatollan, landets högsta chef. Han står över både presidenten och parlamentet."},
- {t:"skick",p:"s. 19",q:"Vem är statschef i Vatikanstaten?",o:["Påven","En folkvald president","En general","Italiens president"],a:0,e:"I Vatikanstaten, världens minsta stat både till yta och antal invånare, är påven statschef."},
- {t:"skick",p:"s. 19",q:"Vad är personkult, som är viktigt i diktaturer?",o:["Att ledaren hyllas och dyrkas, till exempel med gigantiska statyer","Att alla får rösta personligen","Att domstolarna är oberoende","Att alla har rätt till ett privatliv"],a:0,e:"I diktaturer är personkulten viktig. Bilden i boken visar soldater som bugar för en jättestaty av Kim Il Sung, Nordkoreas ledare 1948–1994."},
+ {t:"foto",p:"s. 18, 20",q:"Vilka råvaror behöver växten för fotosyntesen?",o:["Vatten och koldioxid","Syre och socker","Syre och vatten","Socker och koldioxid"],a:0,e:"Råvarorna är vatten och koldioxid. Energin kommer från solljuset. Produkterna är socker och syre."},
+ {t:"foto",p:"s. 20",q:"Vad bildas vid fotosyntesen?",o:["Socker (glukos) och syre","Vatten och koldioxid","Bara syre","Stärkelse och koldioxid"],a:0,e:"Solenergi + koldioxid + vatten → socker (glukos) + syre."},
+ {t:"foto",p:"s. 20",q:"Var i växten sker fotosyntesen?",o:["I kloroplasterna i de gröna bladen","I rötterna","I cellkärnan","I blomman"],a:0,e:"Fotosyntesen sker i kloroplasterna i växternas gröna blad. Kloroplasterna fångar upp solenergin."},
+ {t:"foto",p:"s. 20",q:"Varifrån får växten energin till fotosyntesen?",o:["Från solljuset","Från jorden","Från vattnet","Från syret"],a:0,e:"Kloroplasterna fångar upp solenergi. Fotosyntesen förvandlar solljus till kemisk energi i form av socker."},
+ {t:"foto",p:"anteckningarna",q:"Hur kommer koldioxiden in i bladet?",o:["Genom klyvöppningarna","Genom rötterna","Genom blomman","Genom cellkärnan"],a:0,e:"Växterna tar in koldioxid genom klyvöppningarna, som hos de flesta landväxter finns på bladens undersida."},
+ {t:"foto",p:"anteckningarna",q:"Hur kommer vattnet till bladen?",o:["Det sugs upp av rötterna och förs till bladen genom ledningsvävnaden","Det tas in genom klyvöppningarna","Det bildas i blomman","Det kommer från syret"],a:0,e:"Vattnet tas upp av rötterna och transporteras till bladen genom växtens ledningsvävnad."},
+ {t:"foto",p:"s. 20",q:"Vad använder växten sockret från fotosyntesen till?",o:["Som energi och som byggmaterial","Bara till att andas ut","Till att locka insekter","Ingenting, det släpps ut i luften"],a:0,e:"Sockret ger växten energi till livsfunktionerna och används också som byggmaterial."},
+ {t:"foto",p:"s. 20",q:"Vad förvandlar växten en del av sockret till, som reservnäring?",o:["Stärkelse","Syre","Koldioxid","Pollen"],a:0,e:"Växten eller algen förvandlar en del av sockret till stärkelse, som fungerar som reservnäring."},
+ {t:"foto",p:"s. 20",q:"Hur bygger växten proteiner?",o:["Sockret förenas med mineraler från marken","Syret förenas med vatten","Koldioxiden förenas med ljus","Pollenet förenas med äggcellen"],a:0,e:"Sockret kan förvandlas till byggnadsmaterial genom att förenas med mineraler från marken. Så bygger växten proteiner och annat den behöver."},
+ {t:"foto",p:"s. 18, 20",q:"Vad betyder det att växter är autotrofa?",o:["De producerar själva sin föda (självförsörjande)","De måste äta andra organismer","De saknar celler","De lever bara i vatten"],a:0,e:"Växter och alger producerar själva sin föda genom fotosyntesen. De är autotrofa, självförsörjande."},
+ {t:"foto",p:"s. 18, 20",q:"Vad kallas organismer som måste äta växter eller djur för att få energi?",o:["Heterotrofa","Autotrofa","Encelliga","Fotosyntetiserande"],a:0,e:"Alla andra organismer än växter och alger är heterotrofa. De måste äta växter eller djur för att få energi. Djur och svampar är heterotrofa."},
+ {t:"foto",p:"s. 18",q:"Vilka organismer binder solenergi mest effektivt?",o:["Mikroskopiskt små planktonalger","Stora träd","Svampar","Djur"],a:0,e:"De organismer som binder solenergi mest effektivt är mikroskopiskt små planktonalger."},
+ {t:"foto",p:"s. 18, 20",q:"Vad händer med syret som bildas vid fotosyntesen?",o:["Det mesta släpps ut i luften och nästan alla organismer andas det","Det blir till socker","Det lagras i rötterna","Det förvandlas till vatten"],a:0,e:"Syre är en biprodukt som växten släpper ut i atmosfären. Nästan alla organismer andas det syre som bildas vid fotosyntesen."},
+ {t:"foto",p:"s. 20",q:"Van Helmont planterade en sälg som vägde 2 kg. Efter fem år vägde den 72 kg, men mullen var bara 55 gram lättare. Var kom vikten ifrån?",o:["Från koldioxid i luften och vatten, som växten gjort socker och byggmaterial av","Från mullen i krukan","Från solljuset, som väger mycket","Från insekter som sälgen åt"],a:0,e:"Mullen blev nästan inte lättare. Sälgen byggde sin kropp av koldioxid från luften och vatten genom fotosyntesen, plus lite mineraler från mullen."},
+ {t:"foto",p:"s. 20",img:"foto",hl:2,q:"Vad tar bladet in vid den markerade pilen?",o:["Koldioxid","Syre","Socker","Pollen"],a:0,e:"Koldioxid tas in från luften genom klyvöppningarna."},
+ {t:"foto",p:"s. 20",img:"foto",hl:4,q:"Vad släpper bladet ut vid den markerade pilen?",o:["Syre","Koldioxid","Vatten","Socker"],a:0,e:"Syre är en biprodukt som släpps ut genom klyvöppningarna."},
+ {t:"foto",p:"s. 20",img:"foto",hl:3,q:"Vad transporteras upp till bladet vid den markerade pilen?",o:["Vatten","Syre","Socker","Solljus"],a:0,e:"Vatten tas upp av rötterna och förs till bladen genom ledningsvävnaden."},
+ {t:"foto",p:"s. 20",img:"foto",hl:5,q:"Vilken produkt bildas inne i bladet (markerad)?",o:["Socker (glukos)","Koldioxid","Vatten","Kväve"],a:0,e:"Socker (glukos, C₆H₁₂O₆) bildas i kloroplasterna och används som energi och byggmaterial."},
 
- {t:"dir",p:"s. 20",q:"Vad är direkt demokrati?",o:["Folket tar ställning till en fråga genom att direkt rösta","Folket väljer representanter som fattar besluten","Riksdagen bestämmer allt utan val","Presidenten fattar alla beslut"],a:0,e:"Direkt demokrati betyder att folket tar ställning till en fråga genom att direkt rösta. Den enklaste formen är att skolelever röstar genom handuppräckning."},
- {t:"dir",p:"s. 20",q:"Hur sker direkt demokrati på nationell nivå?",o:["Genom folkomröstningar","Genom riksdagsval","Genom att presidenten bestämmer","Genom kommunfullmäktige"],a:0,e:"Direkt demokrati på nationell nivå sker genom folkomröstningar."},
- {t:"dir",p:"s. 20",q:"Vad betyder det att folkomröstningar i Finland är rådgivande?",o:["Riksdagen måste inte följa valresultatet","Resultatet är alltid bindande","Bara barn får rösta","EU bestämmer resultatet"],a:0,e:"I Finland får riksdagen ordna rådgivande folkomröstningar. Riksdagen måste inte följa resultatet, men parlamenten brukar ändå oftast respektera folkets val."},
- {t:"dir",p:"s. 20",q:"Vilka två nationella folkomröstningar har ordnats i Finland?",o:["1932 om alkoholförsäljning och 1994 om EU-medlemskap","1917 om självständighet och 1995 om euron","1906 om rösträtt och 1948 om mänskliga rättigheter","2017 om nationalsymboler och 2020 om Brexit"],a:0,e:"År 1932 röstade folket ja till en legalisering av alkoholförsäljning och 1994 godkände de Finlands EU-medlemskap."},
- {t:"dir",p:"s. 20",q:"Vad är representativ demokrati?",o:["Folket väljer representanter som sedan fattar besluten","Folket röstar själva om varje fråga","En person har all makt","Generaler fattar besluten"],a:0,e:"I en representativ demokrati väljer folket representanter som sedan fattar beslut. På nationell nivå väljer vi vem som ska stifta våra lagar i riksdagen."},
- {t:"dir",p:"s. 20",q:"Varje klass utser en representant till skolans elevkårsstyrelse. Vad är det ett exempel på?",o:["Representativ demokrati","Direkt demokrati","Diktatur","Teokrati"],a:0,e:"När klassen väljer en representant som beslutar i elevkårsstyrelsen är det representativ demokrati. Om alla elever röstar med handuppräckning är det direkt demokrati."},
- {t:"dir",p:"s. 20",q:"Vad kallas folkvalda beslutsfattare?",o:["Förtroendevalda","Ombudsmän","Ministrar","Ayatollor"],a:0,e:"Folkvalda beslutsfattare kallas förtroendevalda. De har fått vårt förtroende att fatta beslut för vår del."},
- {t:"dir",p:"s. 20",q:"Vilken är en fördel med representativ demokrati enligt boken?",o:["Besluten blir ofta mer genomtänkta och minoriteter blir lättare hörda","Besluten fattas alltid snabbare","Folket behöver aldrig rösta","Det behövs inga kompromisser"],a:0,e:"Det kan ta längre tid, men besluten är ofta mer genomtänkta och analyserade. Det är också lättare för minoriteter att bli hörda och besluten innehåller ofta kompromisser."},
- {t:"dir",p:"s. 20",q:"Vilken är en nackdel med representativ demokrati enligt boken?",o:["Det kan ta längre tid att fatta beslut","Minoriteter blir aldrig hörda","Folket får inte rösta","Besluten blir mindre genomtänkta"],a:0,e:"Det kan ta längre tid att fatta beslut i en representativ demokrati."},
+ {t:"vaxt",p:"s. 19",img:"vaxt",hl:4,q:"Vad gör den markerade delen av växten?",o:["Fäster växten i marken och tar upp vatten och mineraler","Sköter förökningen","Lyfter bladen mot solen","Samlar solljus"],a:0,e:"Roten fäster växten i marken och tar upp vatten och mineraler, som kväve och fosfor."},
+ {t:"vaxt",p:"s. 19",img:"vaxt",hl:3,q:"Vad gör den markerade delen av växten?",o:["Lyfter blad och blommor mot solen och leder vatten och näring","Tar upp koldioxid","Bildar pollen","Fäster växten i marken"],a:0,e:"Stammen är styv och lyfter blad och blommor mot solen. Den innehåller ledningsvävnad."},
+ {t:"vaxt",p:"s. 19",img:"vaxt",hl:2,q:"Vad gör den markerade delen av växten?",o:["Samlar solljus för fotosyntes, tar upp koldioxid och avger syre","Fäster växten i marken","Sköter den könliga förökningen","Lagrar näring för vintern"],a:0,e:"Bladet samlar solljus för fotosyntesen, tar upp koldioxid, avger syre och avdunstar vatten."},
+ {t:"vaxt",p:"s. 19",img:"vaxt",hl:1,q:"Vad gör den markerade delen av växten?",o:["Sköter den könliga förökningen","Tar upp vatten","Lyfter bladen","Avdunstar vatten"],a:0,e:"Blomman är växtens könsorgan och sköter den könliga förökningen."},
+ {t:"vaxt",p:"s. 19",q:"Vad gör ledningsvävnaden?",o:["Drar upp en ström av vatten och mineraler till alla växtens delar","Fångar solljus","Bildar pollen","Fäster växten i marken"],a:0,e:"Ledningsvävnaden drar upp vatten och mineraler till alla växtens delar. I anteckningarna kallas rören för kärl (vatten och mineraler) och silrör (socker)."},
+ {t:"vaxt",p:"anteckningarna",q:"I ledningsvävnaden finns kärl och silrör. Vad transporterar silrören?",o:["Socker (glukos)","Vatten och mineraler","Syre","Pollen"],a:0,e:"Kärlen transporterar vatten och mineraler upp från roten. Silrören transporterar socker från bladen till resten av växten."},
+ {t:"vaxt",p:"s. 19",q:"Varför måste växten suga upp väldiga mängder vatten?",o:["Det finns så lite mineraler i marken","Växten dricker vatten för att växa längre","Vattnet blir till pollen","Växten behöver inte mineraler"],a:0,e:"En växt tar upp mineraler med vattnet. I marken finns så lite mineraler att växten måste suga upp väldiga mängder vatten. Det vatten som inte behövs avdunstar."},
+ {t:"vaxt",p:"s. 19",q:"Hur mycket vatten kan en stor björk avdunsta på ett dygn?",o:["Flera hundra liter","Någon deciliter","En liter","Flera miljoner liter"],a:0,e:"En stor björk avdunstar flera hundra liter vatten på ett dygn."},
+ {t:"vaxt",p:"s. 19",q:"Vad gör växten när det är torrt?",o:["Stänger sina klyvöppningar för att inte torka ut","Öppnar alla klyvöppningar","Tappar sina rötter","Blommar snabbare"],a:0,e:"När det är torrt stänger växten sina klyvöppningar för att inte torka ut."},
+ {t:"vaxt",p:"s. 19",q:"Var sitter klyvöppningarna på näckrosens flytblad?",o:["På övre sidan, så att de inte täpps till av vatten","På undersidan, nere i vattnet","På rötterna","Näckrosen har inga klyvöppningar"],a:0,e:"Hos de flesta landväxter sitter klyvöppningarna på bladens undersida, men på näckrosens flytblad sitter de på övre sidan så att de kan ta in koldioxid och syre utan att täppas till av vatten."},
+ {t:"vaxt",p:"s. 19",q:"Vad gör näckrosens jordstam?",o:["Samlar näring för vintern och skickar upp nya skott","Flyter på vattenytan","Fotosyntetiserar","Bildar pollen"],a:0,e:"Jordstammen samlar näring för vintern och skickar upp nya skott."},
+ {t:"vaxt",p:"s. 19",q:"Varför kan näckrosens bladskaft vara mjukt?",o:["Vattnet stöder vattenväxten","Den har ingen ledningsvävnad","Den växer bara på vintern","Den saknar celler"],a:0,e:"Vattnet stöder vattenväxten, så bladskaftet kan vara mjukt. Bladskaften innehåller lufthåligheter som leder luft till rötterna och jordstammen."},
+ {t:"vaxt",p:"s. 19",q:"Vilka mineraler nämns i boken som exempel på vad roten tar upp?",o:["Kväve och fosfor","Guld och silver","Syre och koldioxid","Socker och stärkelse"],a:0,e:"Roten tar upp vatten och mineraler, som kväve och fosfor."},
 
- {t:"mr",p:"s. 24",q:"Vad handlar de mänskliga rättigheterna i grund och botten om?",o:["Att alla är lika mycket värda och ska behandlas med respekt, oberoende av vem man är","Att varje land får göra som det vill","Att vuxna har fler rättigheter än barn","Att bara medborgare har rättigheter"],a:0,e:"Mänskliga rättigheter handlar om att alla är lika mycket värda och ska behandlas med respekt, oberoende av vem man är, hur man ser ut eller var man bor."},
- {t:"mr",p:"s. 24",q:"Vad fick många att inse att det behövdes gemensamma regler för hur människor ska behandlas?",o:["Förintelsen och andra grymma brott mot civila under andra världskriget","Brexit","Franska revolutionen 1789","Finlands självständighet"],a:0,e:"Under andra världskriget mördades miljontals människor. Förintelsen och andra grymma brott fick många att inse att gemensamma regler behövdes."},
- {t:"mr",p:"s. 24",q:"Vem ledde FN:s arbetsgrupp som skrev de mänskliga rättigheterna?",o:["Eleanor Roosevelt","Johan Ludvig Runeberg","Hosni Mubarak","Kim Il Sung"],a:0,e:"En arbetsgrupp inom FN bildades under ledning av Eleanor Roosevelt."},
- {t:"mr",p:"s. 24",q:"Hur många artiklar har FN:s förklaring om de mänskliga rättigheterna?",o:["30","10","54","196"],a:0,e:"Arbetsgruppen författade 30 artiklar med rättigheter som skulle gälla alla människor överallt på jorden."},
- {t:"mr",p:"s. 24",q:"Vad handlar de första 21 artiklarna om?",o:["Vad vi inte får göra mot varandra, till exempel döda, tortera eller stjäla","Rätten till mat, bostad och sjukvård","Hur riksdagsval går till","Vilka länder som är medlemmar i FN"],a:0,e:"De första 21 artiklarna handlar om vad vi inte får göra mot varandra. De följande är positiva rättigheter, eller välfärdsrättigheter, som mat, utbildning, bostad och sjukvård."},
- {t:"mr",p:"s. 24–25",q:"Vad kallas de rättigheter som handlar om vad var och en har rätt till för att leva ett gott liv, till exempel mat, utbildning och sjukvård?",o:["Positiva rättigheter eller välfärdsrättigheter","Medborgarplikter","Vetorätt","Näringsfrihet"],a:0,e:"De kallas positiva rättigheter eller välfärdsrättigheter. De kom till på initiativ av Sovjetunionen."},
- {t:"mr",p:"s. 25",q:"Vad är skillnaden mellan förklaringen och en konvention?",o:["Ett land som undertecknar en konvention förbinder sig att följa den, förklaringen var bara ett erkännande av att rättigheterna är viktiga","Det finns ingen skillnad","En konvention gäller bara barn","Förklaringen är en lag i varje land"],a:0,e:"Länderna som godkände förklaringen erkände bara att rättigheterna var viktiga. Ett land som undertecknar en konvention förbinder sig att följa dem."},
- {t:"mr",p:"s. 25",q:"Hur övervakar FN att de mänskliga rättigheterna följs?",o:["Stater som undertecknat konventionerna måste regelbundet rapportera till FN hur de arbetar","FN skickar polis till alla länder","FN stiftar lagarna i varje land","FN gör ingenting"],a:0,e:"Alla stater som undertecknat konventionerna är skyldiga att regelbundet rapportera till FN hur de arbetar för de mänskliga rättigheterna. Finland har undertecknat alla."},
- {t:"mr",p:"s. 24",q:"Vad innebär det att de mänskliga rättigheterna är universella?",o:["De gäller överallt och för alla människor","De gäller bara i Europa","De gäller bara vuxna","De kan ändras av varje parlament"],a:0,e:"De mänskliga rättigheterna gäller överallt (artikel 6) och för alla människor oberoende av hur de ser ut, hur mycket pengar de har eller vad de tror på."},
- {t:"mr",p:"s. 25",q:"Kan majoriteten i ett demokratiskt valt parlament upphäva de mänskliga rättigheterna?",o:["Nej, ingen kan upphäva dem","Ja, om över hälften röstar för","Ja, om presidenten godkänner","Ja, vid en folkomröstning"],a:0,e:"Enligt artikel 30 kan ingen upphäva de mänskliga rättigheterna, inte ens majoriteten i ett demokratiskt valt parlament."},
- {t:"mr",p:"s. 24–25",q:"Vilken av dessa finns med bland de mänskliga rättigheterna?",o:["Alla är oskyldiga tills motsatsen bevisas","Alla har rätt till en egen bil","Alla har rätt att slippa skatt","Alla har rätt att bestämma över andra"],a:0,e:"Att alla är oskyldiga tills motsatsen bevisas är en av rättigheterna. Andra är till exempel frihet från slaveri och tortyr, rätt till utbildning, att tro på vad man vill och att uttala sina åsikter."},
- {t:"mr",p:"s. 24–25",q:"Vilken av dessa finns INTE med bland de mänskliga rättigheterna?",o:["Rätten att alltid få som man vill","Ingen får utsättas för tortyr","Alla har rätt att fly till ett annat land för att få skydd","Alla har rätt till fritid"],a:0,e:"Frihet från tortyr, rätten att fly för att få skydd och rätten till fritid finns alla med i FN:s förklaring."},
- {t:"mr",p:"s. 24–25",q:"Vilken rättighet står i FN:s förklaring?",o:["Man får gifta sig med vem man vill","Man får straffas utan rättegång","Man får fängslas utan goda skäl","Staten får ta ens egendom utan anledning"],a:0,e:"Man får gifta sig med vem man vill. I förklaringen står också att ingen får fängslas utan goda skäl och att ingen får beslagta vår egendom utan god anledning."},
-
- {t:"barn",p:"s. 26",q:"Vilken konvention har överlägset flest länder undertecknat?",o:["Barnkonventionen","Diskrimineringslagen","Lagen om jämställdhet","Nordiska rådets avtal"],a:0,e:"Barnkonventionen är den konvention som överlägset flest länder har undertecknat."},
- {t:"barn",p:"s. 26",q:"Vilket land hade 2019 som enda land inte undertecknat barnkonventionen?",o:["USA","Kina","Ryssland","Iran"],a:0,e:"År 2019 var det bara USA som inte hade undertecknat barnkonventionen."},
- {t:"barn",p:"s. 26",q:"När skrevs barnkonventionen och varför?",o:["1989, eftersom barn var speciellt utsatta i många länder och behövde ett särskilt skydd","1948, efter andra världskriget","1917, när Finland blev självständigt","2019, på grund av klimatet"],a:0,e:"Barnkonventionen skrevs 1989 eftersom FN upplevde att barn var speciellt utsatta i många länder och behövde ett särskilt skydd."},
- {t:"barn",p:"s. 26",q:"Vem övervakar att barnens rättigheter respekteras?",o:["Unicef, FN:s barnfond","Nato","Nordiska rådet","Freedom House"],a:0,e:"Unicef, som är FN:s barnfond, övervakar att barnens rättigheter respekteras. Unicef grundades för att hjälpa de europeiska barnen efter andra världskriget."},
- {t:"barn",p:"s. 26",q:"Vem övervakar barnens rättigheter särskilt i Finland?",o:["Barnombudsmannen","Diskrimineringsombudsmannen","Presidenten","Försvarsmakten"],a:0,e:"I Finland finns en speciell barnombudsman som övervakar barnens rättigheter."},
- {t:"barn",p:"s. 26",q:"Vem räknas som barn enligt barnkonventionen?",o:["Den som inte ännu har fyllt 18 år","Den som är under 12 år","Den som är under 15 år","Den som går i grundskolan"],a:0,e:"Man är ett barn om man inte ännu har fyllt 18 år."},
- {t:"barn",p:"s. 26",q:"Boken säger att barnens rättigheter är detsamma som...",o:["de vuxnas skyldigheter","statens lagar","barnens skyldigheter","föräldrarnas rättigheter"],a:0,e:"Barnens rättigheter är det samma som de vuxnas skyldigheter. De vuxna ska sköta om barnen och beskydda dem, och staten ska ta hand om barn som far illa i hemmen."},
- {t:"barn",p:"s. 26",q:"Vilken rättighet slår barnkonventionen fast att alla barn har från början?",o:["Rätt till ett namn och födelseregistrering","Rätt att rösta","Rätt till körkort","Rätt att arbeta heltid"],a:0,e:"Alla barn har rätt till ett namn och födelseregistrering. Utan registrering kan man nekas hälsovård och skolgång. I Finland registreras alla barn som föds på sjukhus automatiskt och får ett personnummer."},
- {t:"barn",p:"s. 27",q:"När börjar läroplikten i Finland enligt boken?",o:["Samma år som barnet fyller sex år","När barnet fyller tio år","När barnet fyller tre år","Läroplikt finns inte i Finland"],a:0,e:"Läroplikten börjar samma år som barnet fyller sex år. Alla barn har rätt att gå i avgiftsfri grundskola."},
- {t:"barn",p:"s. 27",q:"Vilken ålder är en viktig åldersgräns för barn i Finland, till exempel i vårdnadstvister?",o:["12 år","7 år","15 år","18 år"],a:0,e:"I Finland är 12 år en viktig åldersgräns. En tolvåring måste höras när det gäller vårdnadstvister vid skilsmässor, umgängesrätt och omhändertaganden."},
- {t:"barn",p:"s. 27",q:"Enligt rutan på s. 27 har barn rätt till...",o:["trygghet, utbildning, vård och en egen åsikt","rösträtt, körkort, lön och pass","egen bostad, bil, mobil och fritid","att bestämma över sina föräldrar"],a:0,e:"Barn har rätt till trygghet, utbildning, vård och en egen åsikt."},
- {t:"barn",p:"s. 27",q:"Hur kan unga under 18 år påverka i många kommuner, trots att de inte har rösträtt?",o:["Genom ungdomsfullmäktige, som kommer med utlåtanden till beslutsfattarna","Genom att rösta i riksdagsval","Genom att bli statsminister","De kan inte påverka alls"],a:0,e:"I många kommuner finns ett ungdomsfullmäktige dit personer under 18 år är valbara. Medlemmarna får komma med utlåtanden till beslutsfattarna."},
- {t:"barn",p:"s. 27",q:"Varför går färre flickor än pojkar i skola i fattiga länder enligt boken?",o:["Flickorna måste ofta hämta vatten, vilket kan ta flera timmar per dag","Flickor får inte gå i skola enligt barnkonventionen","Det finns inga skolor","Flickorna arbetar i fabriker"],a:0,e:"I många fattiga länder är det flickornas uppgift att hämta vatten, vilket kan ta flera timmar per dag. Det är en stor orsak till att färre flickor går i skola."},
-
- {t:"disk",p:"s. 28",q:"Vad betyder diskriminering enligt boken?",o:["Att människor bemöts på ett ojämlikt sätt eller försätts i en ojämlik ställning på grund av en personlig egenskap","Att två personer har olika åsikter","Att man får sämre betyg för att man inte pluggat","Att man röstar på olika partier"],a:0,e:"Diskriminering betyder kort och gott att människor bemöts på ett ojämlikt sätt eller försätts i en ojämlik ställning på grund av en personlig egenskap."},
- {t:"disk",p:"s. 28",q:"Vilket av följande är ett exempel på diskriminering?",o:["En mörkhyad person blir inte insläppt på en nattklubb på grund av sitt utseende","En person får vänta i kön för att hen kom sist","En elev får sämre betyg för att hen inte lämnat in uppgifter","En person utan körkort får inte jobb som busschaufför"],a:0,e:"Att nekas inträde på grund av sitt utseende är diskriminering. I de andra fallen finns ett sakligt skäl."},
- {t:"disk",p:"s. 28",q:"Ett bussbolag annonserar efter en manlig busschaufför. Är det diskriminering?",o:["Ja, det är diskriminering på grund av kön","Nej, det är helt tillåtet","Bara om bussbolaget är statligt","Nej, eftersom det gäller ett jobb"],a:0,e:"Att söka just en man till jobbet är diskriminering på grund av kön. Det är ett av exemplen i boken."},
- {t:"disk",p:"s. 28",q:"Vilket av bokens exempel visar diskriminering på grund av funktionsnedsättning?",o:["En arbetsgivare vägrar anpassa arbetsplatsen så att en person i rullstol kan arbeta där","En äldre person väljs inte till en tjänst trots bäst meriter","En skola ordnar inget alternativ till religiösa evenemang","De kvinnliga sommararbetarna får lägre lön"],a:0,e:"Att vägra anpassa arbetsplatsen för en person i rullstol är diskriminering på grund av funktionsnedsättning. De andra exemplen gäller ålder, religion och kön."},
- {t:"disk",p:"s. 28",q:"Vilka är speciellt utsatta för diskriminering enligt boken?",o:["Synliga minoriteter, alltså personer som till det yttre avviker från majoritetsbefolkningen","Personer som bor i stora städer","Personer som har fyllt 18 år","Personer med högre utbildning"],a:0,e:"Alla kan bli utsatta för diskriminering, men synliga minoriteter är speciellt utsatta."},
- {t:"disk",p:"s. 28",q:"Vilket straff kan man få i Finland för diskriminering?",o:["Böter eller fängelse i högst sex månader","Livstids fängelse","Inget straff alls","Utvisning ur landet"],a:0,e:"Den som gör sig skyldig till diskriminering kan dömas till böter eller fängelse i högst sex månader. Den som diskriminerats har vanligtvis också rätt till skadestånd."},
- {t:"disk",p:"s. 28",q:"Var tryggas de mänskliga rättigheterna och allas rätt till lika behandling i Finland?",o:["I grundlagen och en rad andra lagar","Bara i barnkonventionen","I Kalevala","Bara i EU:s lagar"],a:0,e:"I Finland tryggas de mänskliga rättigheterna och allas rätt till lika behandling i grundlagen och en rad andra lagar."},
- {t:"disk",p:"s. 29",q:"Vad övervakar diskrimineringsombudsmannen?",o:["Att minoriteter inte diskrimineras på grund av etnicitet eller annan jämförbar orsak","Att barnen får gå i skola","Att ingen diskrimineras på grund av kön","Att valen går rätt till"],a:0,e:"Diskrimineringsombudsmannen övervakar att minoriteter inte diskrimineras på grund av etnicitet eller annan jämförbar orsak."},
- {t:"disk",p:"s. 29",q:"Vad övervakar jämställdhetsombudsmannen?",o:["Att ingen diskrimineras på grund av kön eller sexuell identitet","Att barnens rättigheter respekteras","Att EU:s lagar följs","Att alla får pass"],a:0,e:"Jämställdhetsombudsmannen övervakar att ingen diskrimineras på grund av kön eller sexuell identitet. Båda ombudsmännen tar emot klagomål och hjälper vid rättegångar."},
- {t:"disk",p:"s. 29",q:"Vilka är de två mest centrala lagarna mot diskriminering i Finland?",o:["Diskrimineringslagen och lagen om jämställdhet mellan kvinnor och män","Grundlagen och barnkonventionen","Diskrimineringslagen och Nato-avtalet","Lagen om folkomröstning och vallagen"],a:0,e:"De två mest centrala lagarna är diskrimineringslagen (§8) och lagen om jämställdhet mellan kvinnor och män (§7)."},
- {t:"disk",p:"s. 29",q:"Vilket av följande nämns INTE i diskrimineringslagen §8 som en grund man inte får diskrimineras för?",o:["Skolbetyg","Ålder","Språk","Sexuell läggning"],a:0,e:"Enligt §8 får ingen diskrimineras på grund av ålder, ursprung, nationalitet, språk, religion, övertygelse, åsikt, politisk verksamhet, fackföreningsverksamhet, familjeförhållanden, hälsotillstånd, funktionsnedsättning, sexuell läggning eller annan omständighet som gäller personen."},
- {t:"disk",p:"s. 29",q:"En chef omplacerar en gravid kvinna till en tjänst med lägre lön. Vilken lag bryter chefen mot?",o:["Lagen om jämställdhet mellan kvinnor och män","Ingen lag","Barnkonventionen","Lagen om folkomröstningar"],a:0,e:"Enligt jämställdhetslagen §7 får kvinnor inte försättas i olika ställning på grund av graviditet eller förlossning."}
+ {t:"forok",p:"s. 20",q:"Vad är blommans uppgift?",o:["Den är växtens könsorgan","Den tar upp vatten","Den fäster växten","Den gör fotosyntes"],a:0,e:"Blomman är växtens könsorgan."},
+ {t:"forok",p:"s. 20",img:"blomma",hl:4,q:"Vad kallas den markerade delen och vad bildar den?",o:["Ståndare, bildar pollen","Pistill, bildar äggceller","Kronblad, lockar insekter","Märke, fångar pollen"],a:0,e:"Ståndarna är blommans hanliga delar. De bildar pollen."},
+ {t:"forok",p:"s. 20",q:"Vilken del av blomman är honlig och innehåller äggcellen?",o:["Pistillen","Ståndaren","Kronbladet","Stammen"],a:0,e:"Pistillen är blommans honliga del. Äggcellen finns inne i pistillen. Obs: i anteckningarna står det att pistillen är hanlig, men det stämmer inte. Ståndarna är hanliga."},
+ {t:"forok",p:"anteckningarna",img:"blomma",hl:1,q:"Vad kallas den markerade delen, där pollenet fastnar?",o:["Märke","Stift","Fruktämne","Ståndare"],a:0,e:"Märket är pistillens klibbiga topp. Där fastnar pollenet vid pollineringen."},
+ {t:"forok",p:"anteckningarna",img:"blomma",hl:3,q:"Vad kallas den markerade delen?",o:["Fruktämne","Märke","Ståndare","Kronblad"],a:0,e:"Fruktämnet är pistillens nedersta del. Där inne finns fröämnena med äggcellerna."},
+ {t:"forok",p:"anteckningarna",img:"blomma",hl:2,q:"Vad kallas den markerade delen?",o:["Stift","Ståndare","Märke","Foderblad"],a:0,e:"Stiftet är pistillens smala del mellan märket och fruktämnet. Pollenslangen växer ner genom stiftet."},
+ {t:"forok",p:"anteckningarna",img:"blomma",hl:5,q:"Vad gör den markerade delen?",o:["Lockar insekter","Bildar pollen","Innehåller äggcellen","Fångar pollen"],a:0,e:"Kronbladen är ofta färgglada och doftande för att locka insekter."},
+ {t:"forok",p:"anteckningarna",q:"I vilken ordning sker den könliga förökningen?",o:["Pollinering → befruktning → frö → fröspridning","Befruktning → pollinering → fröspridning → frö","Fröspridning → frö → pollinering → befruktning","Frö → pollinering → fröspridning → befruktning"],a:0,e:"Först pollinering, sedan befruktning, sedan bildas ett frö och till sist sprids fröet."},
+ {t:"forok",p:"anteckningarna",q:"Vad är pollinering?",o:["När pollen förs till en blomma av samma art","När pollenet smälter samman med äggcellen","När fröet sprids med vinden","När fröet gror"],a:0,e:"Pollinering betyder att pollen förs till en blomma (till pistillens märke) av samma art, med vinden eller med insekter."},
+ {t:"forok",p:"s. 20 + anteckningarna",q:"Vad är befruktning?",o:["När hancellen från pollenet smälter samman med äggcellen","När pollen landar på märket","När fröet faller till marken","När blomman slår ut"],a:0,e:"Befruktningen sker när hancellen från pollenkornet smälter samman med äggcellen inne i pistillen. Resultatet blir ett frö."},
+ {t:"forok",p:"anteckningarna",q:"Hur når hancellen fram till äggcellen efter att pollenet fastnat på märket?",o:["En pollenslang växer ner genom stiftet","Pollenet flyger in i fruktämnet","Vinden blåser in det","Den behöver inte nå fram"],a:0,e:"Pollenet fastnar på pistillens märke och en pollenslang växer ner till äggcellen."},
+ {t:"forok",p:"anteckningarna",q:"Vad blir fröämnet och fruktämnet efter befruktningen?",o:["Fröämnet blir ett frö och fruktämnet en frukt runt fröet","Fröämnet blir en blomma","Fruktämnet blir pollen","Båda blir rötter"],a:0,e:"Efter befruktningen utvecklas ett frö av fröämnet och en frukt runt fröet av fruktämnet."},
+ {t:"forok",p:"anteckningarna",q:"Vilken växt pollineras med vinden?",o:["Björk","Maskros","Solros","Ros"],a:0,e:"Björk och vass är vindpollinerade. De har färglösa, oansenliga blommor. Maskros, solros och ros pollineras av insekter."},
+ {t:"forok",p:"anteckningarna",q:"Hur ser blommorna ut hos växter som pollineras av insekter?",o:["Färgglada och doftande, för att locka insekterna","Färglösa och utan doft","De har inga blommor","Gröna och små"],a:0,e:"Insektspollinerade växter, som solros, ros och maskros, har färgglada och doftande blommor som lockar insekterna."},
+ {t:"forok",p:"s. 22",q:"Hur sprids kaveldunets frön?",o:["Med vinden","Med vågorna","I djurens magar","De sprids inte"],a:0,e:"Kaveldunets frön har långa svävhår som gör att de svävar iväg med vinden. En kaveldunscigarr innehåller mer än 100 000 frön."},
+ {t:"forok",p:"s. 22",q:"Hur sprids näckrosens och kabblekans lätta frön?",o:["De flyter på vattnet och sprids med vågorna","Med vinden","I djurens päls","Med bin"],a:0,e:"De lätta fröna från kabbleka och vit näckros flyter på vattnet och sprids med vågorna."},
+ {t:"forok",p:"s. 22",q:"Hur sprids fröna i bär?",o:["Djur äter bären och fröna kommer ut oskadda genom matsmältningskanalen","Med vinden","Med vågorna","De gror inne i bäret på busken"],a:0,e:"Många djur äter bär. Fröna går oskadda genom matsmältningskanalen och gror där de ramlar ut igen."},
+ {t:"forok",p:"s. 22",q:"Hur sprids brunskärans frön?",o:["De fastnar i pälsen på djur eller på byxorna på vandrare","Med vågorna","Med vinden","De sprids inte alls"],a:0,e:"Brunskärans frön fastnar i pälsen på djur eller på byxorna på vandrare."},
+ {t:"forok",p:"s. 21",q:"Vad betyder könlös (vegetativ) förökning?",o:["Växten sprider sig med till exempel rotskott, revor eller jordstam och de nya plantorna blir exakta kopior","Växten bildar frön efter pollinering","Två växter blandar sina egenskaper","Pollen förs till en annan blomma"],a:0,e:"Vid könlös förökning används inga könsceller. Växten sprider sig med rotskott, revor, jordstam eller sticklingar, och de nya plantorna är exakta kopior av den gamla."},
+ {t:"forok",p:"anteckningarna",q:"Vilken är en fördel med könlig förökning?",o:["Stor genetisk variation","Växten blir en exakt kopia","Växten behöver inga insekter","Det går alltid snabbare"],a:0,e:"Könlig förökning ger stor genetisk variation. Nackdelen är att växten är beroende av vind eller pollinatörer som insekter."},
+ {t:"forok",p:"anteckningarna",q:"Vilken är en nackdel med könlös förökning?",o:["Ingen variation, inga nya egenskaper","Växten är beroende av insekter","Det behövs pollen","Det blir inga nya plantor"],a:0,e:"Vid könlös förökning blir avkomman exakta kopior, så det blir ingen variation. Fördelen är att växten inte är beroende av vind eller insekter."},
+ {t:"forok",p:"anteckningarna",q:"Vilket är ett exempel på könlös förökning?",o:["Jordgubbens revor","Pollinering av bin","Befruktning i pistillen","Frön som sprids med vinden"],a:0,e:"Revor, sticklingar, rotskott och jordstam är exempel på könlös förökning. Jordgubben kan föröka sig både med frön och med revor."},
+ {t:"forok",p:"s. 21",q:"Hur förökar sig mossor och ormbunkar?",o:["Med sporer, eftersom de inte har några blommor","Med frön från blommor","Bara genom delning","Med pollen från bin"],a:0,e:"Mossor och ormbunksväxter har inga blommor. De bildar stora mängder sporer utan befruktning, och ur sporerna växer nya växter fram."},
+ {t:"forok",p:"s. 21",q:"Hur förökar sig encelliga alger?",o:["Genom delning","Med frön","Med blommor","Med revor"],a:0,e:"Encelliga alger förökar sig genom delning. Många andra alger förökar sig med sporer."},
+ {t:"forok",p:"s. 21",q:"Hur förökar sig vass?",o:["Både könligt med frön och könlöst med jordstam","Bara med sporer","Bara med revor","Bara genom delning"],a:0,e:"Vass förökar sig både könligt med frön och könlöst med jordstam. Även vitsippor och jordgubbar kan föröka sig på båda sätten."},
+ {t:"forok",p:"s. 21",q:"Vilka var de första växterna på land?",o:["Mossor","Barrträd","Blommande växter","Ormbunkar"],a:0,e:"De första landväxterna var mossor, som utvecklats ur alger. De krävde ett fuktigt klimat eftersom de saknade rötter och ledningsvävnad."},
+ {t:"forok",p:"s. 21",q:"För hur länge sedan utvecklades växter med blommor?",o:["För cirka 120 miljoner år sedan","För 4 000 miljoner år sedan","För 450 miljoner år sedan","För 1 000 år sedan"],a:0,e:"Landväxter har funnits i 450 miljoner år, men växter med blommor utvecklades för cirka 120 miljoner år sedan."}
 ];
 
+// ---------- quiz engine ----------
 const $ = id => document.getElementById(id);
 const shuffle = arr => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-let chosen = new Set(Object.keys(T));
+const ALL = Object.keys(T);
+let chosen = new Set(ALL);
 let run = [], idx = 0, results = [];
 
 function renderTopics(){
   const box = $("topics"); box.innerHTML = "";
   const all = document.createElement("button");
   all.className = "chip"; all.textContent = "Alla teman";
-  all.setAttribute("aria-pressed", chosen.size === Object.keys(T).length);
-  all.onclick = () => { chosen = new Set(Object.keys(T)); renderTopics(); };
+  all.setAttribute("aria-pressed", chosen.size === ALL.length);
+  all.onclick = () => { chosen = new Set(ALL); renderTopics(); };
   box.appendChild(all);
   for (const [k, name] of Object.entries(T)) {
     const b = document.createElement("button");
     b.className = "chip"; b.textContent = name;
-    b.setAttribute("aria-pressed", chosen.size !== Object.keys(T).length && chosen.has(k));
+    b.setAttribute("aria-pressed", chosen.size !== ALL.length && chosen.has(k));
     b.onclick = () => {
-      if (chosen.size === Object.keys(T).length) chosen = new Set([k]);
-      else if (chosen.has(k)) { chosen.delete(k); if (!chosen.size) chosen = new Set(Object.keys(T)); }
+      if (chosen.size === ALL.length) chosen = new Set([k]);
+      else if (chosen.has(k)) { chosen.delete(k); if (!chosen.size) chosen = new Set(ALL); }
       else chosen.add(k);
       renderTopics();
     };
     box.appendChild(b);
   }
-  const n = Q.filter(q => chosen.has(q.t)).length;
-  $("count").textContent = n + " frågor finns i valda teman";
+  $("count").textContent = Q.filter(q => chosen.has(q.t)).length + " frågor finns i valda teman";
 }
 
 function start(list){
-  run = shuffle(list).map(q => {
-    const order = shuffle(q.o.map((_, i) => i));
-    return { ...q, order };
-  });
+  run = shuffle(list).map(q => ({ ...q, order: shuffle(q.o.map((_, i) => i)) }));
   idx = 0; results = [];
   $("start").hidden = true; $("result").hidden = true; $("quiz").hidden = false;
   show();
@@ -299,6 +455,8 @@ function show(){
   $("prog").style.width = (idx / run.length * 100) + "%";
   $("qtag").textContent = T[q.t];
   $("qtext").textContent = q.q;
+  const f = $("qfig");
+  if (q.img) { f.innerHTML = fig(q.img, q.hl); f.hidden = false; } else { f.innerHTML = ""; f.hidden = true; }
   $("explain").hidden = true; $("next").hidden = true;
   const box = $("opts"); box.innerHTML = "";
   q.order.forEach((oi, n) => {
@@ -309,23 +467,21 @@ function show(){
     b.onclick = () => answer(oi);
     box.appendChild(b);
   });
-  box.querySelector("button").focus({ preventScroll: true });
 }
 
 function answer(oi){
   const q = run[idx], ok = oi === q.a;
-  results.push({ q, ok, picked: oi });
+  results.push({ q, ok });
   document.querySelectorAll(".opt").forEach(b => {
     b.disabled = true;
     const v = +b.dataset.oi;
     if (v === q.a) b.classList.add("right");
     else if (v === oi) b.classList.add("wrong");
   });
-  const ex = $("explain");
-  ex.innerHTML = "";
+  const ex = $("explain"); ex.innerHTML = "";
   const s = document.createElement("strong"); s.textContent = ok ? "Rätt!" : "Inte riktigt. Rätt svar: " + q.o[q.a];
   const p = document.createElement("div"); p.textContent = q.e;
-  const pg = document.createElement("div"); pg.className = "page"; pg.textContent = "Läs mer i boken " + q.p;
+  const pg = document.createElement("div"); pg.className = "page"; pg.textContent = "Källa: " + (q.p.startsWith("s.") ? "boken " : "") + q.p;
   ex.append(s, p, pg); ex.hidden = false;
   $("pts").textContent = results.filter(r => r.ok).length + " rätt";
   $("prog").style.width = ((idx + 1) / run.length * 100) + "%";
@@ -336,15 +492,14 @@ function answer(oi){
 
 function finish(){
   $("quiz").hidden = true; $("result").hidden = false;
-  const right = results.filter(r => r.ok).length, tot = results.length;
+  const right = results.filter(r => r.ok).length, tot = results.length, pct = right / tot;
   $("score").innerHTML = right + "<small> / " + tot + "</small>";
-  const pct = right / tot;
   $("verdict").textContent = pct === 1 ? "Alla rätt! Du är redo för provet."
     : pct >= .8 ? "Mycket bra! Repetera de frågor du missade nedan."
-    : pct >= .5 ? "Bra början. Läs sidorna för de teman där du fick minst rätt och försök igen."
-    : "Läs igenom häftet och sidorna i boken, och kör quizen igen.";
+    : pct >= .5 ? "Bra början. Titta på bilderna och läs sidorna för de teman där du fick minst rätt."
+    : "Plugga på bilderna och anteckningarna och kör quizen igen.";
   const tb = $("bytopic"); tb.innerHTML = "";
-  for (const k of Object.keys(T)) {
+  for (const k of ALL) {
     const rs = results.filter(r => r.q.t === k); if (!rs.length) continue;
     const r = rs.filter(x => x.ok).length;
     const tr = document.createElement("tr");
@@ -353,8 +508,7 @@ function finish(){
     tb.appendChild(tr);
   }
   const wrong = results.filter(r => !r.ok);
-  $("retryWrong").hidden = !wrong.length;
-  $("wrongWrap").hidden = !wrong.length;
+  $("retryWrong").hidden = !wrong.length; $("wrongWrap").hidden = !wrong.length;
   const wl = $("wrongList"); wl.innerHTML = "";
   wrong.forEach(r => {
     const d = document.createElement("div");
@@ -364,6 +518,37 @@ function finish(){
   });
 }
 
+function renderStudy(){
+  const box = $("study"); box.innerHTML = "";
+  const intro = document.createElement("p"); intro.className = "callout";
+  intro.textContent = "Dubbelkollat mot boken: i anteckningarna står det att pistillen är växtens hanliga könsorgan. Det stämmer inte. Pistillen är honlig och innehåller äggcellerna. Ståndarna är hanliga och bildar pollen.";
+  box.appendChild(intro);
+  for (const [k, d] of Object.entries(D)) {
+    const sec = document.createElement("section");
+    const h = document.createElement("h3"); h.textContent = d.title;
+    const f = document.createElement("div"); f.className = "fig"; f.innerHTML = d.svg();
+    const ul = document.createElement("ul"); ul.className = "legend";
+    for (const [n, [name, desc]] of Object.entries(d.parts)) {
+      const li = document.createElement("li");
+      li.innerHTML = '<span class="n"></span><span><strong></strong> </span>';
+      li.querySelector(".n").textContent = n;
+      li.querySelector("strong").textContent = name + ".";
+      li.lastChild.append(desc);
+      ul.appendChild(li);
+    }
+    sec.append(h, f, ul);
+    if (d.note) { const p = document.createElement("p"); p.className = "note"; p.textContent = d.note; sec.appendChild(p); }
+    box.appendChild(sec);
+  }
+}
+
+function tab(which){
+  const quiz = which === "quiz";
+  $("tabQuiz").setAttribute("aria-selected", quiz); $("tabStudy").setAttribute("aria-selected", !quiz);
+  $("quizView").hidden = !quiz; $("studyView").hidden = quiz;
+}
+$("tabQuiz").onclick = () => tab("quiz");
+$("tabStudy").onclick = () => tab("study");
 $("go").onclick = () => {
   const pool = shuffle(Q.filter(q => chosen.has(q.t)));
   const v = $("len").value;
@@ -373,6 +558,8 @@ $("next").onclick = () => { idx++; idx < run.length ? show() : finish(); };
 $("retryWrong").onclick = () => start(results.filter(r => !r.ok).map(r => r.q));
 $("again").onclick = () => { $("result").hidden = true; $("start").hidden = false; renderTopics(); };
 renderTopics();
+renderStudy();
+if (location.hash === "#bilder") tab("study");
 </script>
 
 </body></html>
