@@ -1,565 +1,562 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Celler och växter</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kemiquiz 7AC</title>
 <style>
-/* Layout: one narrow study column; tabs switch between the quiz and labelled diagrams to study from */
 :root{
-  --bg:#f2f6f1; --surface:#ffffff; --fg:#17281d; --muted:#57685c; --line:#d5e0d6;
-  --accent:#1f7a4d; --accent-soft:#e1f0e6; --ok:#1d7a46; --ok-soft:#e2f3e9; --bad:#b3261e; --bad-soft:#fbe6e4;
-  --hl:#d9480f;
-  --d-wall:#8fbf6a; --d-cyto:#f6f3dc; --d-mem:#3d6b8c; --d-nuc:#5b4a6b; --d-nucl:#2e2438; --d-vac:#9fd0ea;
-  --d-chl:#3f9a3a; --d-chl2:#2a6e28; --d-org:#e39a4b; --d-dna:#b0306b; --d-bwall:#e9a75a; --d-fwall:#c9b48a;
-  --d-petal:#f4d35e; --d-petal2:#e0b52c; --d-stem:#4f8f3a; --d-soil:#a07a55; --d-root:#8a6a48; --d-sun:#f2a62b;
-  --d-pistil:#7fb069; --d-anther:#c98a1b; --d-ink:#2b3a2f; --d-mark:#ffffff;
-  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --bg:#f4f6fb; --card:#ffffff; --ink:#1c2233; --muted:#5d667c; --line:#dfe4ee;
+  --accent:#4b5bd6; --accent-ink:#ffffff; --accent-soft:#e8ebfc;
+  --ok:#1f8a4c; --ok-soft:#e3f5ea; --bad:#c23a3a; --bad-soft:#fbe7e7;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0f1712; --surface:#17221b; --fg:#e6efe7; --muted:#9cb0a1; --line:#2a3a2f;
-  --accent:#6fd39b; --accent-soft:#1b3326; --ok:#5fd08f; --ok-soft:#14321f; --bad:#ff8a80; --bad-soft:#3a1a19;
-  --hl:#ff8a4c;
-  --d-wall:#5f8f45; --d-cyto:#2c3326; --d-mem:#7fb3d9; --d-nuc:#9a86ad; --d-nucl:#d8cbe6; --d-vac:#2f5f7a;
-  --d-chl:#5cbf55; --d-chl2:#8fe08a; --d-org:#d68a3c; --d-dna:#f06fa8; --d-bwall:#b9813e; --d-fwall:#8f7d58;
-  --d-petal:#d9b53a; --d-petal2:#b8921d; --d-stem:#6aae52; --d-soil:#6e533a; --d-root:#b8956d; --d-sun:#f2a62b;
-  --d-pistil:#6c9d58; --d-anther:#e0a33a; --d-ink:#d9e6dc; --d-mark:#17221b; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0f1712; --surface:#17221b; --fg:#e6efe7; --muted:#9cb0a1; --line:#2a3a2f;
-  --accent:#6fd39b; --accent-soft:#1b3326; --ok:#5fd08f; --ok-soft:#14321f; --bad:#ff8a80; --bad-soft:#3a1a19;
-  --hl:#ff8a4c;
-  --d-wall:#5f8f45; --d-cyto:#2c3326; --d-mem:#7fb3d9; --d-nuc:#9a86ad; --d-nucl:#d8cbe6; --d-vac:#2f5f7a;
-  --d-chl:#5cbf55; --d-chl2:#8fe08a; --d-org:#d68a3c; --d-dna:#f06fa8; --d-bwall:#b9813e; --d-fwall:#8f7d58;
-  --d-petal:#d9b53a; --d-petal2:#b8921d; --d-stem:#6aae52; --d-soil:#6e533a; --d-root:#b8956d; --d-sun:#f2a62b;
-  --d-pistil:#6c9d58; --d-anther:#e0a33a; --d-ink:#d9e6dc; --d-mark:#17221b; color-scheme:dark}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#13161f; --card:#1d2130; --ink:#e9ecf5; --muted:#a3abc0; --line:#323850;
+    --accent:#8391ff; --accent-ink:#10131c; --accent-soft:#2a3052;
+    --ok:#5fd18f; --ok-soft:#1d3a2a; --bad:#ff8a8a; --bad-soft:#4a2424;
+  }
+}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.5}
-.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
-header{padding-block:28px 18px}
-.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700}
-h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,6vw,42px);line-height:1.08;margin:6px 0 8px;text-wrap:balance}
-.lede{color:var(--muted);margin:0;max-width:60ch}
-.tabs{display:flex;gap:6px;margin-bottom:14px;border-bottom:1px solid var(--line)}
-.tab{font:inherit;font-weight:700;background:none;border:none;color:var(--muted);padding:10px 14px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
-.tab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
-h2{font-family:var(--display);font-weight:600;font-size:20px;margin:0 0 12px;text-wrap:balance}
-.topics{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.chip{border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:999px;padding:7px 13px;font:inherit;font-size:15px;cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.6rem;margin:4px 0 2px}
+h2{font-size:1.2rem;margin:22px 0 10px}
+.sub{color:var(--muted);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.cat{display:flex;gap:10px;align-items:flex-start;padding:12px;border:2px solid var(--line);border-radius:12px;cursor:pointer;background:var(--card);user-select:none}
+.cat input{margin-top:4px;width:18px;height:18px;accent-color:var(--accent)}
+.cat.on{border-color:var(--accent);background:var(--accent-soft)}
+.cat small{display:block;color:var(--muted);font-size:.8rem}
 .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.btn{font:inherit;font-weight:700;border-radius:10px;padding:11px 18px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--surface)}
-.btn.ghost{background:transparent;color:var(--accent)}
-select{font:inherit;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
-:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.meta{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted);margin-bottom:10px;font-variant-numeric:tabular-nums}
-.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:18px}
-.bar i{display:block;height:100%;background:var(--accent);transition:width .3s}
-.tag{display:inline-block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:2px 8px}
-.q{font-family:var(--display);font-weight:600;font-size:clamp(20px,4.5vw,25px);line-height:1.25;margin:10px 0 16px;text-wrap:balance}
-.fig{margin:0 0 16px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px}
-.fig svg{display:block;width:100%;height:auto;max-height:340px}
+button{font:inherit;cursor:pointer;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:10px 16px}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+button:disabled{opacity:.5;cursor:default}
+.seg button.sel{border-color:var(--accent);background:var(--accent-soft)}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden;margin:8px 0 14px}
+.bar>div{height:100%;background:var(--accent);transition:width .3s}
+.meta{display:flex;justify-content:space-between;color:var(--muted);font-size:.9rem}
+.tag{display:inline-block;font-size:.78rem;padding:2px 10px;border-radius:20px;background:var(--accent-soft);color:var(--ink);margin-bottom:8px}
+.q{font-size:1.2rem;font-weight:600;margin:4px 0 14px}
+.qimg{display:flex;justify-content:center;margin:6px 0 14px}
+.qimg svg{width:130px;height:130px}
 .opts{display:grid;gap:10px}
-.opt{text-align:left;font:inherit;color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;display:flex;gap:10px;align-items:flex-start}
-.opt b{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:14px;background:var(--surface);border:1px solid var(--line)}
+.opts.pics{grid-template-columns:repeat(2,1fr)}
+.opt{text-align:left;padding:12px 14px;width:100%}
+.opts.pics .opt{display:flex;justify-content:center;padding:8px}
+.opts.pics .opt svg{width:90px;height:90px}
 .opt:hover:not(:disabled){border-color:var(--accent)}
-.opt:disabled{cursor:default}
-.opt.right{border-color:var(--ok);background:var(--ok-soft)}
-.opt.right b{background:var(--ok);color:var(--surface);border-color:var(--ok)}
-.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
-.opt.wrong b{background:var(--bad);color:var(--surface);border-color:var(--bad)}
-.explain{margin-top:16px;padding:14px 16px;border-radius:10px;background:var(--accent-soft)}
-.explain strong{display:block;margin-bottom:4px}
-.explain .page{font-size:14px;color:var(--muted);margin-top:6px}
-.nav{margin-top:18px;display:flex;justify-content:flex-end}
-.score{font-family:var(--display);font-weight:800;font-size:56px;line-height:1;font-variant-numeric:tabular-nums}
-.score small{font-size:24px;color:var(--muted);font-weight:600}
-.verdict{margin:8px 0 18px;color:var(--muted)}
-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-bottom:18px}
-td{padding:8px 0;border-bottom:1px solid var(--line)}
-td:last-child{text-align:right;white-space:nowrap}
-.mini{display:inline-block;width:70px;height:6px;background:var(--line);border-radius:3px;vertical-align:middle;margin-left:8px;overflow:hidden}
-.mini i{display:block;height:100%;background:var(--ok)}
-.review{display:grid;gap:10px;margin-top:6px}
-.review div{border-left:3px solid var(--bad);padding:4px 0 4px 12px}
-.review p{margin:2px 0;font-size:15px}
-.note{font-size:14px;color:var(--muted);margin-top:14px}
-.study{display:grid;gap:22px}
-.study section h3{font-family:var(--display);font-weight:600;font-size:19px;margin:0 0 8px}
-.legend{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:6px}
-.legend li{display:flex;gap:10px;align-items:baseline}
-.legend .n{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;border:2px solid var(--d-ink);font-variant-numeric:tabular-nums}
-.callout{border-left:3px solid var(--hl);padding:8px 12px;background:var(--bg);border-radius:0 8px 8px 0;font-size:15px}
-/* diagram marks */
-.mk line{stroke:var(--d-ink);stroke-width:1.5}
-.mk circle{fill:var(--d-mark);stroke:var(--d-ink);stroke-width:2}
-.mk text{fill:var(--d-ink);font:700 14px var(--body);text-anchor:middle;dominant-baseline:central}
-.dim .mk{opacity:.35}
-.dim .mk.hl{opacity:1}
-.mk.hl line{stroke:var(--hl);stroke-width:3}
-.mk.hl circle{stroke:var(--hl);stroke-width:3.5;fill:var(--hl)}
-.mk.hl text{fill:#fff}
-.lbl{fill:var(--d-ink);font:600 14px var(--body);text-anchor:middle}
-@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+.opt.ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt:disabled{opacity:1;cursor:default}
+.fb{margin-top:14px;padding:12px 14px;border-radius:12px;border-left:5px solid var(--ok);background:var(--ok-soft)}
+.fb.bad{border-color:var(--bad);background:var(--bad-soft)}
+.fb b{display:block;margin-bottom:2px}
+.big{font-size:2.6rem;font-weight:700;margin:0}
+.res-cat{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)}
+.wrong{padding:10px 0;border-bottom:1px solid var(--line)}
+.wrong .a{color:var(--ok);font-weight:600}
+.wrong .y{color:var(--bad)}
+.wrong svg{width:60px;height:60px;vertical-align:middle}
+.sheet h3{margin:16px 0 6px;font-size:1.05rem}
+.sheet ul{margin:0;padding-left:20px}
+.sheet li{margin:3px 0}
+.symgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.symgrid div{text-align:center;font-size:.85rem}
+.symgrid svg{width:80px;height:80px;display:block;margin:0 auto 4px}
+table{border-collapse:collapse;width:100%}
+td,th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+.hide{display:none}
+.note{color:var(--muted);font-size:.85rem}
+kbd{border:1px solid var(--line);border-radius:4px;padding:0 5px;font-size:.8rem}
 </style>
-
+</head>
+<body>
 <div class="wrap">
-  <header>
-    <div class="eyebrow">Biologi · kapitel 1–3</div>
-    <h1>Celler och växter</h1>
-    <p class="lede">Öva inför provet: livets mångfald, cellerna och deras delar, fotosyntesen, växtens delar och hur växter förökar sig.</p>
-  </header>
 
-  <div class="tabs" role="tablist">
-    <button class="tab" role="tab" id="tabQuiz" aria-selected="true">Quiz</button>
-    <button class="tab" role="tab" id="tabStudy" aria-selected="false">Bilder att plugga på</button>
+<!-- START -->
+<section id="start">
+  <h1>Kemiquiz 🧪</h1>
+  <p class="sub">Inför kemiprovet 12.11 · byggt på läsanvisningarna och bokens sidor</p>
+
+  <div class="card">
+    <h2 style="margin-top:0">1. Välj områden</h2>
+    <div class="cats" id="cats"></div>
+    <div class="row" style="margin-top:12px">
+      <button id="allOn">Markera alla</button>
+      <button id="allOff">Avmarkera alla</button>
+    </div>
   </div>
 
-  <div id="quizView">
-    <section id="start" class="panel">
-      <h2>Välj vad du vill öva på</h2>
-      <div class="topics" id="topics"></div>
-      <div class="row">
-        <label for="len" style="font-weight:600">Antal frågor</label>
-        <select id="len"><option value="15">15</option><option value="25" selected>25</option><option value="40">40</option><option value="all">Alla</option></select>
-        <button class="btn" id="go">Starta quizen</button>
-        <span id="count" class="note" style="margin:0"></span>
-      </div>
-      <p class="note">Frågorna och svarsalternativen blandas varje gång. Många frågor har en bild där en del är markerad med orange.</p>
-    </section>
-
-    <section id="quiz" class="panel" hidden>
-      <div class="meta"><span id="pos"></span><span id="pts"></span></div>
-      <div class="bar"><i id="prog"></i></div>
-      <span class="tag" id="qtag"></span>
-      <div class="q" id="qtext"></div>
-      <div class="fig" id="qfig" hidden></div>
-      <div class="opts" id="opts"></div>
-      <div class="explain" id="explain" hidden></div>
-      <div class="nav"><button class="btn" id="next" hidden>Nästa fråga</button></div>
-    </section>
-
-    <section id="result" class="panel" hidden>
-      <h2>Ditt resultat</h2>
-      <div class="score" id="score"></div>
-      <p class="verdict" id="verdict"></p>
-      <table id="bytopic"></table>
-      <div class="row">
-        <button class="btn" id="retryWrong">Öva på de jag svarade fel på</button>
-        <button class="btn ghost" id="again">Börja om</button>
-      </div>
-      <div id="wrongWrap" hidden>
-        <h2 style="margin-top:22px">Det här ska du repetera</h2>
-        <div class="review" id="wrongList"></div>
-      </div>
-    </section>
+  <div class="card">
+    <h2 style="margin-top:0">2. Hur många frågor?</h2>
+    <div class="row seg" id="nsel">
+      <button data-n="10">10</button>
+      <button data-n="20" class="sel">20</button>
+      <button data-n="40">40</button>
+      <button data-n="999">Alla</button>
+    </div>
+    <div class="row" style="margin-top:16px">
+      <button class="primary" id="go">Starta quiz ▶</button>
+      <button id="sheetBtn">📄 Fusklapp</button>
+    </div>
+    <p class="note" id="poolInfo"></p>
   </div>
+</section>
 
-  <div id="studyView" class="panel" hidden>
-    <div class="study" id="study"></div>
+<!-- QUIZ -->
+<section id="quiz" class="hide">
+  <div class="meta"><span id="qnum"></span><span id="qscore"></span></div>
+  <div class="bar"><div id="prog"></div></div>
+  <div class="card">
+    <span class="tag" id="qtag"></span>
+    <div class="q" id="qtext"></div>
+    <div class="qimg" id="qimg"></div>
+    <div class="opts" id="opts"></div>
+    <div id="fb"></div>
+    <div class="row" style="margin-top:14px;justify-content:space-between">
+      <button id="quit">Avsluta</button>
+      <button class="primary hide" id="next">Nästa ▶</button>
+    </div>
   </div>
+  <p class="note">Tips: tangenterna <kbd>1</kbd>–<kbd>4</kbd> väljer svar, <kbd>Enter</kbd> går vidare.</p>
+</section>
+
+<!-- RESULT -->
+<section id="result" class="hide">
+  <div class="card" style="text-align:center">
+    <p class="big" id="rscore"></p>
+    <p id="rmsg" style="margin:4px 0 0"></p>
+  </div>
+  <div class="card"><h2 style="margin-top:0">Per område</h2><div id="rcats"></div></div>
+  <div class="card" id="rwrongCard"><h2 style="margin-top:0">Det här blev fel</h2><div id="rwrong"></div></div>
+  <div class="row">
+    <button class="primary" id="retryWrong">Öva på felen igen</button>
+    <button id="again">Ny omgång</button>
+    <button id="home">Till start</button>
+  </div>
+</section>
+
+<!-- SHEET -->
+<section id="sheet" class="hide">
+  <div class="row" style="justify-content:space-between"><h1>Fusklapp</h1><button id="sheetBack">◀ Tillbaka</button></div>
+  <div class="card sheet" id="sheetBody"></div>
+</section>
+
 </div>
 
 <script>
-// ---------- diagrams ----------
-// mk(n, labelX, labelY, partX, partY): a leader line from the part to a numbered marker
-const mk = (n, lx, ly, px, py) => `<g class="mk" data-n="${n}"><line x1="${px}" y1="${py}" x2="${lx}" y2="${ly}"/><circle cx="${lx}" cy="${ly}" r="13"/><text x="${lx}" y="${ly}">${n}</text></g>`;
-const chl = (x, y, r = 0) => `<g transform="rotate(${r} ${x} ${y})"><ellipse cx="${x}" cy="${y}" rx="16" ry="8" fill="var(--d-chl)"/><path d="M${x-10} ${y} h20 M${x-7} ${y-3} h14 M${x-7} ${y+3} h14" stroke="var(--d-chl2)" stroke-width="1.2"/></g>`;
-const org = (x, y, r = 0) => `<rect x="${x-7}" y="${y-3.5}" width="14" height="7" rx="3.5" fill="var(--d-org)" transform="rotate(${r} ${x} ${y})"/>`;
-
-const D = {
-  vaxtcell: {
-    title: "Växtcell",
-    parts: {1:["Cellvägg","Ger växtcellen dess form och fungerar som stöd och skydd."],2:["Cellmembran","En tunn hinna som bestämmer vilka ämnen som ska in i och ut ur cellen."],3:["Cytoplasma","Geléaktig vätska där organellerna (cellens organ) finns."],4:["Cellkärna","Innehåller DNA och styr cellens funktioner."],5:["Vakuol","En blåsa där växten lagrar vatten och lösta ämnen."],6:["Kloroplast","Sköter fotosyntesen."]},
-    svg: () => `<svg viewBox="0 0 480 300" role="img" aria-label="Växtcell">
-      <rect x="110" y="40" width="260" height="200" rx="14" fill="var(--d-wall)"/>
-      <rect x="123" y="53" width="234" height="174" rx="8" fill="var(--d-cyto)" stroke="var(--d-mem)" stroke-width="3"/>
-      <ellipse cx="285" cy="140" rx="55" ry="60" fill="var(--d-vac)"/>
-      <circle cx="180" cy="120" r="30" fill="var(--d-nuc)"/><circle cx="188" cy="114" r="8" fill="var(--d-nucl)"/>
-      ${chl(160,195,-10)}${chl(215,207,8)}${chl(345,80,20)}${chl(235,72,-5)}${chl(347,205,-25)}
-      ${org(230,112,30)}${org(222,160,-20)}${org(150,165,10)}${org(260,215,0)}
-      ${mk(1,40,80,115,80)}${mk(2,200,282,200,227)}${mk(3,40,165,140,165)}${mk(4,180,18,180,90)}${mk(5,440,140,300,140)}${mk(6,440,62,358,78)}
-    </svg>`
-  },
-  djurcell: {
-    title: "Djurcell",
-    parts: {1:["Cellmembran","Tunn hinna som bestämmer vad som kommer in i och ut ur cellen. Djurceller har ingen cellvägg."],2:["Cytoplasma","Geléaktig vätska som innehåller organellerna."],3:["Cellkärna","Innehåller DNA och styr allt som händer i cellen."],4:["Organell","Cellens små organ. De bygger upp och bryter ner kemiska ämnen."]},
-    svg: () => `<svg viewBox="0 0 480 300" role="img" aria-label="Djurcell">
-      <path d="M150,80 C200,30 330,40 360,90 C400,150 370,230 300,245 C220,262 130,240 115,180 C105,135 120,105 150,80 Z" fill="var(--d-cyto)" stroke="var(--d-mem)" stroke-width="3.5"/>
-      <circle cx="230" cy="150" r="34" fill="var(--d-nuc)"/><circle cx="240" cy="142" r="9" fill="var(--d-nucl)"/>
-      ${org(300,110,30)}${org(322,180,-15)}${org(170,200,20)}${org(282,215,0)}${org(180,110,-30)}${org(150,150,70)}${org(330,140,80)}
-      ${mk(1,440,147,377,147)}${mk(2,230,285,230,218)}${mk(3,230,18,230,116)}${mk(4,40,110,173,110)}
-    </svg>`
-  },
-  bakteriecell: {
-    title: "Bakteriecell",
-    parts: {1:["Cellvägg","Ger stöd och skydd. Bakterieceller har cellvägg precis som växtceller."],2:["Cellmembran","Bestämmer vad som kommer in i och ut ur cellen."],3:["Cytoplasma","Vätskan inne i cellen."],4:["Kromosom (DNA)","Bakterien saknar cellkärna, men har DNA i en kromosom som ligger fritt i cytoplasman."],5:["Flagell","Ett piskliknande utskott som bakterien kan röra sig med."]},
-    svg: () => `<svg viewBox="0 0 480 260" role="img" aria-label="Bakteriecell">
-      <path d="M110,125 C80,110 70,150 40,135 M110,135 C85,160 60,140 30,165 M112,116 C90,90 70,108 48,88" fill="none" stroke="var(--d-ink)" stroke-width="2.5"/>
-      <rect x="110" y="80" width="260" height="100" rx="50" fill="var(--d-bwall)"/>
-      <rect x="121" y="91" width="238" height="78" rx="39" fill="var(--d-cyto)" stroke="var(--d-mem)" stroke-width="2.5"/>
-      <path d="M170,130 q15,-25 30,0 t30,0 t30,0 t30,0 t30,0" fill="none" stroke="var(--d-dna)" stroke-width="3"/>
-      <g fill="var(--d-ink)" opacity=".5"><circle cx="150" cy="115" r="2"/><circle cx="160" cy="148" r="2"/><circle cx="335" cy="112" r="2"/><circle cx="320" cy="155" r="2"/><circle cx="250" cy="155" r="2"/></g>
-      ${mk(1,200,232,200,177)}${mk(2,300,232,300,168)}${mk(3,440,150,340,150)}${mk(4,230,25,230,120)}${mk(5,30,40,60,96)}
-    </svg>`
-  },
-  svampcell: {
-    title: "Svampcell (jästcell)",
-    parts: {1:["Cellvägg","Svampceller har cellvägg, men inga kloroplaster."],2:["Cellmembran","Bestämmer vad som kommer in i och ut ur cellen."],3:["Cytoplasma","Vätskan som innehåller organellerna."],4:["Cellkärna","Innehåller DNA och styr cellen."],5:["Vakuol","Blåsa som lagrar vatten och lösta ämnen."]},
-    svg: () => `<svg viewBox="0 0 480 280" role="img" aria-label="Svampcell">
-      <ellipse cx="240" cy="140" rx="150" ry="95" fill="var(--d-fwall)"/>
-      <ellipse cx="240" cy="140" rx="138" ry="83" fill="var(--d-cyto)" stroke="var(--d-mem)" stroke-width="2.5"/>
-      <circle cx="200" cy="130" r="28" fill="var(--d-nuc)"/><circle cx="207" cy="124" r="7" fill="var(--d-nucl)"/>
-      <ellipse cx="295" cy="150" rx="40" ry="34" fill="var(--d-vac)"/>
-      ${org(160,100,20)}${org(250,195,-10)}${org(330,100,40)}
-      ${mk(1,240,268,240,231)}${mk(2,30,100,103,125)}${mk(3,30,190,150,175)}${mk(4,200,16,200,102)}${mk(5,450,150,310,150)}
-    </svg>`
-  },
-  vaxt: {
-    title: "Växtens delar",
-    parts: {1:["Blomma","Växtens könsorgan. Sköter den könliga förökningen."],2:["Blad","Samlar solljus för fotosyntesen, tar upp koldioxid, avger syre och avdunstar vatten."],3:["Stam","Styv. Lyfter blad och blommor mot solen och innehåller ledningsvävnad."],4:["Rot","Fäster växten i marken och tar upp vatten och mineraler, som kväve och fosfor."]},
-    svg: () => `<svg viewBox="0 0 480 380" role="img" aria-label="Växt med blomma, blad, stam och rot">
-      <rect x="0" y="270" width="480" height="110" fill="var(--d-soil)" opacity=".35"/>
-      <path d="M240,270 L240,92" stroke="var(--d-stem)" stroke-width="8" stroke-linecap="round"/>
-      <path d="M240,200 C200,170 150,175 130,200 C160,225 210,225 240,200 Z" fill="var(--d-stem)"/>
-      <path d="M240,160 C280,130 330,135 350,160 C320,185 270,185 240,160 Z" fill="var(--d-stem)"/>
-      <path d="M240,200 C200,195 170,200 135,200 M240,160 C280,158 310,160 345,160" stroke="var(--d-chl2)" stroke-width="1.5" fill="none"/>
-      <g fill="var(--d-petal)" stroke="var(--d-petal2)" stroke-width="1.5">
-        <ellipse cx="240" cy="48" rx="13" ry="24"/><ellipse cx="240" cy="48" rx="13" ry="24" transform="rotate(72 240 70)"/><ellipse cx="240" cy="48" rx="13" ry="24" transform="rotate(144 240 70)"/><ellipse cx="240" cy="48" rx="13" ry="24" transform="rotate(216 240 70)"/><ellipse cx="240" cy="48" rx="13" ry="24" transform="rotate(288 240 70)"/>
-      </g>
-      <circle cx="240" cy="70" r="11" fill="var(--d-anther)"/>
-      <path d="M240,270 C235,300 215,315 190,335 M240,270 C245,305 265,320 290,345 M240,270 L240,350 M226,300 C210,305 200,300 185,310 M252,305 C268,308 280,300 300,305" stroke="var(--d-root)" stroke-width="3" fill="none" stroke-linecap="round"/>
-      ${mk(1,420,60,262,66)}${mk(2,50,200,165,200)}${mk(3,420,232,244,232)}${mk(4,420,325,265,320)}
-    </svg>`
-  },
-  blomma: {
-    title: "Blommans delar",
-    parts: {1:["Märke","Pistillens klibbiga topp. Här fastnar pollenet vid pollineringen."],2:["Stift","Pistillens smala del. Pollenslangen växer ner genom stiftet."],3:["Fruktämne","Nedersta delen av pistillen. Här inne finns fröämnena med äggcellerna. Fröämnet blir ett frö och fruktämnet blir en frukt."],4:["Ståndare","Blommans hanliga del. Bildar pollen."],5:["Kronblad","Färgglada blad som lockar insekter."]},
-    note: "Märke, stift och fruktämne bildar tillsammans pistillen, blommans honliga del.",
-    svg: () => `<svg viewBox="0 0 480 340" role="img" aria-label="Blomma i genomskärning">
-      <path d="M240,340 L240,250" stroke="var(--d-stem)" stroke-width="8"/>
-      <path d="M226,236 C150,232 105,150 135,105 C175,135 210,190 230,226 Z" fill="var(--d-petal)" stroke="var(--d-petal2)" stroke-width="1.5"/>
-      <path d="M254,236 C330,232 375,150 345,105 C305,135 270,190 250,226 Z" fill="var(--d-petal)" stroke="var(--d-petal2)" stroke-width="1.5"/>
-      <path d="M232,248 C195,258 172,244 165,228 C195,232 215,236 234,242 Z M248,248 C285,258 308,244 315,228 C285,232 265,236 246,242 Z" fill="var(--d-stem)"/>
-      <path d="M232,232 L200,142 M248,232 L280,142" stroke="var(--d-ink)" stroke-width="2"/>
-      <ellipse cx="200" cy="136" rx="11" ry="7" fill="var(--d-anther)"/><ellipse cx="280" cy="136" rx="11" ry="7" fill="var(--d-anther)"/>
-      <ellipse cx="240" cy="215" rx="26" ry="30" fill="var(--d-pistil)" stroke="var(--d-chl2)" stroke-width="1.5"/>
-      <g fill="var(--d-cyto)" stroke="var(--d-chl2)"><circle cx="232" cy="205" r="5"/><circle cx="248" cy="212" r="5"/><circle cx="236" cy="226" r="5"/></g>
-      <rect x="236" y="128" width="8" height="60" fill="var(--d-pistil)"/>
-      <ellipse cx="240" cy="125" rx="17" ry="8" fill="var(--d-pistil)" stroke="var(--d-chl2)" stroke-width="1.5"/>
-      ${mk(1,240,22,240,117)}${mk(2,440,160,244,160)}${mk(3,440,222,266,218)}${mk(4,40,150,192,138)}${mk(5,40,75,145,125)}
-    </svg>`
-  },
-  foto: {
-    title: "Fotosyntesen",
-    parts: {1:["Solljus","Energin. Kloroplasterna fångar upp solenergin."],2:["Koldioxid","Råvara som tas in från luften genom klyvöppningarna."],3:["Vatten","Råvara som tas upp av rötterna och förs till bladen genom ledningsvävnaden."],4:["Syre","Biprodukt som släpps ut genom klyvöppningarna."],5:["Socker (glukos)","Produkten som växten använder som energi och byggmaterial."]},
-    note: "Solenergi + koldioxid + vatten → socker (glukos) + syre",
-    svg: () => `<svg viewBox="0 0 480 300" role="img" aria-label="Fotosyntesen i ett blad">
-      <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--d-ink)"/></marker></defs>
-      <circle cx="70" cy="60" r="26" fill="var(--d-sun)"/>
-      <g stroke="var(--d-sun)" stroke-width="3">${[0,45,90,135,180,225,270,315].map(a=>{const r=a*Math.PI/180;return `<line x1="${70+34*Math.cos(r)}" y1="${60+34*Math.sin(r)}" x2="${70+44*Math.cos(r)}" y2="${60+44*Math.sin(r)}"/>`}).join("")}</g>
-      <path d="M250,290 L250,215" stroke="var(--d-stem)" stroke-width="6"/>
-      <path d="M250,215 C170,200 160,110 250,70 C340,110 330,200 250,215 Z" fill="var(--d-stem)"/>
-      <path d="M250,212 L250,80" stroke="var(--d-chl2)" stroke-width="1.5"/>
-      <rect x="226" y="132" width="48" height="26" rx="6" fill="var(--d-cyto)"/>
-      <text class="lbl" x="250" y="150" style="font-size:12px">C₆H₁₂O₆</text>
-      <path d="M105,85 L190,120" stroke="var(--d-sun)" stroke-width="3" marker-end="url(#ah)"/>
-      <path d="M40,190 L180,170" stroke="var(--d-ink)" stroke-width="2.5" marker-end="url(#ah)"/>
-      <path d="M268,282 C290,250 285,230 262,214" stroke="var(--d-mem)" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
-      <path d="M318,130 L440,95" stroke="var(--d-ink)" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#ah)"/>
-      ${mk(1,150,40,150,103)}${mk(2,60,230,90,183)}${mk(3,330,270,285,250)}${mk(4,400,150,380,112)}${mk(5,250,22,250,132)}
-    </svg>`
-  }
+/* ---------- Varningssymboler (förenklade bilder) ---------- */
+function starPts(cx,cy,R,r,n){let p=[];for(let i=0;i<n*2;i++){const a=Math.PI*i/n-Math.PI/2,rr=i%2?r:R;p.push((cx+rr*Math.cos(a)).toFixed(1)+','+(cy+rr*Math.sin(a)).toFixed(1));}return p.join(' ');}
+function burst(){let s='<circle cx="50" cy="58" r="9" stroke="none"/>';for(let i=0;i<10;i++){const a=Math.PI*2*i/10-Math.PI/2;const x1=50+13*Math.cos(a),y1=58+13*Math.sin(a)*0.9,x2=50+21*Math.cos(a),y2=58+21*Math.sin(a)*0.9;s+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke-width="3" stroke-linecap="round"/>`;}
+  s+='<rect x="30" y="30" width="5" height="5" stroke="none" transform="rotate(20 32 32)"/><rect x="64" y="31" width="5" height="5" stroke="none" transform="rotate(-25 66 33)"/><rect x="70" y="58" width="4" height="4" stroke="none"/>';return s;}
+const ICON={
+  explosivt: burst(),
+  brandfarligt:'<path stroke="none" d="M50 22c3 9 12 14 13 26 1 9-5 18-13 18s-14-7-13-15c1-7 5-9 6-15 3 4 3 7 6 8 1-7-2-14 1-22z"/><rect x="33" y="69" width="34" height="4" stroke="none"/>',
+  oxiderande:'<circle cx="50" cy="61" r="8.5" fill="none" stroke-width="4"/><path stroke="none" d="M50 22c2 6 9 10 9 18 0 4-2 7-4 9 0-4-2-6-5-8-3 2-5 4-5 8-2-2-4-5-4-9 0-6 5-9 6-13 1 2 2 3 3 4 1-3 1-6 0-9z"/><rect x="33" y="72" width="34" height="4" stroke="none"/>',
+  gas:'<rect x="27" y="50" width="40" height="17" rx="8.5" stroke="none"/><rect x="66" y="54" width="7" height="9" stroke="none"/><rect x="73" y="51" width="3" height="15" stroke="none"/>',
+  fratande:'<g transform="rotate(-35 37 32)"><rect x="33" y="20" width="8" height="20" rx="2" fill="none" stroke-width="2.5"/></g><g transform="rotate(35 63 32)"><rect x="59" y="20" width="8" height="20" rx="2" fill="none" stroke-width="2.5"/></g><circle cx="43" cy="49" r="1.8" stroke="none"/><circle cx="43" cy="56" r="1.8" stroke="none"/><circle cx="57" cy="49" r="1.8" stroke="none"/><circle cx="57" cy="56" r="1.8" stroke="none"/><path stroke="none" d="M27 64h20v10H27zM40 64l3-3 2 3z" /><path stroke="none" d="M53 74v-6l4-3v-4h3v4h3v-6h3v6h3v9z"/><rect x="26" y="75" width="48" height="2.5" stroke="none"/>',
+  giftigt:'<circle cx="50" cy="40" r="12" stroke="none"/><rect x="43" y="46" width="14" height="10" rx="2" stroke="none"/><circle cx="45" cy="39" r="3.2" fill="#fff" stroke="none"/><circle cx="55" cy="39" r="3.2" fill="#fff" stroke="none"/><path d="M50 44l-2 4h4z" fill="#fff" stroke="none"/><path d="M33 59l34 13M67 59L33 72" stroke-width="5" stroke-linecap="round"/>',
+  skadligt:'<rect x="45" y="25" width="10" height="33" rx="3" stroke="none"/><circle cx="50" cy="68" r="5.5" stroke="none"/>',
+  halsofarligt:'<circle cx="50" cy="29" r="6.5" stroke="none"/><path stroke="none" d="M35 75V50c0-7 4-11 10-11h10c6 0 10 4 10 11v25z"/><polygon fill="#fff" stroke="none" points="'+starPts(50,57,10,4,8)+'"/>',
+  miljo:'<path d="M36 73V40M36 50l-9-8M36 46l8-10M36 59l6-5" stroke-width="3" fill="none" stroke-linecap="round"/><path stroke="none" d="M50 66c4-5 12-5 16 0-4 5-12 5-16 0zM65 66l7-5v10z"/><circle cx="54" cy="64.5" r="1.3" fill="#fff" stroke="none"/><rect x="26" y="74" width="48" height="3" stroke="none"/>'
 };
-function fig(name, hl){
-  const d = D[name]; const s = d.svg();
-  return hl ? s.replace('<svg ', '<svg class="dim" ').replace(`class="mk" data-n="${hl}"`, `class="mk hl" data-n="${hl}"`) : s;
-}
-
-// ---------- questions ----------
-const T = {
-  liv:"Livets mångfald",
-  cell:"Cellerna",
-  bild:"Cellens delar (bilder)",
-  forsk:"Hur man studerar liv",
-  foto:"Fotosyntesen",
-  vaxt:"Växtens delar",
-  forok:"Växternas förökning"
-};
-// a = index of the correct option in o (options are shuffled at runtime); img/hl = diagram and highlighted marker
-const Q = [
- {t:"liv",p:"s. 4",q:"Ungefär hur länge sedan uppkom livet på jorden?",o:["För nästan 4 000 miljoner år sedan","För 6 000 år sedan","För 450 miljoner år sedan","För 2 miljoner år sedan"],a:0,e:"Livet på jorden uppkom för nästan 4 000 miljoner år sedan."},
- {t:"liv",p:"s. 4",q:"Vad kallas den långsamma utveckling som sker när organismerna anpassar sig till en livsmiljö som förändras?",o:["Evolution","Fotosyntes","Klassificering","Celldelning"],a:0,e:"När livsmiljön förändras måste organismerna anpassa sig. Förändringarna leder till en långsam utveckling som kallas evolution. Den fortsätter än i dag."},
- {t:"liv",p:"s. 4",q:"Vad är klassificering?",o:["Att placera organismerna i grupper enligt hur de är släkt med varandra","Att räkna hur många celler en organism har","Att undersöka celler i mikroskop","Att ge varje växt ett eget nummer"],a:0,e:"Klassificering handlar om att placera organismerna i grupper enligt släktskap. Så har man konstruerat ett släktträd över alla kända arter."},
- {t:"liv",p:"s. 4",q:"Ungefär hur många arter har man hittills upptäckt och namngett?",o:["Ungefär två miljoner","Ungefär tvåtusen","Ungefär tvåhundra miljoner","Exakt sex"],a:0,e:"Man har upptäckt ungefär två miljoner arter, men det finns säkert över tio gånger så många."},
- {t:"liv",p:"s. 4",q:"I hur många huvudgrupper, riken, delas allt levande in?",o:["Sex","Två","Fyra","Tio"],a:0,e:"Allt levande delas in i sex riken: arkéer, bakterier, protister, svampar, växter och djur."},
- {t:"liv",p:"s. 4",q:"Vilket av följande är INTE ett av de sex rikena?",o:["Fåglar","Svampar","Protister","Arkéer"],a:0,e:"De sex rikena är arkéer, bakterier, protister, svampar, växter och djur. Fåglar är en grupp inom djurriket."},
- {t:"liv",p:"s. 4",q:"Vilka två riken har celler som saknar kärna?",o:["Arkéer och bakterier","Svampar och växter","Protister och djur","Växter och djur"],a:0,e:"Arkéer och bakterier saknar cellkärna. Protister, svampar, växter och djur har en kärna i sina celler."},
- {t:"liv",p:"s. 5",q:"När hör två organismer till samma art?",o:["När de naturligt kan föröka sig med varandra och få ungar som också kan föröka sig","När de har samma färg","När de lever på samma plats","När de är lika stora"],a:0,e:"Arten är det biologiska systemets grundenhet. Om två organismer naturligt kan föröka sig och få ungar som också kan föröka sig hör de till samma art."},
- {t:"liv",p:"s. 5",q:"Varför finns det liv på jorden?",o:["Jorden har ett lämpligt avstånd från solen, så det finns flytande vatten","Jorden är den största planeten","Jorden saknar atmosfär","Jorden ligger närmast solen"],a:0,e:"Jorden ligger på ett för liv lämpligt avstånd från solen. Vi får tillräckligt med värme för att det ska finnas flytande vatten, något som är avgörande för allt liv."},
- {t:"liv",p:"s. 5",q:"Vilken grupp är störst, alltså innehåller flest arter?",o:["Ryggradslösa djur","Insekter","Skalbaggar","Dykare"],a:0,e:"Grupperna ligger inuti varandra: djurriket → ryggradslösa djur → leddjur → insekter → skalbaggar → dykare → gulbrämad dykare. Ju längre ut, desto större grupp."},
- {t:"liv",p:"s. 5",q:"Ett djur har fenor. I vilken grupp skulle du börja leta efter dess namn?",o:["Fiskar","Insekter","Groddjur","Blötdjur"],a:0,e:"Arter identifieras utifrån sina kännetecken. Ett djur med fenor letar man efter bland fiskarna, som hör till ryggradsdjuren."},
- {t:"liv",p:"s. 4",q:"Vilken grupp hör spindeldjur, insekter och kräftdjur till?",o:["Ryggradslösa djur","Ryggradsdjur","Växter","Svampar"],a:0,e:"Spindeldjur, insekter och kräftdjur är ryggradslösa djur. Tillsammans kallas de leddjur."},
-
- {t:"cell",p:"s. 12",q:"Varför kallas cellerna livets byggklossar?",o:["Alla organismer består av celler","Cellerna är fyrkantiga","Celler finns bara i växter","Cellerna bygger hus åt djuren"],a:0,e:"Cellerna är livets byggklossar eftersom alla organismer består av celler."},
- {t:"cell",p:"s. 12",q:"Vad kallas alla levande varelser?",o:["Organismer","Organeller","Vävnader","Kromosomer"],a:0,e:"Alla levande varelser kallas organismer."},
- {t:"cell",p:"s. 12",q:"Vilket är ett exempel på en encellig organism?",o:["Toffeldjuret","Kon","Maskrosen","Människan"],a:0,e:"Encelliga organismer, som toffeldjuret, klarar sig med en enda cell. Även bakterier och amöbor är encelliga."},
- {t:"cell",p:"s. 12",q:"Hur många celler består en stor, flercellig organism av?",o:["Flera miljarder","Ungefär tio","Exakt en","Ungefär hundra"],a:0,e:"Stora, flercelliga organismer, som kon och människan, består av flera miljarder celler."},
- {t:"cell",p:"s. 12",q:"Hur stora är de flesta celler?",o:["Inte mer än en hundradels millimeter i diameter","Ungefär en centimeter","Lika stora som ett sandkorn","Ungefär en meter"],a:0,e:"Celler är så små att de oftast bara kan ses med mikroskop. De flesta är inte mer än en hundradels millimeter i diameter."},
- {t:"cell",p:"s. 12",q:"Vilken är världens största äggcell?",o:["Strutsägget","Hönsägget","Grodans äggcell","Människans äggcell"],a:0,e:"Strutsägget är världens största äggcell."},
- {t:"cell",p:"s. 13",q:"Vilka två delar har ALLA celler?",o:["Cytoplasma och cellmembran","Cellvägg och kloroplaster","Vakuol och kärna","Kloroplaster och flagell"],a:0,e:"Alla celler har till exempel cytoplasma och cellmembran."},
- {t:"cell",p:"s. 13",q:"Vad saknar djurceller som växtceller har?",o:["Cellvägg, vakuol och kloroplaster","Cellkärna och cytoplasma","Cellmembran","Organeller"],a:0,e:"Djurceller har varken cellvägg, vakuoler eller kloroplaster."},
- {t:"cell",p:"s. 13–14",q:"Vilka celler har cellvägg?",o:["Växtceller, bakterieceller och svampceller","Bara djurceller","Bara bakterieceller","Alla celler"],a:0,e:"Växt- och bakterieceller har en cellvägg, och det har även svampceller. Djurceller saknar cellvägg."},
- {t:"cell",p:"s. 4, 14",q:"Vilken typ av cell saknar kärna?",o:["Bakteriecellen","Växtcellen","Djurcellen","Svampcellen"],a:0,e:"Bakteriecellen saknar cellkärna, men den har DNA i en kromosom som ligger fritt i cytoplasman."},
- {t:"cell",p:"s. 14",q:"Vilken celldel finns BARA i växtcellen, men inte i djur- eller svampcellen?",o:["Kloroplast","Vakuol","Cellvägg","Cellkärna"],a:0,e:"Kloroplasterna finns bara i växtceller (och alger). Svampceller har cellvägg och vakuol, men inga kloroplaster, eftersom svampar inte kan fotosyntetisera."},
- {t:"cell",p:"s. 13",q:"Vad är en vävnad?",o:["Celler som liknar varandra och sitter tillsammans","En enda stor cell","En del inne i cellkärnan","Ett annat ord för organism"],a:0,e:"Celler som liknar varandra bildar vävnader, till exempel hudvävnad hos människan eller ledningsvävnad hos en maskros."},
- {t:"cell",p:"anteckningarna",q:"Vad bygger upp kroppens olika organ?",o:["Olika vävnader","Bara en sorts cell","Organeller","Kloroplaster"],a:0,e:"Celler bildar vävnader, och olika vävnader bygger upp kroppens organ."},
- {t:"cell",p:"s. 13",q:"Vilket är ett exempel på en vävnad hos en växt?",o:["Ledningsvävnad hos en maskros","Hudvävnad hos en människa","Ett toffeldjur","En bakterie"],a:0,e:"Ledningsvävnad hos en maskros är en växtvävnad. Hudvävnad är ett exempel hos människan."},
- {t:"cell",p:"s. 14",q:"Vad händer när en cell delar sig?",o:["Det uppkommer två likadana nya celler","Cellen dör","Det blir en större cell","Cellen blir en vävnad"],a:0,e:"När en cell delar sig uppkommer två likadana nya celler. Cellerna förnyar sig genom delning."},
- {t:"cell",p:"s. 14",q:"Hur ofta kan bakterier dela sig?",o:["Ungefär var tjugonde minut","En gång om året","En gång i timmen","Varje sekund"],a:0,e:"Encelliga organismer, till exempel bakterier, kan dela sig ungefär var tjugonde minut."},
- {t:"cell",p:"s. 14",q:"Vad delas först när en cell delar sig?",o:["Kärnan","Cellväggen","Vakuolen","Kloroplasterna"],a:0,e:"Först delas kärnan och sedan resten av cellen."},
- {t:"cell",p:"s. 14",q:"Hur växer en flercellig organism?",o:["Genom att dess celler delar sig och bildar nya vävnader","Genom att cellerna blir större och större","Genom fotosyntes i djurceller","Genom att den äter andra celler"],a:0,e:"En flercellig organism växer genom att dess celler delar sig och bildar nya vävnader."},
- {t:"cell",p:"s. 12",q:"Vad såg man när man undersökte lökceller i mikroskop?",o:["Många celler med väggar och en kärna i varje","En enda stor cell","Inga celler alls","Celler utan kärna"],a:0,e:"I lökceller ser man tydligt cellväggarna och en mörk prick, kärnan, i varje cell. Lök är en flercellig växt."},
-
- {t:"bild",p:"s. 14",img:"vaxtcell",hl:1,q:"Vilken del av växtcellen är markerad?",o:["Cellvägg","Cellmembran","Vakuol","Cytoplasma"],a:0,e:"Cellväggen är det tjocka yttre lagret. Den ger växtcellen dess form och fungerar som stöd och skydd."},
- {t:"bild",p:"s. 14",img:"vaxtcell",hl:2,q:"Vilken del av växtcellen är markerad?",o:["Cellmembran","Cellvägg","Kloroplast","Cellkärna"],a:0,e:"Cellmembranet är en tunn hinna innanför cellväggen. Det bestämmer vilka ämnen som ska in i och ut ur cellen."},
- {t:"bild",p:"s. 14",img:"vaxtcell",hl:3,q:"Vilken del av växtcellen är markerad?",o:["Cytoplasma","Vakuol","Cellkärna","Cellvägg"],a:0,e:"Cytoplasman är den geléaktiga vätskan som fyller cellen. I den finns organellerna."},
- {t:"bild",p:"s. 14",img:"vaxtcell",hl:4,q:"Vilken del av växtcellen är markerad?",o:["Cellkärna","Vakuol","Kloroplast","Organell"],a:0,e:"Cellkärnan innehåller DNA och styr cellens funktioner."},
- {t:"bild",p:"s. 14",img:"vaxtcell",hl:5,q:"Vilken del av växtcellen är markerad?",o:["Vakuol","Cellkärna","Kloroplast","Cellmembran"],a:0,e:"Vakuolen är en stor blåsa där växten lagrar vatten och lösta ämnen."},
- {t:"bild",p:"s. 14",img:"vaxtcell",hl:6,q:"Vilken del av växtcellen är markerad?",o:["Kloroplast","Vakuol","Cellkärna","Cellvägg"],a:0,e:"Kloroplasterna är gröna och sköter fotosyntesen."},
- {t:"bild",p:"s. 14",img:"vaxtcell",hl:5,q:"Vad gör den markerade delen?",o:["Lagrar vatten och lösta ämnen","Sköter fotosyntesen","Styr cellens funktioner","Ger cellen stöd och skydd"],a:0,e:"Den markerade delen är vakuolen. Den lagrar vatten och lösta ämnen."},
- {t:"bild",p:"s. 14",img:"vaxtcell",hl:6,q:"Vad gör den markerade delen?",o:["Sköter fotosyntesen","Lagrar vatten","Bestämmer vad som kommer in i cellen","Innehåller DNA"],a:0,e:"Den markerade delen är en kloroplast. Kloroplasterna sköter fotosyntesen."},
- {t:"bild",p:"s. 14",img:"vaxtcell",hl:4,q:"Vad gör den markerade delen?",o:["Innehåller DNA och styr cellens funktioner","Lagrar vatten och lösta ämnen","Sköter fotosyntesen","Ger cellen dess form"],a:0,e:"Den markerade delen är cellkärnan. Den innehåller DNA och styr allt som händer i cellen."},
- {t:"bild",p:"s. 14",img:"vaxtcell",hl:1,q:"Vad gör den markerade delen?",o:["Ger cellen dess form och fungerar som stöd och skydd","Bestämmer vilka ämnen som ska in och ut","Lagrar vatten","Styr cellen"],a:0,e:"Den markerade delen är cellväggen. Den ger växtcellen dess form och fungerar som stöd och skydd."},
- {t:"bild",p:"s. 14",img:"djurcell",hl:1,q:"Vilken del av djurcellen är markerad?",o:["Cellmembran","Cellvägg","Cytoplasma","Vakuol"],a:0,e:"Det yttersta lagret på en djurcell är cellmembranet. Djurceller har ingen cellvägg."},
- {t:"bild",p:"s. 14",img:"djurcell",hl:3,q:"Vilken del av djurcellen är markerad?",o:["Cellkärna","Vakuol","Kloroplast","Cellmembran"],a:0,e:"Cellkärnan innehåller DNA och styr allt som händer i cellen."},
- {t:"bild",p:"s. 14",img:"djurcell",hl:4,q:"Vad kallas de små delarna som är markerade i djurcellen?",o:["Organeller","Kloroplaster","Vakuoler","Flageller"],a:0,e:"Organeller är cellens små organ. De finns i cytoplasman och bygger upp och bryter ner kemiska ämnen."},
- {t:"bild",p:"s. 14",img:"djurcell",hl:2,q:"Vilken del av djurcellen är markerad?",o:["Cytoplasma","Cellkärna","Cellmembran","Cellvägg"],a:0,e:"Cytoplasman är den geléaktiga vätskan som innehåller organellerna."},
- {t:"bild",p:"s. 14",img:"djurcell",q:"Vilken sorts cell visar bilden?",o:["Djurcell","Växtcell","Bakteriecell","Svampcell"],a:0,e:"Det är en djurcell: den har cellkärna, cytoplasma och cellmembran, men ingen cellvägg, inga kloroplaster och ingen stor vakuol."},
- {t:"bild",p:"s. 14",img:"bakteriecell",q:"Vilken sorts cell visar bilden?",o:["Bakteriecell","Växtcell","Djurcell","Svampcell"],a:0,e:"Det är en bakteriecell. Den saknar cellkärna, har DNA i en kromosom och har en flagell som den kan röra sig med."},
- {t:"bild",p:"s. 14",img:"bakteriecell",hl:5,q:"Vad kallas den markerade delen av bakteriecellen?",o:["Flagell","Kromosom","Cellvägg","Organell"],a:0,e:"Flagellen är ett piskliknande utskott som bakterien kan röra sig med."},
- {t:"bild",p:"s. 14",img:"bakteriecell",hl:4,q:"Vad är den markerade delen i bakteriecellen?",o:["Kromosom med DNA","Cellkärna","Kloroplast","Vakuol"],a:0,e:"Bakterien saknar cellkärna, men har sitt DNA i en kromosom som ligger fritt i cytoplasman."},
- {t:"bild",p:"s. 14",img:"bakteriecell",hl:1,q:"Vilken del av bakteriecellen är markerad?",o:["Cellvägg","Cellmembran","Cytoplasma","Flagell"],a:0,e:"Det yttersta lagret är cellväggen. Bakterieceller har cellvägg, precis som växtceller."},
- {t:"bild",p:"anteckningarna",img:"svampcell",q:"Bilden visar en svampcell. Vilken del saknar den jämfört med en växtcell?",o:["Kloroplaster","Cellvägg","Vakuol","Cellkärna"],a:0,e:"En svampcell har cellkärna, cytoplasma, cellmembran, cellvägg och vakuol, men inga kloroplaster. Svampar kan inte fotosyntetisera."},
- {t:"bild",p:"anteckningarna",img:"svampcell",hl:5,q:"Vilken del av svampcellen är markerad?",o:["Vakuol","Cellkärna","Kloroplast","Cellvägg"],a:0,e:"Det är vakuolen, en blåsa som lagrar vatten och lösta ämnen."},
-
- {t:"forsk",p:"s. 13",q:"Vad är det första steget när en forskare studerar livet?",o:["Forskaren gör en intressant observation","Forskaren publicerar sina resultat","Forskaren drar slutsatser","Forskaren testar hypotesen"],a:0,e:"Stegen är: 1 observation, 2 ta reda på vad andra skrivit, 3 hypotes, 4 testa med observationer och experiment, 5 undersöka faktorer och dra slutsatser, 6 publicera."},
- {t:"forsk",p:"s. 13",q:"Vad är en hypotes?",o:["En sannolik förklaring som forskaren tänker ut","Ett slutgiltigt resultat","En bild i mikroskop","En sorts cell"],a:0,e:"En hypotes är en sannolik förklaring. Den testas sedan med observationer och experiment."},
- {t:"forsk",p:"s. 13",q:"Hur testar forskaren sin hypotes?",o:["Genom flera observationer och experiment","Genom att gissa","Genom att fråga en kompis","Genom att publicera den direkt"],a:0,e:"Forskaren testar hypotesen genom flera observationer och experiment, undersöker vilka faktorer som kan inverka och drar slutsatser."},
- {t:"forsk",p:"s. 13",q:"Vad gör forskaren i det sista steget?",o:["Publicerar sina resultat, metoder och slutsatser","Gör en intressant observation","Tänker ut en hypotes","Tar reda på vad andra skrivit"],a:0,e:"I sista steget publicerar forskaren sina resultat, metoder och slutsatser."},
- {t:"forsk",p:"s. 13",q:"Vad gör forskaren direkt efter den första observationen?",o:["Tar reda på vad andra skrivit i ämnet","Publicerar resultaten","Drar slutsatser","Gör experiment"],a:0,e:"Steg 2 är att ta reda på vad andra skrivit i ämnet. Först därefter tänker forskaren ut en hypotes."},
- {t:"forsk",p:"s. 13",q:"Vad kan man undersöka för att få veta hur Östersjön mår?",o:["Mängden cyanobakterier (blågröna alger)","Antalet båtar","Vattnets färg på bilder","Hur många som badar"],a:0,e:"Man kan ta prover och göra observationer av mängden cyanobakterier (blågröna alger) och sedan fundera på hur olika miljöfaktorer påverkar mängden."},
-
- {t:"foto",p:"s. 18, 20",q:"Vilka råvaror behöver växten för fotosyntesen?",o:["Vatten och koldioxid","Syre och socker","Syre och vatten","Socker och koldioxid"],a:0,e:"Råvarorna är vatten och koldioxid. Energin kommer från solljuset. Produkterna är socker och syre."},
- {t:"foto",p:"s. 20",q:"Vad bildas vid fotosyntesen?",o:["Socker (glukos) och syre","Vatten och koldioxid","Bara syre","Stärkelse och koldioxid"],a:0,e:"Solenergi + koldioxid + vatten → socker (glukos) + syre."},
- {t:"foto",p:"s. 20",q:"Var i växten sker fotosyntesen?",o:["I kloroplasterna i de gröna bladen","I rötterna","I cellkärnan","I blomman"],a:0,e:"Fotosyntesen sker i kloroplasterna i växternas gröna blad. Kloroplasterna fångar upp solenergin."},
- {t:"foto",p:"s. 20",q:"Varifrån får växten energin till fotosyntesen?",o:["Från solljuset","Från jorden","Från vattnet","Från syret"],a:0,e:"Kloroplasterna fångar upp solenergi. Fotosyntesen förvandlar solljus till kemisk energi i form av socker."},
- {t:"foto",p:"anteckningarna",q:"Hur kommer koldioxiden in i bladet?",o:["Genom klyvöppningarna","Genom rötterna","Genom blomman","Genom cellkärnan"],a:0,e:"Växterna tar in koldioxid genom klyvöppningarna, som hos de flesta landväxter finns på bladens undersida."},
- {t:"foto",p:"anteckningarna",q:"Hur kommer vattnet till bladen?",o:["Det sugs upp av rötterna och förs till bladen genom ledningsvävnaden","Det tas in genom klyvöppningarna","Det bildas i blomman","Det kommer från syret"],a:0,e:"Vattnet tas upp av rötterna och transporteras till bladen genom växtens ledningsvävnad."},
- {t:"foto",p:"s. 20",q:"Vad använder växten sockret från fotosyntesen till?",o:["Som energi och som byggmaterial","Bara till att andas ut","Till att locka insekter","Ingenting, det släpps ut i luften"],a:0,e:"Sockret ger växten energi till livsfunktionerna och används också som byggmaterial."},
- {t:"foto",p:"s. 20",q:"Vad förvandlar växten en del av sockret till, som reservnäring?",o:["Stärkelse","Syre","Koldioxid","Pollen"],a:0,e:"Växten eller algen förvandlar en del av sockret till stärkelse, som fungerar som reservnäring."},
- {t:"foto",p:"s. 20",q:"Hur bygger växten proteiner?",o:["Sockret förenas med mineraler från marken","Syret förenas med vatten","Koldioxiden förenas med ljus","Pollenet förenas med äggcellen"],a:0,e:"Sockret kan förvandlas till byggnadsmaterial genom att förenas med mineraler från marken. Så bygger växten proteiner och annat den behöver."},
- {t:"foto",p:"s. 18, 20",q:"Vad betyder det att växter är autotrofa?",o:["De producerar själva sin föda (självförsörjande)","De måste äta andra organismer","De saknar celler","De lever bara i vatten"],a:0,e:"Växter och alger producerar själva sin föda genom fotosyntesen. De är autotrofa, självförsörjande."},
- {t:"foto",p:"s. 18, 20",q:"Vad kallas organismer som måste äta växter eller djur för att få energi?",o:["Heterotrofa","Autotrofa","Encelliga","Fotosyntetiserande"],a:0,e:"Alla andra organismer än växter och alger är heterotrofa. De måste äta växter eller djur för att få energi. Djur och svampar är heterotrofa."},
- {t:"foto",p:"s. 18",q:"Vilka organismer binder solenergi mest effektivt?",o:["Mikroskopiskt små planktonalger","Stora träd","Svampar","Djur"],a:0,e:"De organismer som binder solenergi mest effektivt är mikroskopiskt små planktonalger."},
- {t:"foto",p:"s. 18, 20",q:"Vad händer med syret som bildas vid fotosyntesen?",o:["Det mesta släpps ut i luften och nästan alla organismer andas det","Det blir till socker","Det lagras i rötterna","Det förvandlas till vatten"],a:0,e:"Syre är en biprodukt som växten släpper ut i atmosfären. Nästan alla organismer andas det syre som bildas vid fotosyntesen."},
- {t:"foto",p:"s. 20",q:"Van Helmont planterade en sälg som vägde 2 kg. Efter fem år vägde den 72 kg, men mullen var bara 55 gram lättare. Var kom vikten ifrån?",o:["Från koldioxid i luften och vatten, som växten gjort socker och byggmaterial av","Från mullen i krukan","Från solljuset, som väger mycket","Från insekter som sälgen åt"],a:0,e:"Mullen blev nästan inte lättare. Sälgen byggde sin kropp av koldioxid från luften och vatten genom fotosyntesen, plus lite mineraler från mullen."},
- {t:"foto",p:"s. 20",img:"foto",hl:2,q:"Vad tar bladet in vid den markerade pilen?",o:["Koldioxid","Syre","Socker","Pollen"],a:0,e:"Koldioxid tas in från luften genom klyvöppningarna."},
- {t:"foto",p:"s. 20",img:"foto",hl:4,q:"Vad släpper bladet ut vid den markerade pilen?",o:["Syre","Koldioxid","Vatten","Socker"],a:0,e:"Syre är en biprodukt som släpps ut genom klyvöppningarna."},
- {t:"foto",p:"s. 20",img:"foto",hl:3,q:"Vad transporteras upp till bladet vid den markerade pilen?",o:["Vatten","Syre","Socker","Solljus"],a:0,e:"Vatten tas upp av rötterna och förs till bladen genom ledningsvävnaden."},
- {t:"foto",p:"s. 20",img:"foto",hl:5,q:"Vilken produkt bildas inne i bladet (markerad)?",o:["Socker (glukos)","Koldioxid","Vatten","Kväve"],a:0,e:"Socker (glukos, C₆H₁₂O₆) bildas i kloroplasterna och används som energi och byggmaterial."},
-
- {t:"vaxt",p:"s. 19",img:"vaxt",hl:4,q:"Vad gör den markerade delen av växten?",o:["Fäster växten i marken och tar upp vatten och mineraler","Sköter förökningen","Lyfter bladen mot solen","Samlar solljus"],a:0,e:"Roten fäster växten i marken och tar upp vatten och mineraler, som kväve och fosfor."},
- {t:"vaxt",p:"s. 19",img:"vaxt",hl:3,q:"Vad gör den markerade delen av växten?",o:["Lyfter blad och blommor mot solen och leder vatten och näring","Tar upp koldioxid","Bildar pollen","Fäster växten i marken"],a:0,e:"Stammen är styv och lyfter blad och blommor mot solen. Den innehåller ledningsvävnad."},
- {t:"vaxt",p:"s. 19",img:"vaxt",hl:2,q:"Vad gör den markerade delen av växten?",o:["Samlar solljus för fotosyntes, tar upp koldioxid och avger syre","Fäster växten i marken","Sköter den könliga förökningen","Lagrar näring för vintern"],a:0,e:"Bladet samlar solljus för fotosyntesen, tar upp koldioxid, avger syre och avdunstar vatten."},
- {t:"vaxt",p:"s. 19",img:"vaxt",hl:1,q:"Vad gör den markerade delen av växten?",o:["Sköter den könliga förökningen","Tar upp vatten","Lyfter bladen","Avdunstar vatten"],a:0,e:"Blomman är växtens könsorgan och sköter den könliga förökningen."},
- {t:"vaxt",p:"s. 19",q:"Vad gör ledningsvävnaden?",o:["Drar upp en ström av vatten och mineraler till alla växtens delar","Fångar solljus","Bildar pollen","Fäster växten i marken"],a:0,e:"Ledningsvävnaden drar upp vatten och mineraler till alla växtens delar. I anteckningarna kallas rören för kärl (vatten och mineraler) och silrör (socker)."},
- {t:"vaxt",p:"anteckningarna",q:"I ledningsvävnaden finns kärl och silrör. Vad transporterar silrören?",o:["Socker (glukos)","Vatten och mineraler","Syre","Pollen"],a:0,e:"Kärlen transporterar vatten och mineraler upp från roten. Silrören transporterar socker från bladen till resten av växten."},
- {t:"vaxt",p:"s. 19",q:"Varför måste växten suga upp väldiga mängder vatten?",o:["Det finns så lite mineraler i marken","Växten dricker vatten för att växa längre","Vattnet blir till pollen","Växten behöver inte mineraler"],a:0,e:"En växt tar upp mineraler med vattnet. I marken finns så lite mineraler att växten måste suga upp väldiga mängder vatten. Det vatten som inte behövs avdunstar."},
- {t:"vaxt",p:"s. 19",q:"Hur mycket vatten kan en stor björk avdunsta på ett dygn?",o:["Flera hundra liter","Någon deciliter","En liter","Flera miljoner liter"],a:0,e:"En stor björk avdunstar flera hundra liter vatten på ett dygn."},
- {t:"vaxt",p:"s. 19",q:"Vad gör växten när det är torrt?",o:["Stänger sina klyvöppningar för att inte torka ut","Öppnar alla klyvöppningar","Tappar sina rötter","Blommar snabbare"],a:0,e:"När det är torrt stänger växten sina klyvöppningar för att inte torka ut."},
- {t:"vaxt",p:"s. 19",q:"Var sitter klyvöppningarna på näckrosens flytblad?",o:["På övre sidan, så att de inte täpps till av vatten","På undersidan, nere i vattnet","På rötterna","Näckrosen har inga klyvöppningar"],a:0,e:"Hos de flesta landväxter sitter klyvöppningarna på bladens undersida, men på näckrosens flytblad sitter de på övre sidan så att de kan ta in koldioxid och syre utan att täppas till av vatten."},
- {t:"vaxt",p:"s. 19",q:"Vad gör näckrosens jordstam?",o:["Samlar näring för vintern och skickar upp nya skott","Flyter på vattenytan","Fotosyntetiserar","Bildar pollen"],a:0,e:"Jordstammen samlar näring för vintern och skickar upp nya skott."},
- {t:"vaxt",p:"s. 19",q:"Varför kan näckrosens bladskaft vara mjukt?",o:["Vattnet stöder vattenväxten","Den har ingen ledningsvävnad","Den växer bara på vintern","Den saknar celler"],a:0,e:"Vattnet stöder vattenväxten, så bladskaftet kan vara mjukt. Bladskaften innehåller lufthåligheter som leder luft till rötterna och jordstammen."},
- {t:"vaxt",p:"s. 19",q:"Vilka mineraler nämns i boken som exempel på vad roten tar upp?",o:["Kväve och fosfor","Guld och silver","Syre och koldioxid","Socker och stärkelse"],a:0,e:"Roten tar upp vatten och mineraler, som kväve och fosfor."},
-
- {t:"forok",p:"s. 20",q:"Vad är blommans uppgift?",o:["Den är växtens könsorgan","Den tar upp vatten","Den fäster växten","Den gör fotosyntes"],a:0,e:"Blomman är växtens könsorgan."},
- {t:"forok",p:"s. 20",img:"blomma",hl:4,q:"Vad kallas den markerade delen och vad bildar den?",o:["Ståndare, bildar pollen","Pistill, bildar äggceller","Kronblad, lockar insekter","Märke, fångar pollen"],a:0,e:"Ståndarna är blommans hanliga delar. De bildar pollen."},
- {t:"forok",p:"s. 20",q:"Vilken del av blomman är honlig och innehåller äggcellen?",o:["Pistillen","Ståndaren","Kronbladet","Stammen"],a:0,e:"Pistillen är blommans honliga del. Äggcellen finns inne i pistillen. Obs: i anteckningarna står det att pistillen är hanlig, men det stämmer inte. Ståndarna är hanliga."},
- {t:"forok",p:"anteckningarna",img:"blomma",hl:1,q:"Vad kallas den markerade delen, där pollenet fastnar?",o:["Märke","Stift","Fruktämne","Ståndare"],a:0,e:"Märket är pistillens klibbiga topp. Där fastnar pollenet vid pollineringen."},
- {t:"forok",p:"anteckningarna",img:"blomma",hl:3,q:"Vad kallas den markerade delen?",o:["Fruktämne","Märke","Ståndare","Kronblad"],a:0,e:"Fruktämnet är pistillens nedersta del. Där inne finns fröämnena med äggcellerna."},
- {t:"forok",p:"anteckningarna",img:"blomma",hl:2,q:"Vad kallas den markerade delen?",o:["Stift","Ståndare","Märke","Foderblad"],a:0,e:"Stiftet är pistillens smala del mellan märket och fruktämnet. Pollenslangen växer ner genom stiftet."},
- {t:"forok",p:"anteckningarna",img:"blomma",hl:5,q:"Vad gör den markerade delen?",o:["Lockar insekter","Bildar pollen","Innehåller äggcellen","Fångar pollen"],a:0,e:"Kronbladen är ofta färgglada och doftande för att locka insekter."},
- {t:"forok",p:"anteckningarna",q:"I vilken ordning sker den könliga förökningen?",o:["Pollinering → befruktning → frö → fröspridning","Befruktning → pollinering → fröspridning → frö","Fröspridning → frö → pollinering → befruktning","Frö → pollinering → fröspridning → befruktning"],a:0,e:"Först pollinering, sedan befruktning, sedan bildas ett frö och till sist sprids fröet."},
- {t:"forok",p:"anteckningarna",q:"Vad är pollinering?",o:["När pollen förs till en blomma av samma art","När pollenet smälter samman med äggcellen","När fröet sprids med vinden","När fröet gror"],a:0,e:"Pollinering betyder att pollen förs till en blomma (till pistillens märke) av samma art, med vinden eller med insekter."},
- {t:"forok",p:"s. 20 + anteckningarna",q:"Vad är befruktning?",o:["När hancellen från pollenet smälter samman med äggcellen","När pollen landar på märket","När fröet faller till marken","När blomman slår ut"],a:0,e:"Befruktningen sker när hancellen från pollenkornet smälter samman med äggcellen inne i pistillen. Resultatet blir ett frö."},
- {t:"forok",p:"anteckningarna",q:"Hur når hancellen fram till äggcellen efter att pollenet fastnat på märket?",o:["En pollenslang växer ner genom stiftet","Pollenet flyger in i fruktämnet","Vinden blåser in det","Den behöver inte nå fram"],a:0,e:"Pollenet fastnar på pistillens märke och en pollenslang växer ner till äggcellen."},
- {t:"forok",p:"anteckningarna",q:"Vad blir fröämnet och fruktämnet efter befruktningen?",o:["Fröämnet blir ett frö och fruktämnet en frukt runt fröet","Fröämnet blir en blomma","Fruktämnet blir pollen","Båda blir rötter"],a:0,e:"Efter befruktningen utvecklas ett frö av fröämnet och en frukt runt fröet av fruktämnet."},
- {t:"forok",p:"anteckningarna",q:"Vilken växt pollineras med vinden?",o:["Björk","Maskros","Solros","Ros"],a:0,e:"Björk och vass är vindpollinerade. De har färglösa, oansenliga blommor. Maskros, solros och ros pollineras av insekter."},
- {t:"forok",p:"anteckningarna",q:"Hur ser blommorna ut hos växter som pollineras av insekter?",o:["Färgglada och doftande, för att locka insekterna","Färglösa och utan doft","De har inga blommor","Gröna och små"],a:0,e:"Insektspollinerade växter, som solros, ros och maskros, har färgglada och doftande blommor som lockar insekterna."},
- {t:"forok",p:"s. 22",q:"Hur sprids kaveldunets frön?",o:["Med vinden","Med vågorna","I djurens magar","De sprids inte"],a:0,e:"Kaveldunets frön har långa svävhår som gör att de svävar iväg med vinden. En kaveldunscigarr innehåller mer än 100 000 frön."},
- {t:"forok",p:"s. 22",q:"Hur sprids näckrosens och kabblekans lätta frön?",o:["De flyter på vattnet och sprids med vågorna","Med vinden","I djurens päls","Med bin"],a:0,e:"De lätta fröna från kabbleka och vit näckros flyter på vattnet och sprids med vågorna."},
- {t:"forok",p:"s. 22",q:"Hur sprids fröna i bär?",o:["Djur äter bären och fröna kommer ut oskadda genom matsmältningskanalen","Med vinden","Med vågorna","De gror inne i bäret på busken"],a:0,e:"Många djur äter bär. Fröna går oskadda genom matsmältningskanalen och gror där de ramlar ut igen."},
- {t:"forok",p:"s. 22",q:"Hur sprids brunskärans frön?",o:["De fastnar i pälsen på djur eller på byxorna på vandrare","Med vågorna","Med vinden","De sprids inte alls"],a:0,e:"Brunskärans frön fastnar i pälsen på djur eller på byxorna på vandrare."},
- {t:"forok",p:"s. 21",q:"Vad betyder könlös (vegetativ) förökning?",o:["Växten sprider sig med till exempel rotskott, revor eller jordstam och de nya plantorna blir exakta kopior","Växten bildar frön efter pollinering","Två växter blandar sina egenskaper","Pollen förs till en annan blomma"],a:0,e:"Vid könlös förökning används inga könsceller. Växten sprider sig med rotskott, revor, jordstam eller sticklingar, och de nya plantorna är exakta kopior av den gamla."},
- {t:"forok",p:"anteckningarna",q:"Vilken är en fördel med könlig förökning?",o:["Stor genetisk variation","Växten blir en exakt kopia","Växten behöver inga insekter","Det går alltid snabbare"],a:0,e:"Könlig förökning ger stor genetisk variation. Nackdelen är att växten är beroende av vind eller pollinatörer som insekter."},
- {t:"forok",p:"anteckningarna",q:"Vilken är en nackdel med könlös förökning?",o:["Ingen variation, inga nya egenskaper","Växten är beroende av insekter","Det behövs pollen","Det blir inga nya plantor"],a:0,e:"Vid könlös förökning blir avkomman exakta kopior, så det blir ingen variation. Fördelen är att växten inte är beroende av vind eller insekter."},
- {t:"forok",p:"anteckningarna",q:"Vilket är ett exempel på könlös förökning?",o:["Jordgubbens revor","Pollinering av bin","Befruktning i pistillen","Frön som sprids med vinden"],a:0,e:"Revor, sticklingar, rotskott och jordstam är exempel på könlös förökning. Jordgubben kan föröka sig både med frön och med revor."},
- {t:"forok",p:"s. 21",q:"Hur förökar sig mossor och ormbunkar?",o:["Med sporer, eftersom de inte har några blommor","Med frön från blommor","Bara genom delning","Med pollen från bin"],a:0,e:"Mossor och ormbunksväxter har inga blommor. De bildar stora mängder sporer utan befruktning, och ur sporerna växer nya växter fram."},
- {t:"forok",p:"s. 21",q:"Hur förökar sig encelliga alger?",o:["Genom delning","Med frön","Med blommor","Med revor"],a:0,e:"Encelliga alger förökar sig genom delning. Många andra alger förökar sig med sporer."},
- {t:"forok",p:"s. 21",q:"Hur förökar sig vass?",o:["Både könligt med frön och könlöst med jordstam","Bara med sporer","Bara med revor","Bara genom delning"],a:0,e:"Vass förökar sig både könligt med frön och könlöst med jordstam. Även vitsippor och jordgubbar kan föröka sig på båda sätten."},
- {t:"forok",p:"s. 21",q:"Vilka var de första växterna på land?",o:["Mossor","Barrträd","Blommande växter","Ormbunkar"],a:0,e:"De första landväxterna var mossor, som utvecklats ur alger. De krävde ett fuktigt klimat eftersom de saknade rötter och ledningsvävnad."},
- {t:"forok",p:"s. 21",q:"För hur länge sedan utvecklades växter med blommor?",o:["För cirka 120 miljoner år sedan","För 4 000 miljoner år sedan","För 450 miljoner år sedan","För 1 000 år sedan"],a:0,e:"Landväxter har funnits i 450 miljoner år, men växter med blommor utvecklades för cirka 120 miljoner år sedan."}
+function pic(k){return `<svg viewBox="0 0 100 100" role="img" aria-label="varningssymbol"><polygon points="50,5 95,50 50,95 5,50" fill="#fff" stroke="#e30613" stroke-width="7" stroke-linejoin="miter"/><g fill="#000" stroke="#000">${ICON[k]}</g></svg>`;}
+const SYMS=[
+  {k:'explosivt',n:'Explosivt',d:'kan explodera, t.ex. av värme, stötar eller gnistor'},
+  {k:'brandfarligt',n:'Lättantändligt',d:'brinner lätt – ska hållas borta från värme och öppen eld'},
+  {k:'oxiderande',n:'Oxiderande',d:'ger ifrån sig syre och kan få andra ämnen att brinna kraftigare'},
+  {k:'gas',n:'Gas under tryck',d:'behållaren innehåller gas under tryck och kan explodera om den värms upp'},
+  {k:'fratande',n:'Frätande',d:'kan ge frätskador på hud och ögon och fräta på metall'},
+  {k:'giftigt',n:'Giftigt',d:'kan vara dödligt även i små mängder'},
+  {k:'skadligt',n:'Irriterande / skadligt',d:'kan irritera hud, ögon eller luftvägar'},
+  {k:'halsofarligt',n:'Hälsofarligt',d:'kan ge allvarliga skador på sikt, t.ex. på lungor eller orsaka cancer'},
+  {k:'miljo',n:'Miljöfarligt',d:'skadligt för djur och natur, särskilt i vatten'}
 ];
 
-// ---------- quiz engine ----------
-const $ = id => document.getElementById(id);
-const shuffle = arr => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-const ALL = Object.keys(T);
-let chosen = new Set(ALL);
-let run = [], idx = 0, results = [];
-
-function renderTopics(){
-  const box = $("topics"); box.innerHTML = "";
-  const all = document.createElement("button");
-  all.className = "chip"; all.textContent = "Alla teman";
-  all.setAttribute("aria-pressed", chosen.size === ALL.length);
-  all.onclick = () => { chosen = new Set(ALL); renderTopics(); };
-  box.appendChild(all);
-  for (const [k, name] of Object.entries(T)) {
-    const b = document.createElement("button");
-    b.className = "chip"; b.textContent = name;
-    b.setAttribute("aria-pressed", chosen.size !== ALL.length && chosen.has(k));
-    b.onclick = () => {
-      if (chosen.size === ALL.length) chosen = new Set([k]);
-      else if (chosen.has(k)) { chosen.delete(k); if (!chosen.size) chosen = new Set(ALL); }
-      else chosen.add(k);
-      renderTopics();
-    };
-    box.appendChild(b);
-  }
-  $("count").textContent = Q.filter(q => chosen.has(q.t)).length + " frågor finns i valda teman";
-}
-
-function start(list){
-  run = shuffle(list).map(q => ({ ...q, order: shuffle(q.o.map((_, i) => i)) }));
-  idx = 0; results = [];
-  $("start").hidden = true; $("result").hidden = true; $("quiz").hidden = false;
-  show();
-}
-
-function show(){
-  const q = run[idx];
-  $("pos").textContent = "Fråga " + (idx + 1) + " av " + run.length;
-  $("pts").textContent = results.filter(r => r.ok).length + " rätt";
-  $("prog").style.width = (idx / run.length * 100) + "%";
-  $("qtag").textContent = T[q.t];
-  $("qtext").textContent = q.q;
-  const f = $("qfig");
-  if (q.img) { f.innerHTML = fig(q.img, q.hl); f.hidden = false; } else { f.innerHTML = ""; f.hidden = true; }
-  $("explain").hidden = true; $("next").hidden = true;
-  const box = $("opts"); box.innerHTML = "";
-  q.order.forEach((oi, n) => {
-    const b = document.createElement("button");
-    b.className = "opt"; b.dataset.oi = oi;
-    b.innerHTML = "<b>" + "ABCD"[n] + "</b><span></span>";
-    b.querySelector("span").textContent = q.o[oi];
-    b.onclick = () => answer(oi);
-    box.appendChild(b);
-  });
-}
-
-function answer(oi){
-  const q = run[idx], ok = oi === q.a;
-  results.push({ q, ok });
-  document.querySelectorAll(".opt").forEach(b => {
-    b.disabled = true;
-    const v = +b.dataset.oi;
-    if (v === q.a) b.classList.add("right");
-    else if (v === oi) b.classList.add("wrong");
-  });
-  const ex = $("explain"); ex.innerHTML = "";
-  const s = document.createElement("strong"); s.textContent = ok ? "Rätt!" : "Inte riktigt. Rätt svar: " + q.o[q.a];
-  const p = document.createElement("div"); p.textContent = q.e;
-  const pg = document.createElement("div"); pg.className = "page"; pg.textContent = "Källa: " + (q.p.startsWith("s.") ? "boken " : "") + q.p;
-  ex.append(s, p, pg); ex.hidden = false;
-  $("pts").textContent = results.filter(r => r.ok).length + " rätt";
-  $("prog").style.width = ((idx + 1) / run.length * 100) + "%";
-  const nx = $("next"); nx.hidden = false;
-  nx.textContent = idx + 1 < run.length ? "Nästa fråga" : "Se resultatet";
-  nx.focus({ preventScroll: true });
-}
-
-function finish(){
-  $("quiz").hidden = true; $("result").hidden = false;
-  const right = results.filter(r => r.ok).length, tot = results.length, pct = right / tot;
-  $("score").innerHTML = right + "<small> / " + tot + "</small>";
-  $("verdict").textContent = pct === 1 ? "Alla rätt! Du är redo för provet."
-    : pct >= .8 ? "Mycket bra! Repetera de frågor du missade nedan."
-    : pct >= .5 ? "Bra början. Titta på bilderna och läs sidorna för de teman där du fick minst rätt."
-    : "Plugga på bilderna och anteckningarna och kör quizen igen.";
-  const tb = $("bytopic"); tb.innerHTML = "";
-  for (const k of ALL) {
-    const rs = results.filter(r => r.q.t === k); if (!rs.length) continue;
-    const r = rs.filter(x => x.ok).length;
-    const tr = document.createElement("tr");
-    tr.innerHTML = "<td></td><td>" + r + " / " + rs.length + '<span class="mini"><i style="width:' + (r / rs.length * 100) + '%"></i></span></td>';
-    tr.firstChild.textContent = T[k];
-    tb.appendChild(tr);
-  }
-  const wrong = results.filter(r => !r.ok);
-  $("retryWrong").hidden = !wrong.length; $("wrongWrap").hidden = !wrong.length;
-  const wl = $("wrongList"); wl.innerHTML = "";
-  wrong.forEach(r => {
-    const d = document.createElement("div");
-    const a = document.createElement("p"); a.innerHTML = "<strong></strong>"; a.firstChild.textContent = r.q.q;
-    const b = document.createElement("p"); b.textContent = "Rätt svar: " + r.q.o[r.q.a] + " (" + r.q.p + ")";
-    d.append(a, b); wl.appendChild(d);
-  });
-}
-
-function renderStudy(){
-  const box = $("study"); box.innerHTML = "";
-  const intro = document.createElement("p"); intro.className = "callout";
-  intro.textContent = "Dubbelkollat mot boken: i anteckningarna står det att pistillen är växtens hanliga könsorgan. Det stämmer inte. Pistillen är honlig och innehåller äggcellerna. Ståndarna är hanliga och bildar pollen.";
-  box.appendChild(intro);
-  for (const [k, d] of Object.entries(D)) {
-    const sec = document.createElement("section");
-    const h = document.createElement("h3"); h.textContent = d.title;
-    const f = document.createElement("div"); f.className = "fig"; f.innerHTML = d.svg();
-    const ul = document.createElement("ul"); ul.className = "legend";
-    for (const [n, [name, desc]] of Object.entries(d.parts)) {
-      const li = document.createElement("li");
-      li.innerHTML = '<span class="n"></span><span><strong></strong> </span>';
-      li.querySelector(".n").textContent = n;
-      li.querySelector("strong").textContent = name + ".";
-      li.lastChild.append(desc);
-      ul.appendChild(li);
-    }
-    sec.append(h, f, ul);
-    if (d.note) { const p = document.createElement("p"); p.className = "note"; p.textContent = d.note; sec.appendChild(p); }
-    box.appendChild(sec);
-  }
-}
-
-function tab(which){
-  const quiz = which === "quiz";
-  $("tabQuiz").setAttribute("aria-selected", quiz); $("tabStudy").setAttribute("aria-selected", !quiz);
-  $("quizView").hidden = !quiz; $("studyView").hidden = quiz;
-}
-$("tabQuiz").onclick = () => tab("quiz");
-$("tabStudy").onclick = () => tab("study");
-$("go").onclick = () => {
-  const pool = shuffle(Q.filter(q => chosen.has(q.t)));
-  const v = $("len").value;
-  start(v === "all" ? pool : pool.slice(0, +v));
+/* ---------- Kategorier ---------- */
+const CATS={
+  sym:{n:'Varningssymboler & säkerhet',s:'sid 18'},
+  bland:{n:'Blandningar & rena ämnen',s:'kap 4'},
+  sep:{n:'Separationsmetoder',s:'kap 5 + häftet'},
+  grund:{n:'Grundämnen, föreningar, molekyler',s:'kap 6'},
+  tecken:{n:'Kemiska tecken',s:'grundämnenas symboler'},
+  formel:{n:'Formelskrivning',s:'kemispråk'},
+  reak:{n:'Kemiska reaktioner',s:'häftet + sid 65'},
+  forbr:{n:'Förbränning & brandsäkerhet',s:'kap 12'}
 };
-$("next").onclick = () => { idx++; idx < run.length ? show() : finish(); };
-$("retryWrong").onclick = () => start(results.filter(r => !r.ok).map(r => r.q));
-$("again").onclick = () => { $("result").hidden = true; $("start").hidden = false; renderTopics(); };
-renderTopics();
-renderStudy();
-if (location.hash === "#bilder") tab("study");
-</script>
 
-</body></html>
+/* ---------- Frågor: a[0] är rätt svar ---------- */
+const Q=[];
+function add(c,q,a,e,img){Q.push({c,q,a,e,img});}
+
+/* Varningssymboler */
+SYMS.forEach(s=>{
+  add('sym','Vad betyder den här varningssymbolen?',[s.n,...SYMS.filter(x=>x!==s).sort(()=>Math.random()-.5).slice(0,3).map(x=>x.n)],`${s.n}: ${s.d}.`,pic(s.k));
+  add('sym',`Vilken symbol betyder att ämnet är <i>${s.n.toLowerCase()}</i>?`,null,`${s.n}: ${s.d}.`,null);
+  Q[Q.length-1].picOpts=s.k;
+});
+add('sym','Vilken form och färg har varningssymbolerna?',['Vit romb (kvadrat på spetsen) med röd kant och svart bild','Gul triangel med svart kant','Röd cirkel med vit bild','Blå fyrkant med vit bild'],'Varningssymbolerna är vita romber med röd ram och en svart bild.');
+add('sym','Vilken varningssymbol ska lättantändliga ämnen, t.ex. bensin, vara märkta med?',['Lättantändligt (flamman)','Frätande','Miljöfarligt','Gas under tryck'],'Boken (sid 80): lättantändliga ämnen måste märkas med en varningssymbol – flamman.');
+
+add('sym','Vad berättar varningssymbolerna på en förpackning?',['Om ämnet är t.ex. skadligt, hälsofarligt, giftigt, lättantändligt eller frätande','Hur mycket ämnet kostar','Vilket land ämnet kommer ifrån','Hur ämnet smakar'],'Boken sid 18: varningssymbolerna berättar om det kemiska ämnet är skadligt, hälsofarligt eller giftigt, och det finns symboler för lättantändliga och frätande ämnen.');
+add('sym','Gäller varningssymbolerna bara i Finland/Sverige?',['Nej, de är gemensamma internationella symboler','Ja, varje land har egna','Bara i skolan','Bara i EU:s labb'],'Man har kommit överens om gemensamma, internationella varningssymboler för kemikalier.');
+add('sym','Vad gäller i kemisalen?',['Man får inte äta eller dricka, och man tvättar händerna när man går ut','Man får äta om man är försiktig','Man behöver aldrig tvätta händerna','Man får smaka på ämnena'],'Boken: du får inte äta eller dricka i kemisalen. Kom ihåg att tvätta händerna när du går ut ur rummet.');
+add('sym','Hur gör man sig av med farliga kemikalier?',['De samlas upp, sorteras och förs till en uppsamlingsstation för farligt avfall','Man häller alltid ut dem i avloppet','Man slänger dem i blandavfallet','Man bränner upp dem'],'Vissa kemikalier kan spolas ner eller slängas i blandavfallet, men andra måste samlas upp och föras till en uppsamlingsstation för farligt avfall.');
+add('sym','Du bränner handen i labbet. Vad gör du först?',['Håller handen under kallt rinnande vatten så fort som möjligt','Sätter på ett plåster direkt','Smörjer in med fett','Väntar och ser om det går över'],'Boken sid 18: får du en brännskada på handen ska du så fort som möjligt sätta handen under kallt och rinnande vatten.');
+add('sym','Vad används en nödbrytare (nödstopp) till?',['Att snabbt slå av strömmen','Att släcka eld med vatten','Att larma brandkåren','Att starta ventilationen'],'Med en nödbrytare går det fort att slå av strömmen.');
+
+/* Kap 4: Blandningar & rena ämnen */
+add('bland','Vilka två grupper kan vi dela in ämnen i?',['Rena ämnen och blandningar','Metaller och gaser','Fasta och flytande','Syror och baser'],'Alla ämnen är antingen rena ämnen eller blandningar.');
+add('bland','Vad är ett <b>rent ämne</b>?',['Ett ämne där alla partiklar är likadana – det innehåller bara ett enda ämne','Ett ämne som är helt fritt från bakterier','Ett ämne som är genomskinligt','Ett ämne som har blandats med vatten'],'I ett rent ämne är alla partiklar likadana. "Rent" i kemin betyder bara ett ämne – inte att det är fritt från smuts eller bakterier.');
+add('bland','Rena ämnen är antingen …',['grundämnen eller föreningar','lösningar eller emulsioner','metaller eller legeringar','homogena eller heterogena'],'Rena ämnen är antingen grundämnen eller (kemiska) föreningar.');
+add('bland','Vad är en <b>blandning</b>?',['Minst två rena ämnen som blandats','Ett ämne med bara en sorts atomer','Två grundämnen som bundits kemiskt till en förening','Ett ämne som har exakt kokpunkt'],'En blandning består av minst två rena ämnen.');
+add('bland','Vatten i en ren sjö – är det ett rent ämne kemiskt sett?',['Nej, det är en blandning eftersom det finns lösta salter och andra ämnen i det','Ja, om det inte finns bakterier i det','Ja, vatten är alltid ett rent ämne','Nej, det är ett grundämne'],'Sjövatten är kemiskt sett inte ett rent ämne – det finns alltid lösta salter och andra föreningar i det. Kemiskt rent vatten innehåller bara vattenmolekyler H₂O.');
+add('bland','Vad är en <b>homogen</b> blandning?',['En blandning som är likadan helt igenom – man kan inte se de olika beståndsdelarna','En blandning där man kan se de olika delarna','En blandning av bara metaller','En blandning som består av ett enda ämne'],'Homogen = lika helt igenom. T.ex. saft, luft och saltvatten.');
+add('bland','Vad är en <b>heterogen</b> blandning?',['En blandning där man kan se (urskilja) de olika beståndsdelarna','En blandning som är lika helt igenom','Ett rent ämne','En lösning'],'Heterogen = man kan urskilja de olika beståndsdelarna, t.ex. korvsoppa, sand och sten.');
+add('bland','Vilken av dessa är en <b>homogen</b> blandning?',['Saft','Korvsoppa','Sand och sten','Dimma'],'I saft kan vi inte urskilja de olika beståndsdelarna, så den är homogen.');
+add('bland','Vilken av dessa är en <b>heterogen</b> blandning?',['Rök','Luft','Saltvatten','Mässing'],'Rök = fasta partiklar blandade med gas. Den är heterogen.');
+add('bland','Vilka typer av blandningar är <b>homogena</b>?',['Lösningar, gasblandningar och metallblandningar (legeringar)','Rök, slam och skum','Emulsioner och geler','Dimma och rök'],'Boken: lösningar, gasblandningar och metallblandningar (legeringar) är homogena.');
+add('bland','Vilka är exempel på <b>heterogena</b> blandningar enligt boken?',['Rök, slam, emulsion, gel, dimma och skum','Lösningar och legeringar','Luft och saft','Socker och salt'],'Heterogena blandningar: rök, slam, emulsion, gel, dimma och skum.');
+add('bland','Vad är en <b>lösning</b>?',['Ett lösningsmedel med ett ämne som lösts upp i det','Två vätskor som inte löser sig i varandra','Fasta partiklar i en gas','Gasbubblor i en vätska'],'En lösning = lösningsmedel + ett upplöst ämne. Det upplösta ämnet kan vara fast, flytande eller gas. Klar saft är ett exempel.');
+add('bland','Vad är en <b>emulsion</b>?',['Två vätskor som inte löst sig i varandra, t.ex. mjölk','Fasta partiklar blandade med gas','Gasbubblor i en vätska','En vätska med ett löst fast ämne'],'En emulsion består av två vätskor som inte löst sig i varandra. Mjölk och många hudkrämer är emulsioner.');
+add('bland','Mjölk är …',['en heterogen blandning (emulsion)','en homogen blandning (lösning)','ett rent ämne','ett grundämne'],'Boken: "Mjölk är en heterogen blandning" – en emulsion av vatten och fetter.');
+add('bland','Vad är <b>dimma</b>?',['Fuktdroppar (vätska) blandade med gas','Fasta partiklar blandade med gas','Fast ämne blandat med vätska','Gasbubblor i vätska'],'Dimma = fuktdroppar blandade med gas.');
+add('bland','Vad är <b>rök</b>?',['Fasta partiklar blandade med gas','Vätskedroppar i gas','Gasbubblor i vätska','Två vätskor som inte löser sig'],'Rök = fasta partiklar som blandats med gas.');
+add('bland','Vad är <b>slam</b>?',['Fast ämne blandat med vätska','Gas blandad med vätska','Vätska blandad med gas','Två gaser'],'Slam = fast ämne som blandats med vätska (t.ex. lera i vatten).');
+add('bland','Vad är <b>skum</b>?',['Gasbubblor blandade i en vätska','Fasta partiklar i gas','Två vätskor som inte löser sig','Fast ämne i vätska'],'I skum har gasbubblor blandats i en vätska.');
+add('bland','Vad är en <b>gel</b>?',['Ett fast ämne som bildar ett nätverk där vätska har trängt in','Gasbubblor i vätska','Fasta partiklar i gas','En gasblandning'],'En gel består av ett fast ämne som bildar ett nätverk, och in i nätverket har vätska trängt in (t.ex. kräm/gelé).');
+add('bland','Luft är …',['en gasblandning (homogen blandning)','ett rent ämne','ett grundämne','en heterogen blandning'],'Luft är en gasblandning, främst av kväve och syre.');
+add('bland','Vad kallas en blandning av metaller, t.ex. stål eller mässing?',['Legering','Emulsion','Lösning','Förening'],'Metallblandningar kallas legeringar. Järn + krom + nickel ger rostfritt stål. Koppar + zink ger mässing.');
+add('bland','Mässing är en legering av …',['koppar och zink','järn och kol','guld och silver','tenn och bly'],'Blandar man koppar med zink får man mässing, som är hårdare än koppar och zink.');
+add('bland','Vilket av dessa är ett <b>rent ämne</b>?',['Socker','Mjölk','Te','Sand'],'Rent socker består bara av sockermolekyler. Mjölk, te och sand är blandningar.');
+add('bland','Vilket av dessa är ett <b>rent ämne</b>?',['Järn','Tandkräm','Mineralvatten','Mjölkdryck'],'Järn är ett grundämne och alltså ett rent ämne.');
+add('bland','Vilket av dessa är en <b>blandning</b>?',['Tandkräm','Kol','Järn','Socker'],'Tandkräm består av många olika ämnen – en blandning.');
+add('bland','Bordssalt (koksalt) är nästan helt ren …',['natriumklorid','natriumoxid','kalciumklorid','järnsulfid'],'Bordssalt är nästan helt ren natriumklorid, NaCl. Man har bara blandat i små mängder av andra ämnen.');
+add('bland','Hurdana egenskaper har ett rent ämne?',['Exakta smält- och kokpunkter','Det kan inte smälta','Det är alltid en vätska','Det ändrar smältpunkt hela tiden'],'Boken: rena ämnen har exakta smält- och kokpunkter.');
+add('bland','Vilken typ av blandning är <b>lemonad</b> (klar)?',['Lösning','Emulsion','Skum','Rök'],'En klar dryck som lemonad eller saft är en lösning – en homogen blandning.');
+add('bland','Vilken typ av blandning är <b>fuktighetskräm</b>?',['Emulsion','Gasblandning','Lösning','Rök'],'Många hudkrämer är emulsioner – blandningar av vatten och fetter som inte löst sig i varandra.');
+add('bland','Vilken typ av blandning är <b>vispgrädde / efterrättskräm</b>?',['Skum','Rök','Lösning','Legering'],'Vispad grädde har gasbubblor (luft) i en vätska – skum.');
+add('bland','Vilken typ av blandning är ett <b>guldsmycke</b>?',['Metallblandning (legering)','Emulsion','Gel','Rent grundämne alltid'],'Guldsmycken är oftast en legering – guld blandat med t.ex. silver eller koppar för att bli hårdare.');
+add('bland','Havsvatten är en …',['lösning (homogen blandning)','heterogen blandning','ren förening','grundämne'],'Havsvatten är en lösning – vattnet innehåller ämnen som lösts upp och som vi inte kan se.');
+
+/* Kap 5: Separationsmetoder */
+add('sep','Vad bygger separation av ämnen i en blandning på?',['Att ämnena har olika fysikaliska egenskaper','Att ämnena reagerar kemiskt med varandra','Att ämnena har samma kokpunkt','Att man bränner blandningen'],'Vi utnyttjar ämnenas olika fysikaliska egenskaper – t.ex. kokpunkt, densitet, partikelstorlek eller löslighet.');
+add('sep','Vilken metod använder du för att få bort <b>sand från vatten</b>?',['Filtrering','Destillation','Extraktion','Indunstning'],'Sanden löser sig inte i vattnet och fastnar i filterpappret. (Man kan också dekantera.)');
+add('sep','Vilken metod använder du för att få <b>salt ur saltvatten</b>?',['Indunstning','Filtrering','Dekantering','Extraktion'],'Vid indunstning låter man vattnet (lösningsmedlet) avdunsta så att saltet blir kvar.');
+add('sep','Vilken metod används när du <b>brygger te</b>?',['Extraktion','Destillation','Indunstning','Dekantering'],'Smak- och färgämnen löses ut ur teblad med hett vatten = extraktion.');
+add('sep','Vilken metod används för att tillverka <b>starka alkoholdrycker</b>?',['Destillation','Filtrering','Dekantering','Indunstning'],'Alkohol och vatten har olika kokpunkt – därför kan de skiljas genom destillation.');
+add('sep','Vad bygger <b>filtrering</b> på?',['Att partiklarna är olika stora','Att ämnena har olika kokpunkt','Att ämnena har olika löslighet','Att ämnena har olika färg'],'Vid filtrering separerar vi beståndsdelarna efter partikelstorlek. Små partiklar tränger igenom filtret, stora fastnar.');
+add('sep','Vad bygger <b>destillation</b> på?',['Att ämnena har olika kokpunkt','Att partiklarna är olika stora','Att ämnena har olika densitet','Att ämnena är magnetiska'],'Destillation bygger på att ämnen har olika kokpunkt.');
+add('sep','Vad bygger <b>extraktion</b> på?',['Att ämnen har olika löslighet','Att ämnen har olika kokpunkt','Att partiklarna är olika stora','Att ämnen har olika färg'],'Extraktion = man löser ut vissa beståndsdelar. Det bygger på att ämnen har olika löslighet.');
+add('sep','Vad händer vid <b>indunstning</b>?',['Lösningsmedlet får avdunsta så att det lösta fasta ämnet blir kvar','Ångan kyls ner och samlas upp','Vätskan hälls av försiktigt','Ämnet löses ut med vatten'],'Ett fast ämne som lösts i en vätska kan separeras genom indunstning: lösningsmedlet avdunstar.');
+add('sep','Vad är <b>dekantering</b>?',['Att försiktigt hälla bort vätskan när det fasta ämnet sjunkit till botten','Att koka och kyla ner ångan','Att lösa ut ett ämne med vatten','Att låta vattnet avdunsta'],'Som när man kokar kaffe: kaffepulvret sjunker till botten och man häller försiktigt av drycken.');
+add('sep','Kokkaffe: kaffepulvret sjunker till botten och du häller försiktigt upp kaffet. Vilken metod är det?',['Dekantering','Destillation','Indunstning','Filtrering'],'Att hälla bort vätskan från det fasta ämnet på botten kallas dekantering.');
+add('sep','Bryggkaffe: kaffepulvret blir kvar i filterpappret. Vilken metod är det?',['Filtrering','Dekantering','Destillation','Indunstning'],'Det malda kaffet blir kvar i filtret medan drycken rinner igenom = filtrering. (Först sker en extraktion när smakämnena löses ut.)');
+add('sep','Vad sker i <b>kylaren</b> vid destillation?',['Ångan kondenseras tillbaka till vätska','Vätskan kokar','Saltet kristalliseras','Det fasta ämnet filtreras bort'],'Ångan leds till en kylare där ämnet kondenseras tillbaka till vätskeform.');
+add('sep','Hur kan man framställa <b>drickbart vatten av havsvatten</b>?',['Genom destillation – vattnet kokas och ångan kondenseras','Genom filtrering genom kaffefilter','Genom dekantering','Genom att tillsätta salt'],'Havsvattnet hettas upp så att det kokar, vattenångan kondenseras och samlas upp. Salter och bakterier följer inte med ångan. (Man tillsätter små mängder salter för att det ska gå att dricka.)');
+add('sep','Vilken är en <b>likhet</b> mellan indunstning och destillation?',['I båda fallen förångas (avdunstar) vätskan','I båda fallen samlar man upp vätskan','Båda bygger på partikelstorlek','Båda använder filterpapper'],'Båda bygger på att vätskan förångas. Skillnaden är att man vid destillation samlar upp vätskan (kondenserar ångan), men vid indunstning bara vill ha kvar det fasta ämnet.');
+add('sep','Vilken är <b>skillnaden</b> mellan indunstning och destillation?',['Vid destillation samlar man upp den förångade vätskan, vid indunstning låter man den försvinna','Vid indunstning samlar man upp vätskan','Destillation används bara för fasta ämnen','Det finns ingen skillnad'],'Destillation: ångan kyls och vätskan samlas upp. Indunstning: vätskan får avdunsta bort och det fasta ämnet blir kvar.');
+add('sep','Separera <b>sand och salt</b> (labben): vilken ordning är rätt?',['1. Lös i vatten  2. Filtrera bort sanden  3. Indunsta saltvattnet','1. Indunsta  2. Filtrera  3. Lös i vatten','1. Destillera  2. Dekantera  3. Filtrera','1. Filtrera  2. Lös i vatten  3. Destillera'],'Saltet löser sig i vatten men inte sanden. Sanden fastnar i filtret. Saltvattnet (filtratet) indunstas, och saltet blir kvar.');
+add('sep','I sand–salt-labben: varför tillsätter man vatten först?',['Saltet löser sig i vattnet, men inte sanden','För att sanden ska lösa sig','För att saltet ska sjunka till botten','För att blandningen ska börja koka'],'Saltet löses ut i vattnet (extraktion), medan sanden inte löser sig och kan filtreras bort.');
+add('sep','I sand–salt-labben: var hamnar <b>sanden</b> när du filtrerar?',['Kvar i filterpappret','I bägaren under tratten','Den avdunstar','Den löser sig i vattnet'],'Sandkornen är för stora för att komma igenom porerna i filterpappret.');
+add('sep','Hur får man fram saltet på slutet i sand–salt-labben?',['Man indunstar saltvattnet (filtratet)','Man filtrerar saltvattnet en gång till','Man dekanterar','Man tillsätter mer sand'],'Vattnet får avdunsta och saltet blir kvar i skålen – indunstning.');
+add('sep','Hur tillverkas havssalt i saliner?',['Solen och vinden får vattnet att avdunsta så att saltet blir kvar','Havsvattnet filtreras','Havsvattnet destilleras','Saltet extraheras med alkohol'],'I saliner indunstas havsvatten med hjälp av sol och vind.');
+add('sep','Rosenolja framställs ur rosens kronblad genom …',['extraktion och destillation','filtrering och dekantering','indunstning','magnetism'],'Bildtexten i boken: rosenolja framställs genom extraktion och destillation.');
+add('sep','Vad används en <b>separationstratt</b> till?',['Extraktion och för att separera två vätskor som inte löser sig i varandra','Att filtrera sand','Att destillera vatten','Att indunsta salt'],'Med en separationstratt kan man t.ex. tappa av vatten under ett lager olja.');
+add('sep','När du torkar tvätt på lina avdunstar vattnet. Vilket begrepp passar?',['Avdunstning','Destillation','Filtrering','Extraktion'],'Boken: att torka tvätt på lina eller i torktumlare är exempel på avdunstning.');
+add('sep','Ett andningsskydd hindrar dammpartiklar från att komma in i lungorna. Vilken metod?',['Filtrering','Destillation','Indunstning','Dekantering'],'Vid filtrering kan man avskilja ett fast ämne ur en vätska <i>eller en gas</i>.');
+add('sep','Vilken metod passar för att separera <b>två vätskor med olika kokpunkt</b>, t.ex. alkohol och vatten?',['Destillation','Filtrering','Dekantering','Indunstning'],'Vätskorna förångas i tur och ordning vid sina kokpunkter – destillation. Används t.ex. vid oljeraffinering.');
+add('sep','Varför går det inte att filtrera bort saltet ur saltvatten?',['Saltet är löst – partiklarna är så små att de går igenom filtret','Saltet är för tungt','Saltet fastnar i filtret','Saltet är en gas'],'Lösta ämnen tränger igenom filtrets små porer tillsammans med vattenpartiklarna. Använd indunstning istället.');
+add('sep','Guldvaskning bygger på att guld och sand har olika …',['densitet','kokpunkt','färg','löslighet'],'Guldet har högre densitet än sanden och stannar kvar på kärlets botten.');
+
+/* Kap 6: Grundämnen, föreningar, molekyler */
+add('grund','Vad är kemiskt sett den minsta byggstenen i ett ämne?',['Atomen','Molekylen','Cellen','Föreningen'],'Atomen är den minsta byggstenen. Ämnena omkring oss består av flera atomer.');
+add('grund','Vad är ett <b>grundämne</b>?',['Ett ämne där alla atomer är likadana','Ett ämne av minst två olika sorters atomer','En blandning av två ämnen','Ett ämne som bara finns i naturen'],'Om alla atomer i ett ämne är likadana är det fråga om ett grundämne, t.ex. guld eller järn.');
+add('grund','Vad är en <b>kemisk förening</b>?',['Ett ämne som består av minst två olika grundämnen som bundits ihop kemiskt','Ett ämne där alla atomer är likadana','En blandning av metaller','Två vätskor som inte löser sig'],'En förening består av två eller flera olika grundämnen som sitter ihop med kemiska bindningar, t.ex. vatten H₂O.');
+add('grund','Vad är en <b>molekyl</b>?',['Minst två atomer som är bundna till varandra','En enda atom','En blandning','En sorts metall'],'En molekyl har minst två atomer som förenats. Atomerna kan vara av samma grundämne (O₂) eller av olika (H₂O).');
+add('grund','Vad är en <b>kemisk formel</b>?',['Ett sätt att skriva ett ämne med kemiska tecken, t.ex. H₂O','En matematisk ekvation','En ritning av ett laboratorium','Ett recept på en blandning'],'Den kemiska formeln anger vilka atomer ämnet består av och hur många, t.ex. H₂O för vatten.');
+add('grund','Hur många grundämnen känner vi till idag?',['Ungefär 118','Ungefär 50','Ungefär 1000','Exakt 92'],'Boken: i nuläget känner vi till 118 grundämnen, varav 91 förekommer i naturen.');
+add('grund','Vilka är de tre grupperna av grundämnen?',['Metaller, icke-metaller och halvmetaller','Fasta, flytande och gaser','Syror, baser och salter','Atomer, molekyler och joner'],'Grundämnena delas efter sina egenskaper i metaller och icke-metaller, och en tredje grupp: halvmetaller.');
+add('grund','Vilket grundämne är en <b>halvmetall</b> som används i elektronik?',['Kisel (Si)','Kol (C)','Silver (Ag)','Syre (O)'],'Den mest kända halvmetallen är kisel, som används i elektronik.');
+add('grund','Vilken är den enda metallen som är <b>flytande</b> i rumstemperatur?',['Kvicksilver (Hg)','Järn (Fe)','Aluminium (Al)','Natrium (Na)'],'Kvicksilver är en tung och trögflytande vätska – den enda metall som är flytande i rumstemperatur. Den är giftig.');
+add('grund','Varför har kvicksilver tecknet <b>Hg</b>?',['Det kommer från latinets hydrargyrum, som betyder flytande silver','Det står för "heavy gold"','Det är förkortning för "Hälsofarligt"','Det är slumpvis valt'],'Hg kommer från latinets hydrargyrum = flytande silver. Många kemiska tecken kommer från latinska eller grekiska namn.');
+add('grund','Hur skrivs ett kemiskt tecken?',['En eller två bokstäver – den första stor, den andra liten','Alltid tre stora bokstäver','Alltid bara en liten bokstav','Med siffror'],'T.ex. C för kol och Fe för järn. Första bokstaven alltid stor, andra alltid liten.');
+add('grund','Vilka egenskaper har metaller vanligtvis?',['Fasta, hållbara och glänsande','Gasformiga och genomskinliga','Spröda och utan glans','Flytande och giftiga'],'Metaller är vanligtvis fasta, hållbara och glänsande, och har hög smältpunkt.');
+add('grund','Vilken av dessa är en <b>icke-metall</b>?',['Svavel','Järn','Silver','Aluminium'],'Svavel är en gul icke-metall som är fast vid rumstemperatur. Andra icke-metaller: syre, kväve, kol.');
+add('grund','Vilket är det minsta och enklaste atomslaget?',['Väte','Syre','Helium','Kol'],'Den minsta och enklaste atomen är väte.');
+add('grund','Hur förekommer syre vanligtvis i luften?',['Som tvåatomiga molekyler O₂','Som enskilda O-atomer','Som O₃ alltid','Som vatten'],'Syre i gasform finns som 2-atomiga molekyler O₂. Även kväve finns som N₂.');
+add('grund','Vad är skillnaden mellan en <b>blandning</b> av väte och syre och en <b>förening</b> av väte och syre?',['I föreningen är atomerna kemiskt bundna till varandra (vatten H₂O), i blandningen är de bara blandade','Det finns ingen skillnad','Blandningen är alltid flytande','Föreningen kan separeras med filter'],'I en blandning finns H₂- och O₂-molekyler bredvid varandra. I föreningen vatten H₂O är väte och syre bundna ihop till nya molekyler med nya egenskaper.');
+add('grund','Natrium (mjuk metall) och klor (grön giftig gas) bildar tillsammans …',['natriumklorid – koksalt','natriumoxid','klorvatten','järnsulfid'],'Natrium och klor är grundämnen, men tillsammans bildar de föreningen natriumklorid, alltså koksalt. Föreningen har helt andra egenskaper!');
+add('grund','Vilket grundämne reagerar häftigt med vatten och finns i bordssalt?',['Natrium (Na)','Kalium (K)','Järn (Fe)','Syre (O)'],'Natrium är ett mjukt metalliskt grundämne som reagerar häftigt med vatten och finns i koksalt (natriumklorid).');
+add('grund','Vad är "diväteoxid"?',['Vatten (H₂O)','Väteperoxid','Koldioxid','Ett giftigt ämne'],'Di = två, väte = H, oxid = syre. Diväteoxid = H₂O = vatten!');
+add('grund','Vatten (H₂O) är …',['en förening','ett grundämne','en blandning','en halvmetall'],'Vatten består av två grundämnen, väte och syre, som är kemiskt bundna – en förening.');
+add('grund','Syrgas (O₂) är …',['ett grundämne (molekyl av samma sorts atomer)','en förening','en blandning','en metall'],'O₂ består bara av syreatomer – det är ett grundämne, även om det bildar molekyler.');
+add('grund','Koldioxid (CO₂) är …',['en förening','ett grundämne','en blandning','en metall'],'CO₂ består av två olika grundämnen, kol och syre, bundna till varandra.');
+add('grund','Vad visar en <b>kalottmodell</b>?',['Hur atomerna i en molekyl sitter ihop, med färgade klot','Hur stor en kalott är','En karta över periodiska systemet','Ett laboratorium'],'I kalottmodeller ritas atomerna som klot. T.ex. koldioxid: ett svart klot (kol) i mitten och två röda (syre).');
+
+/* Kemiska tecken (genereras ur bokens tabell sid 38) */
+const EL=[['aluminium','Al'],['argon','Ar'],['bly','Pb'],['bor','B'],['brom','Br'],['fluor','F'],['fosfor','P'],['guld','Au'],['helium','He'],['jod','I'],['järn','Fe'],['kalcium','Ca'],['kalium','K'],['kisel','Si'],['klor','Cl'],['kol','C'],['koppar','Cu'],['kvicksilver','Hg'],['kväve','N'],['litium','Li'],['magnesium','Mg'],['natrium','Na'],['neon','Ne'],['silver','Ag'],['svavel','S'],['syre','O'],['tenn','Sn'],['titan','Ti'],['uran','U'],['väte','H'],['zink','Zn']];
+const FAKE={'Fe':['J','Ir','F'],'Ag':['Si','S','Sl'],'Au':['G','Gu','Ag'],'Pb':['B','Bl','Ly'],'Hg':['K','Kv','Ks'],'Na':['N','Nt','S'],'K':['Ka','Ca','Kl'],'Cu':['K','Ko','Co'],'S':['Sv','Si','Su'],'Sn':['Te','T','Tn'],'N':['K','Kv','Na'],'H':['V','Va','He'],'O':['S','Sy','Ox'],'C':['K','Ko','Ca'],'P':['F','Fo','Ph']};
+EL.forEach(([n,s])=>{
+  let wrong=(FAKE[s]||[]).slice();
+  const others=EL.filter(e=>e[1]!==s).map(e=>e[1]).sort(()=>Math.random()-.5);
+  while(wrong.length<3)wrong.push(others.pop());
+  add('tecken',`Vilket kemiskt tecken har <b>${n}</b>?`,[s,...wrong.slice(0,3)],`${n[0].toUpperCase()+n.slice(1)} = ${s}`);
+  const wn=EL.filter(e=>e[1]!==s).map(e=>e[0]).sort(()=>Math.random()-.5).slice(0,3);
+  add('tecken',`Vilket grundämne har tecknet <b>${s}</b>?`,[n,...wn],`${s} = ${n}`);
+});
+
+/* Formelskrivning */
+const sub=s=>s.replace(/(\D)(\d+)/g,'$1<sub>$2</sub>');
+add('formel','Vad betyder <b>2H</b>?',['Två väteatomer','En tvåatomig vätemolekyl','Två vätemolekyler','Vatten'],'Siffran framför (koefficienten) räknar antalet. 2H = två (lösa) väteatomer.');
+add('formel',`Vad betyder <b>${sub('H2')}</b>?`,['En tvåatomig vätemolekyl (vätgas)','Två lösa väteatomer','Två vätemolekyler','Väte och syre'],'Den lilla siffran nedtill visar hur många atomer som sitter ihop i molekylen. H₂ = en molekyl av två väteatomer = vätgas.');
+add('formel',`Vad betyder <b>3${sub('H2')}</b>?`,['Tre tvåatomiga vätemolekyler','Tre väteatomer','En molekyl med sex väteatomer','Två molekyler med tre väteatomer'],'3 framför = tre stycken. H₂ = tvåatomig vätemolekyl. Alltså tre tvåatomiga vätemolekyler.');
+add('formel',`Hur många väteatomer finns det totalt i <b>3${sub('H2')}</b>?`,['6','3','5','2'],'3 molekyler × 2 atomer = 6 väteatomer.');
+add('formel','Hur skriver du <b>två väteatomer</b>?',['2H',sub('H2'),'H2'.replace('2','<sup>2</sup>'),`2${sub('H2')}`],'Två lösa atomer: siffran framför → 2H.');
+add('formel','Hur skriver du <b>en tvåatomig vätemolekyl</b>?',[sub('H2'),'2H','H',`2${sub('H2')}`],'Två atomer som sitter ihop: liten siffra nedtill → H₂.');
+add('formel','Hur skriver du <b>tre tvåatomiga vätemolekyler</b>?',[`3${sub('H2')}`,'3H',sub('H3'),`2${sub('H3')}`],'3 stycken H₂ → 3H₂.');
+add('formel',`Vad är <b>${sub('H2O')}</b>?`,['Vatten','Väteperoxid','Vätgas','Syrgas'],'H₂O = vatten. Två väteatomer och en syreatom.');
+add('formel',`Vad är <b>${sub('CO2')}</b>?`,['Koldioxid','Kolmonoxid','Kalciumoxid','Koppar'],'CO₂ = koldioxid: en kolatom och två syreatomer. "Di" betyder två.');
+add('formel','Vad är <b>CO</b>?',['Kolmonoxid (koloxid, kolos)','Koldioxid','Kobolt','Koppar'],'CO = kolmonoxid: en kolatom och en syreatom. "Mono" betyder en. Kallas ibland bara koloxid eller kolos. Mycket giftig!');
+add('formel','Observera: vad är skillnaden mellan <b>CO</b> och <b>Co</b>?',['CO är kolmonoxid (kol + syre), Co är grundämnet kobolt','Det är samma sak','CO är kobolt, Co är kolmonoxid','Båda är koldioxid'],'Stor och liten bokstav spelar roll! Co (liten o) = ett grundämne. CO (två stora) = kol + syre.');
+add('formel','Vad är <b>MgO</b>?',['Magnesiumoxid','Mangan','Magnesium','Magnesiumsulfid'],'MgO = magnesiumoxid. Bildas när magnesium brinner.');
+add('formel','Vad är <b>FeS</b>?',['Järnsulfid','Järnoxid','Fluor och svavel','Rost'],'FeS = järnsulfid. Bildas när järn och svavel reagerar.');
+add('formel',`Vad är <b>${sub('O2')}</b>?`,['Syrgas (syre) – en tvåatomig syremolekyl','Två lösa syreatomer','Ozon','Vatten'],'O₂ = syrgas/syre. Betyder ibland "en tvåatomig syremolekyl".');
+add('formel','Vilken formel har <b>vatten</b>?',[sub('H2O'),sub('HO2'),sub('H2O2'),'2HO'],'Vatten = H₂O.');
+add('formel','Vilken formel har <b>koldioxid</b>?',[sub('CO2'),'CO','2CO',sub('C2O')],'Koldioxid = CO₂.');
+add('formel','Vilken formel har <b>magnesiumoxid</b>?',['MgO','MnO','Mg','MO'],'Magnesiumoxid = MgO.');
+add('formel','Vilken formel har <b>järnsulfid</b>?',['FeS','JS','FS','FeO'],'Järnsulfid = FeS (Fe = järn, S = svavel).');
+add('formel','Vilken formel har <b>kolmonoxid</b>?',['CO',sub('CO2'),'Co','KO'],'Kolmonoxid = CO.');
+add('formel',`Hur många atomer finns det i en molekyl <b>${sub('CO2')}</b>?`,['3 (1 kol + 2 syre)','2','1','4'],'C = 1 kolatom, O₂ = 2 syreatomer → totalt 3.');
+add('formel',`Hur många väteatomer finns det i <b>2${sub('H2O')}</b>?`,['4','2','3','6'],'2 vattenmolekyler × 2 väteatomer = 4. (Och 2 syreatomer.)');
+add('formel',`Vad betyder <b>3${sub('CO2')}</b>?`,['Tre koldioxidmolekyler','En molekyl med tre kolatomer','Tre kolatomer och två syreatomer','Koldioxid med tre syre'],'Boken: beteckningen 3CO₂ betyder tre koldioxidmolekyler.');
+add('formel','Vad betyder <b>3N</b>?',['Tre kväveatomer','En kvävemolekyl','Tre kvävemolekyler','Kväve och natrium'],'Siffran framför utan liten siffra bakom: tre lösa kväveatomer.');
+add('formel',`Vad betyder <b>${sub('N2')}</b>?`,['En tvåatomig kvävemolekyl','Två kväveatomer som inte sitter ihop','Natrium','Kväveoxid'],'N₂ = kvävemolekyl. Kväve i luften finns som N₂.');
+add('formel',`Hur många syreatomer finns det i <b>${sub('O3')}</b> (ozon)?`,['3','1','2','6'],'Liten siffra 3 = tre syreatomer i samma molekyl.');
+add('formel','Vad visar siffran som skrivs <b>nedtill</b> efter ett tecken (som 2:an i H₂O)?',['Den visar hur många atomer av det slaget som finns i molekylen','Den visar hur många molekyler det finns','Den visar temperaturen','Den visar laddningen'],'Lilla siffran nere till höger = antal atomer i molekylen. Siffran framför = antal molekyler/atomer.');
+
+/* Kemiska reaktioner */
+add('reak','Vad är en <b>kemisk reaktion</b>?',['När ämnen omvandlas till nya ämnen med nya egenskaper','När ett ämne smälter','När man blandar sand och salt','När ett ämne löser sig i vatten'],'Vid en kemisk reaktion bryts kemiska bindningar och atomerna binds på nytt sätt – nya ämnen bildas.');
+add('reak','Vad händer med atomerna vid en kemisk reaktion?',['Bindningar bryts och atomerna binds till andra atomer – atomerna försvinner inte','Atomerna försvinner','Nya atomer skapas','Atomerna blir större'],'Atomerna ordnas om. Bindningar bryts och nya bindningar uppkommer. Inga atomer försvinner.');
+add('reak','Vilket är ett exempel på en kemisk reaktion?',['Förbränning','Att socker löser sig i te','Att filtrera sand','Att is smälter'],'Förbränning är en kemisk reaktion – nya ämnen (oxider) bildas.');
+add('reak','Vad kallas ämnena <b>före</b> pilen i en reaktionsformel?',['Utgångsämnen (reaktanter)','Produkter','Katalysatorer','Lösningar'],'Utgångsämnen → produkter. Pilen betyder "bildar" eller "blir".');
+add('reak','Vad kallas ämnena <b>efter</b> pilen i en reaktionsformel?',['Produkter','Utgångsämnen','Reaktanter','Blandningar'],'Det som bildas kallas produkter.');
+add('reak','Vad betyder pilen → i en reaktionsformel?',['"bildar" / "reagerar och blir"','"är lika med" i matte','"minus"','"blandas med"'],'T.ex. järn + svavel → järnsulfid läses "järn och svavel bildar järnsulfid".');
+add('reak','Skriv reaktionen mellan järn och svavel med ord:',['järn + svavel → järnsulfid','järn + syre → järnsulfid','järnsulfid → järn + svavel + syre','järn + svavel → järnoxid'],'Järn och svavel reagerar och bildar föreningen järnsulfid.');
+add('reak','Skriv reaktionen mellan järn och svavel med kemiska tecken:',['Fe + S → FeS','J + S → JS','Fe + O → FeO','F + S → FS'],'Fe (järn) + S (svavel) → FeS (järnsulfid).');
+add('reak','Hur kan man separera en <b>blandning</b> av järnpulver och svavelpulver?',['Med en magnet – järnet dras till magneten','Det går inte','Genom att värma den','Genom att tillsätta syre'],'I en blandning har järnet kvar sina egenskaper, så det är magnetiskt och kan dras ut med en magnet.');
+add('reak','Vad händer när man värmer blandningen av järn och svavel?',['De reagerar och bildar ett nytt ämne, järnsulfid','Svavlet avdunstar och järnet blir kvar','Ingenting händer','Det bildas vatten'],'Vid upphettning reagerar järn och svavel. Reaktionen ger ifrån sig värme (det glöder) och järnsulfid bildas.');
+add('reak','Går järnsulfid att separera med en magnet?',['Nej, det är en förening med nya egenskaper','Ja, eftersom det innehåller järn','Ja, om man värmer den först','Bara svavlet fastnar'],'Järnsulfid är ett nytt ämne. Järnatomerna är bundna till svavelatomerna och man kan inte skilja dem med magnet.');
+add('reak','Järn + svavel före uppvärmning är en … och efter uppvärmning en …',['blandning … förening','förening … blandning','grundämne … blandning','lösning … emulsion'],'Före: blandning (kan separeras med magnet). Efter: förening (järnsulfid, FeS).');
+add('reak','Vilka tecken kan visa att en kemisk reaktion har skett?',['Ljus, värme, färgändring, gasbubblor eller att ett nytt ämne bildas','Att ämnet bara byter form','Att ämnet blir blött','Att man rör om'],'Tecken på kemisk reaktion: ljus eller värme frigörs, färgen ändras, gas bildas (bubblor), en fällning bildas.');
+add('reak','När järn rostar är det en …',['långsam kemisk reaktion','snabb kemisk reaktion','fysikalisk förändring','separationsmetod'],'Järn + syre → rost. Det tar lång tid – en långsam kemisk reaktion.');
+add('reak','Vad händer med energin vid en kemisk reaktion?',['Energi frigörs eller binds – en kemisk reaktion är alltid en omvandling av energi','Energin försvinner','Ingen energi är inblandad','Energi skapas ur ingenting'],'Boken: vid en kemisk reaktion sker alltid en omvandling av energi. Bindningar bryts och nya bildas.');
+add('reak','Vad är en <b>explosion</b>?',['En mycket snabb reaktion som frigör stora mängder energi och gas','En långsam reaktion','När ett ämne löser sig','En separationsmetod'],'Gasbildningen leder till ett högt tryck som kan spräcka kärlet – en explosion.');
+add('reak','Ungefär hur många <b>föreningar</b> finns det i naturen?',['Miljontals','Ungefär 90','Exakt 118','Ungefär 1000'],'Det finns ungefär nittio olika grundämnen i naturen, men miljontals föreningar.');
+add('reak','Brustablett i vatten bubblar. Vad visar det?',['En kemisk reaktion sker – en gas bildas','Tabletten smälter','Vattnet kokar','Tabletten filtreras'],'Bubblorna är en gas som bildas – ett tecken på kemisk reaktion.');
+add('reak','Skriv förbränningen av magnesium med ord:',['magnesium + syre → magnesiumoxid','magnesium + vatten → magnesiumoxid','magnesiumoxid → magnesium + syre','magnesium + kol → koldioxid'],'Vid förbränning reagerar ämnet med syre. Produkten är en oxid: magnesiumoxid.');
+add('reak','Vilken reaktionsformel visar att magnesium brinner?',[`2Mg + ${sub('O2')} → 2MgO`,`Mg + ${sub('H2O')} → MgO`,`MgO → Mg + O`,`Mn + ${sub('O2')} → MnO`],'Boken sid 77: 2 Mg + O₂ → 2 MgO.');
+add('reak','Skriv förbränningen av kol (med mycket syre) med ord:',['kol + syre → koldioxid','kol + vatten → koldioxid','kol + syre → vatten','koldioxid → kol + syre'],'Kol brinner med syre och bildar koldioxid, CO₂. (C + O₂ → CO₂)');
+add('reak','Skriv förbränningen av väte med ord:',['väte + syre → vatten','väte + kol → vatten','väte → syre','väte + syre → väteperoxid'],'Väte brinner och bildar diväteoxid, H₂O – känt som vatten.');
+
+/* Förbränning & brandsäkerhet */
+add('forbr','Vad är <b>förbränning</b>?',['En kemisk reaktion där ett ämne reagerar med syre','När ett ämne smälter','När vatten kokar','En separationsmetod'],'Förbränning = kemisk reaktion där det brinnande ämnet binds till syre.');
+add('forbr','Vad kallas de ämnen som bildas vid förbränning?',['Oxider','Sulfider','Klorider','Legeringar'],'Ämnen som bildas vid förbränning kallas oxider – föreningar med syre.');
+add('forbr','Vilka tre saker behövs för att det ska bli eld?',['Brännbart ämne, syre och tillräckligt hög temperatur','Vatten, syre och kol','Bränsle, koldioxid och ljus','Luft, vatten och värme'],'Förutsättningarna för förbränning: brännbart ämne + syre + tillräckligt hög temperatur. Tas en bort slocknar elden.');
+add('forbr','Hur släcker man en eld i princip?',['Man tar bort en av förutsättningarna för förbränning','Man tillför mer syre','Man höjer temperaturen','Man tillsätter mer bränsle'],'Ta bort bränslet, kyl ner (sänk temperaturen) eller kväv elden (stoppa syretillförseln).');
+add('forbr','Hur släcker en <b>brandfilt</b> elden?',['Genom kvävning – den stoppar syretillförseln','Genom att kyla ner','Genom att ta bort bränslet','Genom att tillföra koldioxid'],'Med en brandfilt kväver man elden så att den inte får syre.');
+add('forbr','Hur släcker <b>vatten</b> en brand?',['Vatten kyler ner och hindrar också tillgången till syre','Vatten tar bort bränslet','Vatten reagerar med elden','Vatten tillför syre'],'Vatten kyler ner det brinnande ämnet och hindrar också syretillförseln.');
+add('forbr','Vad ska du <b>aldrig</b> göra om fett i en kastrull börjar brinna?',['Hälla vatten på','Lägga på ett lock','Använda brandfilt','Stänga av spisen'],'Vatten får man aldrig använda på brinnande fett, bensin eller elektriska apparater. Kväv med lock eller brandfilt.');
+add('forbr','Vilken släckare kan användas till brinnande fett och elektriska apparater?',['Koldioxidsläckare (eller pulversläckare)','Vatten','Vattenhink','Bensin'],'Koldioxid används också för att släcka brinnande fett och elektriska apparater. Pulversläckare kan användas till alla sorters bränder.');
+add('forbr','Vilken släckare kan användas till <b>alla sorters</b> bränder?',['Pulversläckare','Vatten','Sand','Koldioxidsläckare'],'Boken: pulversläckare kan användas för att släcka alla sorters bränder.');
+add('forbr','Hur är det säkrast att släcka ett stearinljus?',['Genom kvävning, t.ex. med en ljussläckare','Genom att blåsa hårt','Genom att hälla vatten på','Genom att ta bort veken'],'Boken: det är säkrast att släcka ljus genom kvävning.');
+add('forbr','Vid markbränder röjer man bort brännbart material framför elden. Vilken förutsättning tar man bort?',['Bränslet (det brännbara ämnet)','Syret','Temperaturen','Koldioxiden'],'Genom att röja bort det brinnande ämnet i närheten förhindrar man att branden sprider sig.');
+add('forbr','Vad ska du göra om det börjar brinna inomhus och du inte klarar av att släcka?',['Lämna huset, stäng dörrarna och ring nödnumret 112','Öppna alla fönster','Gömma dig i ett rum','Hälla vatten på elektriska apparater'],'Ring 112. Stäng dörrarna så att elden inte får mer syre.');
+add('forbr','Vad är det lag på att det ska finnas i alla bostäder?',['Brandvarnare','Brandsläckare','Brandfilt','Sprinkler'],'Det är lag på att det ska finnas brandvarnare i alla bostäder.');
+add('forbr','Vad är <b>antändningstemperatur</b>?',['Den lägsta temperatur vid vilken ett ämne börjar brinna','Temperaturen när vatten kokar','Den högsta temperatur en eld kan ha','Temperaturen när ett ämne smälter'],'Ämnen börjar brinna vid olika temperaturer. Den lägsta kallas antändningstemperatur. T.ex. tidningspapper ca 230 °C.');
+add('forbr','Vad är <b>flampunkt</b>?',['Den lägsta temperatur vid vilken ångorna från en vätska börjar brinna','Temperaturen då en flamma slocknar','Smältpunkten för metaller','Kokpunkten för vatten'],'Flampunkt gäller vätskor – t.ex. har bensin flampunkt ca −45 °C, därför är den så farlig.');
+add('forbr','Varför brinner inte ett papperskärl med vatten när man värmer det över en låga?',['Vattnet kokar vid 100 °C, så papperet blir aldrig tillräckligt varmt för att börja brinna','Papper kan inte brinna','Vattnet tar bort syret','Pappret är fuktigt utanpå'],'Papper antänds vid ca 230 °C. Så länge det finns vatten kvar kan papperets temperatur inte stiga mycket över 100 °C.');
+add('forbr','I en låga är det …',['gas som brinner','bara fast ämne som glöder','vatten som kokar','syre som brinner'],'Om det är tillräckligt varmt övergår vissa ämnen i gasform och då ser vi förbränningen som en låga.');
+add('forbr','Vad är det glödande i en gul låga (t.ex. stearinljus)?',['Kolpartiklar från ofullständig förbränning','Syre','Vatten','Koldioxid'],'I lågan finns glödande kolpartiklar från en ofullständig förbränning. Det är också dessa som bildar sot.');
+add('forbr','Vad bildas när magnesium brinner?',['Magnesiumoxid, MgO – ett vitt pulver','Magnesiumsulfid','Koldioxid','Vatten'],'Magnesium + syre → magnesiumoxid (2Mg + O₂ → 2MgO).');
+add('forbr','Hur ser det ut när magnesium brinner (labben)?',['Mycket klar, bländande vit låga – titta inte rakt in','Blå, svag låga','Det bildas svart rök','Det brinner inte alls'],'Magnesium brinner med en mycket klar låga. Man ska inte titta rakt in i den.');
+add('forbr','Vad bildas när <b>stearin</b> (eller trä) brinner fullständigt?',['Koldioxid och vatten','Bara aska','Magnesiumoxid','Järnoxid'],'Stearin innehåller kol och väte. Kolet blir koldioxid och vätet blir vatten. (Boken: när trä brinner bildas koldioxid och vatten.)');
+add('forbr','Stearinljus-labben: hur kan man visa att det bildas <b>vatten</b>?',['Ett kallt glas över lågan blir immigt','Kalkvatten blir grumligt','Lågan blir blå','Ljuset blir tyngre'],'Imma (vattendroppar) syns på ett kallt glas som hålls över lågan.');
+add('forbr','Stearinljus-labben: hur kan man visa att det bildas <b>koldioxid</b>?',['Kalkvatten blir grumligt','Ett glas blir immigt','Lågan slocknar direkt','Det luktar svavel'],'Koldioxid gör kalkvatten grumligt (mjölkigt).');
+add('forbr','Vad är det egentligen som brinner i ett stearinljus?',['Stearinångor (stearin i gasform)','Bara veken','Fast stearin','Syret i luften'],'Värmen smälter stearinet, veken suger upp det och det förångas. Det är stearinångorna som brinner i lågan.');
+add('forbr','Stålull-labben: vad händer med massan när stålull brinner?',['Den ökar – järnet binds till syre och bildar järnoxid','Den minskar eftersom något försvinner','Den är exakt samma','Den blir noll'],'Järn + syre → järnoxid. Syre från luften binds till järnet, så produkten väger mer.');
+add('forbr','Skriv förbränningen av stålull med ord:',['järn + syre → järnoxid','järn + svavel → järnsulfid','kol + syre → koldioxid','järn → rost + vatten'],'Stålull är tunna järntrådar. Järn + syre → järnoxid.');
+add('forbr','Vad upptäckte kemister på 1700-talet om ämnen som brunnit?',['Att de har större massa än innan – det brinnande ämnet binds till syre','Att de försvinner helt','Att eld är ett grundämne','Att de blir till vatten'],'Ett ämne som brunnit har större massa än det obrunna. Därför förstod man att ämnet binds till syre.');
+add('forbr','Vad bildas när kol brinner med <b>för lite syre</b>?',['Kolmonoxid, CO (kolos) – mycket giftigt','Koldioxid','Syrgas','Vatten'],'När det inte finns tillräckligt med syre bildas kolmonoxid, CO. Den tränger undan syret i blodet och kan i värsta fall leda till kvävning.');
+add('forbr','Varför är kolmonoxid (CO) farligt?',['Den tränger undan syret i blodet – kan leda till kvävning','Den är frätande','Den exploderar alltid','Den är radioaktiv'],'Om man andas in kolmonoxid tränger den undan syret i blodomloppet.');
+add('forbr','Vad bildas när kol brinner med <b>tillräckligt</b> med syre?',['Koldioxid, CO₂','Kolmonoxid, CO','Magnesiumoxid','Järnsulfid'],'Fullständig förbränning av kol ger koldioxid.');
+add('forbr','Kan förbränning ske långsamt?',['Ja, t.ex. när trä murknar – energi frigörs ändå','Nej, förbränning sker alltid med låga','Nej, bara explosioner räknas','Bara i laboratorium'],'Förbränning kan ske långsamt (som när trä murknar) eller snabbt. Vid all förbränning frigörs energi.');
+add('forbr','Vilket ämne har högst antändningstemperatur enligt boken: socker, tidningspapper, magnesium eller torrt trä?',['Magnesium (ca 500 °C)','Tidningspapper','Socker','Torrt trä'],'Magnesium 500 °C, socker 410 °C, matolja och torrt trä 250 °C, tidningspapper 230 °C.');
+add('forbr','Vad innebär det att något är <b>lättantändligt</b>, som bensin och aceton?',['Det börjar brinna mycket lätt, även vid låg temperatur','Det kan inte brinna','Det släcker eld','Det är en metall'],'Bensin och aceton är särskilt lättantändliga. Bensin har flampunkt −45 °C.');
+add('forbr','Var ska en brandfilt hänga?',['På ett lättåtkomligt ställe hemma och i labbet','Inlåst i ett skåp','I källaren','I bilen'],'Brandfilten ska hänga på ett lättåtkomligt ställe hemma och i laboratoriet.');
+add('forbr','Om någons kläder börjar brinna – vad gör man?',['Kväver elden, t.ex. med brandfilt, och personen rullar på marken','Personen springer så fort som möjligt','Häller bensin på','Fläktar på elden'],'Springer man får elden mer syre. Kväv elden med brandfilt och rulla.');
+
+/* ---------- Logik ---------- */
+const $=id=>document.getElementById(id);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let sel=new Set(Object.keys(CATS)), N=20, run=null;
+
+function renderCats(){
+  const box=$('cats');box.innerHTML='';
+  for(const k in CATS){
+    const cnt=Q.filter(q=>q.c===k).length;
+    const lab=document.createElement('label');lab.className='cat'+(sel.has(k)?' on':'');
+    lab.innerHTML=`<input type="checkbox" ${sel.has(k)?'checked':''}><span><b>${CATS[k].n}</b><small>${CATS[k].s} · ${cnt} frågor</small></span>`;
+    lab.querySelector('input').onchange=e=>{e.target.checked?sel.add(k):sel.delete(k);renderCats();};
+    box.appendChild(lab);
+  }
+  const tot=Q.filter(q=>sel.has(q.c)).length;
+  $('poolInfo').textContent=`${tot} frågor i de valda områdena.`;
+  $('go').disabled=!tot;
+}
+document.querySelectorAll('#nsel button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#nsel button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');N=+b.dataset.n;});
+$('allOn').onclick=()=>{sel=new Set(Object.keys(CATS));renderCats();};
+$('allOff').onclick=()=>{sel=new Set();renderCats();};
+
+function show(id){['start','quiz','result','sheet'].forEach(s=>$(s).classList.toggle('hide',s!==id));window.scrollTo(0,0);}
+
+function build(list){
+  // jämn fördelning mellan områden
+  const by={};shuffle(list).forEach(q=>(by[q.c]=by[q.c]||[]).push(q));
+  const keys=shuffle(Object.keys(by));const out=[];
+  while(out.length<Math.min(N,list.length)){for(const k of keys){if(by[k].length&&out.length<N)out.push(by[k].pop());}if(keys.every(k=>!by[k].length))break;}
+  return shuffle(out);
+}
+function prep(q){
+  if(q.picOpts){
+    const others=shuffle(SYMS.filter(s=>s.k!==q.picOpts)).slice(0,3);
+    const opts=shuffle([{h:pic(q.picOpts),ok:true},...others.map(s=>({h:pic(s.k),ok:false,lab:s.n}))]);
+    return {...q,opts,pics:true};
+  }
+  return {...q,opts:shuffle(q.a.map((h,i)=>({h,ok:i===0})))};
+}
+function start(list){
+  run={qs:build(list).map(prep),i:0,score:0,wrong:[],per:{}};
+  show('quiz');ask();
+}
+function ask(){
+  const q=run.qs[run.i];run.answered=false;
+  $('qnum').textContent=`Fråga ${run.i+1} av ${run.qs.length}`;
+  $('qscore').textContent=`Rätt: ${run.score}`;
+  $('prog').style.width=(run.i/run.qs.length*100)+'%';
+  $('qtag').textContent=CATS[q.c].n;
+  $('qtext').innerHTML=q.q;
+  $('qimg').innerHTML=q.img||'';$('qimg').classList.toggle('hide',!q.img);
+  const o=$('opts');o.innerHTML='';o.classList.toggle('pics',!!q.pics);
+  q.opts.forEach((op,i)=>{const b=document.createElement('button');b.className='opt';b.innerHTML=q.pics?op.h:`<b>${i+1}.</b> ${op.h}`;b.onclick=()=>answer(i);o.appendChild(b);});
+  $('fb').innerHTML='';$('next').classList.add('hide');
+}
+function answer(i){
+  if(run.answered)return;run.answered=true;
+  const q=run.qs[run.i],btns=[...document.querySelectorAll('#opts .opt')];
+  const ok=q.opts[i].ok;
+  btns.forEach((b,j)=>{b.disabled=true;if(q.opts[j].ok)b.classList.add('ok');else if(j===i)b.classList.add('bad');});
+  const p=run.per[q.c]=run.per[q.c]||{r:0,t:0};p.t++;
+  if(ok){run.score++;p.r++;}else run.wrong.push({q,y:q.opts[i]});
+  $('fb').innerHTML=`<div class="fb ${ok?'':'bad'}"><b>${ok?'✅ Rätt!':'❌ Inte riktigt.'}</b>${q.e}</div>`;
+  $('qscore').textContent=`Rätt: ${run.score}`;
+  const n=$('next');n.classList.remove('hide');n.textContent=run.i+1<run.qs.length?'Nästa ▶':'Se resultat ▶';n.focus();
+}
+$('next').onclick=()=>{run.i++;run.i<run.qs.length?ask():results();};
+$('quit').onclick=()=>{run.qs.length=Math.max(run.i+(run.answered?1:0),0);run.qs.length?results():show('start');};
+document.addEventListener('keydown',e=>{
+  if($('quiz').classList.contains('hide'))return;
+  if(/^[1-4]$/.test(e.key)&&!run.answered){const b=document.querySelectorAll('#opts .opt')[+e.key-1];if(b)b.click();}
+  else if(e.key==='Enter'&&run.answered){e.preventDefault();$('next').click();}
+});
+function results(){
+  const t=run.qs.length,pct=Math.round(run.score/t*100);
+  $('rscore').textContent=`${run.score} / ${t}`;
+  $('rmsg').textContent=pct>=90?'🏆 Superbra! Du är redo för provet.':pct>=70?'👍 Bra jobbat! Repetera felen nedan.':pct>=50?'💪 På god väg – öva på felen och kör igen.':'📚 Läs fusklappen och försök igen – det blir bättre för varje gång!';
+  $('rcats').innerHTML=Object.entries(run.per).map(([k,p])=>`<div class="res-cat"><span>${CATS[k].n}</span><b>${p.r}/${p.t}</b></div>`).join('');
+  $('rwrongCard').classList.toggle('hide',!run.wrong.length);
+  $('rwrong').innerHTML=run.wrong.map(w=>{
+    const right=w.q.opts.find(o=>o.ok);
+    return `<div class="wrong"><div>${w.q.q}${w.q.img?'<br>'+w.q.img:''}</div><div class="y">Ditt svar: ${w.y.h}</div><div class="a">Rätt: ${right.h}</div><div class="note">${w.q.e}</div></div>`;}).join('');
+  $('retryWrong').classList.toggle('hide',!run.wrong.length);
+  show('result');
+}
+$('go').onclick=()=>start(Q.filter(q=>sel.has(q.c)));
+$('again').onclick=()=>start(Q.filter(q=>sel.has(q.c)));
+$('retryWrong').onclick=()=>{const w=run.wrong.map(x=>Q.find(q=>q.q===x.q.q&&q.c===x.q.c&&(q.img===x.q.img)&&(q.picOpts===x.q.picOpts))).filter(Boolean);const keep=N;N=999;start(w);N=keep;};
+$('home').onclick=()=>show('start');
+
+/* ---------- Fusklapp ---------- */
+$('sheetBody').innerHTML=`
+<h3>⚠️ Varningssymboler</h3>
+<div class="symgrid">${SYMS.map(s=>`<div>${pic(s.k)}<b>${s.n}</b><br>${s.d}</div>`).join('')}</div>
+<p class="note">Bilderna här är förenklade – jämför med bilderna i boken sid 18.</p>
+<ul><li>Varningssymbolerna är gemensamma och internationella och berättar om ett ämne är skadligt, hälsofarligt, giftigt, lättantändligt eller frätande.</li><li>Ät och drick aldrig i kemisalen. Tvätta händerna när du går ut.</li><li>Vissa kemikalier måste samlas upp och föras till en uppsamlingsstation för farligt avfall.</li><li>Brännskada: kallt rinnande vatten så fort som möjligt. Nödbrytaren slår snabbt av strömmen.</li></ul>
+
+<h3>🥤 Blandningar och rena ämnen (kap 4)</h3>
+<ul>
+<li><b>Rent ämne</b>: alla partiklar likadana. Antingen <b>grundämne</b> eller <b>förening</b>. Har exakt smält- och kokpunkt.</li>
+<li><b>Blandning</b>: minst två rena ämnen.</li>
+<li><b>Homogen</b> blandning: lika helt igenom (lösningar, gasblandningar t.ex. luft, legeringar t.ex. stål och mässing, saft).</li>
+<li><b>Heterogen</b> blandning: man ser delarna. Rök (fast i gas), dimma (vätska i gas), slam (fast i vätska), skum (gas i vätska), emulsion (två vätskor som inte löser sig, t.ex. mjölk), gel.</li>
+<li><b>Lösning</b> = lösningsmedel + löst ämne.</li>
+</ul>
+
+<h3>⚗️ Separationsmetoder (kap 5)</h3>
+<table>
+<tr><th>Metod</th><th>Bygger på</th><th>Används när …</th></tr>
+<tr><td>Filtrering</td><td>partikelstorlek</td><td>fast ämne (ej löst) ska bort ur vätska/gas – sand från vatten</td></tr>
+<tr><td>Dekantering</td><td>fast ämne sjunker</td><td>häll av vätskan – kokkaffe</td></tr>
+<tr><td>Extraktion</td><td>löslighet</td><td>lösa ut vissa ämnen – te, kaffe, salt ur sand</td></tr>
+<tr><td>Indunstning</td><td>vätskan avdunstar</td><td>få tillbaka löst fast ämne – salt ur saltvatten</td></tr>
+<tr><td>Destillation</td><td>olika kokpunkt</td><td>få ren vätska – rent vatten ur havsvatten, alkohol, oljeraffinering</td></tr>
+</table>
+<p><b>Sand + salt:</b> lös i vatten → filtrera (sanden i filtret) → indunsta filtratet (saltet blir kvar).</p>
+
+<h3>⚛️ Grundämnen och föreningar (kap 6)</h3>
+<ul>
+<li><b>Atom</b> = minsta byggstenen. <b>Grundämne</b> = bara en sorts atomer (118 kända, 91 i naturen).</li>
+<li><b>Förening</b> = minst två olika grundämnen kemiskt bundna (H₂O, CO₂, NaCl).</li>
+<li><b>Molekyl</b> = minst två atomer bundna ihop (O₂, H₂O).</li>
+<li><b>Kemisk formel</b> = ämnet skrivet med kemiska tecken, visar vilka och hur många atomer.</li>
+<li>Metaller, icke-metaller, halvmetaller (kisel). Kvicksilver = enda flytande metallen.</li>
+</ul>
+
+<h3>✍️ Formelskrivning</h3>
+<table>
+<tr><td>2H</td><td>två väteatomer</td></tr>
+<tr><td>H₂</td><td>en tvåatomig vätemolekyl (vätgas)</td></tr>
+<tr><td>3H₂</td><td>tre tvåatomiga vätemolekyler</td></tr>
+<tr><td>H₂O</td><td>vatten</td></tr>
+<tr><td>O₂</td><td>syrgas / syre</td></tr>
+<tr><td>CO₂</td><td>koldioxid</td></tr>
+<tr><td>CO</td><td>kolmonoxid (koloxid, kolos) – giftig</td></tr>
+<tr><td>MgO</td><td>magnesiumoxid</td></tr>
+<tr><td>FeS</td><td>järnsulfid</td></tr>
+</table>
+<p class="note">Stor siffra framför = antal. Liten siffra nedtill = antal atomer i molekylen.</p>
+
+<h3>🔬 Kemiska tecken (bokens tabell)</h3>
+<p>${EL.map(([n,s])=>`<b>${s}</b>&nbsp;${n}`).join(' · ')}</p>
+
+<h3>🔥 Kemiska reaktioner och förbränning</h3>
+<ul>
+<li><b>Kemisk reaktion</b>: nya ämnen bildas. Bindningar bryts och nya bildas, atomerna försvinner inte.</li>
+<li>järn + svavel → järnsulfid &nbsp; <b>Fe + S → FeS</b> (blandningen kan separeras med magnet, föreningen inte)</li>
+<li><b>Förbränning</b> = reaktion med syre → <b>oxider</b>. Energi frigörs.</li>
+<li>magnesium + syre → magnesiumoxid &nbsp; <b>2Mg + O₂ → 2MgO</b> (bländande vitt ljus, vitt pulver)</li>
+<li>järn (stålull) + syre → järnoxid (blir tyngre!)</li>
+<li>stearin/trä + syre → koldioxid + vatten (för lite syre → kolmonoxid och sot)</li>
+<li><b>Eldens tre förutsättningar</b>: brännbart ämne, syre, tillräckligt hög temperatur.</li>
+<li><b>Släcka</b>: ta bort bränslet, kyla (vatten), kväva (brandfilt, lock). Aldrig vatten på fett, bensin eller el – använd brandfilt, koldioxid- eller pulversläckare. Ring 112.</li>
+<li><b>Antändningstemperatur</b>: lägsta temp då ämnet börjar brinna. <b>Flampunkt</b>: lägsta temp då ångorna från en vätska börjar brinna.</li>
+</ul>`;
+$('sheetBtn').onclick=()=>show('sheet');
+$('sheetBack').onclick=()=>show('start');
+
+renderCats();
+</script>
+</body>
+</html>
