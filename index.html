@@ -1,497 +1,2463 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kemiquiz 7AC</title>
-<style>
-:root{
-  --bg:#f4f6fb; --card:#ffffff; --ink:#1c2233; --muted:#5d667c; --line:#dfe4ee;
-  --accent:#4b5bd6; --accent-ink:#ffffff; --accent-soft:#e8ebfc;
-  --ok:#1f8a4c; --ok-soft:#e3f5ea; --bad:#c23a3a; --bad-soft:#fbe7e7;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#13161f; --card:#1d2130; --ink:#e9ecf5; --muted:#a3abc0; --line:#323850;
-    --accent:#8391ff; --accent-ink:#10131c; --accent-soft:#2a3052;
-    --ok:#5fd18f; --ok-soft:#1d3a2a; --bad:#ff8a8a; --bad-soft:#4a2424;
-  }
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:720px;margin:0 auto;padding:20px 16px 60px}
-h1{font-size:1.6rem;margin:4px 0 2px}
-h2{font-size:1.2rem;margin:22px 0 10px}
-.sub{color:var(--muted);margin:0 0 18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}
-.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.cat{display:flex;gap:10px;align-items:flex-start;padding:12px;border:2px solid var(--line);border-radius:12px;cursor:pointer;background:var(--card);user-select:none}
-.cat input{margin-top:4px;width:18px;height:18px;accent-color:var(--accent)}
-.cat.on{border-color:var(--accent);background:var(--accent-soft)}
-.cat small{display:block;color:var(--muted);font-size:.8rem}
-.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-button{font:inherit;cursor:pointer;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:10px 16px}
-button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
-button:disabled{opacity:.5;cursor:default}
-.seg button.sel{border-color:var(--accent);background:var(--accent-soft)}
-.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden;margin:8px 0 14px}
-.bar>div{height:100%;background:var(--accent);transition:width .3s}
-.meta{display:flex;justify-content:space-between;color:var(--muted);font-size:.9rem}
-.tag{display:inline-block;font-size:.78rem;padding:2px 10px;border-radius:20px;background:var(--accent-soft);color:var(--ink);margin-bottom:8px}
-.q{font-size:1.2rem;font-weight:600;margin:4px 0 14px}
-.qimg{display:flex;justify-content:center;margin:6px 0 14px}
-.qimg svg{width:130px;height:130px}
-.opts{display:grid;gap:10px}
-.opts.pics{grid-template-columns:repeat(2,1fr)}
-.opt{text-align:left;padding:12px 14px;width:100%}
-.opts.pics .opt{display:flex;justify-content:center;padding:8px}
-.opts.pics .opt svg{width:90px;height:90px}
-.opt:hover:not(:disabled){border-color:var(--accent)}
-.opt.ok{border-color:var(--ok);background:var(--ok-soft)}
-.opt.bad{border-color:var(--bad);background:var(--bad-soft)}
-.opt:disabled{opacity:1;cursor:default}
-.fb{margin-top:14px;padding:12px 14px;border-radius:12px;border-left:5px solid var(--ok);background:var(--ok-soft)}
-.fb.bad{border-color:var(--bad);background:var(--bad-soft)}
-.fb b{display:block;margin-bottom:2px}
-.big{font-size:2.6rem;font-weight:700;margin:0}
-.res-cat{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)}
-.wrong{padding:10px 0;border-bottom:1px solid var(--line)}
-.wrong .a{color:var(--ok);font-weight:600}
-.wrong .y{color:var(--bad)}
-.wrong svg{width:60px;height:60px;vertical-align:middle}
-.sheet h3{margin:16px 0 6px;font-size:1.05rem}
-.sheet ul{margin:0;padding-left:20px}
-.sheet li{margin:3px 0}
-.symgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.symgrid div{text-align:center;font-size:.85rem}
-.symgrid svg{width:80px;height:80px;display:block;margin:0 auto 4px}
-table{border-collapse:collapse;width:100%}
-td,th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
-.hide{display:none}
-.note{color:var(--muted);font-size:.85rem}
-kbd{border:1px solid var(--line);border-radius:4px;padding:0 5px;font-size:.8rem}
-</style>
-</head>
-<body>
-<div class="wrap">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kemiquiz 7</title>
+    <style>
+      :root {
+        --bg: #f4f6fb;
+        --card: #ffffff;
+        --ink: #1c2233;
+        --muted: #5d667c;
+        --line: #dfe4ee;
+        --accent: #4b5bd6;
+        --accent-ink: #ffffff;
+        --accent-soft: #e8ebfc;
+        --ok: #1f8a4c;
+        --ok-soft: #e3f5ea;
+        --bad: #c23a3a;
+        --bad-soft: #fbe7e7;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #13161f;
+          --card: #1d2130;
+          --ink: #e9ecf5;
+          --muted: #a3abc0;
+          --line: #323850;
+          --accent: #8391ff;
+          --accent-ink: #10131c;
+          --accent-soft: #2a3052;
+          --ok: #5fd18f;
+          --ok-soft: #1d3a2a;
+          --bad: #ff8a8a;
+          --bad-soft: #4a2424;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          17px/1.5 system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+      }
+      .wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 20px 16px 60px;
+      }
+      h1 {
+        font-size: 1.6rem;
+        margin: 4px 0 2px;
+      }
+      h2 {
+        font-size: 1.2rem;
+        margin: 22px 0 10px;
+      }
+      .sub {
+        color: var(--muted);
+        margin: 0 0 18px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 18px;
+        margin: 12px 0;
+      }
+      .cats {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+      }
+      .cat {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 12px;
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        cursor: pointer;
+        background: var(--card);
+        user-select: none;
+      }
+      .cat input {
+        margin-top: 4px;
+        width: 18px;
+        height: 18px;
+        accent-color: var(--accent);
+      }
+      .cat.on {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+      }
+      .cat small {
+        display: block;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+        border-radius: 12px;
+        border: 2px solid var(--line);
+        background: var(--card);
+        color: var(--ink);
+        padding: 10px 16px;
+      }
+      button.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--accent-ink);
+        font-weight: 600;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      .seg button.sel {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+      }
+      .bar {
+        height: 8px;
+        background: var(--line);
+        border-radius: 6px;
+        overflow: hidden;
+        margin: 8px 0 14px;
+      }
+      .bar > div {
+        height: 100%;
+        background: var(--accent);
+        transition: width 0.3s;
+      }
+      .meta {
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .tag {
+        display: inline-block;
+        font-size: 0.78rem;
+        padding: 2px 10px;
+        border-radius: 20px;
+        background: var(--accent-soft);
+        color: var(--ink);
+        margin-bottom: 8px;
+      }
+      .q {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 4px 0 14px;
+      }
+      .qimg {
+        display: flex;
+        justify-content: center;
+        margin: 6px 0 14px;
+      }
+      .qimg svg {
+        width: 130px;
+        height: 130px;
+      }
+      .opts {
+        display: grid;
+        gap: 10px;
+      }
+      .opts.pics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .opt {
+        text-align: left;
+        padding: 12px 14px;
+        width: 100%;
+      }
+      .opts.pics .opt {
+        display: flex;
+        justify-content: center;
+        padding: 8px;
+      }
+      .opts.pics .opt svg {
+        width: 90px;
+        height: 90px;
+      }
+      .opt:hover:not(:disabled) {
+        border-color: var(--accent);
+      }
+      .opt.ok {
+        border-color: var(--ok);
+        background: var(--ok-soft);
+      }
+      .opt.bad {
+        border-color: var(--bad);
+        background: var(--bad-soft);
+      }
+      .opt:disabled {
+        opacity: 1;
+        cursor: default;
+      }
+      .fb {
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border-left: 5px solid var(--ok);
+        background: var(--ok-soft);
+      }
+      .fb.bad {
+        border-color: var(--bad);
+        background: var(--bad-soft);
+      }
+      .fb b {
+        display: block;
+        margin-bottom: 2px;
+      }
+      .big {
+        font-size: 2.6rem;
+        font-weight: 700;
+        margin: 0;
+      }
+      .res-cat {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .wrong {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .wrong .a {
+        color: var(--ok);
+        font-weight: 600;
+      }
+      .wrong .y {
+        color: var(--bad);
+      }
+      .wrong svg {
+        width: 60px;
+        height: 60px;
+        vertical-align: middle;
+      }
+      .sheet h3 {
+        margin: 16px 0 6px;
+        font-size: 1.05rem;
+      }
+      .sheet ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+      .sheet li {
+        margin: 3px 0;
+      }
+      .symgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+      }
+      .symgrid div {
+        text-align: center;
+        font-size: 0.85rem;
+      }
+      .symgrid svg {
+        width: 80px;
+        height: 80px;
+        display: block;
+        margin: 0 auto 4px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      td,
+      th {
+        border-bottom: 1px solid var(--line);
+        padding: 4px 6px;
+        text-align: left;
+      }
+      .hide {
+        display: none;
+      }
+      .note {
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      kbd {
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 0 5px;
+        font-size: 0.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- START -->
+      <section id="start">
+        <h1>Kemiquiz 🧪</h1>
+        <p class="sub">
+          Inför kemiprovet 12.11 · byggt på läsanvisningarna och bokens sidor
+        </p>
 
-<!-- START -->
-<section id="start">
-  <h1>Kemiquiz 🧪</h1>
-  <p class="sub">Inför kemiprovet 12.11 · byggt på läsanvisningarna och bokens sidor</p>
+        <div class="card">
+          <h2 style="margin-top: 0">1. Välj områden</h2>
+          <div class="cats" id="cats"></div>
+          <div class="row" style="margin-top: 12px">
+            <button id="allOn">Markera alla</button>
+            <button id="allOff">Avmarkera alla</button>
+          </div>
+        </div>
 
-  <div class="card">
-    <h2 style="margin-top:0">1. Välj områden</h2>
-    <div class="cats" id="cats"></div>
-    <div class="row" style="margin-top:12px">
-      <button id="allOn">Markera alla</button>
-      <button id="allOff">Avmarkera alla</button>
+        <div class="card">
+          <h2 style="margin-top: 0">2. Hur många frågor?</h2>
+          <div class="row seg" id="nsel">
+            <button data-n="10">10</button>
+            <button data-n="20" class="sel">20</button>
+            <button data-n="40">40</button>
+            <button data-n="999">Alla</button>
+          </div>
+          <div class="row" style="margin-top: 16px">
+            <button class="primary" id="go">Starta quiz ▶</button>
+            <button id="sheetBtn">📄 Fusklapp</button>
+          </div>
+          <p class="note" id="poolInfo"></p>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section id="quiz" class="hide">
+        <div class="meta"><span id="qnum"></span><span id="qscore"></span></div>
+        <div class="bar"><div id="prog"></div></div>
+        <div class="card">
+          <span class="tag" id="qtag"></span>
+          <div class="q" id="qtext"></div>
+          <div class="qimg" id="qimg"></div>
+          <div class="opts" id="opts"></div>
+          <div id="fb"></div>
+          <div
+            class="row"
+            style="margin-top: 14px; justify-content: space-between"
+          >
+            <button id="quit">Avsluta</button>
+            <button class="primary hide" id="next">Nästa ▶</button>
+          </div>
+        </div>
+        <p class="note">
+          Tips: tangenterna <kbd>1</kbd>–<kbd>4</kbd> väljer svar,
+          <kbd>Enter</kbd> går vidare.
+        </p>
+      </section>
+
+      <!-- RESULT -->
+      <section id="result" class="hide">
+        <div class="card" style="text-align: center">
+          <p class="big" id="rscore"></p>
+          <p id="rmsg" style="margin: 4px 0 0"></p>
+        </div>
+        <div class="card">
+          <h2 style="margin-top: 0">Per område</h2>
+          <div id="rcats"></div>
+        </div>
+        <div class="card" id="rwrongCard">
+          <h2 style="margin-top: 0">Det här blev fel</h2>
+          <div id="rwrong"></div>
+        </div>
+        <div class="row">
+          <button class="primary" id="retryWrong">Öva på felen igen</button>
+          <button id="again">Ny omgång</button>
+          <button id="home">Till start</button>
+        </div>
+      </section>
+
+      <!-- SHEET -->
+      <section id="sheet" class="hide">
+        <div class="row" style="justify-content: space-between">
+          <h1>Fusklapp</h1>
+          <button id="sheetBack">◀ Tillbaka</button>
+        </div>
+        <div class="card sheet" id="sheetBody"></div>
+      </section>
     </div>
-  </div>
 
-  <div class="card">
-    <h2 style="margin-top:0">2. Hur många frågor?</h2>
-    <div class="row seg" id="nsel">
-      <button data-n="10">10</button>
-      <button data-n="20" class="sel">20</button>
-      <button data-n="40">40</button>
-      <button data-n="999">Alla</button>
-    </div>
-    <div class="row" style="margin-top:16px">
-      <button class="primary" id="go">Starta quiz ▶</button>
-      <button id="sheetBtn">📄 Fusklapp</button>
-    </div>
-    <p class="note" id="poolInfo"></p>
-  </div>
-</section>
+    <script>
+      /* ---------- Varningssymboler (förenklade bilder) ---------- */
+      function starPts(cx, cy, R, r, n) {
+        let p = [];
+        for (let i = 0; i < n * 2; i++) {
+          const a = (Math.PI * i) / n - Math.PI / 2,
+            rr = i % 2 ? r : R;
+          p.push(
+            (cx + rr * Math.cos(a)).toFixed(1) +
+              "," +
+              (cy + rr * Math.sin(a)).toFixed(1),
+          );
+        }
+        return p.join(" ");
+      }
+      function burst() {
+        let s = '<circle cx="50" cy="58" r="9" stroke="none"/>';
+        for (let i = 0; i < 10; i++) {
+          const a = (Math.PI * 2 * i) / 10 - Math.PI / 2;
+          const x1 = 50 + 13 * Math.cos(a),
+            y1 = 58 + 13 * Math.sin(a) * 0.9,
+            x2 = 50 + 21 * Math.cos(a),
+            y2 = 58 + 21 * Math.sin(a) * 0.9;
+          s += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke-width="3" stroke-linecap="round"/>`;
+        }
+        s +=
+          '<rect x="30" y="30" width="5" height="5" stroke="none" transform="rotate(20 32 32)"/><rect x="64" y="31" width="5" height="5" stroke="none" transform="rotate(-25 66 33)"/><rect x="70" y="58" width="4" height="4" stroke="none"/>';
+        return s;
+      }
+      const ICON = {
+        explosivt: burst(),
+        brandfarligt:
+          '<path stroke="none" d="M50 22c3 9 12 14 13 26 1 9-5 18-13 18s-14-7-13-15c1-7 5-9 6-15 3 4 3 7 6 8 1-7-2-14 1-22z"/><rect x="33" y="69" width="34" height="4" stroke="none"/>',
+        oxiderande:
+          '<circle cx="50" cy="61" r="8.5" fill="none" stroke-width="4"/><path stroke="none" d="M50 22c2 6 9 10 9 18 0 4-2 7-4 9 0-4-2-6-5-8-3 2-5 4-5 8-2-2-4-5-4-9 0-6 5-9 6-13 1 2 2 3 3 4 1-3 1-6 0-9z"/><rect x="33" y="72" width="34" height="4" stroke="none"/>',
+        gas: '<rect x="27" y="50" width="40" height="17" rx="8.5" stroke="none"/><rect x="66" y="54" width="7" height="9" stroke="none"/><rect x="73" y="51" width="3" height="15" stroke="none"/>',
+        fratande:
+          '<g transform="rotate(-35 37 32)"><rect x="33" y="20" width="8" height="20" rx="2" fill="none" stroke-width="2.5"/></g><g transform="rotate(35 63 32)"><rect x="59" y="20" width="8" height="20" rx="2" fill="none" stroke-width="2.5"/></g><circle cx="43" cy="49" r="1.8" stroke="none"/><circle cx="43" cy="56" r="1.8" stroke="none"/><circle cx="57" cy="49" r="1.8" stroke="none"/><circle cx="57" cy="56" r="1.8" stroke="none"/><path stroke="none" d="M27 64h20v10H27zM40 64l3-3 2 3z" /><path stroke="none" d="M53 74v-6l4-3v-4h3v4h3v-6h3v6h3v9z"/><rect x="26" y="75" width="48" height="2.5" stroke="none"/>',
+        giftigt:
+          '<circle cx="50" cy="40" r="12" stroke="none"/><rect x="43" y="46" width="14" height="10" rx="2" stroke="none"/><circle cx="45" cy="39" r="3.2" fill="#fff" stroke="none"/><circle cx="55" cy="39" r="3.2" fill="#fff" stroke="none"/><path d="M50 44l-2 4h4z" fill="#fff" stroke="none"/><path d="M33 59l34 13M67 59L33 72" stroke-width="5" stroke-linecap="round"/>',
+        skadligt:
+          '<rect x="45" y="25" width="10" height="33" rx="3" stroke="none"/><circle cx="50" cy="68" r="5.5" stroke="none"/>',
+        halsofarligt:
+          '<circle cx="50" cy="29" r="6.5" stroke="none"/><path stroke="none" d="M35 75V50c0-7 4-11 10-11h10c6 0 10 4 10 11v25z"/><polygon fill="#fff" stroke="none" points="' +
+          starPts(50, 57, 10, 4, 8) +
+          '"/>',
+        miljo:
+          '<path d="M36 73V40M36 50l-9-8M36 46l8-10M36 59l6-5" stroke-width="3" fill="none" stroke-linecap="round"/><path stroke="none" d="M50 66c4-5 12-5 16 0-4 5-12 5-16 0zM65 66l7-5v10z"/><circle cx="54" cy="64.5" r="1.3" fill="#fff" stroke="none"/><rect x="26" y="74" width="48" height="3" stroke="none"/>',
+      };
+      function pic(k) {
+        return `<svg viewBox="0 0 100 100" role="img" aria-label="varningssymbol"><polygon points="50,5 95,50 50,95 5,50" fill="#fff" stroke="#e30613" stroke-width="7" stroke-linejoin="miter"/><g fill="#000" stroke="#000">${ICON[k]}</g></svg>`;
+      }
+      const SYMS = [
+        {
+          k: "explosivt",
+          n: "Explosivt",
+          d: "kan explodera, t.ex. av värme, stötar eller gnistor",
+        },
+        {
+          k: "brandfarligt",
+          n: "Lättantändligt",
+          d: "brinner lätt – ska hållas borta från värme och öppen eld",
+        },
+        {
+          k: "oxiderande",
+          n: "Oxiderande",
+          d: "ger ifrån sig syre och kan få andra ämnen att brinna kraftigare",
+        },
+        {
+          k: "gas",
+          n: "Gas under tryck",
+          d: "behållaren innehåller gas under tryck och kan explodera om den värms upp",
+        },
+        {
+          k: "fratande",
+          n: "Frätande",
+          d: "kan ge frätskador på hud och ögon och fräta på metall",
+        },
+        {
+          k: "giftigt",
+          n: "Giftigt",
+          d: "kan vara dödligt även i små mängder",
+        },
+        {
+          k: "skadligt",
+          n: "Irriterande / skadligt",
+          d: "kan irritera hud, ögon eller luftvägar",
+        },
+        {
+          k: "halsofarligt",
+          n: "Hälsofarligt",
+          d: "kan ge allvarliga skador på sikt, t.ex. på lungor eller orsaka cancer",
+        },
+        {
+          k: "miljo",
+          n: "Miljöfarligt",
+          d: "skadligt för djur och natur, särskilt i vatten",
+        },
+      ];
 
-<!-- QUIZ -->
-<section id="quiz" class="hide">
-  <div class="meta"><span id="qnum"></span><span id="qscore"></span></div>
-  <div class="bar"><div id="prog"></div></div>
-  <div class="card">
-    <span class="tag" id="qtag"></span>
-    <div class="q" id="qtext"></div>
-    <div class="qimg" id="qimg"></div>
-    <div class="opts" id="opts"></div>
-    <div id="fb"></div>
-    <div class="row" style="margin-top:14px;justify-content:space-between">
-      <button id="quit">Avsluta</button>
-      <button class="primary hide" id="next">Nästa ▶</button>
-    </div>
-  </div>
-  <p class="note">Tips: tangenterna <kbd>1</kbd>–<kbd>4</kbd> väljer svar, <kbd>Enter</kbd> går vidare.</p>
-</section>
+      /* ---------- Kategorier ---------- */
+      const CATS = {
+        sym: { n: "Varningssymboler & säkerhet", s: "sid 18" },
+        bland: { n: "Blandningar & rena ämnen", s: "kap 4" },
+        sep: { n: "Separationsmetoder", s: "kap 5 + häftet" },
+        grund: { n: "Grundämnen, föreningar, molekyler", s: "kap 6" },
+        tecken: { n: "Kemiska tecken", s: "grundämnenas symboler" },
+        formel: { n: "Formelskrivning", s: "kemispråk" },
+        reak: { n: "Kemiska reaktioner", s: "häftet + sid 65" },
+        forbr: { n: "Förbränning & brandsäkerhet", s: "kap 12" },
+      };
 
-<!-- RESULT -->
-<section id="result" class="hide">
-  <div class="card" style="text-align:center">
-    <p class="big" id="rscore"></p>
-    <p id="rmsg" style="margin:4px 0 0"></p>
-  </div>
-  <div class="card"><h2 style="margin-top:0">Per område</h2><div id="rcats"></div></div>
-  <div class="card" id="rwrongCard"><h2 style="margin-top:0">Det här blev fel</h2><div id="rwrong"></div></div>
-  <div class="row">
-    <button class="primary" id="retryWrong">Öva på felen igen</button>
-    <button id="again">Ny omgång</button>
-    <button id="home">Till start</button>
-  </div>
-</section>
+      /* ---------- Frågor: a[0] är rätt svar ---------- */
+      const Q = [];
+      function add(c, q, a, e, img) {
+        Q.push({ c, q, a, e, img });
+      }
 
-<!-- SHEET -->
-<section id="sheet" class="hide">
-  <div class="row" style="justify-content:space-between"><h1>Fusklapp</h1><button id="sheetBack">◀ Tillbaka</button></div>
-  <div class="card sheet" id="sheetBody"></div>
-</section>
+      /* Varningssymboler */
+      SYMS.forEach((s) => {
+        add(
+          "sym",
+          "Vad betyder den här varningssymbolen?",
+          [
+            s.n,
+            ...SYMS.filter((x) => x !== s)
+              .sort(() => Math.random() - 0.5)
+              .slice(0, 3)
+              .map((x) => x.n),
+          ],
+          `${s.n}: ${s.d}.`,
+          pic(s.k),
+        );
+        add(
+          "sym",
+          `Vilken symbol betyder att ämnet är <i>${s.n.toLowerCase()}</i>?`,
+          null,
+          `${s.n}: ${s.d}.`,
+          null,
+        );
+        Q[Q.length - 1].picOpts = s.k;
+      });
+      add(
+        "sym",
+        "Vilken form och färg har varningssymbolerna?",
+        [
+          "Vit romb (kvadrat på spetsen) med röd kant och svart bild",
+          "Gul triangel med svart kant",
+          "Röd cirkel med vit bild",
+          "Blå fyrkant med vit bild",
+        ],
+        "Varningssymbolerna är vita romber med röd ram och en svart bild.",
+      );
+      add(
+        "sym",
+        "Vilken varningssymbol ska lättantändliga ämnen, t.ex. bensin, vara märkta med?",
+        [
+          "Lättantändligt (flamman)",
+          "Frätande",
+          "Miljöfarligt",
+          "Gas under tryck",
+        ],
+        "Boken (sid 80): lättantändliga ämnen måste märkas med en varningssymbol – flamman.",
+      );
 
-</div>
+      add(
+        "sym",
+        "Vad berättar varningssymbolerna på en förpackning?",
+        [
+          "Om ämnet är t.ex. skadligt, hälsofarligt, giftigt, lättantändligt eller frätande",
+          "Hur mycket ämnet kostar",
+          "Vilket land ämnet kommer ifrån",
+          "Hur ämnet smakar",
+        ],
+        "Boken sid 18: varningssymbolerna berättar om det kemiska ämnet är skadligt, hälsofarligt eller giftigt, och det finns symboler för lättantändliga och frätande ämnen.",
+      );
+      add(
+        "sym",
+        "Gäller varningssymbolerna bara i Finland/Sverige?",
+        [
+          "Nej, de är gemensamma internationella symboler",
+          "Ja, varje land har egna",
+          "Bara i skolan",
+          "Bara i EU:s labb",
+        ],
+        "Man har kommit överens om gemensamma, internationella varningssymboler för kemikalier.",
+      );
+      add(
+        "sym",
+        "Vad gäller i kemisalen?",
+        [
+          "Man får inte äta eller dricka, och man tvättar händerna när man går ut",
+          "Man får äta om man är försiktig",
+          "Man behöver aldrig tvätta händerna",
+          "Man får smaka på ämnena",
+        ],
+        "Boken: du får inte äta eller dricka i kemisalen. Kom ihåg att tvätta händerna när du går ut ur rummet.",
+      );
+      add(
+        "sym",
+        "Hur gör man sig av med farliga kemikalier?",
+        [
+          "De samlas upp, sorteras och förs till en uppsamlingsstation för farligt avfall",
+          "Man häller alltid ut dem i avloppet",
+          "Man slänger dem i blandavfallet",
+          "Man bränner upp dem",
+        ],
+        "Vissa kemikalier kan spolas ner eller slängas i blandavfallet, men andra måste samlas upp och föras till en uppsamlingsstation för farligt avfall.",
+      );
+      add(
+        "sym",
+        "Du bränner handen i labbet. Vad gör du först?",
+        [
+          "Håller handen under kallt rinnande vatten så fort som möjligt",
+          "Sätter på ett plåster direkt",
+          "Smörjer in med fett",
+          "Väntar och ser om det går över",
+        ],
+        "Boken sid 18: får du en brännskada på handen ska du så fort som möjligt sätta handen under kallt och rinnande vatten.",
+      );
+      add(
+        "sym",
+        "Vad används en nödbrytare (nödstopp) till?",
+        [
+          "Att snabbt slå av strömmen",
+          "Att släcka eld med vatten",
+          "Att larma brandkåren",
+          "Att starta ventilationen",
+        ],
+        "Med en nödbrytare går det fort att slå av strömmen.",
+      );
 
-<script>
-/* ---------- Varningssymboler (förenklade bilder) ---------- */
-function starPts(cx,cy,R,r,n){let p=[];for(let i=0;i<n*2;i++){const a=Math.PI*i/n-Math.PI/2,rr=i%2?r:R;p.push((cx+rr*Math.cos(a)).toFixed(1)+','+(cy+rr*Math.sin(a)).toFixed(1));}return p.join(' ');}
-function burst(){let s='<circle cx="50" cy="58" r="9" stroke="none"/>';for(let i=0;i<10;i++){const a=Math.PI*2*i/10-Math.PI/2;const x1=50+13*Math.cos(a),y1=58+13*Math.sin(a)*0.9,x2=50+21*Math.cos(a),y2=58+21*Math.sin(a)*0.9;s+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke-width="3" stroke-linecap="round"/>`;}
-  s+='<rect x="30" y="30" width="5" height="5" stroke="none" transform="rotate(20 32 32)"/><rect x="64" y="31" width="5" height="5" stroke="none" transform="rotate(-25 66 33)"/><rect x="70" y="58" width="4" height="4" stroke="none"/>';return s;}
-const ICON={
-  explosivt: burst(),
-  brandfarligt:'<path stroke="none" d="M50 22c3 9 12 14 13 26 1 9-5 18-13 18s-14-7-13-15c1-7 5-9 6-15 3 4 3 7 6 8 1-7-2-14 1-22z"/><rect x="33" y="69" width="34" height="4" stroke="none"/>',
-  oxiderande:'<circle cx="50" cy="61" r="8.5" fill="none" stroke-width="4"/><path stroke="none" d="M50 22c2 6 9 10 9 18 0 4-2 7-4 9 0-4-2-6-5-8-3 2-5 4-5 8-2-2-4-5-4-9 0-6 5-9 6-13 1 2 2 3 3 4 1-3 1-6 0-9z"/><rect x="33" y="72" width="34" height="4" stroke="none"/>',
-  gas:'<rect x="27" y="50" width="40" height="17" rx="8.5" stroke="none"/><rect x="66" y="54" width="7" height="9" stroke="none"/><rect x="73" y="51" width="3" height="15" stroke="none"/>',
-  fratande:'<g transform="rotate(-35 37 32)"><rect x="33" y="20" width="8" height="20" rx="2" fill="none" stroke-width="2.5"/></g><g transform="rotate(35 63 32)"><rect x="59" y="20" width="8" height="20" rx="2" fill="none" stroke-width="2.5"/></g><circle cx="43" cy="49" r="1.8" stroke="none"/><circle cx="43" cy="56" r="1.8" stroke="none"/><circle cx="57" cy="49" r="1.8" stroke="none"/><circle cx="57" cy="56" r="1.8" stroke="none"/><path stroke="none" d="M27 64h20v10H27zM40 64l3-3 2 3z" /><path stroke="none" d="M53 74v-6l4-3v-4h3v4h3v-6h3v6h3v9z"/><rect x="26" y="75" width="48" height="2.5" stroke="none"/>',
-  giftigt:'<circle cx="50" cy="40" r="12" stroke="none"/><rect x="43" y="46" width="14" height="10" rx="2" stroke="none"/><circle cx="45" cy="39" r="3.2" fill="#fff" stroke="none"/><circle cx="55" cy="39" r="3.2" fill="#fff" stroke="none"/><path d="M50 44l-2 4h4z" fill="#fff" stroke="none"/><path d="M33 59l34 13M67 59L33 72" stroke-width="5" stroke-linecap="round"/>',
-  skadligt:'<rect x="45" y="25" width="10" height="33" rx="3" stroke="none"/><circle cx="50" cy="68" r="5.5" stroke="none"/>',
-  halsofarligt:'<circle cx="50" cy="29" r="6.5" stroke="none"/><path stroke="none" d="M35 75V50c0-7 4-11 10-11h10c6 0 10 4 10 11v25z"/><polygon fill="#fff" stroke="none" points="'+starPts(50,57,10,4,8)+'"/>',
-  miljo:'<path d="M36 73V40M36 50l-9-8M36 46l8-10M36 59l6-5" stroke-width="3" fill="none" stroke-linecap="round"/><path stroke="none" d="M50 66c4-5 12-5 16 0-4 5-12 5-16 0zM65 66l7-5v10z"/><circle cx="54" cy="64.5" r="1.3" fill="#fff" stroke="none"/><rect x="26" y="74" width="48" height="3" stroke="none"/>'
-};
-function pic(k){return `<svg viewBox="0 0 100 100" role="img" aria-label="varningssymbol"><polygon points="50,5 95,50 50,95 5,50" fill="#fff" stroke="#e30613" stroke-width="7" stroke-linejoin="miter"/><g fill="#000" stroke="#000">${ICON[k]}</g></svg>`;}
-const SYMS=[
-  {k:'explosivt',n:'Explosivt',d:'kan explodera, t.ex. av värme, stötar eller gnistor'},
-  {k:'brandfarligt',n:'Lättantändligt',d:'brinner lätt – ska hållas borta från värme och öppen eld'},
-  {k:'oxiderande',n:'Oxiderande',d:'ger ifrån sig syre och kan få andra ämnen att brinna kraftigare'},
-  {k:'gas',n:'Gas under tryck',d:'behållaren innehåller gas under tryck och kan explodera om den värms upp'},
-  {k:'fratande',n:'Frätande',d:'kan ge frätskador på hud och ögon och fräta på metall'},
-  {k:'giftigt',n:'Giftigt',d:'kan vara dödligt även i små mängder'},
-  {k:'skadligt',n:'Irriterande / skadligt',d:'kan irritera hud, ögon eller luftvägar'},
-  {k:'halsofarligt',n:'Hälsofarligt',d:'kan ge allvarliga skador på sikt, t.ex. på lungor eller orsaka cancer'},
-  {k:'miljo',n:'Miljöfarligt',d:'skadligt för djur och natur, särskilt i vatten'}
-];
+      /* Kap 4: Blandningar & rena ämnen */
+      add(
+        "bland",
+        "Vilka två grupper kan vi dela in ämnen i?",
+        [
+          "Rena ämnen och blandningar",
+          "Metaller och gaser",
+          "Fasta och flytande",
+          "Syror och baser",
+        ],
+        "Alla ämnen är antingen rena ämnen eller blandningar.",
+      );
+      add(
+        "bland",
+        "Vad är ett <b>rent ämne</b>?",
+        [
+          "Ett ämne där alla partiklar är likadana – det innehåller bara ett enda ämne",
+          "Ett ämne som är helt fritt från bakterier",
+          "Ett ämne som är genomskinligt",
+          "Ett ämne som har blandats med vatten",
+        ],
+        'I ett rent ämne är alla partiklar likadana. "Rent" i kemin betyder bara ett ämne – inte att det är fritt från smuts eller bakterier.',
+      );
+      add(
+        "bland",
+        "Rena ämnen är antingen …",
+        [
+          "grundämnen eller föreningar",
+          "lösningar eller emulsioner",
+          "metaller eller legeringar",
+          "homogena eller heterogena",
+        ],
+        "Rena ämnen är antingen grundämnen eller (kemiska) föreningar.",
+      );
+      add(
+        "bland",
+        "Vad är en <b>blandning</b>?",
+        [
+          "Minst två rena ämnen som blandats",
+          "Ett ämne med bara en sorts atomer",
+          "Två grundämnen som bundits kemiskt till en förening",
+          "Ett ämne som har exakt kokpunkt",
+        ],
+        "En blandning består av minst två rena ämnen.",
+      );
+      add(
+        "bland",
+        "Vatten i en ren sjö – är det ett rent ämne kemiskt sett?",
+        [
+          "Nej, det är en blandning eftersom det finns lösta salter och andra ämnen i det",
+          "Ja, om det inte finns bakterier i det",
+          "Ja, vatten är alltid ett rent ämne",
+          "Nej, det är ett grundämne",
+        ],
+        "Sjövatten är kemiskt sett inte ett rent ämne – det finns alltid lösta salter och andra föreningar i det. Kemiskt rent vatten innehåller bara vattenmolekyler H₂O.",
+      );
+      add(
+        "bland",
+        "Vad är en <b>homogen</b> blandning?",
+        [
+          "En blandning som är likadan helt igenom – man kan inte se de olika beståndsdelarna",
+          "En blandning där man kan se de olika delarna",
+          "En blandning av bara metaller",
+          "En blandning som består av ett enda ämne",
+        ],
+        "Homogen = lika helt igenom. T.ex. saft, luft och saltvatten.",
+      );
+      add(
+        "bland",
+        "Vad är en <b>heterogen</b> blandning?",
+        [
+          "En blandning där man kan se (urskilja) de olika beståndsdelarna",
+          "En blandning som är lika helt igenom",
+          "Ett rent ämne",
+          "En lösning",
+        ],
+        "Heterogen = man kan urskilja de olika beståndsdelarna, t.ex. korvsoppa, sand och sten.",
+      );
+      add(
+        "bland",
+        "Vilken av dessa är en <b>homogen</b> blandning?",
+        ["Saft", "Korvsoppa", "Sand och sten", "Dimma"],
+        "I saft kan vi inte urskilja de olika beståndsdelarna, så den är homogen.",
+      );
+      add(
+        "bland",
+        "Vilken av dessa är en <b>heterogen</b> blandning?",
+        ["Rök", "Luft", "Saltvatten", "Mässing"],
+        "Rök = fasta partiklar blandade med gas. Den är heterogen.",
+      );
+      add(
+        "bland",
+        "Vilka typer av blandningar är <b>homogena</b>?",
+        [
+          "Lösningar, gasblandningar och metallblandningar (legeringar)",
+          "Rök, slam och skum",
+          "Emulsioner och geler",
+          "Dimma och rök",
+        ],
+        "Boken: lösningar, gasblandningar och metallblandningar (legeringar) är homogena.",
+      );
+      add(
+        "bland",
+        "Vilka är exempel på <b>heterogena</b> blandningar enligt boken?",
+        [
+          "Rök, slam, emulsion, gel, dimma och skum",
+          "Lösningar och legeringar",
+          "Luft och saft",
+          "Socker och salt",
+        ],
+        "Heterogena blandningar: rök, slam, emulsion, gel, dimma och skum.",
+      );
+      add(
+        "bland",
+        "Vad är en <b>lösning</b>?",
+        [
+          "Ett lösningsmedel med ett ämne som lösts upp i det",
+          "Två vätskor som inte löser sig i varandra",
+          "Fasta partiklar i en gas",
+          "Gasbubblor i en vätska",
+        ],
+        "En lösning = lösningsmedel + ett upplöst ämne. Det upplösta ämnet kan vara fast, flytande eller gas. Klar saft är ett exempel.",
+      );
+      add(
+        "bland",
+        "Vad är en <b>emulsion</b>?",
+        [
+          "Två vätskor som inte löst sig i varandra, t.ex. mjölk",
+          "Fasta partiklar blandade med gas",
+          "Gasbubblor i en vätska",
+          "En vätska med ett löst fast ämne",
+        ],
+        "En emulsion består av två vätskor som inte löst sig i varandra. Mjölk och många hudkrämer är emulsioner.",
+      );
+      add(
+        "bland",
+        "Mjölk är …",
+        [
+          "en heterogen blandning (emulsion)",
+          "en homogen blandning (lösning)",
+          "ett rent ämne",
+          "ett grundämne",
+        ],
+        'Boken: "Mjölk är en heterogen blandning" – en emulsion av vatten och fetter.',
+      );
+      add(
+        "bland",
+        "Vad är <b>dimma</b>?",
+        [
+          "Fuktdroppar (vätska) blandade med gas",
+          "Fasta partiklar blandade med gas",
+          "Fast ämne blandat med vätska",
+          "Gasbubblor i vätska",
+        ],
+        "Dimma = fuktdroppar blandade med gas.",
+      );
+      add(
+        "bland",
+        "Vad är <b>rök</b>?",
+        [
+          "Fasta partiklar blandade med gas",
+          "Vätskedroppar i gas",
+          "Gasbubblor i vätska",
+          "Två vätskor som inte löser sig",
+        ],
+        "Rök = fasta partiklar som blandats med gas.",
+      );
+      add(
+        "bland",
+        "Vad är <b>slam</b>?",
+        [
+          "Fast ämne blandat med vätska",
+          "Gas blandad med vätska",
+          "Vätska blandad med gas",
+          "Två gaser",
+        ],
+        "Slam = fast ämne som blandats med vätska (t.ex. lera i vatten).",
+      );
+      add(
+        "bland",
+        "Vad är <b>skum</b>?",
+        [
+          "Gasbubblor blandade i en vätska",
+          "Fasta partiklar i gas",
+          "Två vätskor som inte löser sig",
+          "Fast ämne i vätska",
+        ],
+        "I skum har gasbubblor blandats i en vätska.",
+      );
+      add(
+        "bland",
+        "Vad är en <b>gel</b>?",
+        [
+          "Ett fast ämne som bildar ett nätverk där vätska har trängt in",
+          "Gasbubblor i vätska",
+          "Fasta partiklar i gas",
+          "En gasblandning",
+        ],
+        "En gel består av ett fast ämne som bildar ett nätverk, och in i nätverket har vätska trängt in (t.ex. kräm/gelé).",
+      );
+      add(
+        "bland",
+        "Luft är …",
+        [
+          "en gasblandning (homogen blandning)",
+          "ett rent ämne",
+          "ett grundämne",
+          "en heterogen blandning",
+        ],
+        "Luft är en gasblandning, främst av kväve och syre.",
+      );
+      add(
+        "bland",
+        "Vad kallas en blandning av metaller, t.ex. stål eller mässing?",
+        ["Legering", "Emulsion", "Lösning", "Förening"],
+        "Metallblandningar kallas legeringar. Järn + krom + nickel ger rostfritt stål. Koppar + zink ger mässing.",
+      );
+      add(
+        "bland",
+        "Mässing är en legering av …",
+        ["koppar och zink", "järn och kol", "guld och silver", "tenn och bly"],
+        "Blandar man koppar med zink får man mässing, som är hårdare än koppar och zink.",
+      );
+      add(
+        "bland",
+        "Vilket av dessa är ett <b>rent ämne</b>?",
+        ["Socker", "Mjölk", "Te", "Sand"],
+        "Rent socker består bara av sockermolekyler. Mjölk, te och sand är blandningar.",
+      );
+      add(
+        "bland",
+        "Vilket av dessa är ett <b>rent ämne</b>?",
+        ["Järn", "Tandkräm", "Mineralvatten", "Mjölkdryck"],
+        "Järn är ett grundämne och alltså ett rent ämne.",
+      );
+      add(
+        "bland",
+        "Vilket av dessa är en <b>blandning</b>?",
+        ["Tandkräm", "Kol", "Järn", "Socker"],
+        "Tandkräm består av många olika ämnen – en blandning.",
+      );
+      add(
+        "bland",
+        "Bordssalt (koksalt) är nästan helt ren …",
+        ["natriumklorid", "natriumoxid", "kalciumklorid", "järnsulfid"],
+        "Bordssalt är nästan helt ren natriumklorid, NaCl. Man har bara blandat i små mängder av andra ämnen.",
+      );
+      add(
+        "bland",
+        "Hurdana egenskaper har ett rent ämne?",
+        [
+          "Exakta smält- och kokpunkter",
+          "Det kan inte smälta",
+          "Det är alltid en vätska",
+          "Det ändrar smältpunkt hela tiden",
+        ],
+        "Boken: rena ämnen har exakta smält- och kokpunkter.",
+      );
+      add(
+        "bland",
+        "Vilken typ av blandning är <b>lemonad</b> (klar)?",
+        ["Lösning", "Emulsion", "Skum", "Rök"],
+        "En klar dryck som lemonad eller saft är en lösning – en homogen blandning.",
+      );
+      add(
+        "bland",
+        "Vilken typ av blandning är <b>fuktighetskräm</b>?",
+        ["Emulsion", "Gasblandning", "Lösning", "Rök"],
+        "Många hudkrämer är emulsioner – blandningar av vatten och fetter som inte löst sig i varandra.",
+      );
+      add(
+        "bland",
+        "Vilken typ av blandning är <b>vispgrädde / efterrättskräm</b>?",
+        ["Skum", "Rök", "Lösning", "Legering"],
+        "Vispad grädde har gasbubblor (luft) i en vätska – skum.",
+      );
+      add(
+        "bland",
+        "Vilken typ av blandning är ett <b>guldsmycke</b>?",
+        [
+          "Metallblandning (legering)",
+          "Emulsion",
+          "Gel",
+          "Rent grundämne alltid",
+        ],
+        "Guldsmycken är oftast en legering – guld blandat med t.ex. silver eller koppar för att bli hårdare.",
+      );
+      add(
+        "bland",
+        "Havsvatten är en …",
+        [
+          "lösning (homogen blandning)",
+          "heterogen blandning",
+          "ren förening",
+          "grundämne",
+        ],
+        "Havsvatten är en lösning – vattnet innehåller ämnen som lösts upp och som vi inte kan se.",
+      );
 
-/* ---------- Kategorier ---------- */
-const CATS={
-  sym:{n:'Varningssymboler & säkerhet',s:'sid 18'},
-  bland:{n:'Blandningar & rena ämnen',s:'kap 4'},
-  sep:{n:'Separationsmetoder',s:'kap 5 + häftet'},
-  grund:{n:'Grundämnen, föreningar, molekyler',s:'kap 6'},
-  tecken:{n:'Kemiska tecken',s:'grundämnenas symboler'},
-  formel:{n:'Formelskrivning',s:'kemispråk'},
-  reak:{n:'Kemiska reaktioner',s:'häftet + sid 65'},
-  forbr:{n:'Förbränning & brandsäkerhet',s:'kap 12'}
-};
+      /* Kap 5: Separationsmetoder */
+      add(
+        "sep",
+        "Vad bygger separation av ämnen i en blandning på?",
+        [
+          "Att ämnena har olika fysikaliska egenskaper",
+          "Att ämnena reagerar kemiskt med varandra",
+          "Att ämnena har samma kokpunkt",
+          "Att man bränner blandningen",
+        ],
+        "Vi utnyttjar ämnenas olika fysikaliska egenskaper – t.ex. kokpunkt, densitet, partikelstorlek eller löslighet.",
+      );
+      add(
+        "sep",
+        "Vilken metod använder du för att få bort <b>sand från vatten</b>?",
+        ["Filtrering", "Destillation", "Extraktion", "Indunstning"],
+        "Sanden löser sig inte i vattnet och fastnar i filterpappret. (Man kan också dekantera.)",
+      );
+      add(
+        "sep",
+        "Vilken metod använder du för att få <b>salt ur saltvatten</b>?",
+        ["Indunstning", "Filtrering", "Dekantering", "Extraktion"],
+        "Vid indunstning låter man vattnet (lösningsmedlet) avdunsta så att saltet blir kvar.",
+      );
+      add(
+        "sep",
+        "Vilken metod används när du <b>brygger te</b>?",
+        ["Extraktion", "Destillation", "Indunstning", "Dekantering"],
+        "Smak- och färgämnen löses ut ur teblad med hett vatten = extraktion.",
+      );
+      add(
+        "sep",
+        "Vilken metod används för att tillverka <b>starka alkoholdrycker</b>?",
+        ["Destillation", "Filtrering", "Dekantering", "Indunstning"],
+        "Alkohol och vatten har olika kokpunkt – därför kan de skiljas genom destillation.",
+      );
+      add(
+        "sep",
+        "Vad bygger <b>filtrering</b> på?",
+        [
+          "Att partiklarna är olika stora",
+          "Att ämnena har olika kokpunkt",
+          "Att ämnena har olika löslighet",
+          "Att ämnena har olika färg",
+        ],
+        "Vid filtrering separerar vi beståndsdelarna efter partikelstorlek. Små partiklar tränger igenom filtret, stora fastnar.",
+      );
+      add(
+        "sep",
+        "Vad bygger <b>destillation</b> på?",
+        [
+          "Att ämnena har olika kokpunkt",
+          "Att partiklarna är olika stora",
+          "Att ämnena har olika densitet",
+          "Att ämnena är magnetiska",
+        ],
+        "Destillation bygger på att ämnen har olika kokpunkt.",
+      );
+      add(
+        "sep",
+        "Vad bygger <b>extraktion</b> på?",
+        [
+          "Att ämnen har olika löslighet",
+          "Att ämnen har olika kokpunkt",
+          "Att partiklarna är olika stora",
+          "Att ämnen har olika färg",
+        ],
+        "Extraktion = man löser ut vissa beståndsdelar. Det bygger på att ämnen har olika löslighet.",
+      );
+      add(
+        "sep",
+        "Vad händer vid <b>indunstning</b>?",
+        [
+          "Lösningsmedlet får avdunsta så att det lösta fasta ämnet blir kvar",
+          "Ångan kyls ner och samlas upp",
+          "Vätskan hälls av försiktigt",
+          "Ämnet löses ut med vatten",
+        ],
+        "Ett fast ämne som lösts i en vätska kan separeras genom indunstning: lösningsmedlet avdunstar.",
+      );
+      add(
+        "sep",
+        "Vad är <b>dekantering</b>?",
+        [
+          "Att försiktigt hälla bort vätskan när det fasta ämnet sjunkit till botten",
+          "Att koka och kyla ner ångan",
+          "Att lösa ut ett ämne med vatten",
+          "Att låta vattnet avdunsta",
+        ],
+        "Som när man kokar kaffe: kaffepulvret sjunker till botten och man häller försiktigt av drycken.",
+      );
+      add(
+        "sep",
+        "Kokkaffe: kaffepulvret sjunker till botten och du häller försiktigt upp kaffet. Vilken metod är det?",
+        ["Dekantering", "Destillation", "Indunstning", "Filtrering"],
+        "Att hälla bort vätskan från det fasta ämnet på botten kallas dekantering.",
+      );
+      add(
+        "sep",
+        "Bryggkaffe: kaffepulvret blir kvar i filterpappret. Vilken metod är det?",
+        ["Filtrering", "Dekantering", "Destillation", "Indunstning"],
+        "Det malda kaffet blir kvar i filtret medan drycken rinner igenom = filtrering. (Först sker en extraktion när smakämnena löses ut.)",
+      );
+      add(
+        "sep",
+        "Vad sker i <b>kylaren</b> vid destillation?",
+        [
+          "Ångan kondenseras tillbaka till vätska",
+          "Vätskan kokar",
+          "Saltet kristalliseras",
+          "Det fasta ämnet filtreras bort",
+        ],
+        "Ångan leds till en kylare där ämnet kondenseras tillbaka till vätskeform.",
+      );
+      add(
+        "sep",
+        "Hur kan man framställa <b>drickbart vatten av havsvatten</b>?",
+        [
+          "Genom destillation – vattnet kokas och ångan kondenseras",
+          "Genom filtrering genom kaffefilter",
+          "Genom dekantering",
+          "Genom att tillsätta salt",
+        ],
+        "Havsvattnet hettas upp så att det kokar, vattenångan kondenseras och samlas upp. Salter och bakterier följer inte med ångan. (Man tillsätter små mängder salter för att det ska gå att dricka.)",
+      );
+      add(
+        "sep",
+        "Vilken är en <b>likhet</b> mellan indunstning och destillation?",
+        [
+          "I båda fallen förångas (avdunstar) vätskan",
+          "I båda fallen samlar man upp vätskan",
+          "Båda bygger på partikelstorlek",
+          "Båda använder filterpapper",
+        ],
+        "Båda bygger på att vätskan förångas. Skillnaden är att man vid destillation samlar upp vätskan (kondenserar ångan), men vid indunstning bara vill ha kvar det fasta ämnet.",
+      );
+      add(
+        "sep",
+        "Vilken är <b>skillnaden</b> mellan indunstning och destillation?",
+        [
+          "Vid destillation samlar man upp den förångade vätskan, vid indunstning låter man den försvinna",
+          "Vid indunstning samlar man upp vätskan",
+          "Destillation används bara för fasta ämnen",
+          "Det finns ingen skillnad",
+        ],
+        "Destillation: ångan kyls och vätskan samlas upp. Indunstning: vätskan får avdunsta bort och det fasta ämnet blir kvar.",
+      );
+      add(
+        "sep",
+        "Separera <b>sand och salt</b> (labben): vilken ordning är rätt?",
+        [
+          "1. Lös i vatten  2. Filtrera bort sanden  3. Indunsta saltvattnet",
+          "1. Indunsta  2. Filtrera  3. Lös i vatten",
+          "1. Destillera  2. Dekantera  3. Filtrera",
+          "1. Filtrera  2. Lös i vatten  3. Destillera",
+        ],
+        "Saltet löser sig i vatten men inte sanden. Sanden fastnar i filtret. Saltvattnet (filtratet) indunstas, och saltet blir kvar.",
+      );
+      add(
+        "sep",
+        "I sand–salt-labben: varför tillsätter man vatten först?",
+        [
+          "Saltet löser sig i vattnet, men inte sanden",
+          "För att sanden ska lösa sig",
+          "För att saltet ska sjunka till botten",
+          "För att blandningen ska börja koka",
+        ],
+        "Saltet löses ut i vattnet (extraktion), medan sanden inte löser sig och kan filtreras bort.",
+      );
+      add(
+        "sep",
+        "I sand–salt-labben: var hamnar <b>sanden</b> när du filtrerar?",
+        [
+          "Kvar i filterpappret",
+          "I bägaren under tratten",
+          "Den avdunstar",
+          "Den löser sig i vattnet",
+        ],
+        "Sandkornen är för stora för att komma igenom porerna i filterpappret.",
+      );
+      add(
+        "sep",
+        "Hur får man fram saltet på slutet i sand–salt-labben?",
+        [
+          "Man indunstar saltvattnet (filtratet)",
+          "Man filtrerar saltvattnet en gång till",
+          "Man dekanterar",
+          "Man tillsätter mer sand",
+        ],
+        "Vattnet får avdunsta och saltet blir kvar i skålen – indunstning.",
+      );
+      add(
+        "sep",
+        "Hur tillverkas havssalt i saliner?",
+        [
+          "Solen och vinden får vattnet att avdunsta så att saltet blir kvar",
+          "Havsvattnet filtreras",
+          "Havsvattnet destilleras",
+          "Saltet extraheras med alkohol",
+        ],
+        "I saliner indunstas havsvatten med hjälp av sol och vind.",
+      );
+      add(
+        "sep",
+        "Rosenolja framställs ur rosens kronblad genom …",
+        [
+          "extraktion och destillation",
+          "filtrering och dekantering",
+          "indunstning",
+          "magnetism",
+        ],
+        "Bildtexten i boken: rosenolja framställs genom extraktion och destillation.",
+      );
+      add(
+        "sep",
+        "Vad används en <b>separationstratt</b> till?",
+        [
+          "Extraktion och för att separera två vätskor som inte löser sig i varandra",
+          "Att filtrera sand",
+          "Att destillera vatten",
+          "Att indunsta salt",
+        ],
+        "Med en separationstratt kan man t.ex. tappa av vatten under ett lager olja.",
+      );
+      add(
+        "sep",
+        "När du torkar tvätt på lina avdunstar vattnet. Vilket begrepp passar?",
+        ["Avdunstning", "Destillation", "Filtrering", "Extraktion"],
+        "Boken: att torka tvätt på lina eller i torktumlare är exempel på avdunstning.",
+      );
+      add(
+        "sep",
+        "Ett andningsskydd hindrar dammpartiklar från att komma in i lungorna. Vilken metod?",
+        ["Filtrering", "Destillation", "Indunstning", "Dekantering"],
+        "Vid filtrering kan man avskilja ett fast ämne ur en vätska <i>eller en gas</i>.",
+      );
+      add(
+        "sep",
+        "Vilken metod passar för att separera <b>två vätskor med olika kokpunkt</b>, t.ex. alkohol och vatten?",
+        ["Destillation", "Filtrering", "Dekantering", "Indunstning"],
+        "Vätskorna förångas i tur och ordning vid sina kokpunkter – destillation. Används t.ex. vid oljeraffinering.",
+      );
+      add(
+        "sep",
+        "Varför går det inte att filtrera bort saltet ur saltvatten?",
+        [
+          "Saltet är löst – partiklarna är så små att de går igenom filtret",
+          "Saltet är för tungt",
+          "Saltet fastnar i filtret",
+          "Saltet är en gas",
+        ],
+        "Lösta ämnen tränger igenom filtrets små porer tillsammans med vattenpartiklarna. Använd indunstning istället.",
+      );
+      add(
+        "sep",
+        "Guldvaskning bygger på att guld och sand har olika …",
+        ["densitet", "kokpunkt", "färg", "löslighet"],
+        "Guldet har högre densitet än sanden och stannar kvar på kärlets botten.",
+      );
 
-/* ---------- Frågor: a[0] är rätt svar ---------- */
-const Q=[];
-function add(c,q,a,e,img){Q.push({c,q,a,e,img});}
+      /* Kap 6: Grundämnen, föreningar, molekyler */
+      add(
+        "grund",
+        "Vad är kemiskt sett den minsta byggstenen i ett ämne?",
+        ["Atomen", "Molekylen", "Cellen", "Föreningen"],
+        "Atomen är den minsta byggstenen. Ämnena omkring oss består av flera atomer.",
+      );
+      add(
+        "grund",
+        "Vad är ett <b>grundämne</b>?",
+        [
+          "Ett ämne där alla atomer är likadana",
+          "Ett ämne av minst två olika sorters atomer",
+          "En blandning av två ämnen",
+          "Ett ämne som bara finns i naturen",
+        ],
+        "Om alla atomer i ett ämne är likadana är det fråga om ett grundämne, t.ex. guld eller järn.",
+      );
+      add(
+        "grund",
+        "Vad är en <b>kemisk förening</b>?",
+        [
+          "Ett ämne som består av minst två olika grundämnen som bundits ihop kemiskt",
+          "Ett ämne där alla atomer är likadana",
+          "En blandning av metaller",
+          "Två vätskor som inte löser sig",
+        ],
+        "En förening består av två eller flera olika grundämnen som sitter ihop med kemiska bindningar, t.ex. vatten H₂O.",
+      );
+      add(
+        "grund",
+        "Vad är en <b>molekyl</b>?",
+        [
+          "Minst två atomer som är bundna till varandra",
+          "En enda atom",
+          "En blandning",
+          "En sorts metall",
+        ],
+        "En molekyl har minst två atomer som förenats. Atomerna kan vara av samma grundämne (O₂) eller av olika (H₂O).",
+      );
+      add(
+        "grund",
+        "Vad är en <b>kemisk formel</b>?",
+        [
+          "Ett sätt att skriva ett ämne med kemiska tecken, t.ex. H₂O",
+          "En matematisk ekvation",
+          "En ritning av ett laboratorium",
+          "Ett recept på en blandning",
+        ],
+        "Den kemiska formeln anger vilka atomer ämnet består av och hur många, t.ex. H₂O för vatten.",
+      );
+      add(
+        "grund",
+        "Hur många grundämnen känner vi till idag?",
+        ["Ungefär 118", "Ungefär 50", "Ungefär 1000", "Exakt 92"],
+        "Boken: i nuläget känner vi till 118 grundämnen, varav 91 förekommer i naturen.",
+      );
+      add(
+        "grund",
+        "Vilka är de tre grupperna av grundämnen?",
+        [
+          "Metaller, icke-metaller och halvmetaller",
+          "Fasta, flytande och gaser",
+          "Syror, baser och salter",
+          "Atomer, molekyler och joner",
+        ],
+        "Grundämnena delas efter sina egenskaper i metaller och icke-metaller, och en tredje grupp: halvmetaller.",
+      );
+      add(
+        "grund",
+        "Vilket grundämne är en <b>halvmetall</b> som används i elektronik?",
+        ["Kisel (Si)", "Kol (C)", "Silver (Ag)", "Syre (O)"],
+        "Den mest kända halvmetallen är kisel, som används i elektronik.",
+      );
+      add(
+        "grund",
+        "Vilken är den enda metallen som är <b>flytande</b> i rumstemperatur?",
+        ["Kvicksilver (Hg)", "Järn (Fe)", "Aluminium (Al)", "Natrium (Na)"],
+        "Kvicksilver är en tung och trögflytande vätska – den enda metall som är flytande i rumstemperatur. Den är giftig.",
+      );
+      add(
+        "grund",
+        "Varför har kvicksilver tecknet <b>Hg</b>?",
+        [
+          "Det kommer från latinets hydrargyrum, som betyder flytande silver",
+          'Det står för "heavy gold"',
+          'Det är förkortning för "Hälsofarligt"',
+          "Det är slumpvis valt",
+        ],
+        "Hg kommer från latinets hydrargyrum = flytande silver. Många kemiska tecken kommer från latinska eller grekiska namn.",
+      );
+      add(
+        "grund",
+        "Hur skrivs ett kemiskt tecken?",
+        [
+          "En eller två bokstäver – den första stor, den andra liten",
+          "Alltid tre stora bokstäver",
+          "Alltid bara en liten bokstav",
+          "Med siffror",
+        ],
+        "T.ex. C för kol och Fe för järn. Första bokstaven alltid stor, andra alltid liten.",
+      );
+      add(
+        "grund",
+        "Vilka egenskaper har metaller vanligtvis?",
+        [
+          "Fasta, hållbara och glänsande",
+          "Gasformiga och genomskinliga",
+          "Spröda och utan glans",
+          "Flytande och giftiga",
+        ],
+        "Metaller är vanligtvis fasta, hållbara och glänsande, och har hög smältpunkt.",
+      );
+      add(
+        "grund",
+        "Vilken av dessa är en <b>icke-metall</b>?",
+        ["Svavel", "Järn", "Silver", "Aluminium"],
+        "Svavel är en gul icke-metall som är fast vid rumstemperatur. Andra icke-metaller: syre, kväve, kol.",
+      );
+      add(
+        "grund",
+        "Vilket är det minsta och enklaste atomslaget?",
+        ["Väte", "Syre", "Helium", "Kol"],
+        "Den minsta och enklaste atomen är väte.",
+      );
+      add(
+        "grund",
+        "Hur förekommer syre vanligtvis i luften?",
+        [
+          "Som tvåatomiga molekyler O₂",
+          "Som enskilda O-atomer",
+          "Som O₃ alltid",
+          "Som vatten",
+        ],
+        "Syre i gasform finns som 2-atomiga molekyler O₂. Även kväve finns som N₂.",
+      );
+      add(
+        "grund",
+        "Vad är skillnaden mellan en <b>blandning</b> av väte och syre och en <b>förening</b> av väte och syre?",
+        [
+          "I föreningen är atomerna kemiskt bundna till varandra (vatten H₂O), i blandningen är de bara blandade",
+          "Det finns ingen skillnad",
+          "Blandningen är alltid flytande",
+          "Föreningen kan separeras med filter",
+        ],
+        "I en blandning finns H₂- och O₂-molekyler bredvid varandra. I föreningen vatten H₂O är väte och syre bundna ihop till nya molekyler med nya egenskaper.",
+      );
+      add(
+        "grund",
+        "Natrium (mjuk metall) och klor (grön giftig gas) bildar tillsammans …",
+        ["natriumklorid – koksalt", "natriumoxid", "klorvatten", "järnsulfid"],
+        "Natrium och klor är grundämnen, men tillsammans bildar de föreningen natriumklorid, alltså koksalt. Föreningen har helt andra egenskaper!",
+      );
+      add(
+        "grund",
+        "Vilket grundämne reagerar häftigt med vatten och finns i bordssalt?",
+        ["Natrium (Na)", "Kalium (K)", "Järn (Fe)", "Syre (O)"],
+        "Natrium är ett mjukt metalliskt grundämne som reagerar häftigt med vatten och finns i koksalt (natriumklorid).",
+      );
+      add(
+        "grund",
+        'Vad är "diväteoxid"?',
+        ["Vatten (H₂O)", "Väteperoxid", "Koldioxid", "Ett giftigt ämne"],
+        "Di = två, väte = H, oxid = syre. Diväteoxid = H₂O = vatten!",
+      );
+      add(
+        "grund",
+        "Vatten (H₂O) är …",
+        ["en förening", "ett grundämne", "en blandning", "en halvmetall"],
+        "Vatten består av två grundämnen, väte och syre, som är kemiskt bundna – en förening.",
+      );
+      add(
+        "grund",
+        "Syrgas (O₂) är …",
+        [
+          "ett grundämne (molekyl av samma sorts atomer)",
+          "en förening",
+          "en blandning",
+          "en metall",
+        ],
+        "O₂ består bara av syreatomer – det är ett grundämne, även om det bildar molekyler.",
+      );
+      add(
+        "grund",
+        "Koldioxid (CO₂) är …",
+        ["en förening", "ett grundämne", "en blandning", "en metall"],
+        "CO₂ består av två olika grundämnen, kol och syre, bundna till varandra.",
+      );
+      add(
+        "grund",
+        "Vad visar en <b>kalottmodell</b>?",
+        [
+          "Hur atomerna i en molekyl sitter ihop, med färgade klot",
+          "Hur stor en kalott är",
+          "En karta över periodiska systemet",
+          "Ett laboratorium",
+        ],
+        "I kalottmodeller ritas atomerna som klot. T.ex. koldioxid: ett svart klot (kol) i mitten och två röda (syre).",
+      );
 
-/* Varningssymboler */
-SYMS.forEach(s=>{
-  add('sym','Vad betyder den här varningssymbolen?',[s.n,...SYMS.filter(x=>x!==s).sort(()=>Math.random()-.5).slice(0,3).map(x=>x.n)],`${s.n}: ${s.d}.`,pic(s.k));
-  add('sym',`Vilken symbol betyder att ämnet är <i>${s.n.toLowerCase()}</i>?`,null,`${s.n}: ${s.d}.`,null);
-  Q[Q.length-1].picOpts=s.k;
-});
-add('sym','Vilken form och färg har varningssymbolerna?',['Vit romb (kvadrat på spetsen) med röd kant och svart bild','Gul triangel med svart kant','Röd cirkel med vit bild','Blå fyrkant med vit bild'],'Varningssymbolerna är vita romber med röd ram och en svart bild.');
-add('sym','Vilken varningssymbol ska lättantändliga ämnen, t.ex. bensin, vara märkta med?',['Lättantändligt (flamman)','Frätande','Miljöfarligt','Gas under tryck'],'Boken (sid 80): lättantändliga ämnen måste märkas med en varningssymbol – flamman.');
+      /* Kemiska tecken (genereras ur bokens tabell sid 38) */
+      const EL = [
+        ["aluminium", "Al"],
+        ["argon", "Ar"],
+        ["bly", "Pb"],
+        ["bor", "B"],
+        ["brom", "Br"],
+        ["fluor", "F"],
+        ["fosfor", "P"],
+        ["guld", "Au"],
+        ["helium", "He"],
+        ["jod", "I"],
+        ["järn", "Fe"],
+        ["kalcium", "Ca"],
+        ["kalium", "K"],
+        ["kisel", "Si"],
+        ["klor", "Cl"],
+        ["kol", "C"],
+        ["koppar", "Cu"],
+        ["kvicksilver", "Hg"],
+        ["kväve", "N"],
+        ["litium", "Li"],
+        ["magnesium", "Mg"],
+        ["natrium", "Na"],
+        ["neon", "Ne"],
+        ["silver", "Ag"],
+        ["svavel", "S"],
+        ["syre", "O"],
+        ["tenn", "Sn"],
+        ["titan", "Ti"],
+        ["uran", "U"],
+        ["väte", "H"],
+        ["zink", "Zn"],
+      ];
+      const FAKE = {
+        Fe: ["J", "Ir", "F"],
+        Ag: ["Si", "S", "Sl"],
+        Au: ["G", "Gu", "Ag"],
+        Pb: ["B", "Bl", "Ly"],
+        Hg: ["K", "Kv", "Ks"],
+        Na: ["N", "Nt", "S"],
+        K: ["Ka", "Ca", "Kl"],
+        Cu: ["K", "Ko", "Co"],
+        S: ["Sv", "Si", "Su"],
+        Sn: ["Te", "T", "Tn"],
+        N: ["K", "Kv", "Na"],
+        H: ["V", "Va", "He"],
+        O: ["S", "Sy", "Ox"],
+        C: ["K", "Ko", "Ca"],
+        P: ["F", "Fo", "Ph"],
+      };
+      EL.forEach(([n, s]) => {
+        let wrong = (FAKE[s] || []).slice();
+        const others = EL.filter((e) => e[1] !== s)
+          .map((e) => e[1])
+          .sort(() => Math.random() - 0.5);
+        while (wrong.length < 3) wrong.push(others.pop());
+        add(
+          "tecken",
+          `Vilket kemiskt tecken har <b>${n}</b>?`,
+          [s, ...wrong.slice(0, 3)],
+          `${n[0].toUpperCase() + n.slice(1)} = ${s}`,
+        );
+        const wn = EL.filter((e) => e[1] !== s)
+          .map((e) => e[0])
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3);
+        add(
+          "tecken",
+          `Vilket grundämne har tecknet <b>${s}</b>?`,
+          [n, ...wn],
+          `${s} = ${n}`,
+        );
+      });
 
-add('sym','Vad berättar varningssymbolerna på en förpackning?',['Om ämnet är t.ex. skadligt, hälsofarligt, giftigt, lättantändligt eller frätande','Hur mycket ämnet kostar','Vilket land ämnet kommer ifrån','Hur ämnet smakar'],'Boken sid 18: varningssymbolerna berättar om det kemiska ämnet är skadligt, hälsofarligt eller giftigt, och det finns symboler för lättantändliga och frätande ämnen.');
-add('sym','Gäller varningssymbolerna bara i Finland/Sverige?',['Nej, de är gemensamma internationella symboler','Ja, varje land har egna','Bara i skolan','Bara i EU:s labb'],'Man har kommit överens om gemensamma, internationella varningssymboler för kemikalier.');
-add('sym','Vad gäller i kemisalen?',['Man får inte äta eller dricka, och man tvättar händerna när man går ut','Man får äta om man är försiktig','Man behöver aldrig tvätta händerna','Man får smaka på ämnena'],'Boken: du får inte äta eller dricka i kemisalen. Kom ihåg att tvätta händerna när du går ut ur rummet.');
-add('sym','Hur gör man sig av med farliga kemikalier?',['De samlas upp, sorteras och förs till en uppsamlingsstation för farligt avfall','Man häller alltid ut dem i avloppet','Man slänger dem i blandavfallet','Man bränner upp dem'],'Vissa kemikalier kan spolas ner eller slängas i blandavfallet, men andra måste samlas upp och föras till en uppsamlingsstation för farligt avfall.');
-add('sym','Du bränner handen i labbet. Vad gör du först?',['Håller handen under kallt rinnande vatten så fort som möjligt','Sätter på ett plåster direkt','Smörjer in med fett','Väntar och ser om det går över'],'Boken sid 18: får du en brännskada på handen ska du så fort som möjligt sätta handen under kallt och rinnande vatten.');
-add('sym','Vad används en nödbrytare (nödstopp) till?',['Att snabbt slå av strömmen','Att släcka eld med vatten','Att larma brandkåren','Att starta ventilationen'],'Med en nödbrytare går det fort att slå av strömmen.');
+      /* Formelskrivning */
+      const sub = (s) => s.replace(/(\D)(\d+)/g, "$1<sub>$2</sub>");
+      add(
+        "formel",
+        "Vad betyder <b>2H</b>?",
+        [
+          "Två väteatomer",
+          "En tvåatomig vätemolekyl",
+          "Två vätemolekyler",
+          "Vatten",
+        ],
+        "Siffran framför (koefficienten) räknar antalet. 2H = två (lösa) väteatomer.",
+      );
+      add(
+        "formel",
+        `Vad betyder <b>${sub("H2")}</b>?`,
+        [
+          "En tvåatomig vätemolekyl (vätgas)",
+          "Två lösa väteatomer",
+          "Två vätemolekyler",
+          "Väte och syre",
+        ],
+        "Den lilla siffran nedtill visar hur många atomer som sitter ihop i molekylen. H₂ = en molekyl av två väteatomer = vätgas.",
+      );
+      add(
+        "formel",
+        `Vad betyder <b>3${sub("H2")}</b>?`,
+        [
+          "Tre tvåatomiga vätemolekyler",
+          "Tre väteatomer",
+          "En molekyl med sex väteatomer",
+          "Två molekyler med tre väteatomer",
+        ],
+        "3 framför = tre stycken. H₂ = tvåatomig vätemolekyl. Alltså tre tvåatomiga vätemolekyler.",
+      );
+      add(
+        "formel",
+        `Hur många väteatomer finns det totalt i <b>3${sub("H2")}</b>?`,
+        ["6", "3", "5", "2"],
+        "3 molekyler × 2 atomer = 6 väteatomer.",
+      );
+      add(
+        "formel",
+        "Hur skriver du <b>två väteatomer</b>?",
+        ["2H", sub("H2"), "H2".replace("2", "<sup>2</sup>"), `2${sub("H2")}`],
+        "Två lösa atomer: siffran framför → 2H.",
+      );
+      add(
+        "formel",
+        "Hur skriver du <b>en tvåatomig vätemolekyl</b>?",
+        [sub("H2"), "2H", "H", `2${sub("H2")}`],
+        "Två atomer som sitter ihop: liten siffra nedtill → H₂.",
+      );
+      add(
+        "formel",
+        "Hur skriver du <b>tre tvåatomiga vätemolekyler</b>?",
+        [`3${sub("H2")}`, "3H", sub("H3"), `2${sub("H3")}`],
+        "3 stycken H₂ → 3H₂.",
+      );
+      add(
+        "formel",
+        `Vad är <b>${sub("H2O")}</b>?`,
+        ["Vatten", "Väteperoxid", "Vätgas", "Syrgas"],
+        "H₂O = vatten. Två väteatomer och en syreatom.",
+      );
+      add(
+        "formel",
+        `Vad är <b>${sub("CO2")}</b>?`,
+        ["Koldioxid", "Kolmonoxid", "Kalciumoxid", "Koppar"],
+        'CO₂ = koldioxid: en kolatom och två syreatomer. "Di" betyder två.',
+      );
+      add(
+        "formel",
+        "Vad är <b>CO</b>?",
+        ["Kolmonoxid (koloxid, kolos)", "Koldioxid", "Kobolt", "Koppar"],
+        'CO = kolmonoxid: en kolatom och en syreatom. "Mono" betyder en. Kallas ibland bara koloxid eller kolos. Mycket giftig!',
+      );
+      add(
+        "formel",
+        "Observera: vad är skillnaden mellan <b>CO</b> och <b>Co</b>?",
+        [
+          "CO är kolmonoxid (kol + syre), Co är grundämnet kobolt",
+          "Det är samma sak",
+          "CO är kobolt, Co är kolmonoxid",
+          "Båda är koldioxid",
+        ],
+        "Stor och liten bokstav spelar roll! Co (liten o) = ett grundämne. CO (två stora) = kol + syre.",
+      );
+      add(
+        "formel",
+        "Vad är <b>MgO</b>?",
+        ["Magnesiumoxid", "Mangan", "Magnesium", "Magnesiumsulfid"],
+        "MgO = magnesiumoxid. Bildas när magnesium brinner.",
+      );
+      add(
+        "formel",
+        "Vad är <b>FeS</b>?",
+        ["Järnsulfid", "Järnoxid", "Fluor och svavel", "Rost"],
+        "FeS = järnsulfid. Bildas när järn och svavel reagerar.",
+      );
+      add(
+        "formel",
+        `Vad är <b>${sub("O2")}</b>?`,
+        [
+          "Syrgas (syre) – en tvåatomig syremolekyl",
+          "Två lösa syreatomer",
+          "Ozon",
+          "Vatten",
+        ],
+        'O₂ = syrgas/syre. Betyder ibland "en tvåatomig syremolekyl".',
+      );
+      add(
+        "formel",
+        "Vilken formel har <b>vatten</b>?",
+        [sub("H2O"), sub("HO2"), sub("H2O2"), "2HO"],
+        "Vatten = H₂O.",
+      );
+      add(
+        "formel",
+        "Vilken formel har <b>koldioxid</b>?",
+        [sub("CO2"), "CO", "2CO", sub("C2O")],
+        "Koldioxid = CO₂.",
+      );
+      add(
+        "formel",
+        "Vilken formel har <b>magnesiumoxid</b>?",
+        ["MgO", "MnO", "Mg", "MO"],
+        "Magnesiumoxid = MgO.",
+      );
+      add(
+        "formel",
+        "Vilken formel har <b>järnsulfid</b>?",
+        ["FeS", "JS", "FS", "FeO"],
+        "Järnsulfid = FeS (Fe = järn, S = svavel).",
+      );
+      add(
+        "formel",
+        "Vilken formel har <b>kolmonoxid</b>?",
+        ["CO", sub("CO2"), "Co", "KO"],
+        "Kolmonoxid = CO.",
+      );
+      add(
+        "formel",
+        `Hur många atomer finns det i en molekyl <b>${sub("CO2")}</b>?`,
+        ["3 (1 kol + 2 syre)", "2", "1", "4"],
+        "C = 1 kolatom, O₂ = 2 syreatomer → totalt 3.",
+      );
+      add(
+        "formel",
+        `Hur många väteatomer finns det i <b>2${sub("H2O")}</b>?`,
+        ["4", "2", "3", "6"],
+        "2 vattenmolekyler × 2 väteatomer = 4. (Och 2 syreatomer.)",
+      );
+      add(
+        "formel",
+        `Vad betyder <b>3${sub("CO2")}</b>?`,
+        [
+          "Tre koldioxidmolekyler",
+          "En molekyl med tre kolatomer",
+          "Tre kolatomer och två syreatomer",
+          "Koldioxid med tre syre",
+        ],
+        "Boken: beteckningen 3CO₂ betyder tre koldioxidmolekyler.",
+      );
+      add(
+        "formel",
+        "Vad betyder <b>3N</b>?",
+        [
+          "Tre kväveatomer",
+          "En kvävemolekyl",
+          "Tre kvävemolekyler",
+          "Kväve och natrium",
+        ],
+        "Siffran framför utan liten siffra bakom: tre lösa kväveatomer.",
+      );
+      add(
+        "formel",
+        `Vad betyder <b>${sub("N2")}</b>?`,
+        [
+          "En tvåatomig kvävemolekyl",
+          "Två kväveatomer som inte sitter ihop",
+          "Natrium",
+          "Kväveoxid",
+        ],
+        "N₂ = kvävemolekyl. Kväve i luften finns som N₂.",
+      );
+      add(
+        "formel",
+        `Hur många syreatomer finns det i <b>${sub("O3")}</b> (ozon)?`,
+        ["3", "1", "2", "6"],
+        "Liten siffra 3 = tre syreatomer i samma molekyl.",
+      );
+      add(
+        "formel",
+        "Vad visar siffran som skrivs <b>nedtill</b> efter ett tecken (som 2:an i H₂O)?",
+        [
+          "Den visar hur många atomer av det slaget som finns i molekylen",
+          "Den visar hur många molekyler det finns",
+          "Den visar temperaturen",
+          "Den visar laddningen",
+        ],
+        "Lilla siffran nere till höger = antal atomer i molekylen. Siffran framför = antal molekyler/atomer.",
+      );
 
-/* Kap 4: Blandningar & rena ämnen */
-add('bland','Vilka två grupper kan vi dela in ämnen i?',['Rena ämnen och blandningar','Metaller och gaser','Fasta och flytande','Syror och baser'],'Alla ämnen är antingen rena ämnen eller blandningar.');
-add('bland','Vad är ett <b>rent ämne</b>?',['Ett ämne där alla partiklar är likadana – det innehåller bara ett enda ämne','Ett ämne som är helt fritt från bakterier','Ett ämne som är genomskinligt','Ett ämne som har blandats med vatten'],'I ett rent ämne är alla partiklar likadana. "Rent" i kemin betyder bara ett ämne – inte att det är fritt från smuts eller bakterier.');
-add('bland','Rena ämnen är antingen …',['grundämnen eller föreningar','lösningar eller emulsioner','metaller eller legeringar','homogena eller heterogena'],'Rena ämnen är antingen grundämnen eller (kemiska) föreningar.');
-add('bland','Vad är en <b>blandning</b>?',['Minst två rena ämnen som blandats','Ett ämne med bara en sorts atomer','Två grundämnen som bundits kemiskt till en förening','Ett ämne som har exakt kokpunkt'],'En blandning består av minst två rena ämnen.');
-add('bland','Vatten i en ren sjö – är det ett rent ämne kemiskt sett?',['Nej, det är en blandning eftersom det finns lösta salter och andra ämnen i det','Ja, om det inte finns bakterier i det','Ja, vatten är alltid ett rent ämne','Nej, det är ett grundämne'],'Sjövatten är kemiskt sett inte ett rent ämne – det finns alltid lösta salter och andra föreningar i det. Kemiskt rent vatten innehåller bara vattenmolekyler H₂O.');
-add('bland','Vad är en <b>homogen</b> blandning?',['En blandning som är likadan helt igenom – man kan inte se de olika beståndsdelarna','En blandning där man kan se de olika delarna','En blandning av bara metaller','En blandning som består av ett enda ämne'],'Homogen = lika helt igenom. T.ex. saft, luft och saltvatten.');
-add('bland','Vad är en <b>heterogen</b> blandning?',['En blandning där man kan se (urskilja) de olika beståndsdelarna','En blandning som är lika helt igenom','Ett rent ämne','En lösning'],'Heterogen = man kan urskilja de olika beståndsdelarna, t.ex. korvsoppa, sand och sten.');
-add('bland','Vilken av dessa är en <b>homogen</b> blandning?',['Saft','Korvsoppa','Sand och sten','Dimma'],'I saft kan vi inte urskilja de olika beståndsdelarna, så den är homogen.');
-add('bland','Vilken av dessa är en <b>heterogen</b> blandning?',['Rök','Luft','Saltvatten','Mässing'],'Rök = fasta partiklar blandade med gas. Den är heterogen.');
-add('bland','Vilka typer av blandningar är <b>homogena</b>?',['Lösningar, gasblandningar och metallblandningar (legeringar)','Rök, slam och skum','Emulsioner och geler','Dimma och rök'],'Boken: lösningar, gasblandningar och metallblandningar (legeringar) är homogena.');
-add('bland','Vilka är exempel på <b>heterogena</b> blandningar enligt boken?',['Rök, slam, emulsion, gel, dimma och skum','Lösningar och legeringar','Luft och saft','Socker och salt'],'Heterogena blandningar: rök, slam, emulsion, gel, dimma och skum.');
-add('bland','Vad är en <b>lösning</b>?',['Ett lösningsmedel med ett ämne som lösts upp i det','Två vätskor som inte löser sig i varandra','Fasta partiklar i en gas','Gasbubblor i en vätska'],'En lösning = lösningsmedel + ett upplöst ämne. Det upplösta ämnet kan vara fast, flytande eller gas. Klar saft är ett exempel.');
-add('bland','Vad är en <b>emulsion</b>?',['Två vätskor som inte löst sig i varandra, t.ex. mjölk','Fasta partiklar blandade med gas','Gasbubblor i en vätska','En vätska med ett löst fast ämne'],'En emulsion består av två vätskor som inte löst sig i varandra. Mjölk och många hudkrämer är emulsioner.');
-add('bland','Mjölk är …',['en heterogen blandning (emulsion)','en homogen blandning (lösning)','ett rent ämne','ett grundämne'],'Boken: "Mjölk är en heterogen blandning" – en emulsion av vatten och fetter.');
-add('bland','Vad är <b>dimma</b>?',['Fuktdroppar (vätska) blandade med gas','Fasta partiklar blandade med gas','Fast ämne blandat med vätska','Gasbubblor i vätska'],'Dimma = fuktdroppar blandade med gas.');
-add('bland','Vad är <b>rök</b>?',['Fasta partiklar blandade med gas','Vätskedroppar i gas','Gasbubblor i vätska','Två vätskor som inte löser sig'],'Rök = fasta partiklar som blandats med gas.');
-add('bland','Vad är <b>slam</b>?',['Fast ämne blandat med vätska','Gas blandad med vätska','Vätska blandad med gas','Två gaser'],'Slam = fast ämne som blandats med vätska (t.ex. lera i vatten).');
-add('bland','Vad är <b>skum</b>?',['Gasbubblor blandade i en vätska','Fasta partiklar i gas','Två vätskor som inte löser sig','Fast ämne i vätska'],'I skum har gasbubblor blandats i en vätska.');
-add('bland','Vad är en <b>gel</b>?',['Ett fast ämne som bildar ett nätverk där vätska har trängt in','Gasbubblor i vätska','Fasta partiklar i gas','En gasblandning'],'En gel består av ett fast ämne som bildar ett nätverk, och in i nätverket har vätska trängt in (t.ex. kräm/gelé).');
-add('bland','Luft är …',['en gasblandning (homogen blandning)','ett rent ämne','ett grundämne','en heterogen blandning'],'Luft är en gasblandning, främst av kväve och syre.');
-add('bland','Vad kallas en blandning av metaller, t.ex. stål eller mässing?',['Legering','Emulsion','Lösning','Förening'],'Metallblandningar kallas legeringar. Järn + krom + nickel ger rostfritt stål. Koppar + zink ger mässing.');
-add('bland','Mässing är en legering av …',['koppar och zink','järn och kol','guld och silver','tenn och bly'],'Blandar man koppar med zink får man mässing, som är hårdare än koppar och zink.');
-add('bland','Vilket av dessa är ett <b>rent ämne</b>?',['Socker','Mjölk','Te','Sand'],'Rent socker består bara av sockermolekyler. Mjölk, te och sand är blandningar.');
-add('bland','Vilket av dessa är ett <b>rent ämne</b>?',['Järn','Tandkräm','Mineralvatten','Mjölkdryck'],'Järn är ett grundämne och alltså ett rent ämne.');
-add('bland','Vilket av dessa är en <b>blandning</b>?',['Tandkräm','Kol','Järn','Socker'],'Tandkräm består av många olika ämnen – en blandning.');
-add('bland','Bordssalt (koksalt) är nästan helt ren …',['natriumklorid','natriumoxid','kalciumklorid','järnsulfid'],'Bordssalt är nästan helt ren natriumklorid, NaCl. Man har bara blandat i små mängder av andra ämnen.');
-add('bland','Hurdana egenskaper har ett rent ämne?',['Exakta smält- och kokpunkter','Det kan inte smälta','Det är alltid en vätska','Det ändrar smältpunkt hela tiden'],'Boken: rena ämnen har exakta smält- och kokpunkter.');
-add('bland','Vilken typ av blandning är <b>lemonad</b> (klar)?',['Lösning','Emulsion','Skum','Rök'],'En klar dryck som lemonad eller saft är en lösning – en homogen blandning.');
-add('bland','Vilken typ av blandning är <b>fuktighetskräm</b>?',['Emulsion','Gasblandning','Lösning','Rök'],'Många hudkrämer är emulsioner – blandningar av vatten och fetter som inte löst sig i varandra.');
-add('bland','Vilken typ av blandning är <b>vispgrädde / efterrättskräm</b>?',['Skum','Rök','Lösning','Legering'],'Vispad grädde har gasbubblor (luft) i en vätska – skum.');
-add('bland','Vilken typ av blandning är ett <b>guldsmycke</b>?',['Metallblandning (legering)','Emulsion','Gel','Rent grundämne alltid'],'Guldsmycken är oftast en legering – guld blandat med t.ex. silver eller koppar för att bli hårdare.');
-add('bland','Havsvatten är en …',['lösning (homogen blandning)','heterogen blandning','ren förening','grundämne'],'Havsvatten är en lösning – vattnet innehåller ämnen som lösts upp och som vi inte kan se.');
+      /* Kemiska reaktioner */
+      add(
+        "reak",
+        "Vad är en <b>kemisk reaktion</b>?",
+        [
+          "När ämnen omvandlas till nya ämnen med nya egenskaper",
+          "När ett ämne smälter",
+          "När man blandar sand och salt",
+          "När ett ämne löser sig i vatten",
+        ],
+        "Vid en kemisk reaktion bryts kemiska bindningar och atomerna binds på nytt sätt – nya ämnen bildas.",
+      );
+      add(
+        "reak",
+        "Vad händer med atomerna vid en kemisk reaktion?",
+        [
+          "Bindningar bryts och atomerna binds till andra atomer – atomerna försvinner inte",
+          "Atomerna försvinner",
+          "Nya atomer skapas",
+          "Atomerna blir större",
+        ],
+        "Atomerna ordnas om. Bindningar bryts och nya bindningar uppkommer. Inga atomer försvinner.",
+      );
+      add(
+        "reak",
+        "Vilket är ett exempel på en kemisk reaktion?",
+        [
+          "Förbränning",
+          "Att socker löser sig i te",
+          "Att filtrera sand",
+          "Att is smälter",
+        ],
+        "Förbränning är en kemisk reaktion – nya ämnen (oxider) bildas.",
+      );
+      add(
+        "reak",
+        "Vad kallas ämnena <b>före</b> pilen i en reaktionsformel?",
+        [
+          "Utgångsämnen (reaktanter)",
+          "Produkter",
+          "Katalysatorer",
+          "Lösningar",
+        ],
+        'Utgångsämnen → produkter. Pilen betyder "bildar" eller "blir".',
+      );
+      add(
+        "reak",
+        "Vad kallas ämnena <b>efter</b> pilen i en reaktionsformel?",
+        ["Produkter", "Utgångsämnen", "Reaktanter", "Blandningar"],
+        "Det som bildas kallas produkter.",
+      );
+      add(
+        "reak",
+        "Vad betyder pilen → i en reaktionsformel?",
+        [
+          '"bildar" / "reagerar och blir"',
+          '"är lika med" i matte',
+          '"minus"',
+          '"blandas med"',
+        ],
+        'T.ex. järn + svavel → järnsulfid läses "järn och svavel bildar järnsulfid".',
+      );
+      add(
+        "reak",
+        "Skriv reaktionen mellan järn och svavel med ord:",
+        [
+          "järn + svavel → järnsulfid",
+          "järn + syre → järnsulfid",
+          "järnsulfid → järn + svavel + syre",
+          "järn + svavel → järnoxid",
+        ],
+        "Järn och svavel reagerar och bildar föreningen järnsulfid.",
+      );
+      add(
+        "reak",
+        "Skriv reaktionen mellan järn och svavel med kemiska tecken:",
+        ["Fe + S → FeS", "J + S → JS", "Fe + O → FeO", "F + S → FS"],
+        "Fe (järn) + S (svavel) → FeS (järnsulfid).",
+      );
+      add(
+        "reak",
+        "Hur kan man separera en <b>blandning</b> av järnpulver och svavelpulver?",
+        [
+          "Med en magnet – järnet dras till magneten",
+          "Det går inte",
+          "Genom att värma den",
+          "Genom att tillsätta syre",
+        ],
+        "I en blandning har järnet kvar sina egenskaper, så det är magnetiskt och kan dras ut med en magnet.",
+      );
+      add(
+        "reak",
+        "Vad händer när man värmer blandningen av järn och svavel?",
+        [
+          "De reagerar och bildar ett nytt ämne, järnsulfid",
+          "Svavlet avdunstar och järnet blir kvar",
+          "Ingenting händer",
+          "Det bildas vatten",
+        ],
+        "Vid upphettning reagerar järn och svavel. Reaktionen ger ifrån sig värme (det glöder) och järnsulfid bildas.",
+      );
+      add(
+        "reak",
+        "Går järnsulfid att separera med en magnet?",
+        [
+          "Nej, det är en förening med nya egenskaper",
+          "Ja, eftersom det innehåller järn",
+          "Ja, om man värmer den först",
+          "Bara svavlet fastnar",
+        ],
+        "Järnsulfid är ett nytt ämne. Järnatomerna är bundna till svavelatomerna och man kan inte skilja dem med magnet.",
+      );
+      add(
+        "reak",
+        "Järn + svavel före uppvärmning är en … och efter uppvärmning en …",
+        [
+          "blandning … förening",
+          "förening … blandning",
+          "grundämne … blandning",
+          "lösning … emulsion",
+        ],
+        "Före: blandning (kan separeras med magnet). Efter: förening (järnsulfid, FeS).",
+      );
+      add(
+        "reak",
+        "Vilka tecken kan visa att en kemisk reaktion har skett?",
+        [
+          "Ljus, värme, färgändring, gasbubblor eller att ett nytt ämne bildas",
+          "Att ämnet bara byter form",
+          "Att ämnet blir blött",
+          "Att man rör om",
+        ],
+        "Tecken på kemisk reaktion: ljus eller värme frigörs, färgen ändras, gas bildas (bubblor), en fällning bildas.",
+      );
+      add(
+        "reak",
+        "När järn rostar är det en …",
+        [
+          "långsam kemisk reaktion",
+          "snabb kemisk reaktion",
+          "fysikalisk förändring",
+          "separationsmetod",
+        ],
+        "Järn + syre → rost. Det tar lång tid – en långsam kemisk reaktion.",
+      );
+      add(
+        "reak",
+        "Vad händer med energin vid en kemisk reaktion?",
+        [
+          "Energi frigörs eller binds – en kemisk reaktion är alltid en omvandling av energi",
+          "Energin försvinner",
+          "Ingen energi är inblandad",
+          "Energi skapas ur ingenting",
+        ],
+        "Boken: vid en kemisk reaktion sker alltid en omvandling av energi. Bindningar bryts och nya bildas.",
+      );
+      add(
+        "reak",
+        "Vad är en <b>explosion</b>?",
+        [
+          "En mycket snabb reaktion som frigör stora mängder energi och gas",
+          "En långsam reaktion",
+          "När ett ämne löser sig",
+          "En separationsmetod",
+        ],
+        "Gasbildningen leder till ett högt tryck som kan spräcka kärlet – en explosion.",
+      );
+      add(
+        "reak",
+        "Ungefär hur många <b>föreningar</b> finns det i naturen?",
+        ["Miljontals", "Ungefär 90", "Exakt 118", "Ungefär 1000"],
+        "Det finns ungefär nittio olika grundämnen i naturen, men miljontals föreningar.",
+      );
+      add(
+        "reak",
+        "Brustablett i vatten bubblar. Vad visar det?",
+        [
+          "En kemisk reaktion sker – en gas bildas",
+          "Tabletten smälter",
+          "Vattnet kokar",
+          "Tabletten filtreras",
+        ],
+        "Bubblorna är en gas som bildas – ett tecken på kemisk reaktion.",
+      );
+      add(
+        "reak",
+        "Skriv förbränningen av magnesium med ord:",
+        [
+          "magnesium + syre → magnesiumoxid",
+          "magnesium + vatten → magnesiumoxid",
+          "magnesiumoxid → magnesium + syre",
+          "magnesium + kol → koldioxid",
+        ],
+        "Vid förbränning reagerar ämnet med syre. Produkten är en oxid: magnesiumoxid.",
+      );
+      add(
+        "reak",
+        "Vilken reaktionsformel visar att magnesium brinner?",
+        [
+          `2Mg + ${sub("O2")} → 2MgO`,
+          `Mg + ${sub("H2O")} → MgO`,
+          `MgO → Mg + O`,
+          `Mn + ${sub("O2")} → MnO`,
+        ],
+        "Boken sid 77: 2 Mg + O₂ → 2 MgO.",
+      );
+      add(
+        "reak",
+        "Skriv förbränningen av kol (med mycket syre) med ord:",
+        [
+          "kol + syre → koldioxid",
+          "kol + vatten → koldioxid",
+          "kol + syre → vatten",
+          "koldioxid → kol + syre",
+        ],
+        "Kol brinner med syre och bildar koldioxid, CO₂. (C + O₂ → CO₂)",
+      );
+      add(
+        "reak",
+        "Skriv förbränningen av väte med ord:",
+        [
+          "väte + syre → vatten",
+          "väte + kol → vatten",
+          "väte → syre",
+          "väte + syre → väteperoxid",
+        ],
+        "Väte brinner och bildar diväteoxid, H₂O – känt som vatten.",
+      );
 
-/* Kap 5: Separationsmetoder */
-add('sep','Vad bygger separation av ämnen i en blandning på?',['Att ämnena har olika fysikaliska egenskaper','Att ämnena reagerar kemiskt med varandra','Att ämnena har samma kokpunkt','Att man bränner blandningen'],'Vi utnyttjar ämnenas olika fysikaliska egenskaper – t.ex. kokpunkt, densitet, partikelstorlek eller löslighet.');
-add('sep','Vilken metod använder du för att få bort <b>sand från vatten</b>?',['Filtrering','Destillation','Extraktion','Indunstning'],'Sanden löser sig inte i vattnet och fastnar i filterpappret. (Man kan också dekantera.)');
-add('sep','Vilken metod använder du för att få <b>salt ur saltvatten</b>?',['Indunstning','Filtrering','Dekantering','Extraktion'],'Vid indunstning låter man vattnet (lösningsmedlet) avdunsta så att saltet blir kvar.');
-add('sep','Vilken metod används när du <b>brygger te</b>?',['Extraktion','Destillation','Indunstning','Dekantering'],'Smak- och färgämnen löses ut ur teblad med hett vatten = extraktion.');
-add('sep','Vilken metod används för att tillverka <b>starka alkoholdrycker</b>?',['Destillation','Filtrering','Dekantering','Indunstning'],'Alkohol och vatten har olika kokpunkt – därför kan de skiljas genom destillation.');
-add('sep','Vad bygger <b>filtrering</b> på?',['Att partiklarna är olika stora','Att ämnena har olika kokpunkt','Att ämnena har olika löslighet','Att ämnena har olika färg'],'Vid filtrering separerar vi beståndsdelarna efter partikelstorlek. Små partiklar tränger igenom filtret, stora fastnar.');
-add('sep','Vad bygger <b>destillation</b> på?',['Att ämnena har olika kokpunkt','Att partiklarna är olika stora','Att ämnena har olika densitet','Att ämnena är magnetiska'],'Destillation bygger på att ämnen har olika kokpunkt.');
-add('sep','Vad bygger <b>extraktion</b> på?',['Att ämnen har olika löslighet','Att ämnen har olika kokpunkt','Att partiklarna är olika stora','Att ämnen har olika färg'],'Extraktion = man löser ut vissa beståndsdelar. Det bygger på att ämnen har olika löslighet.');
-add('sep','Vad händer vid <b>indunstning</b>?',['Lösningsmedlet får avdunsta så att det lösta fasta ämnet blir kvar','Ångan kyls ner och samlas upp','Vätskan hälls av försiktigt','Ämnet löses ut med vatten'],'Ett fast ämne som lösts i en vätska kan separeras genom indunstning: lösningsmedlet avdunstar.');
-add('sep','Vad är <b>dekantering</b>?',['Att försiktigt hälla bort vätskan när det fasta ämnet sjunkit till botten','Att koka och kyla ner ångan','Att lösa ut ett ämne med vatten','Att låta vattnet avdunsta'],'Som när man kokar kaffe: kaffepulvret sjunker till botten och man häller försiktigt av drycken.');
-add('sep','Kokkaffe: kaffepulvret sjunker till botten och du häller försiktigt upp kaffet. Vilken metod är det?',['Dekantering','Destillation','Indunstning','Filtrering'],'Att hälla bort vätskan från det fasta ämnet på botten kallas dekantering.');
-add('sep','Bryggkaffe: kaffepulvret blir kvar i filterpappret. Vilken metod är det?',['Filtrering','Dekantering','Destillation','Indunstning'],'Det malda kaffet blir kvar i filtret medan drycken rinner igenom = filtrering. (Först sker en extraktion när smakämnena löses ut.)');
-add('sep','Vad sker i <b>kylaren</b> vid destillation?',['Ångan kondenseras tillbaka till vätska','Vätskan kokar','Saltet kristalliseras','Det fasta ämnet filtreras bort'],'Ångan leds till en kylare där ämnet kondenseras tillbaka till vätskeform.');
-add('sep','Hur kan man framställa <b>drickbart vatten av havsvatten</b>?',['Genom destillation – vattnet kokas och ångan kondenseras','Genom filtrering genom kaffefilter','Genom dekantering','Genom att tillsätta salt'],'Havsvattnet hettas upp så att det kokar, vattenångan kondenseras och samlas upp. Salter och bakterier följer inte med ångan. (Man tillsätter små mängder salter för att det ska gå att dricka.)');
-add('sep','Vilken är en <b>likhet</b> mellan indunstning och destillation?',['I båda fallen förångas (avdunstar) vätskan','I båda fallen samlar man upp vätskan','Båda bygger på partikelstorlek','Båda använder filterpapper'],'Båda bygger på att vätskan förångas. Skillnaden är att man vid destillation samlar upp vätskan (kondenserar ångan), men vid indunstning bara vill ha kvar det fasta ämnet.');
-add('sep','Vilken är <b>skillnaden</b> mellan indunstning och destillation?',['Vid destillation samlar man upp den förångade vätskan, vid indunstning låter man den försvinna','Vid indunstning samlar man upp vätskan','Destillation används bara för fasta ämnen','Det finns ingen skillnad'],'Destillation: ångan kyls och vätskan samlas upp. Indunstning: vätskan får avdunsta bort och det fasta ämnet blir kvar.');
-add('sep','Separera <b>sand och salt</b> (labben): vilken ordning är rätt?',['1. Lös i vatten  2. Filtrera bort sanden  3. Indunsta saltvattnet','1. Indunsta  2. Filtrera  3. Lös i vatten','1. Destillera  2. Dekantera  3. Filtrera','1. Filtrera  2. Lös i vatten  3. Destillera'],'Saltet löser sig i vatten men inte sanden. Sanden fastnar i filtret. Saltvattnet (filtratet) indunstas, och saltet blir kvar.');
-add('sep','I sand–salt-labben: varför tillsätter man vatten först?',['Saltet löser sig i vattnet, men inte sanden','För att sanden ska lösa sig','För att saltet ska sjunka till botten','För att blandningen ska börja koka'],'Saltet löses ut i vattnet (extraktion), medan sanden inte löser sig och kan filtreras bort.');
-add('sep','I sand–salt-labben: var hamnar <b>sanden</b> när du filtrerar?',['Kvar i filterpappret','I bägaren under tratten','Den avdunstar','Den löser sig i vattnet'],'Sandkornen är för stora för att komma igenom porerna i filterpappret.');
-add('sep','Hur får man fram saltet på slutet i sand–salt-labben?',['Man indunstar saltvattnet (filtratet)','Man filtrerar saltvattnet en gång till','Man dekanterar','Man tillsätter mer sand'],'Vattnet får avdunsta och saltet blir kvar i skålen – indunstning.');
-add('sep','Hur tillverkas havssalt i saliner?',['Solen och vinden får vattnet att avdunsta så att saltet blir kvar','Havsvattnet filtreras','Havsvattnet destilleras','Saltet extraheras med alkohol'],'I saliner indunstas havsvatten med hjälp av sol och vind.');
-add('sep','Rosenolja framställs ur rosens kronblad genom …',['extraktion och destillation','filtrering och dekantering','indunstning','magnetism'],'Bildtexten i boken: rosenolja framställs genom extraktion och destillation.');
-add('sep','Vad används en <b>separationstratt</b> till?',['Extraktion och för att separera två vätskor som inte löser sig i varandra','Att filtrera sand','Att destillera vatten','Att indunsta salt'],'Med en separationstratt kan man t.ex. tappa av vatten under ett lager olja.');
-add('sep','När du torkar tvätt på lina avdunstar vattnet. Vilket begrepp passar?',['Avdunstning','Destillation','Filtrering','Extraktion'],'Boken: att torka tvätt på lina eller i torktumlare är exempel på avdunstning.');
-add('sep','Ett andningsskydd hindrar dammpartiklar från att komma in i lungorna. Vilken metod?',['Filtrering','Destillation','Indunstning','Dekantering'],'Vid filtrering kan man avskilja ett fast ämne ur en vätska <i>eller en gas</i>.');
-add('sep','Vilken metod passar för att separera <b>två vätskor med olika kokpunkt</b>, t.ex. alkohol och vatten?',['Destillation','Filtrering','Dekantering','Indunstning'],'Vätskorna förångas i tur och ordning vid sina kokpunkter – destillation. Används t.ex. vid oljeraffinering.');
-add('sep','Varför går det inte att filtrera bort saltet ur saltvatten?',['Saltet är löst – partiklarna är så små att de går igenom filtret','Saltet är för tungt','Saltet fastnar i filtret','Saltet är en gas'],'Lösta ämnen tränger igenom filtrets små porer tillsammans med vattenpartiklarna. Använd indunstning istället.');
-add('sep','Guldvaskning bygger på att guld och sand har olika …',['densitet','kokpunkt','färg','löslighet'],'Guldet har högre densitet än sanden och stannar kvar på kärlets botten.');
+      /* Förbränning & brandsäkerhet */
+      add(
+        "forbr",
+        "Vad är <b>förbränning</b>?",
+        [
+          "En kemisk reaktion där ett ämne reagerar med syre",
+          "När ett ämne smälter",
+          "När vatten kokar",
+          "En separationsmetod",
+        ],
+        "Förbränning = kemisk reaktion där det brinnande ämnet binds till syre.",
+      );
+      add(
+        "forbr",
+        "Vad kallas de ämnen som bildas vid förbränning?",
+        ["Oxider", "Sulfider", "Klorider", "Legeringar"],
+        "Ämnen som bildas vid förbränning kallas oxider – föreningar med syre.",
+      );
+      add(
+        "forbr",
+        "Vilka tre saker behövs för att det ska bli eld?",
+        [
+          "Brännbart ämne, syre och tillräckligt hög temperatur",
+          "Vatten, syre och kol",
+          "Bränsle, koldioxid och ljus",
+          "Luft, vatten och värme",
+        ],
+        "Förutsättningarna för förbränning: brännbart ämne + syre + tillräckligt hög temperatur. Tas en bort slocknar elden.",
+      );
+      add(
+        "forbr",
+        "Hur släcker man en eld i princip?",
+        [
+          "Man tar bort en av förutsättningarna för förbränning",
+          "Man tillför mer syre",
+          "Man höjer temperaturen",
+          "Man tillsätter mer bränsle",
+        ],
+        "Ta bort bränslet, kyl ner (sänk temperaturen) eller kväv elden (stoppa syretillförseln).",
+      );
+      add(
+        "forbr",
+        "Hur släcker en <b>brandfilt</b> elden?",
+        [
+          "Genom kvävning – den stoppar syretillförseln",
+          "Genom att kyla ner",
+          "Genom att ta bort bränslet",
+          "Genom att tillföra koldioxid",
+        ],
+        "Med en brandfilt kväver man elden så att den inte får syre.",
+      );
+      add(
+        "forbr",
+        "Hur släcker <b>vatten</b> en brand?",
+        [
+          "Vatten kyler ner och hindrar också tillgången till syre",
+          "Vatten tar bort bränslet",
+          "Vatten reagerar med elden",
+          "Vatten tillför syre",
+        ],
+        "Vatten kyler ner det brinnande ämnet och hindrar också syretillförseln.",
+      );
+      add(
+        "forbr",
+        "Vad ska du <b>aldrig</b> göra om fett i en kastrull börjar brinna?",
+        [
+          "Hälla vatten på",
+          "Lägga på ett lock",
+          "Använda brandfilt",
+          "Stänga av spisen",
+        ],
+        "Vatten får man aldrig använda på brinnande fett, bensin eller elektriska apparater. Kväv med lock eller brandfilt.",
+      );
+      add(
+        "forbr",
+        "Vilken släckare kan användas till brinnande fett och elektriska apparater?",
+        [
+          "Koldioxidsläckare (eller pulversläckare)",
+          "Vatten",
+          "Vattenhink",
+          "Bensin",
+        ],
+        "Koldioxid används också för att släcka brinnande fett och elektriska apparater. Pulversläckare kan användas till alla sorters bränder.",
+      );
+      add(
+        "forbr",
+        "Vilken släckare kan användas till <b>alla sorters</b> bränder?",
+        ["Pulversläckare", "Vatten", "Sand", "Koldioxidsläckare"],
+        "Boken: pulversläckare kan användas för att släcka alla sorters bränder.",
+      );
+      add(
+        "forbr",
+        "Hur är det säkrast att släcka ett stearinljus?",
+        [
+          "Genom kvävning, t.ex. med en ljussläckare",
+          "Genom att blåsa hårt",
+          "Genom att hälla vatten på",
+          "Genom att ta bort veken",
+        ],
+        "Boken: det är säkrast att släcka ljus genom kvävning.",
+      );
+      add(
+        "forbr",
+        "Vid markbränder röjer man bort brännbart material framför elden. Vilken förutsättning tar man bort?",
+        [
+          "Bränslet (det brännbara ämnet)",
+          "Syret",
+          "Temperaturen",
+          "Koldioxiden",
+        ],
+        "Genom att röja bort det brinnande ämnet i närheten förhindrar man att branden sprider sig.",
+      );
+      add(
+        "forbr",
+        "Vad ska du göra om det börjar brinna inomhus och du inte klarar av att släcka?",
+        [
+          "Lämna huset, stäng dörrarna och ring nödnumret 112",
+          "Öppna alla fönster",
+          "Gömma dig i ett rum",
+          "Hälla vatten på elektriska apparater",
+        ],
+        "Ring 112. Stäng dörrarna så att elden inte får mer syre.",
+      );
+      add(
+        "forbr",
+        "Vad är det lag på att det ska finnas i alla bostäder?",
+        ["Brandvarnare", "Brandsläckare", "Brandfilt", "Sprinkler"],
+        "Det är lag på att det ska finnas brandvarnare i alla bostäder.",
+      );
+      add(
+        "forbr",
+        "Vad är <b>antändningstemperatur</b>?",
+        [
+          "Den lägsta temperatur vid vilken ett ämne börjar brinna",
+          "Temperaturen när vatten kokar",
+          "Den högsta temperatur en eld kan ha",
+          "Temperaturen när ett ämne smälter",
+        ],
+        "Ämnen börjar brinna vid olika temperaturer. Den lägsta kallas antändningstemperatur. T.ex. tidningspapper ca 230 °C.",
+      );
+      add(
+        "forbr",
+        "Vad är <b>flampunkt</b>?",
+        [
+          "Den lägsta temperatur vid vilken ångorna från en vätska börjar brinna",
+          "Temperaturen då en flamma slocknar",
+          "Smältpunkten för metaller",
+          "Kokpunkten för vatten",
+        ],
+        "Flampunkt gäller vätskor – t.ex. har bensin flampunkt ca −45 °C, därför är den så farlig.",
+      );
+      add(
+        "forbr",
+        "Varför brinner inte ett papperskärl med vatten när man värmer det över en låga?",
+        [
+          "Vattnet kokar vid 100 °C, så papperet blir aldrig tillräckligt varmt för att börja brinna",
+          "Papper kan inte brinna",
+          "Vattnet tar bort syret",
+          "Pappret är fuktigt utanpå",
+        ],
+        "Papper antänds vid ca 230 °C. Så länge det finns vatten kvar kan papperets temperatur inte stiga mycket över 100 °C.",
+      );
+      add(
+        "forbr",
+        "I en låga är det …",
+        [
+          "gas som brinner",
+          "bara fast ämne som glöder",
+          "vatten som kokar",
+          "syre som brinner",
+        ],
+        "Om det är tillräckligt varmt övergår vissa ämnen i gasform och då ser vi förbränningen som en låga.",
+      );
+      add(
+        "forbr",
+        "Vad är det glödande i en gul låga (t.ex. stearinljus)?",
+        [
+          "Kolpartiklar från ofullständig förbränning",
+          "Syre",
+          "Vatten",
+          "Koldioxid",
+        ],
+        "I lågan finns glödande kolpartiklar från en ofullständig förbränning. Det är också dessa som bildar sot.",
+      );
+      add(
+        "forbr",
+        "Vad bildas när magnesium brinner?",
+        [
+          "Magnesiumoxid, MgO – ett vitt pulver",
+          "Magnesiumsulfid",
+          "Koldioxid",
+          "Vatten",
+        ],
+        "Magnesium + syre → magnesiumoxid (2Mg + O₂ → 2MgO).",
+      );
+      add(
+        "forbr",
+        "Hur ser det ut när magnesium brinner (labben)?",
+        [
+          "Mycket klar, bländande vit låga – titta inte rakt in",
+          "Blå, svag låga",
+          "Det bildas svart rök",
+          "Det brinner inte alls",
+        ],
+        "Magnesium brinner med en mycket klar låga. Man ska inte titta rakt in i den.",
+      );
+      add(
+        "forbr",
+        "Vad bildas när <b>stearin</b> (eller trä) brinner fullständigt?",
+        ["Koldioxid och vatten", "Bara aska", "Magnesiumoxid", "Järnoxid"],
+        "Stearin innehåller kol och väte. Kolet blir koldioxid och vätet blir vatten. (Boken: när trä brinner bildas koldioxid och vatten.)",
+      );
+      add(
+        "forbr",
+        "Stearinljus-labben: hur kan man visa att det bildas <b>vatten</b>?",
+        [
+          "Ett kallt glas över lågan blir immigt",
+          "Kalkvatten blir grumligt",
+          "Lågan blir blå",
+          "Ljuset blir tyngre",
+        ],
+        "Imma (vattendroppar) syns på ett kallt glas som hålls över lågan.",
+      );
+      add(
+        "forbr",
+        "Stearinljus-labben: hur kan man visa att det bildas <b>koldioxid</b>?",
+        [
+          "Kalkvatten blir grumligt",
+          "Ett glas blir immigt",
+          "Lågan slocknar direkt",
+          "Det luktar svavel",
+        ],
+        "Koldioxid gör kalkvatten grumligt (mjölkigt).",
+      );
+      add(
+        "forbr",
+        "Vad är det egentligen som brinner i ett stearinljus?",
+        [
+          "Stearinångor (stearin i gasform)",
+          "Bara veken",
+          "Fast stearin",
+          "Syret i luften",
+        ],
+        "Värmen smälter stearinet, veken suger upp det och det förångas. Det är stearinångorna som brinner i lågan.",
+      );
+      add(
+        "forbr",
+        "Stålull-labben: vad händer med massan när stålull brinner?",
+        [
+          "Den ökar – järnet binds till syre och bildar järnoxid",
+          "Den minskar eftersom något försvinner",
+          "Den är exakt samma",
+          "Den blir noll",
+        ],
+        "Järn + syre → järnoxid. Syre från luften binds till järnet, så produkten väger mer.",
+      );
+      add(
+        "forbr",
+        "Skriv förbränningen av stålull med ord:",
+        [
+          "järn + syre → järnoxid",
+          "järn + svavel → järnsulfid",
+          "kol + syre → koldioxid",
+          "järn → rost + vatten",
+        ],
+        "Stålull är tunna järntrådar. Järn + syre → järnoxid.",
+      );
+      add(
+        "forbr",
+        "Vad upptäckte kemister på 1700-talet om ämnen som brunnit?",
+        [
+          "Att de har större massa än innan – det brinnande ämnet binds till syre",
+          "Att de försvinner helt",
+          "Att eld är ett grundämne",
+          "Att de blir till vatten",
+        ],
+        "Ett ämne som brunnit har större massa än det obrunna. Därför förstod man att ämnet binds till syre.",
+      );
+      add(
+        "forbr",
+        "Vad bildas när kol brinner med <b>för lite syre</b>?",
+        [
+          "Kolmonoxid, CO (kolos) – mycket giftigt",
+          "Koldioxid",
+          "Syrgas",
+          "Vatten",
+        ],
+        "När det inte finns tillräckligt med syre bildas kolmonoxid, CO. Den tränger undan syret i blodet och kan i värsta fall leda till kvävning.",
+      );
+      add(
+        "forbr",
+        "Varför är kolmonoxid (CO) farligt?",
+        [
+          "Den tränger undan syret i blodet – kan leda till kvävning",
+          "Den är frätande",
+          "Den exploderar alltid",
+          "Den är radioaktiv",
+        ],
+        "Om man andas in kolmonoxid tränger den undan syret i blodomloppet.",
+      );
+      add(
+        "forbr",
+        "Vad bildas när kol brinner med <b>tillräckligt</b> med syre?",
+        ["Koldioxid, CO₂", "Kolmonoxid, CO", "Magnesiumoxid", "Järnsulfid"],
+        "Fullständig förbränning av kol ger koldioxid.",
+      );
+      add(
+        "forbr",
+        "Kan förbränning ske långsamt?",
+        [
+          "Ja, t.ex. när trä murknar – energi frigörs ändå",
+          "Nej, förbränning sker alltid med låga",
+          "Nej, bara explosioner räknas",
+          "Bara i laboratorium",
+        ],
+        "Förbränning kan ske långsamt (som när trä murknar) eller snabbt. Vid all förbränning frigörs energi.",
+      );
+      add(
+        "forbr",
+        "Vilket ämne har högst antändningstemperatur enligt boken: socker, tidningspapper, magnesium eller torrt trä?",
+        ["Magnesium (ca 500 °C)", "Tidningspapper", "Socker", "Torrt trä"],
+        "Magnesium 500 °C, socker 410 °C, matolja och torrt trä 250 °C, tidningspapper 230 °C.",
+      );
+      add(
+        "forbr",
+        "Vad innebär det att något är <b>lättantändligt</b>, som bensin och aceton?",
+        [
+          "Det börjar brinna mycket lätt, även vid låg temperatur",
+          "Det kan inte brinna",
+          "Det släcker eld",
+          "Det är en metall",
+        ],
+        "Bensin och aceton är särskilt lättantändliga. Bensin har flampunkt −45 °C.",
+      );
+      add(
+        "forbr",
+        "Var ska en brandfilt hänga?",
+        [
+          "På ett lättåtkomligt ställe hemma och i labbet",
+          "Inlåst i ett skåp",
+          "I källaren",
+          "I bilen",
+        ],
+        "Brandfilten ska hänga på ett lättåtkomligt ställe hemma och i laboratoriet.",
+      );
+      add(
+        "forbr",
+        "Om någons kläder börjar brinna – vad gör man?",
+        [
+          "Kväver elden, t.ex. med brandfilt, och personen rullar på marken",
+          "Personen springer så fort som möjligt",
+          "Häller bensin på",
+          "Fläktar på elden",
+        ],
+        "Springer man får elden mer syre. Kväv elden med brandfilt och rulla.",
+      );
 
-/* Kap 6: Grundämnen, föreningar, molekyler */
-add('grund','Vad är kemiskt sett den minsta byggstenen i ett ämne?',['Atomen','Molekylen','Cellen','Föreningen'],'Atomen är den minsta byggstenen. Ämnena omkring oss består av flera atomer.');
-add('grund','Vad är ett <b>grundämne</b>?',['Ett ämne där alla atomer är likadana','Ett ämne av minst två olika sorters atomer','En blandning av två ämnen','Ett ämne som bara finns i naturen'],'Om alla atomer i ett ämne är likadana är det fråga om ett grundämne, t.ex. guld eller järn.');
-add('grund','Vad är en <b>kemisk förening</b>?',['Ett ämne som består av minst två olika grundämnen som bundits ihop kemiskt','Ett ämne där alla atomer är likadana','En blandning av metaller','Två vätskor som inte löser sig'],'En förening består av två eller flera olika grundämnen som sitter ihop med kemiska bindningar, t.ex. vatten H₂O.');
-add('grund','Vad är en <b>molekyl</b>?',['Minst två atomer som är bundna till varandra','En enda atom','En blandning','En sorts metall'],'En molekyl har minst två atomer som förenats. Atomerna kan vara av samma grundämne (O₂) eller av olika (H₂O).');
-add('grund','Vad är en <b>kemisk formel</b>?',['Ett sätt att skriva ett ämne med kemiska tecken, t.ex. H₂O','En matematisk ekvation','En ritning av ett laboratorium','Ett recept på en blandning'],'Den kemiska formeln anger vilka atomer ämnet består av och hur många, t.ex. H₂O för vatten.');
-add('grund','Hur många grundämnen känner vi till idag?',['Ungefär 118','Ungefär 50','Ungefär 1000','Exakt 92'],'Boken: i nuläget känner vi till 118 grundämnen, varav 91 förekommer i naturen.');
-add('grund','Vilka är de tre grupperna av grundämnen?',['Metaller, icke-metaller och halvmetaller','Fasta, flytande och gaser','Syror, baser och salter','Atomer, molekyler och joner'],'Grundämnena delas efter sina egenskaper i metaller och icke-metaller, och en tredje grupp: halvmetaller.');
-add('grund','Vilket grundämne är en <b>halvmetall</b> som används i elektronik?',['Kisel (Si)','Kol (C)','Silver (Ag)','Syre (O)'],'Den mest kända halvmetallen är kisel, som används i elektronik.');
-add('grund','Vilken är den enda metallen som är <b>flytande</b> i rumstemperatur?',['Kvicksilver (Hg)','Järn (Fe)','Aluminium (Al)','Natrium (Na)'],'Kvicksilver är en tung och trögflytande vätska – den enda metall som är flytande i rumstemperatur. Den är giftig.');
-add('grund','Varför har kvicksilver tecknet <b>Hg</b>?',['Det kommer från latinets hydrargyrum, som betyder flytande silver','Det står för "heavy gold"','Det är förkortning för "Hälsofarligt"','Det är slumpvis valt'],'Hg kommer från latinets hydrargyrum = flytande silver. Många kemiska tecken kommer från latinska eller grekiska namn.');
-add('grund','Hur skrivs ett kemiskt tecken?',['En eller två bokstäver – den första stor, den andra liten','Alltid tre stora bokstäver','Alltid bara en liten bokstav','Med siffror'],'T.ex. C för kol och Fe för järn. Första bokstaven alltid stor, andra alltid liten.');
-add('grund','Vilka egenskaper har metaller vanligtvis?',['Fasta, hållbara och glänsande','Gasformiga och genomskinliga','Spröda och utan glans','Flytande och giftiga'],'Metaller är vanligtvis fasta, hållbara och glänsande, och har hög smältpunkt.');
-add('grund','Vilken av dessa är en <b>icke-metall</b>?',['Svavel','Järn','Silver','Aluminium'],'Svavel är en gul icke-metall som är fast vid rumstemperatur. Andra icke-metaller: syre, kväve, kol.');
-add('grund','Vilket är det minsta och enklaste atomslaget?',['Väte','Syre','Helium','Kol'],'Den minsta och enklaste atomen är väte.');
-add('grund','Hur förekommer syre vanligtvis i luften?',['Som tvåatomiga molekyler O₂','Som enskilda O-atomer','Som O₃ alltid','Som vatten'],'Syre i gasform finns som 2-atomiga molekyler O₂. Även kväve finns som N₂.');
-add('grund','Vad är skillnaden mellan en <b>blandning</b> av väte och syre och en <b>förening</b> av väte och syre?',['I föreningen är atomerna kemiskt bundna till varandra (vatten H₂O), i blandningen är de bara blandade','Det finns ingen skillnad','Blandningen är alltid flytande','Föreningen kan separeras med filter'],'I en blandning finns H₂- och O₂-molekyler bredvid varandra. I föreningen vatten H₂O är väte och syre bundna ihop till nya molekyler med nya egenskaper.');
-add('grund','Natrium (mjuk metall) och klor (grön giftig gas) bildar tillsammans …',['natriumklorid – koksalt','natriumoxid','klorvatten','järnsulfid'],'Natrium och klor är grundämnen, men tillsammans bildar de föreningen natriumklorid, alltså koksalt. Föreningen har helt andra egenskaper!');
-add('grund','Vilket grundämne reagerar häftigt med vatten och finns i bordssalt?',['Natrium (Na)','Kalium (K)','Järn (Fe)','Syre (O)'],'Natrium är ett mjukt metalliskt grundämne som reagerar häftigt med vatten och finns i koksalt (natriumklorid).');
-add('grund','Vad är "diväteoxid"?',['Vatten (H₂O)','Väteperoxid','Koldioxid','Ett giftigt ämne'],'Di = två, väte = H, oxid = syre. Diväteoxid = H₂O = vatten!');
-add('grund','Vatten (H₂O) är …',['en förening','ett grundämne','en blandning','en halvmetall'],'Vatten består av två grundämnen, väte och syre, som är kemiskt bundna – en förening.');
-add('grund','Syrgas (O₂) är …',['ett grundämne (molekyl av samma sorts atomer)','en förening','en blandning','en metall'],'O₂ består bara av syreatomer – det är ett grundämne, även om det bildar molekyler.');
-add('grund','Koldioxid (CO₂) är …',['en förening','ett grundämne','en blandning','en metall'],'CO₂ består av två olika grundämnen, kol och syre, bundna till varandra.');
-add('grund','Vad visar en <b>kalottmodell</b>?',['Hur atomerna i en molekyl sitter ihop, med färgade klot','Hur stor en kalott är','En karta över periodiska systemet','Ett laboratorium'],'I kalottmodeller ritas atomerna som klot. T.ex. koldioxid: ett svart klot (kol) i mitten och två röda (syre).');
+      /* ---------- Logik ---------- */
+      const $ = (id) => document.getElementById(id);
+      const shuffle = (a) => {
+        a = a.slice();
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      };
+      let sel = new Set(Object.keys(CATS)),
+        N = 20,
+        run = null;
 
-/* Kemiska tecken (genereras ur bokens tabell sid 38) */
-const EL=[['aluminium','Al'],['argon','Ar'],['bly','Pb'],['bor','B'],['brom','Br'],['fluor','F'],['fosfor','P'],['guld','Au'],['helium','He'],['jod','I'],['järn','Fe'],['kalcium','Ca'],['kalium','K'],['kisel','Si'],['klor','Cl'],['kol','C'],['koppar','Cu'],['kvicksilver','Hg'],['kväve','N'],['litium','Li'],['magnesium','Mg'],['natrium','Na'],['neon','Ne'],['silver','Ag'],['svavel','S'],['syre','O'],['tenn','Sn'],['titan','Ti'],['uran','U'],['väte','H'],['zink','Zn']];
-const FAKE={'Fe':['J','Ir','F'],'Ag':['Si','S','Sl'],'Au':['G','Gu','Ag'],'Pb':['B','Bl','Ly'],'Hg':['K','Kv','Ks'],'Na':['N','Nt','S'],'K':['Ka','Ca','Kl'],'Cu':['K','Ko','Co'],'S':['Sv','Si','Su'],'Sn':['Te','T','Tn'],'N':['K','Kv','Na'],'H':['V','Va','He'],'O':['S','Sy','Ox'],'C':['K','Ko','Ca'],'P':['F','Fo','Ph']};
-EL.forEach(([n,s])=>{
-  let wrong=(FAKE[s]||[]).slice();
-  const others=EL.filter(e=>e[1]!==s).map(e=>e[1]).sort(()=>Math.random()-.5);
-  while(wrong.length<3)wrong.push(others.pop());
-  add('tecken',`Vilket kemiskt tecken har <b>${n}</b>?`,[s,...wrong.slice(0,3)],`${n[0].toUpperCase()+n.slice(1)} = ${s}`);
-  const wn=EL.filter(e=>e[1]!==s).map(e=>e[0]).sort(()=>Math.random()-.5).slice(0,3);
-  add('tecken',`Vilket grundämne har tecknet <b>${s}</b>?`,[n,...wn],`${s} = ${n}`);
-});
+      function renderCats() {
+        const box = $("cats");
+        box.innerHTML = "";
+        for (const k in CATS) {
+          const cnt = Q.filter((q) => q.c === k).length;
+          const lab = document.createElement("label");
+          lab.className = "cat" + (sel.has(k) ? " on" : "");
+          lab.innerHTML = `<input type="checkbox" ${sel.has(k) ? "checked" : ""}><span><b>${CATS[k].n}</b><small>${CATS[k].s} · ${cnt} frågor</small></span>`;
+          lab.querySelector("input").onchange = (e) => {
+            e.target.checked ? sel.add(k) : sel.delete(k);
+            renderCats();
+          };
+          box.appendChild(lab);
+        }
+        const tot = Q.filter((q) => sel.has(q.c)).length;
+        $("poolInfo").textContent = `${tot} frågor i de valda områdena.`;
+        $("go").disabled = !tot;
+      }
+      document.querySelectorAll("#nsel button").forEach(
+        (b) =>
+          (b.onclick = () => {
+            document
+              .querySelectorAll("#nsel button")
+              .forEach((x) => x.classList.remove("sel"));
+            b.classList.add("sel");
+            N = +b.dataset.n;
+          }),
+      );
+      $("allOn").onclick = () => {
+        sel = new Set(Object.keys(CATS));
+        renderCats();
+      };
+      $("allOff").onclick = () => {
+        sel = new Set();
+        renderCats();
+      };
 
-/* Formelskrivning */
-const sub=s=>s.replace(/(\D)(\d+)/g,'$1<sub>$2</sub>');
-add('formel','Vad betyder <b>2H</b>?',['Två väteatomer','En tvåatomig vätemolekyl','Två vätemolekyler','Vatten'],'Siffran framför (koefficienten) räknar antalet. 2H = två (lösa) väteatomer.');
-add('formel',`Vad betyder <b>${sub('H2')}</b>?`,['En tvåatomig vätemolekyl (vätgas)','Två lösa väteatomer','Två vätemolekyler','Väte och syre'],'Den lilla siffran nedtill visar hur många atomer som sitter ihop i molekylen. H₂ = en molekyl av två väteatomer = vätgas.');
-add('formel',`Vad betyder <b>3${sub('H2')}</b>?`,['Tre tvåatomiga vätemolekyler','Tre väteatomer','En molekyl med sex väteatomer','Två molekyler med tre väteatomer'],'3 framför = tre stycken. H₂ = tvåatomig vätemolekyl. Alltså tre tvåatomiga vätemolekyler.');
-add('formel',`Hur många väteatomer finns det totalt i <b>3${sub('H2')}</b>?`,['6','3','5','2'],'3 molekyler × 2 atomer = 6 väteatomer.');
-add('formel','Hur skriver du <b>två väteatomer</b>?',['2H',sub('H2'),'H2'.replace('2','<sup>2</sup>'),`2${sub('H2')}`],'Två lösa atomer: siffran framför → 2H.');
-add('formel','Hur skriver du <b>en tvåatomig vätemolekyl</b>?',[sub('H2'),'2H','H',`2${sub('H2')}`],'Två atomer som sitter ihop: liten siffra nedtill → H₂.');
-add('formel','Hur skriver du <b>tre tvåatomiga vätemolekyler</b>?',[`3${sub('H2')}`,'3H',sub('H3'),`2${sub('H3')}`],'3 stycken H₂ → 3H₂.');
-add('formel',`Vad är <b>${sub('H2O')}</b>?`,['Vatten','Väteperoxid','Vätgas','Syrgas'],'H₂O = vatten. Två väteatomer och en syreatom.');
-add('formel',`Vad är <b>${sub('CO2')}</b>?`,['Koldioxid','Kolmonoxid','Kalciumoxid','Koppar'],'CO₂ = koldioxid: en kolatom och två syreatomer. "Di" betyder två.');
-add('formel','Vad är <b>CO</b>?',['Kolmonoxid (koloxid, kolos)','Koldioxid','Kobolt','Koppar'],'CO = kolmonoxid: en kolatom och en syreatom. "Mono" betyder en. Kallas ibland bara koloxid eller kolos. Mycket giftig!');
-add('formel','Observera: vad är skillnaden mellan <b>CO</b> och <b>Co</b>?',['CO är kolmonoxid (kol + syre), Co är grundämnet kobolt','Det är samma sak','CO är kobolt, Co är kolmonoxid','Båda är koldioxid'],'Stor och liten bokstav spelar roll! Co (liten o) = ett grundämne. CO (två stora) = kol + syre.');
-add('formel','Vad är <b>MgO</b>?',['Magnesiumoxid','Mangan','Magnesium','Magnesiumsulfid'],'MgO = magnesiumoxid. Bildas när magnesium brinner.');
-add('formel','Vad är <b>FeS</b>?',['Järnsulfid','Järnoxid','Fluor och svavel','Rost'],'FeS = järnsulfid. Bildas när järn och svavel reagerar.');
-add('formel',`Vad är <b>${sub('O2')}</b>?`,['Syrgas (syre) – en tvåatomig syremolekyl','Två lösa syreatomer','Ozon','Vatten'],'O₂ = syrgas/syre. Betyder ibland "en tvåatomig syremolekyl".');
-add('formel','Vilken formel har <b>vatten</b>?',[sub('H2O'),sub('HO2'),sub('H2O2'),'2HO'],'Vatten = H₂O.');
-add('formel','Vilken formel har <b>koldioxid</b>?',[sub('CO2'),'CO','2CO',sub('C2O')],'Koldioxid = CO₂.');
-add('formel','Vilken formel har <b>magnesiumoxid</b>?',['MgO','MnO','Mg','MO'],'Magnesiumoxid = MgO.');
-add('formel','Vilken formel har <b>järnsulfid</b>?',['FeS','JS','FS','FeO'],'Järnsulfid = FeS (Fe = järn, S = svavel).');
-add('formel','Vilken formel har <b>kolmonoxid</b>?',['CO',sub('CO2'),'Co','KO'],'Kolmonoxid = CO.');
-add('formel',`Hur många atomer finns det i en molekyl <b>${sub('CO2')}</b>?`,['3 (1 kol + 2 syre)','2','1','4'],'C = 1 kolatom, O₂ = 2 syreatomer → totalt 3.');
-add('formel',`Hur många väteatomer finns det i <b>2${sub('H2O')}</b>?`,['4','2','3','6'],'2 vattenmolekyler × 2 väteatomer = 4. (Och 2 syreatomer.)');
-add('formel',`Vad betyder <b>3${sub('CO2')}</b>?`,['Tre koldioxidmolekyler','En molekyl med tre kolatomer','Tre kolatomer och två syreatomer','Koldioxid med tre syre'],'Boken: beteckningen 3CO₂ betyder tre koldioxidmolekyler.');
-add('formel','Vad betyder <b>3N</b>?',['Tre kväveatomer','En kvävemolekyl','Tre kvävemolekyler','Kväve och natrium'],'Siffran framför utan liten siffra bakom: tre lösa kväveatomer.');
-add('formel',`Vad betyder <b>${sub('N2')}</b>?`,['En tvåatomig kvävemolekyl','Två kväveatomer som inte sitter ihop','Natrium','Kväveoxid'],'N₂ = kvävemolekyl. Kväve i luften finns som N₂.');
-add('formel',`Hur många syreatomer finns det i <b>${sub('O3')}</b> (ozon)?`,['3','1','2','6'],'Liten siffra 3 = tre syreatomer i samma molekyl.');
-add('formel','Vad visar siffran som skrivs <b>nedtill</b> efter ett tecken (som 2:an i H₂O)?',['Den visar hur många atomer av det slaget som finns i molekylen','Den visar hur många molekyler det finns','Den visar temperaturen','Den visar laddningen'],'Lilla siffran nere till höger = antal atomer i molekylen. Siffran framför = antal molekyler/atomer.');
+      function show(id) {
+        ["start", "quiz", "result", "sheet"].forEach((s) =>
+          $(s).classList.toggle("hide", s !== id),
+        );
+        window.scrollTo(0, 0);
+      }
 
-/* Kemiska reaktioner */
-add('reak','Vad är en <b>kemisk reaktion</b>?',['När ämnen omvandlas till nya ämnen med nya egenskaper','När ett ämne smälter','När man blandar sand och salt','När ett ämne löser sig i vatten'],'Vid en kemisk reaktion bryts kemiska bindningar och atomerna binds på nytt sätt – nya ämnen bildas.');
-add('reak','Vad händer med atomerna vid en kemisk reaktion?',['Bindningar bryts och atomerna binds till andra atomer – atomerna försvinner inte','Atomerna försvinner','Nya atomer skapas','Atomerna blir större'],'Atomerna ordnas om. Bindningar bryts och nya bindningar uppkommer. Inga atomer försvinner.');
-add('reak','Vilket är ett exempel på en kemisk reaktion?',['Förbränning','Att socker löser sig i te','Att filtrera sand','Att is smälter'],'Förbränning är en kemisk reaktion – nya ämnen (oxider) bildas.');
-add('reak','Vad kallas ämnena <b>före</b> pilen i en reaktionsformel?',['Utgångsämnen (reaktanter)','Produkter','Katalysatorer','Lösningar'],'Utgångsämnen → produkter. Pilen betyder "bildar" eller "blir".');
-add('reak','Vad kallas ämnena <b>efter</b> pilen i en reaktionsformel?',['Produkter','Utgångsämnen','Reaktanter','Blandningar'],'Det som bildas kallas produkter.');
-add('reak','Vad betyder pilen → i en reaktionsformel?',['"bildar" / "reagerar och blir"','"är lika med" i matte','"minus"','"blandas med"'],'T.ex. järn + svavel → järnsulfid läses "järn och svavel bildar järnsulfid".');
-add('reak','Skriv reaktionen mellan järn och svavel med ord:',['järn + svavel → järnsulfid','järn + syre → järnsulfid','järnsulfid → järn + svavel + syre','järn + svavel → järnoxid'],'Järn och svavel reagerar och bildar föreningen järnsulfid.');
-add('reak','Skriv reaktionen mellan järn och svavel med kemiska tecken:',['Fe + S → FeS','J + S → JS','Fe + O → FeO','F + S → FS'],'Fe (järn) + S (svavel) → FeS (järnsulfid).');
-add('reak','Hur kan man separera en <b>blandning</b> av järnpulver och svavelpulver?',['Med en magnet – järnet dras till magneten','Det går inte','Genom att värma den','Genom att tillsätta syre'],'I en blandning har järnet kvar sina egenskaper, så det är magnetiskt och kan dras ut med en magnet.');
-add('reak','Vad händer när man värmer blandningen av järn och svavel?',['De reagerar och bildar ett nytt ämne, järnsulfid','Svavlet avdunstar och järnet blir kvar','Ingenting händer','Det bildas vatten'],'Vid upphettning reagerar järn och svavel. Reaktionen ger ifrån sig värme (det glöder) och järnsulfid bildas.');
-add('reak','Går järnsulfid att separera med en magnet?',['Nej, det är en förening med nya egenskaper','Ja, eftersom det innehåller järn','Ja, om man värmer den först','Bara svavlet fastnar'],'Järnsulfid är ett nytt ämne. Järnatomerna är bundna till svavelatomerna och man kan inte skilja dem med magnet.');
-add('reak','Järn + svavel före uppvärmning är en … och efter uppvärmning en …',['blandning … förening','förening … blandning','grundämne … blandning','lösning … emulsion'],'Före: blandning (kan separeras med magnet). Efter: förening (järnsulfid, FeS).');
-add('reak','Vilka tecken kan visa att en kemisk reaktion har skett?',['Ljus, värme, färgändring, gasbubblor eller att ett nytt ämne bildas','Att ämnet bara byter form','Att ämnet blir blött','Att man rör om'],'Tecken på kemisk reaktion: ljus eller värme frigörs, färgen ändras, gas bildas (bubblor), en fällning bildas.');
-add('reak','När järn rostar är det en …',['långsam kemisk reaktion','snabb kemisk reaktion','fysikalisk förändring','separationsmetod'],'Järn + syre → rost. Det tar lång tid – en långsam kemisk reaktion.');
-add('reak','Vad händer med energin vid en kemisk reaktion?',['Energi frigörs eller binds – en kemisk reaktion är alltid en omvandling av energi','Energin försvinner','Ingen energi är inblandad','Energi skapas ur ingenting'],'Boken: vid en kemisk reaktion sker alltid en omvandling av energi. Bindningar bryts och nya bildas.');
-add('reak','Vad är en <b>explosion</b>?',['En mycket snabb reaktion som frigör stora mängder energi och gas','En långsam reaktion','När ett ämne löser sig','En separationsmetod'],'Gasbildningen leder till ett högt tryck som kan spräcka kärlet – en explosion.');
-add('reak','Ungefär hur många <b>föreningar</b> finns det i naturen?',['Miljontals','Ungefär 90','Exakt 118','Ungefär 1000'],'Det finns ungefär nittio olika grundämnen i naturen, men miljontals föreningar.');
-add('reak','Brustablett i vatten bubblar. Vad visar det?',['En kemisk reaktion sker – en gas bildas','Tabletten smälter','Vattnet kokar','Tabletten filtreras'],'Bubblorna är en gas som bildas – ett tecken på kemisk reaktion.');
-add('reak','Skriv förbränningen av magnesium med ord:',['magnesium + syre → magnesiumoxid','magnesium + vatten → magnesiumoxid','magnesiumoxid → magnesium + syre','magnesium + kol → koldioxid'],'Vid förbränning reagerar ämnet med syre. Produkten är en oxid: magnesiumoxid.');
-add('reak','Vilken reaktionsformel visar att magnesium brinner?',[`2Mg + ${sub('O2')} → 2MgO`,`Mg + ${sub('H2O')} → MgO`,`MgO → Mg + O`,`Mn + ${sub('O2')} → MnO`],'Boken sid 77: 2 Mg + O₂ → 2 MgO.');
-add('reak','Skriv förbränningen av kol (med mycket syre) med ord:',['kol + syre → koldioxid','kol + vatten → koldioxid','kol + syre → vatten','koldioxid → kol + syre'],'Kol brinner med syre och bildar koldioxid, CO₂. (C + O₂ → CO₂)');
-add('reak','Skriv förbränningen av väte med ord:',['väte + syre → vatten','väte + kol → vatten','väte → syre','väte + syre → väteperoxid'],'Väte brinner och bildar diväteoxid, H₂O – känt som vatten.');
+      function build(list) {
+        // jämn fördelning mellan områden
+        const by = {};
+        shuffle(list).forEach((q) => (by[q.c] = by[q.c] || []).push(q));
+        const keys = shuffle(Object.keys(by));
+        const out = [];
+        while (out.length < Math.min(N, list.length)) {
+          for (const k of keys) {
+            if (by[k].length && out.length < N) out.push(by[k].pop());
+          }
+          if (keys.every((k) => !by[k].length)) break;
+        }
+        return shuffle(out);
+      }
+      function prep(q) {
+        if (q.picOpts) {
+          const others = shuffle(SYMS.filter((s) => s.k !== q.picOpts)).slice(
+            0,
+            3,
+          );
+          const opts = shuffle([
+            { h: pic(q.picOpts), ok: true },
+            ...others.map((s) => ({ h: pic(s.k), ok: false, lab: s.n })),
+          ]);
+          return { ...q, opts, pics: true };
+        }
+        return { ...q, opts: shuffle(q.a.map((h, i) => ({ h, ok: i === 0 }))) };
+      }
+      function start(list) {
+        run = { qs: build(list).map(prep), i: 0, score: 0, wrong: [], per: {} };
+        show("quiz");
+        ask();
+      }
+      function ask() {
+        const q = run.qs[run.i];
+        run.answered = false;
+        $("qnum").textContent = `Fråga ${run.i + 1} av ${run.qs.length}`;
+        $("qscore").textContent = `Rätt: ${run.score}`;
+        $("prog").style.width = (run.i / run.qs.length) * 100 + "%";
+        $("qtag").textContent = CATS[q.c].n;
+        $("qtext").innerHTML = q.q;
+        $("qimg").innerHTML = q.img || "";
+        $("qimg").classList.toggle("hide", !q.img);
+        const o = $("opts");
+        o.innerHTML = "";
+        o.classList.toggle("pics", !!q.pics);
+        q.opts.forEach((op, i) => {
+          const b = document.createElement("button");
+          b.className = "opt";
+          b.innerHTML = q.pics ? op.h : `<b>${i + 1}.</b> ${op.h}`;
+          b.onclick = () => answer(i);
+          o.appendChild(b);
+        });
+        $("fb").innerHTML = "";
+        $("next").classList.add("hide");
+      }
+      function answer(i) {
+        if (run.answered) return;
+        run.answered = true;
+        const q = run.qs[run.i],
+          btns = [...document.querySelectorAll("#opts .opt")];
+        const ok = q.opts[i].ok;
+        btns.forEach((b, j) => {
+          b.disabled = true;
+          if (q.opts[j].ok) b.classList.add("ok");
+          else if (j === i) b.classList.add("bad");
+        });
+        const p = (run.per[q.c] = run.per[q.c] || { r: 0, t: 0 });
+        p.t++;
+        if (ok) {
+          run.score++;
+          p.r++;
+        } else run.wrong.push({ q, y: q.opts[i] });
+        $("fb").innerHTML =
+          `<div class="fb ${ok ? "" : "bad"}"><b>${ok ? "✅ Rätt!" : "❌ Inte riktigt."}</b>${q.e}</div>`;
+        $("qscore").textContent = `Rätt: ${run.score}`;
+        const n = $("next");
+        n.classList.remove("hide");
+        n.textContent = run.i + 1 < run.qs.length ? "Nästa ▶" : "Se resultat ▶";
+        n.focus();
+      }
+      $("next").onclick = () => {
+        run.i++;
+        run.i < run.qs.length ? ask() : results();
+      };
+      $("quit").onclick = () => {
+        run.qs.length = Math.max(run.i + (run.answered ? 1 : 0), 0);
+        run.qs.length ? results() : show("start");
+      };
+      document.addEventListener("keydown", (e) => {
+        if ($("quiz").classList.contains("hide")) return;
+        if (/^[1-4]$/.test(e.key) && !run.answered) {
+          const b = document.querySelectorAll("#opts .opt")[+e.key - 1];
+          if (b) b.click();
+        } else if (e.key === "Enter" && run.answered) {
+          e.preventDefault();
+          $("next").click();
+        }
+      });
+      function results() {
+        const t = run.qs.length,
+          pct = Math.round((run.score / t) * 100);
+        $("rscore").textContent = `${run.score} / ${t}`;
+        $("rmsg").textContent =
+          pct >= 90
+            ? "🏆 Superbra! Du är redo för provet."
+            : pct >= 70
+              ? "👍 Bra jobbat! Repetera felen nedan."
+              : pct >= 50
+                ? "💪 På god väg – öva på felen och kör igen."
+                : "📚 Läs fusklappen och försök igen – det blir bättre för varje gång!";
+        $("rcats").innerHTML = Object.entries(run.per)
+          .map(
+            ([k, p]) =>
+              `<div class="res-cat"><span>${CATS[k].n}</span><b>${p.r}/${p.t}</b></div>`,
+          )
+          .join("");
+        $("rwrongCard").classList.toggle("hide", !run.wrong.length);
+        $("rwrong").innerHTML = run.wrong
+          .map((w) => {
+            const right = w.q.opts.find((o) => o.ok);
+            return `<div class="wrong"><div>${w.q.q}${w.q.img ? "<br>" + w.q.img : ""}</div><div class="y">Ditt svar: ${w.y.h}</div><div class="a">Rätt: ${right.h}</div><div class="note">${w.q.e}</div></div>`;
+          })
+          .join("");
+        $("retryWrong").classList.toggle("hide", !run.wrong.length);
+        show("result");
+      }
+      $("go").onclick = () => start(Q.filter((q) => sel.has(q.c)));
+      $("again").onclick = () => start(Q.filter((q) => sel.has(q.c)));
+      $("retryWrong").onclick = () => {
+        const w = run.wrong
+          .map((x) =>
+            Q.find(
+              (q) =>
+                q.q === x.q.q &&
+                q.c === x.q.c &&
+                q.img === x.q.img &&
+                q.picOpts === x.q.picOpts,
+            ),
+          )
+          .filter(Boolean);
+        const keep = N;
+        N = 999;
+        start(w);
+        N = keep;
+      };
+      $("home").onclick = () => show("start");
 
-/* Förbränning & brandsäkerhet */
-add('forbr','Vad är <b>förbränning</b>?',['En kemisk reaktion där ett ämne reagerar med syre','När ett ämne smälter','När vatten kokar','En separationsmetod'],'Förbränning = kemisk reaktion där det brinnande ämnet binds till syre.');
-add('forbr','Vad kallas de ämnen som bildas vid förbränning?',['Oxider','Sulfider','Klorider','Legeringar'],'Ämnen som bildas vid förbränning kallas oxider – föreningar med syre.');
-add('forbr','Vilka tre saker behövs för att det ska bli eld?',['Brännbart ämne, syre och tillräckligt hög temperatur','Vatten, syre och kol','Bränsle, koldioxid och ljus','Luft, vatten och värme'],'Förutsättningarna för förbränning: brännbart ämne + syre + tillräckligt hög temperatur. Tas en bort slocknar elden.');
-add('forbr','Hur släcker man en eld i princip?',['Man tar bort en av förutsättningarna för förbränning','Man tillför mer syre','Man höjer temperaturen','Man tillsätter mer bränsle'],'Ta bort bränslet, kyl ner (sänk temperaturen) eller kväv elden (stoppa syretillförseln).');
-add('forbr','Hur släcker en <b>brandfilt</b> elden?',['Genom kvävning – den stoppar syretillförseln','Genom att kyla ner','Genom att ta bort bränslet','Genom att tillföra koldioxid'],'Med en brandfilt kväver man elden så att den inte får syre.');
-add('forbr','Hur släcker <b>vatten</b> en brand?',['Vatten kyler ner och hindrar också tillgången till syre','Vatten tar bort bränslet','Vatten reagerar med elden','Vatten tillför syre'],'Vatten kyler ner det brinnande ämnet och hindrar också syretillförseln.');
-add('forbr','Vad ska du <b>aldrig</b> göra om fett i en kastrull börjar brinna?',['Hälla vatten på','Lägga på ett lock','Använda brandfilt','Stänga av spisen'],'Vatten får man aldrig använda på brinnande fett, bensin eller elektriska apparater. Kväv med lock eller brandfilt.');
-add('forbr','Vilken släckare kan användas till brinnande fett och elektriska apparater?',['Koldioxidsläckare (eller pulversläckare)','Vatten','Vattenhink','Bensin'],'Koldioxid används också för att släcka brinnande fett och elektriska apparater. Pulversläckare kan användas till alla sorters bränder.');
-add('forbr','Vilken släckare kan användas till <b>alla sorters</b> bränder?',['Pulversläckare','Vatten','Sand','Koldioxidsläckare'],'Boken: pulversläckare kan användas för att släcka alla sorters bränder.');
-add('forbr','Hur är det säkrast att släcka ett stearinljus?',['Genom kvävning, t.ex. med en ljussläckare','Genom att blåsa hårt','Genom att hälla vatten på','Genom att ta bort veken'],'Boken: det är säkrast att släcka ljus genom kvävning.');
-add('forbr','Vid markbränder röjer man bort brännbart material framför elden. Vilken förutsättning tar man bort?',['Bränslet (det brännbara ämnet)','Syret','Temperaturen','Koldioxiden'],'Genom att röja bort det brinnande ämnet i närheten förhindrar man att branden sprider sig.');
-add('forbr','Vad ska du göra om det börjar brinna inomhus och du inte klarar av att släcka?',['Lämna huset, stäng dörrarna och ring nödnumret 112','Öppna alla fönster','Gömma dig i ett rum','Hälla vatten på elektriska apparater'],'Ring 112. Stäng dörrarna så att elden inte får mer syre.');
-add('forbr','Vad är det lag på att det ska finnas i alla bostäder?',['Brandvarnare','Brandsläckare','Brandfilt','Sprinkler'],'Det är lag på att det ska finnas brandvarnare i alla bostäder.');
-add('forbr','Vad är <b>antändningstemperatur</b>?',['Den lägsta temperatur vid vilken ett ämne börjar brinna','Temperaturen när vatten kokar','Den högsta temperatur en eld kan ha','Temperaturen när ett ämne smälter'],'Ämnen börjar brinna vid olika temperaturer. Den lägsta kallas antändningstemperatur. T.ex. tidningspapper ca 230 °C.');
-add('forbr','Vad är <b>flampunkt</b>?',['Den lägsta temperatur vid vilken ångorna från en vätska börjar brinna','Temperaturen då en flamma slocknar','Smältpunkten för metaller','Kokpunkten för vatten'],'Flampunkt gäller vätskor – t.ex. har bensin flampunkt ca −45 °C, därför är den så farlig.');
-add('forbr','Varför brinner inte ett papperskärl med vatten när man värmer det över en låga?',['Vattnet kokar vid 100 °C, så papperet blir aldrig tillräckligt varmt för att börja brinna','Papper kan inte brinna','Vattnet tar bort syret','Pappret är fuktigt utanpå'],'Papper antänds vid ca 230 °C. Så länge det finns vatten kvar kan papperets temperatur inte stiga mycket över 100 °C.');
-add('forbr','I en låga är det …',['gas som brinner','bara fast ämne som glöder','vatten som kokar','syre som brinner'],'Om det är tillräckligt varmt övergår vissa ämnen i gasform och då ser vi förbränningen som en låga.');
-add('forbr','Vad är det glödande i en gul låga (t.ex. stearinljus)?',['Kolpartiklar från ofullständig förbränning','Syre','Vatten','Koldioxid'],'I lågan finns glödande kolpartiklar från en ofullständig förbränning. Det är också dessa som bildar sot.');
-add('forbr','Vad bildas när magnesium brinner?',['Magnesiumoxid, MgO – ett vitt pulver','Magnesiumsulfid','Koldioxid','Vatten'],'Magnesium + syre → magnesiumoxid (2Mg + O₂ → 2MgO).');
-add('forbr','Hur ser det ut när magnesium brinner (labben)?',['Mycket klar, bländande vit låga – titta inte rakt in','Blå, svag låga','Det bildas svart rök','Det brinner inte alls'],'Magnesium brinner med en mycket klar låga. Man ska inte titta rakt in i den.');
-add('forbr','Vad bildas när <b>stearin</b> (eller trä) brinner fullständigt?',['Koldioxid och vatten','Bara aska','Magnesiumoxid','Järnoxid'],'Stearin innehåller kol och väte. Kolet blir koldioxid och vätet blir vatten. (Boken: när trä brinner bildas koldioxid och vatten.)');
-add('forbr','Stearinljus-labben: hur kan man visa att det bildas <b>vatten</b>?',['Ett kallt glas över lågan blir immigt','Kalkvatten blir grumligt','Lågan blir blå','Ljuset blir tyngre'],'Imma (vattendroppar) syns på ett kallt glas som hålls över lågan.');
-add('forbr','Stearinljus-labben: hur kan man visa att det bildas <b>koldioxid</b>?',['Kalkvatten blir grumligt','Ett glas blir immigt','Lågan slocknar direkt','Det luktar svavel'],'Koldioxid gör kalkvatten grumligt (mjölkigt).');
-add('forbr','Vad är det egentligen som brinner i ett stearinljus?',['Stearinångor (stearin i gasform)','Bara veken','Fast stearin','Syret i luften'],'Värmen smälter stearinet, veken suger upp det och det förångas. Det är stearinångorna som brinner i lågan.');
-add('forbr','Stålull-labben: vad händer med massan när stålull brinner?',['Den ökar – järnet binds till syre och bildar järnoxid','Den minskar eftersom något försvinner','Den är exakt samma','Den blir noll'],'Järn + syre → järnoxid. Syre från luften binds till järnet, så produkten väger mer.');
-add('forbr','Skriv förbränningen av stålull med ord:',['järn + syre → järnoxid','järn + svavel → järnsulfid','kol + syre → koldioxid','järn → rost + vatten'],'Stålull är tunna järntrådar. Järn + syre → järnoxid.');
-add('forbr','Vad upptäckte kemister på 1700-talet om ämnen som brunnit?',['Att de har större massa än innan – det brinnande ämnet binds till syre','Att de försvinner helt','Att eld är ett grundämne','Att de blir till vatten'],'Ett ämne som brunnit har större massa än det obrunna. Därför förstod man att ämnet binds till syre.');
-add('forbr','Vad bildas när kol brinner med <b>för lite syre</b>?',['Kolmonoxid, CO (kolos) – mycket giftigt','Koldioxid','Syrgas','Vatten'],'När det inte finns tillräckligt med syre bildas kolmonoxid, CO. Den tränger undan syret i blodet och kan i värsta fall leda till kvävning.');
-add('forbr','Varför är kolmonoxid (CO) farligt?',['Den tränger undan syret i blodet – kan leda till kvävning','Den är frätande','Den exploderar alltid','Den är radioaktiv'],'Om man andas in kolmonoxid tränger den undan syret i blodomloppet.');
-add('forbr','Vad bildas när kol brinner med <b>tillräckligt</b> med syre?',['Koldioxid, CO₂','Kolmonoxid, CO','Magnesiumoxid','Järnsulfid'],'Fullständig förbränning av kol ger koldioxid.');
-add('forbr','Kan förbränning ske långsamt?',['Ja, t.ex. när trä murknar – energi frigörs ändå','Nej, förbränning sker alltid med låga','Nej, bara explosioner räknas','Bara i laboratorium'],'Förbränning kan ske långsamt (som när trä murknar) eller snabbt. Vid all förbränning frigörs energi.');
-add('forbr','Vilket ämne har högst antändningstemperatur enligt boken: socker, tidningspapper, magnesium eller torrt trä?',['Magnesium (ca 500 °C)','Tidningspapper','Socker','Torrt trä'],'Magnesium 500 °C, socker 410 °C, matolja och torrt trä 250 °C, tidningspapper 230 °C.');
-add('forbr','Vad innebär det att något är <b>lättantändligt</b>, som bensin och aceton?',['Det börjar brinna mycket lätt, även vid låg temperatur','Det kan inte brinna','Det släcker eld','Det är en metall'],'Bensin och aceton är särskilt lättantändliga. Bensin har flampunkt −45 °C.');
-add('forbr','Var ska en brandfilt hänga?',['På ett lättåtkomligt ställe hemma och i labbet','Inlåst i ett skåp','I källaren','I bilen'],'Brandfilten ska hänga på ett lättåtkomligt ställe hemma och i laboratoriet.');
-add('forbr','Om någons kläder börjar brinna – vad gör man?',['Kväver elden, t.ex. med brandfilt, och personen rullar på marken','Personen springer så fort som möjligt','Häller bensin på','Fläktar på elden'],'Springer man får elden mer syre. Kväv elden med brandfilt och rulla.');
-
-/* ---------- Logik ---------- */
-const $=id=>document.getElementById(id);
-const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
-let sel=new Set(Object.keys(CATS)), N=20, run=null;
-
-function renderCats(){
-  const box=$('cats');box.innerHTML='';
-  for(const k in CATS){
-    const cnt=Q.filter(q=>q.c===k).length;
-    const lab=document.createElement('label');lab.className='cat'+(sel.has(k)?' on':'');
-    lab.innerHTML=`<input type="checkbox" ${sel.has(k)?'checked':''}><span><b>${CATS[k].n}</b><small>${CATS[k].s} · ${cnt} frågor</small></span>`;
-    lab.querySelector('input').onchange=e=>{e.target.checked?sel.add(k):sel.delete(k);renderCats();};
-    box.appendChild(lab);
-  }
-  const tot=Q.filter(q=>sel.has(q.c)).length;
-  $('poolInfo').textContent=`${tot} frågor i de valda områdena.`;
-  $('go').disabled=!tot;
-}
-document.querySelectorAll('#nsel button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#nsel button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');N=+b.dataset.n;});
-$('allOn').onclick=()=>{sel=new Set(Object.keys(CATS));renderCats();};
-$('allOff').onclick=()=>{sel=new Set();renderCats();};
-
-function show(id){['start','quiz','result','sheet'].forEach(s=>$(s).classList.toggle('hide',s!==id));window.scrollTo(0,0);}
-
-function build(list){
-  // jämn fördelning mellan områden
-  const by={};shuffle(list).forEach(q=>(by[q.c]=by[q.c]||[]).push(q));
-  const keys=shuffle(Object.keys(by));const out=[];
-  while(out.length<Math.min(N,list.length)){for(const k of keys){if(by[k].length&&out.length<N)out.push(by[k].pop());}if(keys.every(k=>!by[k].length))break;}
-  return shuffle(out);
-}
-function prep(q){
-  if(q.picOpts){
-    const others=shuffle(SYMS.filter(s=>s.k!==q.picOpts)).slice(0,3);
-    const opts=shuffle([{h:pic(q.picOpts),ok:true},...others.map(s=>({h:pic(s.k),ok:false,lab:s.n}))]);
-    return {...q,opts,pics:true};
-  }
-  return {...q,opts:shuffle(q.a.map((h,i)=>({h,ok:i===0})))};
-}
-function start(list){
-  run={qs:build(list).map(prep),i:0,score:0,wrong:[],per:{}};
-  show('quiz');ask();
-}
-function ask(){
-  const q=run.qs[run.i];run.answered=false;
-  $('qnum').textContent=`Fråga ${run.i+1} av ${run.qs.length}`;
-  $('qscore').textContent=`Rätt: ${run.score}`;
-  $('prog').style.width=(run.i/run.qs.length*100)+'%';
-  $('qtag').textContent=CATS[q.c].n;
-  $('qtext').innerHTML=q.q;
-  $('qimg').innerHTML=q.img||'';$('qimg').classList.toggle('hide',!q.img);
-  const o=$('opts');o.innerHTML='';o.classList.toggle('pics',!!q.pics);
-  q.opts.forEach((op,i)=>{const b=document.createElement('button');b.className='opt';b.innerHTML=q.pics?op.h:`<b>${i+1}.</b> ${op.h}`;b.onclick=()=>answer(i);o.appendChild(b);});
-  $('fb').innerHTML='';$('next').classList.add('hide');
-}
-function answer(i){
-  if(run.answered)return;run.answered=true;
-  const q=run.qs[run.i],btns=[...document.querySelectorAll('#opts .opt')];
-  const ok=q.opts[i].ok;
-  btns.forEach((b,j)=>{b.disabled=true;if(q.opts[j].ok)b.classList.add('ok');else if(j===i)b.classList.add('bad');});
-  const p=run.per[q.c]=run.per[q.c]||{r:0,t:0};p.t++;
-  if(ok){run.score++;p.r++;}else run.wrong.push({q,y:q.opts[i]});
-  $('fb').innerHTML=`<div class="fb ${ok?'':'bad'}"><b>${ok?'✅ Rätt!':'❌ Inte riktigt.'}</b>${q.e}</div>`;
-  $('qscore').textContent=`Rätt: ${run.score}`;
-  const n=$('next');n.classList.remove('hide');n.textContent=run.i+1<run.qs.length?'Nästa ▶':'Se resultat ▶';n.focus();
-}
-$('next').onclick=()=>{run.i++;run.i<run.qs.length?ask():results();};
-$('quit').onclick=()=>{run.qs.length=Math.max(run.i+(run.answered?1:0),0);run.qs.length?results():show('start');};
-document.addEventListener('keydown',e=>{
-  if($('quiz').classList.contains('hide'))return;
-  if(/^[1-4]$/.test(e.key)&&!run.answered){const b=document.querySelectorAll('#opts .opt')[+e.key-1];if(b)b.click();}
-  else if(e.key==='Enter'&&run.answered){e.preventDefault();$('next').click();}
-});
-function results(){
-  const t=run.qs.length,pct=Math.round(run.score/t*100);
-  $('rscore').textContent=`${run.score} / ${t}`;
-  $('rmsg').textContent=pct>=90?'🏆 Superbra! Du är redo för provet.':pct>=70?'👍 Bra jobbat! Repetera felen nedan.':pct>=50?'💪 På god väg – öva på felen och kör igen.':'📚 Läs fusklappen och försök igen – det blir bättre för varje gång!';
-  $('rcats').innerHTML=Object.entries(run.per).map(([k,p])=>`<div class="res-cat"><span>${CATS[k].n}</span><b>${p.r}/${p.t}</b></div>`).join('');
-  $('rwrongCard').classList.toggle('hide',!run.wrong.length);
-  $('rwrong').innerHTML=run.wrong.map(w=>{
-    const right=w.q.opts.find(o=>o.ok);
-    return `<div class="wrong"><div>${w.q.q}${w.q.img?'<br>'+w.q.img:''}</div><div class="y">Ditt svar: ${w.y.h}</div><div class="a">Rätt: ${right.h}</div><div class="note">${w.q.e}</div></div>`;}).join('');
-  $('retryWrong').classList.toggle('hide',!run.wrong.length);
-  show('result');
-}
-$('go').onclick=()=>start(Q.filter(q=>sel.has(q.c)));
-$('again').onclick=()=>start(Q.filter(q=>sel.has(q.c)));
-$('retryWrong').onclick=()=>{const w=run.wrong.map(x=>Q.find(q=>q.q===x.q.q&&q.c===x.q.c&&(q.img===x.q.img)&&(q.picOpts===x.q.picOpts))).filter(Boolean);const keep=N;N=999;start(w);N=keep;};
-$('home').onclick=()=>show('start');
-
-/* ---------- Fusklapp ---------- */
-$('sheetBody').innerHTML=`
+      /* ---------- Fusklapp ---------- */
+      $("sheetBody").innerHTML = `
 <h3>⚠️ Varningssymboler</h3>
-<div class="symgrid">${SYMS.map(s=>`<div>${pic(s.k)}<b>${s.n}</b><br>${s.d}</div>`).join('')}</div>
+<div class="symgrid">${SYMS.map((s) => `<div>${pic(s.k)}<b>${s.n}</b><br>${s.d}</div>`).join("")}</div>
 <p class="note">Bilderna här är förenklade – jämför med bilderna i boken sid 18.</p>
 <ul><li>Varningssymbolerna är gemensamma och internationella och berättar om ett ämne är skadligt, hälsofarligt, giftigt, lättantändligt eller frätande.</li><li>Ät och drick aldrig i kemisalen. Tvätta händerna när du går ut.</li><li>Vissa kemikalier måste samlas upp och föras till en uppsamlingsstation för farligt avfall.</li><li>Brännskada: kallt rinnande vatten så fort som möjligt. Nödbrytaren slår snabbt av strömmen.</li></ul>
 
@@ -539,7 +2505,7 @@ $('sheetBody').innerHTML=`
 <p class="note">Stor siffra framför = antal. Liten siffra nedtill = antal atomer i molekylen.</p>
 
 <h3>🔬 Kemiska tecken (bokens tabell)</h3>
-<p>${EL.map(([n,s])=>`<b>${s}</b>&nbsp;${n}`).join(' · ')}</p>
+<p>${EL.map(([n, s]) => `<b>${s}</b>&nbsp;${n}`).join(" · ")}</p>
 
 <h3>🔥 Kemiska reaktioner och förbränning</h3>
 <ul>
@@ -553,10 +2519,10 @@ $('sheetBody').innerHTML=`
 <li><b>Släcka</b>: ta bort bränslet, kyla (vatten), kväva (brandfilt, lock). Aldrig vatten på fett, bensin eller el – använd brandfilt, koldioxid- eller pulversläckare. Ring 112.</li>
 <li><b>Antändningstemperatur</b>: lägsta temp då ämnet börjar brinna. <b>Flampunkt</b>: lägsta temp då ångorna från en vätska börjar brinna.</li>
 </ul>`;
-$('sheetBtn').onclick=()=>show('sheet');
-$('sheetBack').onclick=()=>show('start');
+      $("sheetBtn").onclick = () => show("sheet");
+      $("sheetBack").onclick = () => show("start");
 
-renderCats();
-</script>
-</body>
+      renderCats();
+    </script>
+  </body>
 </html>
