@@ -1,598 +1,888 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Religionsquiz</title>
+<title>Tyska – öva inför provet</title>
 <style>
 :root{
-  --bg:#f6f3ee; --card:#ffffff; --ink:#1f2328; --muted:#5d6670; --line:#e3ddd3;
-  --accent:#3b5bdb; --accent-ink:#ffffff; --accent-soft:#e7ecff;
-  --ok:#2b8a3e; --ok-soft:#e3f6e7; --bad:#c92a2a; --bad-soft:#fdeaea;
-  --shadow:0 1px 2px rgba(0,0,0,.05),0 4px 16px rgba(0,0,0,.06);
+  --bg:#f6f4ef; --card:#ffffff; --ink:#1f2328; --muted:#5f6670; --line:#e2ded5;
+  --accent:#c8442b; --accent-ink:#ffffff; --accent-soft:#fbe7e2;
+  --ok:#1f7a4d; --ok-soft:#e1f3e9; --bad:#b3261e; --bad-soft:#fbe4e2; --warn:#8a5a00; --warn-soft:#fdf1d6;
+  --der:#2563c9; --die:#c8325a; --das:#1f8a4c; --shadow:0 1px 2px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.05);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#15171b; --card:#1e2127; --ink:#e8eaed; --muted:#9aa3ad; --line:#2f333b;
-    --accent:#7b93ff; --accent-ink:#0f1220; --accent-soft:#252c47;
-    --ok:#69db7c; --ok-soft:#1b3323; --bad:#ff8787; --bad-soft:#3a1f22;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.3);
+    --bg:#16181c; --card:#20242a; --ink:#ecedef; --muted:#a3a9b2; --line:#343a42;
+    --accent:#ef7356; --accent-ink:#1b1b1b; --accent-soft:#3a2520;
+    --ok:#5fd394; --ok-soft:#183126; --bad:#ff8a80; --bad-soft:#3a1f1d; --warn:#f2c26b; --warn-soft:#3a2f17;
+    --der:#7fb0ff; --die:#ff8fb0; --das:#6fd69a; --shadow:none;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#15171b; --card:#1e2127; --ink:#e8eaed; --muted:#9aa3ad; --line:#2f333b;
-  --accent:#7b93ff; --accent-ink:#0f1220; --accent-soft:#252c47;
-  --ok:#69db7c; --ok-soft:#1b3323; --bad:#ff8787; --bad-soft:#3a1f22;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.3);
+  --bg:#16181c; --card:#20242a; --ink:#ecedef; --muted:#a3a9b2; --line:#343a42;
+  --accent:#ef7356; --accent-ink:#1b1b1b; --accent-soft:#3a2520;
+  --ok:#5fd394; --ok-soft:#183126; --bad:#ff8a80; --bad-soft:#3a1f1d; --warn:#f2c26b; --warn-soft:#3a2f17;
+  --der:#7fb0ff; --die:#ff8fb0; --das:#6fd69a; --shadow:none;
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--ink);
-  font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Noto Sans Devanagari",sans-serif}
-.wrap{max-width:760px;margin:0 auto;padding:20px 16px 60px}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
-header h1{font-size:1.35rem;margin:0;cursor:pointer}
-header .sub{color:var(--muted);font-size:.9rem}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px}
-h2{font-size:1.1rem;margin:0 0 10px}
-p{margin:.4em 0}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:760px;margin:0 auto;padding:16px 16px 64px}
+header.top{display:flex;align-items:center;gap:12px;margin:4px 0 18px}
+header.top h1{font-size:1.35rem;margin:0;flex:1;letter-spacing:-.01em}
+header.top .flag{width:30px;height:20px;border-radius:3px;overflow:hidden;display:flex;flex-direction:column;flex:none;box-shadow:0 0 0 1px var(--line)}
+.flag i{flex:1;display:block}
+button{font:inherit;color:inherit;cursor:pointer}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:10px 16px;min-height:44px}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.btn.ghost{background:transparent}
+.btn.small{padding:6px 12px;min-height:36px;font-size:.92rem}
+.link{background:none;border:0;color:var(--muted);padding:6px 0;text-decoration:underline}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:left;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:4px;min-height:112px}
+.tile:hover{border-color:var(--accent)}
+.tile .em{font-size:1.6rem;line-height:1}
+.tile b{font-size:1.05rem}
+.tile small{color:var(--muted)}
+.tile .best{margin-top:auto;font-size:.82rem;color:var(--ok)}
+.tile.exam{background:var(--accent-soft);border-color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+h2{font-size:1.25rem;margin:0 0 8px}
+h3{font-size:1.02rem;margin:16px 0 6px}
 .muted{color:var(--muted)}
-.small{font-size:.88rem}
-.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.mode{text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:16px;cursor:pointer;font:inherit;transition:border-color .15s,transform .1s}
-.mode:hover{border-color:var(--accent)}
-.mode:active{transform:scale(.99)}
-.mode b{display:block;font-size:1.05rem;margin-bottom:4px}
-.mode span{color:var(--muted);font-size:.9rem}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:6px 12px;font:inherit;font-size:.9rem;cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
-.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.btn{border:0;background:var(--accent);color:var(--accent-ink);border-radius:10px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer}
-.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:500}
-.btn:disabled{opacity:.45;cursor:default}
-.progress{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:4px 0 14px}
-.progress>i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
-.qmeta{display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem}
-.qtext{font-size:1.15rem;font-weight:600;margin:6px 0 14px}
-.sym{font-size:4.5rem;line-height:1;text-align:center;margin:6px 0 14px}
-.opts{display:grid;gap:10px}
-.opt{display:flex;gap:10px;align-items:flex-start;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:12px 14px;font:inherit;cursor:pointer}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.back{margin-bottom:10px}
+table{border-collapse:collapse;width:100%}
+td,th{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:.85rem;color:var(--muted);font-weight:600}
+.tbl-wrap{overflow-x:auto}
+.de{font-weight:600}
+.art-der{color:var(--der)} .art-die{color:var(--die)} .art-das{color:var(--das)}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 12px;margin:3px;background:var(--card);user-select:none}
+label.pill{cursor:pointer}
+label.pill input{margin-right:6px;accent-color:var(--accent)}
+.opts{display:grid;gap:8px;margin-top:12px}
+.opt{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:12px 14px;text-align:left;min-height:48px}
 .opt:hover:not(:disabled){border-color:var(--accent)}
-.opt .k{flex:none;width:24px;height:24px;border-radius:7px;background:var(--accent-soft);display:grid;place-items:center;font-size:.8rem;font-weight:700}
-.opt.ok{border-color:var(--ok);background:var(--ok-soft)}
-.opt.bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.right{background:var(--ok-soft);border-color:var(--ok)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
 .opt:disabled{cursor:default}
-.feedback{margin-top:14px;padding:12px 14px;border-radius:12px;border:1px solid var(--line)}
-.feedback.ok{border-color:var(--ok)}
-.feedback.bad{border-color:var(--bad)}
-.feedback b.ok{color:var(--ok)} .feedback b.bad{color:var(--bad)}
-.src{color:var(--muted);font-size:.82rem;margin-top:4px}
-.score{font-size:2.6rem;font-weight:800;margin:0}
-.miss{border-top:1px solid var(--line);padding:10px 0}
-.miss:first-child{border-top:0}
-/* flashcards */
-.flip{perspective:1200px;cursor:pointer;user-select:none}
-.flip-in{position:relative;min-height:230px;transition:transform .45s;transform-style:preserve-3d}
-.flip.on .flip-in{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px;border-radius:16px;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow)}
-.face.back{transform:rotateY(180deg)}
-.face .term{font-size:1.8rem;font-weight:800}
-.face .def{font-size:1.05rem}
-@media (prefers-reduced-motion: reduce){.flip-in{transition:none}}
-/* written */
-details{border:1px solid var(--line);border-radius:12px;padding:0 14px;margin-bottom:10px;background:var(--card)}
-summary{cursor:pointer;padding:12px 0;font-weight:600;list-style:none}
-summary::-webkit-details-marker{display:none}
-summary::before{content:"＋";display:inline-block;width:1.4em;color:var(--accent)}
-details[open] summary::before{content:"－"}
-textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit;background:var(--bg);color:var(--ink);resize:vertical}
-.model{display:none;margin:10px 0 14px;padding:12px 14px;border-radius:10px;background:var(--accent-soft)}
-.model.show{display:block}
-.model ul{margin:.3em 0;padding-left:1.2em}
-.tag{display:inline-block;font-size:.75rem;border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--muted);margin-left:6px;font-weight:500}
-.hidden{display:none!important}
-kbd{font:inherit;font-size:.8rem;border:1px solid var(--line);border-radius:5px;padding:0 5px}
+.opt .k{display:inline-block;width:1.4em;color:var(--muted);font-size:.85rem}
+.qhead{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.9rem;margin-bottom:8px;gap:8px}
+.bar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:14px}
+.bar i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.prompt{font-size:1.25rem;font-weight:600;margin:4px 0}
+.prompt .big{font-size:2.2rem}
+.hint{color:var(--muted);font-size:.93rem}
+input[type=text],input[type=number],select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;min-height:46px}
+input[type=text]:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.answer-row{display:flex;gap:8px;margin-top:12px}
+.answer-row input{flex:1;min-width:0}
+.fb{margin-top:12px;border-radius:10px;padding:10px 14px}
+.fb.ok{background:var(--ok-soft);color:var(--ok)}
+.fb.bad{background:var(--bad-soft);color:var(--bad)}
+.fb.warn{background:var(--warn-soft);color:var(--warn)}
+.fb .corr{color:var(--ink);font-weight:600}
+.fb .exp{color:var(--ink);font-size:.93rem;margin-top:4px}
+.speak{border:1px solid var(--line);background:var(--card);border-radius:999px;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem;vertical-align:middle;flex:none}
+.score{font-size:2.6rem;font-weight:700;margin:0}
+.mist{list-style:none;padding:0;margin:8px 0 0}
+.mist li{border-bottom:1px solid var(--line);padding:8px 0}
+.clock{display:block;margin:6px auto 0;width:190px;height:190px}
+.flash{min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;font-size:1.5rem;font-weight:600;gap:6px}
+.flash small{font-size:.9rem;font-weight:400;color:var(--muted)}
+.theory p{margin:6px 0}
+.theory .ex{background:var(--bg);border-radius:10px;padding:10px 12px;margin:8px 0}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px}
+.tip{background:var(--warn-soft);color:var(--ink);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.95rem}
+textarea{font:inherit;width:100%;min-height:150px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:12px}
+.form2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form2 label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;color:var(--muted)}
+@media (max-width:520px){.form2{grid-template-columns:1fr}.prompt{font-size:1.12rem}.grid{grid-template-columns:1fr 1fr}.tile{min-height:104px;padding:12px}}
+footer{color:var(--muted);font-size:.85rem;margin-top:24px}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <div>
-      <h1 id="home" title="Till startsidan">Vad är religionskunskap?</h1>
-      <div class="sub">Öva inför provet · bok s. 8–25 + häftet</div>
-    </div>
-    <button class="btn ghost" id="themeBtn" aria-label="Byt mellan ljust och mörkt tema">Ljust/mörkt</button>
+  <header class="top">
+    <span class="flag" aria-hidden="true"><i style="background:#111"></i><i style="background:#d00"></i><i style="background:#fc0"></i></span>
+    <h1>Tyska – öva inför provet</h1>
+    <button class="btn small ghost" id="themeBtn" title="Byt ljust/mörkt läge">◐</button>
   </header>
-
-  <!-- START -->
-  <section id="start">
-    <div class="card">
-      <h2>Välj vad du vill öva på</h2>
-      <div class="chips" id="topicChips"></div>
-      <div class="row small muted" style="margin-top:10px">
-        <button class="chip" id="allTopics">Markera alla</button>
-        <span id="topicCount"></span>
-      </div>
-    </div>
-    <div class="card">
-      <h2>Välj övning</h2>
-      <div class="modes">
-        <button class="mode" data-mode="quiz"><b>Flervalsquiz</b><span>Svara, få förklaring direkt och se vad du behöver öva mer på.</span></button>
-        <button class="mode" data-mode="cards"><b>Begreppskort</b><span>Vänd korten och plugga in orden från fråga 1 och resten av kapitlet.</span></button>
-        <button class="mode" data-mode="write"><b>Arbetsfrågorna</b><span>Alla 13 frågor. Skriv eget svar och jämför med ett modellsvar.</span></button>
-      </div>
-      <div class="row small" style="margin-top:14px">
-        <span class="muted">Antal quizfrågor:</span>
-        <div class="chips" id="countChips">
-          <button class="chip" data-n="10">10</button>
-          <button class="chip" data-n="20" aria-pressed="true">20</button>
-          <button class="chip" data-n="999">Alla</button>
-        </div>
-      </div>
-      <p class="small muted" id="best" style="margin-top:10px"></p>
-    </div>
-  </section>
-
-  <!-- QUIZ -->
-  <section id="quiz" class="hidden">
-    <div class="card">
-      <div class="qmeta"><span id="qTopic"></span><span id="qNum"></span></div>
-      <div class="progress"><i id="qBar"></i></div>
-      <div id="qSym" class="sym hidden"></div>
-      <div class="qtext" id="qText"></div>
-      <div class="opts" id="qOpts"></div>
-      <div id="qFb" class="feedback hidden"></div>
-      <div class="row" style="margin-top:14px;justify-content:space-between">
-        <span class="small muted">Tangenter: <kbd>1</kbd>–<kbd>4</kbd>, <kbd>Enter</kbd></span>
-        <button class="btn" id="qNext" disabled>Nästa</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- RESULT -->
-  <section id="result" class="hidden">
-    <div class="card">
-      <p class="muted">Resultat</p>
-      <p class="score" id="rScore"></p>
-      <p id="rMsg"></p>
-      <div class="row" style="margin-top:12px">
-        <button class="btn" id="rRetry">Öva på dem jag missade</button>
-        <button class="btn ghost" id="rNew">Ny quiz</button>
-        <button class="btn ghost" id="rHome">Till start</button>
-      </div>
-    </div>
-    <div class="card" id="rMissCard">
-      <h2>Det här ska du titta på igen</h2>
-      <div id="rMiss"></div>
-    </div>
-  </section>
-
-  <!-- CARDS -->
-  <section id="cards" class="hidden">
-    <div class="qmeta" style="margin-bottom:8px"><span id="cTopic"></span><span id="cNum"></span></div>
-    <div class="flip" id="flip" tabindex="0" role="button" aria-label="Vänd kortet">
-      <div class="flip-in">
-        <div class="face front"><div class="term" id="cTerm"></div><p class="small muted" style="margin-top:12px">Tryck för att vända</p></div>
-        <div class="face back"><div class="small muted" id="cTerm2" style="font-weight:700;margin-bottom:8px"></div><div class="def" id="cDef"></div><div class="src" id="cSrc"></div></div>
-      </div>
-    </div>
-    <div class="row" style="margin-top:16px;justify-content:space-between">
-      <button class="btn ghost" id="cPrev">← Förra</button>
-      <button class="btn ghost" id="cShuffle">Blanda</button>
-      <button class="btn" id="cNext">Nästa →</button>
-    </div>
-    <p class="small muted" style="text-align:center;margin-top:10px">Tangenter: <kbd>Mellanslag</kbd> vänder, <kbd>←</kbd> <kbd>→</kbd> bläddrar</p>
-  </section>
-
-  <!-- WRITE -->
-  <section id="write" class="hidden">
-    <div class="card">
-      <h2>Arbetsfrågorna 1–13</h2>
-      <p class="small muted">Skriv ditt svar först, öppna sedan modellsvaret och jämför. Det du skriver sparas bara i den här webbläsaren.</p>
-    </div>
-    <div id="wList"></div>
-  </section>
+  <main id="app"></main>
+  <footer>Kapitel 1 <i>Auf dem Campingplatz</i> och kapitel 2 <i>Treffpunkt Schule</i>. Allt fungerar offline. 🔊 använder datorns/mobilens tyska röst om en finns.</footer>
 </div>
-
 <script>
-/* ---------- Ämnen ---------- */
-const TOPICS = {
-  grund:   "Vad är religion?",
-  begrepp: "Begrepp (fråga 1)",
-  varld:   "Världsreligioner (2–3)",
-  tid:     "Förhistorisk & historisk tid (4–7)",
-  urkund:  "Urkunder, myter & bokstavstro (8–10)",
-  samhalle:"Religionen i samhället (11)",
-  uttryck: "Riter, bön & heliga platser (12)",
-  symbol:  "Symboler (13)"
-};
-
-/* ---------- Flervalsfrågor ----------
-   a = rätt svar, w = fel svar, e = förklaring, s = källa */
-const Q = [
-/* Vad är religion */
-{t:"grund",q:"Från vilket språk kommer ordet religion?",a:"Latin",w:["Grekiska","Hebreiska","Fornnordiska"],e:"Religion kommer från ett latinskt ord som kan betyda att dyrka gud, binda samman, känna förpliktelse eller ha respekt för det heliga.",s:"Boken s. 9"},
-{t:"grund",q:"Vilket av detta är INTE en betydelse av ordet religion?",a:"Att bevisa att gud finns",w:["Att binda samman","Att dyrka gud","Att ha respekt för det heliga"],e:"Ordet kan betyda att dyrka gud, binda samman, känna förpliktelse eller ha respekt för det heliga.",s:"Boken s. 9"},
-{t:"grund",q:"Vad menas med det världsliga?",a:"Det vi kan uppfatta och förstå med våra sinnen",w:["Tron på att människan har en själ","En osynlig makt som den troende känner kontakt med","Allt som har med de fem världsreligionerna att göra"],e:"Världsligt = det vi kan uppfatta med våra sinnen. Andligt = t.ex. en osynlig makt, en gud eller tron på en själ.",s:"Boken s. 9, häftet s. 9"},
-{t:"grund",q:"Vilket är ett exempel på det andliga?",a:"Tron på att människan har en själ",w:["Ett träd du kan ta på","Maten du äter","Ljudet av regn"],e:"Tron på att människan har en själ hör till det andliga.",s:"Boken s. 9"},
-{t:"grund",q:"Religion och livsåskådning handlar både om VAD människor tror på och …",a:"… HUR de utövar sin tro",w:["… VAR de bor","… NÄR religionen grundades","… VEM som är rikast"],e:"Religion är också handlingar: att be, sjunga tillsammans eller offra.",s:"Boken s. 9"},
-{t:"grund",q:"Undervisningen i religionskunskap ska sträva mot att vara …",a:"objektiv",w:["subjektiv","troende","bokstavstroende"],e:"Det du själv tror är subjektivt (personligt). Undervisningen ska vara objektiv och inte ta ställning.",s:"Boken s. 8"},
-{t:"grund",q:"Boken beskriver religionerna utifrån. Vad betyder det?",a:"Att man beskriver religionen som en utomstående, allmänt och brett",w:["Att man själv är troende och beskriver sin egen tro","Att man bara läser religionens heliga skrift","Att man bara beskriver religionens byggnader"],e:"Om du själv är troende beskriver du religionen inifrån. Boken har ett utifrånperspektiv.",s:"Boken s. 12"},
-
-/* Begrepp */
-{t:"begrepp",q:"Vad betyder det att många människor i Sverige är sekulariserade?",a:"Att religionen inte har så stor roll i deras liv",w:["Att de tror på många gudar","Att de läser heliga skrifter bokstavligt","Att de tror att gud finns i allt"],e:"Sekulariserad = religion spelar inte så stor roll i livet. Man kanske söker svar i naturen, hos vänner eller i filosofin.",s:"Boken s. 8"},
-{t:"begrepp",q:"Vad är teism?",a:"Tron på en personlig gud som skapat världen och som kan ingripa och påverka livet",w:["Tron att gud skapat världen men sedan lämnat den att sköta sig själv","Tron att gud finns närvarande i allt","Tron att det inte finns någon gud"],e:"Teisten tror att gud är aktiv, bryr sig om sin skapelse och att människan kan uppleva gemenskap med gud.",s:"Boken s. 16"},
-{t:"begrepp",q:"Vad är deism?",a:"Tron att gud skapade universum med naturlagar och sedan lämnade det att fungera av sig självt",w:["Tron på en personlig gud som ingriper i livet","Tron att gud eller det gudomliga finns i allt","Att man inte tar ställning till om gud finns"],e:"Deisten menar att olycka, sorg och ondska visar att gud inte tar hand om sin skapelse.",s:"Boken s. 16"},
-{t:"begrepp",q:"Vad är panteism?",a:"Tron att gud eller det gudomliga finns närvarande i allt",w:["Tron på många gudar och en andevärld","Tron att gud bara finns i heliga byggnader","Tron att det inte finns någon gud"],e:"Pan = allt, theos = gud (grekiska). Vanligt i naturreligioner och hinduism.",s:"Boken s. 16"},
-{t:"begrepp",q:"Vad är ateism?",a:"Att det inte finns någon gud eller gudomlig makt alls",w:["Att man inte vet om gud finns","Att det finns en enda gud","Att gud finns i naturen"],e:"Ateism betyder utan gud på grekiska.",s:"Boken s. 16"},
-{t:"begrepp",q:"Vad är agnosticism?",a:"Att det varken går att bevisa att gud finns eller inte finns, och därför tar man inte ställning",w:["Att det inte finns någon gud","Att man tror på flera gudar","Att gud skapat världen och sedan lämnat den"],e:"Agnosticism är grekiska och betyder obekant eller hemlig.",s:"Boken s. 16"},
-{t:"begrepp",q:"Vad är monoteism?",a:"Tron på en enda gud",w:["Tron på många gudar","Tron att själen återföds","Tron att gud finns i allt"],e:"I en monoteistisk tro har den enda guden all makt, gud är allsmäktig. Judendom, kristendom och islam är monoteistiska.",s:"Boken s. 15"},
-{t:"begrepp",q:"Vad är polyteism?",a:"Tron på många gudar, ofta också på en andevärld",w:["Tron på en enda allsmäktig gud","Att religionen inte spelar någon roll","Tron att själen återföds i en ny kropp"],e:"Gudarna och andarna styr och har makt över olika delar av livet. Polyteism är vanligt i naturreligioner.",s:"Boken s. 15"},
-{t:"begrepp",q:"Vad betyder reinkarnation?",a:"Återfödelse – själen eller jaget återföds i en ny kropp",w:["Att man kommer till himmelriket efter döden","Att gud skapade världen på sex dagar","Att man blir vuxen i religionen"],e:"Inom hinduismen och buddhismen tror man på olika former av reinkarnation.",s:"Boken s. 17"},
-{t:"begrepp",q:"Vad betyder det grekiska ordet theos?",a:"Gud",w:["Allt","Utan","Hemlig"],e:"Teism kommer av theos = gud. Pan = allt. A- = utan.",s:"Boken s. 16"},
-{t:"begrepp",q:"Ordet ateism betyder på grekiska …",a:"utan gud",w:["allt är gud","obekant eller hemlig","en gud"],e:"Ateisten menar att det inte finns någon gud eller gudomlig makt alls.",s:"Boken s. 16"},
-{t:"begrepp",q:"Agnosticism kommer från grekiska och betyder …",a:"obekant eller hemlig",w:["utan gud","allt","gud på latin"],e:"Agnostikern säger att det inte går att bevisa vare sig att gud finns eller inte finns.",s:"Boken s. 16"},
-{t:"begrepp",q:"Under vilken period var många filosofer deister?",a:"Upplysningstiden, på 1600–1700-talet",w:["Stenåldern","Bronsåldern","Vikingatiden"],e:"Då började människor ifrågasätta makten och religionen.",s:"Boken s. 16"},
-{t:"begrepp",q:"Vilka har enligt boken ofta en teistisk gudsuppfattning?",a:"Judar, kristna och muslimer",w:["Hinduer och buddhister","Ateister och agnostiker","Bara naturreligioner"],e:"Teism: en personlig gud som skapat världen och kan ingripa.",s:"Boken s. 16"},
-{t:"begrepp",q:"Var är ett panteistiskt synsätt vanligt?",a:"I naturreligioner och hinduism",w:["I islam och judendom","Bland ateister","Bara i kristendomen"],e:"Panteism = det gudomliga finns i allt.",s:"Boken s. 16"},
-{t:"begrepp",q:"Vilka religioner är exempel på monoteistiska religioner?",a:"Judendom, kristendom och islam",w:["Hinduism och buddhism","Naturreligioner","Shintoism och hinduism"],e:"De tror på en enda allsmäktig gud.",s:"Boken s. 15"},
-{t:"begrepp",q:"I vilka religioner tror man på reinkarnation?",a:"Hinduismen och buddhismen",w:["Judendomen och islam","Kristendomen och islam","Bara judendomen"],e:"Kristendom och islam ser istället livet på jorden som en förberedelse inför livet efter döden.",s:"Boken s. 17"},
-{t:"begrepp",q:"Vad betyder det att gud är allsmäktig?",a:"Att gud har all makt",w:["Att gud finns i allt","Att det finns många gudar","Att gud inte bryr sig om världen"],e:"I en monoteistisk tro har den enda guden all makt.",s:"Boken s. 15"},
-{t:"begrepp",q:"Elsa säger: ”Gud byggde världen som ett urverk med naturlagar och lät den sedan gå av sig själv.” Vilket begrepp passar?",a:"Deism",w:["Teism","Panteism","Ateism"],e:"Deisten tror att gud skapat universum med krafter och naturlagar och sedan lämnat det.",s:"Boken s. 16"},
-{t:"begrepp",q:"Omar säger: ”Man kan varken bevisa att gud finns eller att gud inte finns, så jag tar inte ställning.” Vilket begrepp passar?",a:"Agnosticism",w:["Ateism","Deism","Teism"],e:"Ateisten säger att gud inte finns. Agnostikern tar inte ställning.",s:"Boken s. 16"},
-{t:"begrepp",q:"Mira säger: ”Det gudomliga finns i allt – i träden, havet och i oss.” Vilket begrepp passar?",a:"Panteism",w:["Polyteism","Deism","Monoteism"],e:"Panteism: gud eller det gudomliga finns närvarande i allt.",s:"Boken s. 16"},
-{t:"begrepp",q:"Leo ber till gud varje kväll och tror att gud hör honom och kan hjälpa till. Vilket begrepp passar?",a:"Teism",w:["Deism","Agnosticism","Panteism"],e:"Teisten tror på en personlig gud som kan ingripa och påverka livet.",s:"Boken s. 16"},
-{t:"begrepp",q:"Vad är skillnaden mellan teism och deism?",a:"Teisten tror att gud påverkar världen, deisten att gud inte gör det",w:["Teisten tror på många gudar, deisten på en","Teisten tror inte på gud, deisten gör det","Det finns ingen skillnad"],e:"Båda orden betyder gud (grekiska resp. latin) men synen på hur gud agerar är olika.",s:"Boken s. 16, häftet TB s. 17"},
-{t:"begrepp",q:"Vad kallas en religions svar på de existentiella frågorna och hur den ser på gud?",a:"Centrala tankar",w:["Urkunder","Levnadsregler","Riter"],e:"En religions centrala tankar, eller lära, beskriver det som många inom religionen har gemensamt.",s:"Boken s. 15"},
-{t:"begrepp",q:"Vad menas med etik och moral?",a:"Förhållningssätt, tankar och värderingar om vad som är rätt och fel",w:["Regler för hur en kyrka ska byggas","Berättelser om hur världen skapades","Tron på att själen återföds"],e:"De flesta religioner har etiska och moraliska förhållningssätt som en del av de centrala tankarna.",s:"Boken s. 15, häftet"},
-
-/* Världsreligioner */
-{t:"varld",q:"Vilka fem religioner räknas som världsreligioner?",a:"Hinduism, buddhism, judendom, kristendom och islam",w:["Hinduism, buddhism, shintoism, kristendom och islam","Asatro, judendom, kristendom, islam och hinduism","Kristendom, islam, sikhism, buddhism och shintoism"],e:"Det är de fem som boken och häftet räknar upp.",s:"Boken s. 12"},
-{t:"varld",q:"Vilken av dessa är INTE en av de fem världsreligionerna?",a:"Shintoism",w:["Buddhism","Judendom","Islam"],e:"Shintoismen är en japansk religion. Den nämns i boken (berget Fuji) men räknas inte till de fem världsreligionerna.",s:"Boken s. 12, 23"},
-{t:"varld",q:"Varför räknas just dessa fem religioner som världsreligioner?",a:"De är stora religioner med anhängare på många platser runt om i världen",w:["De är de äldsta religionerna som finns","De tror alla på en enda gud","De har alla samma heliga skrift"],e:"Det avgörande är att de är stora och spridda över hela världen.",s:"Boken s. 12, häftet"},
-{t:"varld",q:"Vilken världsreligion har enligt boken sitt ursprung tusentals år tillbaka i tiden?",a:"Hinduismen",w:["Islam","Kristendomen","Buddhismen"],e:"Andra, som islam, har kommit till senare.",s:"Boken s. 12"},
-{t:"varld",q:"Vilken världsreligion nämns i boken som ett exempel på en som kommit till senare?",a:"Islam",w:["Hinduismen","Judendomen","Ingen av dem"],e:"Hinduismen är äldst. Islam har kommit till senare.",s:"Boken s. 12"},
-{t:"varld",q:"Vilka två större riktningar inom islam visas på trädet i boken?",a:"Sunni och shia",w:["Katolsk och ortodox","Reformert och konservativ","Protestantisk och sunni"],e:"Trädet på s. 13 visar världsreligionerna som grenar och deras större riktningar.",s:"Boken s. 13"},
-{t:"varld",q:"Vilka tre riktningar inom kristendomen visas på trädet?",a:"Katolsk, ortodox och protestantisk",w:["Sunni, shia och ortodox","Reformert, konservativ och ortodox","Katolsk, sunni och protestantisk"],e:"Judendomen har på trädet riktningarna ortodox, reformert och konservativ.",s:"Boken s. 13"},
-{t:"varld",q:"Vilka riktningar inom judendomen visas på trädet?",a:"Ortodox, reformert och konservativ",w:["Sunni och shia","Katolsk och protestantisk","Theravada och mahayana"],e:"Ortodox finns både inom judendomen och kristendomen.",s:"Boken s. 13"},
-{t:"varld",q:"Varför har det uppstått olika riktningar inom en religion?",a:"Troende inom samma religion har ibland haft mycket olika syn på sin tro",w:["För att varje land måste ha en egen religion","För att de heliga skrifterna försvann","För att religionerna aldrig mött varandra"],e:"Religionerna har också påverkat varandra när deras lära och utövare har mötts.",s:"Boken s. 12"},
-
-/* Förhistorisk och historisk tid */
-{t:"tid",q:"Vad är förhistorisk tid?",a:"Den tid i historien som det inte finns några skriftliga källor eller bilder ifrån",w:["Tiden då människor började använda bild- och skriftspråk","Tiden innan Jesus föddes","Tiden då de första kyrkorna byggdes"],e:"Förhistorisk tid = tiden före skriftspråket.",s:"Boken s. 10, häftet"},
-{t:"tid",q:"Vad är historisk tid?",a:"Tiden när människor började använda bild- och skriftspråk",w:["Tiden innan det fanns skriftspråk","Bara de senaste hundra åren","Tiden då världsreligionerna försvann"],e:"Från historisk tid finns det fler källor till vår kunskap.",s:"Boken s. 11, häftet"},
-{t:"tid",q:"Hur får vi kunskap om religion under förhistorisk tid?",a:"Genom att jämföra fynd av föremål, benrester, lämningar av bosättningar och gravar",w:["Genom att läsa papyrusrullar","Genom att läsa Bibeln och Koranen","Genom intervjuer med människor från den tiden"],e:"Forskarna jämför fynd från olika platser på jorden.",s:"Boken s. 10"},
-{t:"tid",q:"Människor lade tid och omsorg på att begrava sina döda. Vad tyder det på?",a:"Att de trodde på en tillvaro efter döden",w:["Att de inte hade någon religion","Att de kunde skriva","Att de var monoteister"],e:"Gravfynd säger mycket om förhistorisk tro.",s:"Boken s. 10"},
-{t:"tid",q:"Vilka källor finns från historisk tid, förutom arkeologiska fynd?",a:"Grottmålningar, hällristningar, stentavlor och papyrusrullar med religiösa texter",w:["Bara benrester och gravar","Inga källor alls","Bara filmer och fotografier"],e:"Ju närmare vår egen tid vi kommer, desto fler skriftliga källor finns det.",s:"Boken s. 11"},
-{t:"tid",q:"Vad händer med antalet skriftliga källor ju närmare vår egen tid vi kommer?",a:"De blir fler",w:["De blir färre","De är lika många","De försvinner helt"],e:"Då blir forskarnas uppgift att avgöra vem som skrivit texterna, när och varför.",s:"Boken s. 11"},
-{t:"tid",q:"Vad blir forskarnas uppgift när det finns många skriftliga källor?",a:"Att avgöra vem som har skrivit texterna, när de skrevs och varför",w:["Att gräva upp gravar","Att översätta allt till latin","Att bestämma vilken religion som är rätt"],e:"Källkritik: vem, när och varför.",s:"Boken s. 11"},
-{t:"tid",q:"Vad är Hagadösen i Bohuslän?",a:"En grav från stenåldern, ca 5 500 år gammal",w:["En hällristning från bronsåldern","En kyrka från medeltiden","En papyrusrulle"],e:"Gravkammaren består av fyra resta hällar och en takhäll.",s:"Boken s. 10"},
-{t:"tid",q:"Vad är ”Spjutguden” i Tanum?",a:"En hällristning från bronsåldern, troligen en föregångare till asaguden Oden",w:["En grav från stenåldern","En staty i en kyrka","En gud i hinduismen"],e:"Hällristningarna i Tanum är världsarv (UNESCO). Spjutguden är 2,3 meter stor.",s:"Boken s. 11"},
-{t:"tid",q:"Vad vet vi INTE om förhistoriska människor?",a:"Vad de trodde, kände och tänkte, eller vilka föreställningar de hade",w:["Att de begravde sina döda","Att de använde religiösa uttryck vid födelse och död","Att de lämnade efter sig föremål"],e:"Forskarna är ganska säkra på att människor alltid använt religiösa uttryck, men inte exakt vad de trodde.",s:"Boken s. 11"},
-{t:"tid",q:"Vilken händelse markerar övergången från förhistorisk till historisk tid?",a:"Att människor börjar använda skrift",w:["Att den första kyrkan byggs","Att Jesus föds","Att människor börjar begrava sina döda"],e:"Förhistorisk tid = före skriften. Historisk tid = när bild- och skriftspråk används.",s:"Boken s. 10–11"},
-
-/* Urkunder, myter, bokstavstro */
-{t:"urkund",q:"Vad är en urkund?",a:"En religions heliga skrift",w:["En religiös byggnad","En helig plats i naturen","En religiös ledare"],e:"Urkunderna är en källa till kunskap om religionerna.",s:"Boken s. 14"},
-{t:"urkund",q:"Vilken urkund hör till judendomen?",a:"Tora",w:["Koranen","Veda","Sutrorna"],e:"Tora är Moseböckerna, som är heliga inom judendomen.",s:"Boken s. 14, 24"},
-{t:"urkund",q:"Vilken urkund hör till islam?",a:"Koranen",w:["Tora","Bibeln","Veda"],e:"Muslimer tror att profeten Muhammed fick Koranen direkt från Gud.",s:"Boken s. 14"},
-{t:"urkund",q:"Vilken urkund hör till hinduismen?",a:"Veda",w:["Tripitaka","Tora","Koranen"],e:"Hinduismens Veda.",s:"Boken s. 14"},
-{t:"urkund",q:"Vilken urkund hör till buddhismen?",a:"Sutrorna (Tripitaka)",w:["Veda","Tora","Bibeln"],e:"Boken säger buddhismens sutror. I häftet står Tripitaka, som är samlingen av texterna.",s:"Boken s. 14, häftet"},
-{t:"urkund",q:"Vilken urkund hör till kristendomen?",a:"Bibeln",w:["Koranen","Veda","Tripitaka"],e:"Den kristna Bibeln.",s:"Boken s. 14"},
-{t:"urkund",q:"Vad är en myt i religiös mening?",a:"En helig berättelse som vill förklara tillvaron och varför saker sker",w:["En lögn som ingen tror på","En lag om vad man får äta","En bön som man läser varje dag"],e:"Myterna handlar nästan alltid om gudar och deras förhållande till människorna.",s:"Boken s. 14, häftet"},
-{t:"urkund",q:"Vad är en skapelsemyt?",a:"En berättelse om hur världen och människorna har skapats",w:["En berättelse om hur världen ska gå under","En regel för hur man ska be","En lista över heliga platser"],e:"Nästan alla religioner har skapelsemyter.",s:"Boken s. 14"},
-{t:"urkund",q:"Vad är en profet?",a:"En person utvald av gud som förutspår framtiden",w:["En präst som leder gudstjänsten","En forskare som studerar religioner","En person som tror på många gudar"],e:"Profeten Muhammed fick enligt islam Koranen direkt från Gud.",s:"Boken s. 14"},
-{t:"urkund",q:"I vilken religion tänker man att innehållet i urkunden kommer direkt från Gud?",a:"Islam",w:["Judendomen","Buddhismen","Inom ingen religion"],e:"Inom t.ex. judendomen är man överens om att människor skrev texterna, men de kan ändå ha ett gudomligt ursprung.",s:"Boken s. 14"},
-{t:"urkund",q:"Vad är en bokstavstroende?",a:"En som uppfattar allt i urkunden som sant och inte kan tänka sig att omtolka något",w:["En som läser urkunden bildligt eller symboliskt","En som inte tror på någon gud","En som bara läser vissa delar av urkunden"],e:"Andra troende läser urkunden mer bildligt och menar att den kan tolkas utifrån dagens kunskap.",s:"Boken s. 14, häftet"},
-{t:"urkund",q:"Hur läser en troende som inte är bokstavstroende sin urkund?",a:"Bildligt eller symboliskt, och tolkar den utifrån dagens kunskap",w:["Inte alls","Bara på originalspråket","Exakt som det står, utan att tolka"],e:"Motsatsen till bokstavstroende.",s:"Boken s. 14"},
-{t:"urkund",q:"Bibeln säger att den som arbetar på sabbaten ska dödas. Vad skulle hända om man tolkade det bokstavligt?",a:"Människor skulle straffas med döden för att ha arbetat på vilodagen",w:["Ingenting, för bokstavstroende omtolkar alltid texten","Sabbaten skulle flyttas till måndag","Alla skulle få arbeta mer"],e:"Exemplet visar varför många troende läser texterna bildligt och utifrån dagens syn på saker.",s:"Boken s. 14 (uppgift 11)"},
-{t:"urkund",q:"Vad står ofta i urkunderna, förutom myter?",a:"Religionens lära och lagar",w:["Recept","Väderprognoser","Bara namn på profeter"],e:"Skrifterna beskriver religionens lära och lagar, men innehåller också myter.",s:"Boken s. 14"},
-
-/* Religionen i samhället */
-{t:"samhalle",q:"Vad utgår den västerländska tideräkningen från?",a:"Hur många år det har gått sedan man antog att Jesus föddes",w:["När den första kyrkan byggdes","När världen skapades enligt Bibeln","När Sverige blev kristet"],e:"Den bygger på den gregorianska kalendern som används i västländerna.",s:"Häftet: Bibelns betydelse i kulturen och samhället"},
-{t:"samhalle",q:"Vilken kalender används allmänt i västländerna?",a:"Den gregorianska kalendern",w:["Den judiska kalendern","Månkalendern","Den hinduiska kalendern"],e:"Årtalet står för hur många år det gått sedan man antog att Jesus föddes.",s:"Häftet"},
-{t:"samhalle",q:"Varför har vi en sjudagarsvecka?",a:"Enligt skapelseberättelsen skapade Gud världen på sex dagar och vilade på den sjunde",w:["För att månen har sju faser","För att det finns sju världsreligioner","För att en kung bestämde det"],e:"Jesus uppstod på en söndag, vilket gör söndagen till en helgdag.",s:"Häftet"},
-{t:"samhalle",q:"Varför är söndagen en helgdag i kristendomen?",a:"Jesus uppstod på en söndag",w:["Jesus föddes på en söndag","Det är sabbaten i judendomen","Gud skapade människan på söndagen"],e:"Kopplat till sjudagarsveckan och påsken.",s:"Häftet"},
-{t:"samhalle",q:"Vad firas på julen?",a:"Jesu födelse",w:["Att Jesus uppstod","Att den heliga anden kom till lärjungarna","Johannes döparen"],e:"Många av våra högtider hänger ihop med händelser i Bibeln.",s:"Häftet"},
-{t:"samhalle",q:"Vad firas på påsken?",a:"Att Jesus korsfästes och uppstod",w:["Jesu födelse","Att Jesus fick sitt namn","Johannes döparen"],e:"Påsken är kristendomens viktigaste högtid.",s:"Häftet"},
-{t:"samhalle",q:"Vad firas på Kristi himmelsfärds dag?",a:"Att Jesus åkte upp till himlen, 40 dagar efter påsk",w:["Att anden kom till lärjungarna","Jesu födelse","Att Jesus blev döpt"],e:"Pingsten kommer sedan 50 dagar efter påsk.",s:"Häftet"},
-{t:"samhalle",q:"Vad firas på pingsten?",a:"Att den heliga anden kom till lärjungarna, 50 dagar efter påsk",w:["Att Jesus åkte upp till himlen","Jesu födelse","Att Jesus korsfästes"],e:"Kristi himmelsfärd = 40 dagar, pingst = 50 dagar efter påsk.",s:"Häftet"},
-{t:"samhalle",q:"Vilken biblisk person är midsommar kopplad till?",a:"Johannes döparen",w:["Jesus","Mose","Maria"],e:"Midsommar är kopplad till Johannes döparens födelse.",s:"Häftet"},
-{t:"samhalle",q:"Vad firas på nyår enligt häftet?",a:"Att Jesus blev omskuren och fick sitt namn",w:["Att Jesus föddes","Att Jesus uppstod","Att Jesus döptes"],e:"Jul – födelse, nyår – omskärelse och namn, påsk – korsfästelse och uppståndelse.",s:"Häftet"},
-{t:"samhalle",q:"Vilka förnamn har bibliskt ursprung?",a:"Sara, Maria, Johanna, Jonas, Thomas, Markus och Mikael",w:["Oden, Tor och Freja","Ali, Fatima och Muhammed","Inga vanliga svenska namn"],e:"Många förnamn kommer från Bibeln.",s:"Häftet"},
-{t:"samhalle",q:"Bibelns inflytande på seder och bruk märks särskilt vid …",a:"livets milstolpar: dop, konfirmation, vigsel och begravning",w:["sportevenemang","skolans prov","semestern"],e:"Födelse (dop), bli vuxen (konfirmation), giftermål (vigsel), död (begravning).",s:"Häftet"},
-{t:"samhalle",q:"Hur påverkade bibelöversättningarna samhället?",a:"De påverkade uppkomsten av ett skriftspråk i flera länder",w:["De gjorde att folk slutade läsa","De förbjöd teater","De ledde till sjudagarsveckan"],e:"De första böckerna var kyrkliga.",s:"Häftet"},
-{t:"samhalle",q:"Varför användes kyrkspel (teater) förr?",a:"För att lära ut kristendomen åt den befolkning som inte kunde läsa",w:["För att samla in pengar till kungen","För att roa adeln","För att visa naturreligioner"],e:"Teatern var ett sätt att berätta Bibelns historier.",s:"Häftet"},
-{t:"samhalle",q:"Vilka konstnärer på 1400-talet målade ofta bibliska motiv?",a:"Michelangelo, Leonardo da Vinci och Rafaello",w:["Bach, Händel och Beethoven","Picasso och Dalí","Astrid Lindgren och Selma Lagerlöf"],e:"De mest kända bildkonstverken på den tiden hade bibliska motiv.",s:"Häftet"},
-{t:"samhalle",q:"Vilka kompositörer har gjort verk med bibliska motiv?",a:"Bach, Händel och Beethoven",w:["Michelangelo och Rafaello","Leonardo da Vinci och Bach","ABBA"],e:"Psalmer och gospelmusik är också bibelinspirerad tonkonst.",s:"Häftet"},
-{t:"samhalle",q:"Vilken film har bibliskt motiv?",a:"Prinsen av Egypten",w:["Star Wars","Frost","Harry Potter"],e:"Häftet nämner också Jesus Christ Superstar och The Passion of the Christ.",s:"Häftet"},
-{t:"samhalle",q:"Vad har lagstiftningen påverkats av?",a:"De tio budorden",w:["Koranens femte sura","Veda","Hällristningarna i Tanum"],e:"Häftet: lagsamlingen har påverkats av de tio budorden.",s:"Häftet"},
-{t:"samhalle",q:"Varför blev läskunnighet viktig enligt kyrkan?",a:"Varje människa skulle kunna läsa Bibeln",w:["För att kunna läsa tidningen","För att kunna skriva lagar","För att kunna rösta"],e:"Utbildningen och kyrkan hänger därför ihop.",s:"Häftet"},
-{t:"samhalle",q:"Vad har socialservicen sitt ursprung i?",a:"Kyrkans fattig- och sjukvård",w:["Kungens armé","Vikingarnas handel","Skolans matsal"],e:"Kyrkan tog hand om fattiga och sjuka långt innan staten gjorde det.",s:"Häftet"},
-
-/* Riter, bön, platser, heligt */
-{t:"uttryck",q:"Vad är riter (ritualer)?",a:"Handlingar som återkommer i ungefär samma form vid särskilda tillfällen",w:["Heliga skrifter","Byggnader där man ber","Berättelser om hur världen skapades"],e:"Riter måste inte vara religiösa.",s:"Boken s. 21"},
-{t:"uttryck",q:"Vilket är ett exempel på en sekulär (icke-religiös) rit?",a:"Att fira skolavslutning",w:["Dop","Bön i en moské","Att vallfärda till Mekka"],e:"Boken nämner också att köpa samma lördagsgodis varje vecka.",s:"Boken s. 21"},
-{t:"uttryck",q:"Vad är en övergångsrit?",a:"En rit som markerar en förändring i livet och bara görs en eller några få gånger",w:["En rit som görs varje dag","En bön innan maten","En helig byggnad"],e:"Dop, äktenskapsceremoni och begravning är exempel på övergångsriter.",s:"Boken s. 21"},
-{t:"uttryck",q:"Vilket är INTE en övergångsrit?",a:"Kvällsbönen",w:["Dop","Bröllop","Begravning"],e:"En övergångsrit görs bara en eller några få gånger i livet.",s:"Boken s. 21"},
-{t:"uttryck",q:"Vad söker människor i bönen?",a:"Kontakt med sin gud eller det gudomliga",w:["Att bli rika","Att bevisa att gud finns","Att slippa gå till skolan"],e:"Man kan be för att tacka, söka hjälp, följa guds vilja eller hitta ro.",s:"Boken s. 22"},
-{t:"uttryck",q:"Hur visar muslimer sin vördnad när de ber?",a:"De går ner på knä och för pannan mot marken",w:["De knäpper händerna och böjer huvudet","De ber alltid stående","De dansar"],e:"Kristna knäpper ofta händerna och böjer huvudet. En jude ber ofta stående.",s:"Boken s. 22"},
-{t:"uttryck",q:"Hur är det vanligt att kristna ber?",a:"De knäpper händerna och böjer ner huvudet",w:["De för pannan mot marken","De ber alltid stående","De badar i en flod"],e:"Meditation, sång och dans kan också vara former av bön.",s:"Boken s. 22"},
-{t:"uttryck",q:"Vad är ett offer?",a:"Att den troende avstår från något den vill ha eller behöver",w:["Att man ber om hjälp","Att man läser en helig skrift","Att man besöker en kyrka"],e:"Man kan offra djur, växter eller pengar.",s:"Häftet"},
-{t:"uttryck",q:"Vad kallas det när många människor samlas i en gemensam tillbedjan av sin gud eller sina gudar?",a:"Gudstjänst",w:["Övergångsrit","Urkund","Myt"],e:"I gudstjänsten kan man använda böner, offer och olika riter.",s:"Häftet"},
-{t:"uttryck",q:"Vad är levnadsregler?",a:"Bud och regler för hur man bör leva",w:["Berättelser om gudar","Heliga byggnader","Symboler för religionen"],e:"Exempel på religionens handlingar och uttryck.",s:"Boken s. 20"},
-{t:"uttryck",q:"Mot vilken stad vänder sig muslimer när de ber?",a:"Mekka",w:["Jerusalem","Rom","Medina"],e:"Mekka är muslimernas heliga stad.",s:"Boken s. 23"},
-{t:"uttryck",q:"Vilken stad är helig för judar, kristna och muslimer?",a:"Jerusalem",w:["Mekka","Varanasi","Kyoto"],e:"Jerusalem är helig i alla tre monoteistiska religioner.",s:"Boken s. 23"},
-{t:"uttryck",q:"Vilket vatten är heligt för hinduer?",a:"Floden Ganges",w:["Nilen","Döda havet","Jordanfloden"],e:"Gangesvattnet sägs ha gudomlig kraft.",s:"Boken s. 23"},
-{t:"uttryck",q:"I vilken religion är berget Fuji heligt?",a:"Shintoismen",w:["Buddhismen","Islam","Judendomen"],e:"Många platser i naturen är heliga i den japanska religionen shintoismen.",s:"Boken s. 23"},
-{t:"uttryck",q:"Purim firas till minne av hur det judiska folket räddades. Vilken sorts högtid är det?",a:"En historisk högtid",w:["En vallfärdshögtid","En övergångsrit","En sekulär rit"],e:"Historiska högtider är kopplade till historiska händelser i en religion.",s:"Boken s. 22"},
-{t:"uttryck",q:"Vid Kumbha Mela reser hinduer till heliga floder. Vilken sorts högtid är det?",a:"En vallfärdshögtid",w:["En historisk högtid","En övergångsrit","En sabbat"],e:"Kumbha Mela inträffar vart tredje år.",s:"Boken s. 22"},
-{t:"uttryck",q:"Vad betyder det att vanhelga något?",a:"Att inte respektera det heliga",w:["Att göra något heligt","Att be för någon","Att tvätta händerna innan man ber"],e:"I vissa samhällen leder det fortfarande till straff.",s:"Boken s. 19"},
-{t:"uttryck",q:"Det svenska ordet heligt kommer från ett fornnordiskt ord som betydde ungefär …",a:"det som inte får skadas",w:["det som är gammalt","det som är vackert","det som är dyrt"],e:"Det hebreiska ordet qadosh betyder avskild från eller annorlunda.",s:"Boken s. 18"},
-{t:"uttryck",q:"Vilket är ett exempel på ett heligt djur?",a:"Kor i hinduismen",w:["Hundar i islam","Grisar i judendomen","Hästar i kristendomen"],e:"Hos japanska ainufolket är björnen helig.",s:"Boken s. 18, 24"},
-{t:"uttryck",q:"Vilka är exempel på heliga byggnader?",a:"Kyrkor, synagogor och tempel",w:["Skolor, sjukhus och affärer","Gravar från stenåldern","Hällristningar"],e:"Dit kommer troende för att känna kontakt med varandra och med gudarna.",s:"Boken s. 23"},
-
-/* Symboler */
-{t:"symbol",sym:"✝",q:"Vilken religions symbol är detta?",a:"Kristendomen – korset",w:["Judendomen – Davidsstjärnan","Islam – månskäran","Buddhismen – hjulet"],e:"Korset påminner om att Jesus korsfästes.",s:"Boken s. 24, häftet"},
-{t:"symbol",sym:"✡",q:"Vilken religions symbol är detta?",a:"Judendomen – Davidsstjärnan",w:["Kristendomen – korset","Hinduismen – Om","Islam – månskäran"],e:"Davidsstjärnan är judendomens symbol.",s:"Boken s. 24, häftet"},
-{t:"symbol",sym:"☪",q:"Vilken religions symbol är detta?",a:"Islam – månskäran (halvmånen)",w:["Judendomen – Davidsstjärnan","Buddhismen – hjulet","Hinduismen – Om"],e:"Boken kallar den islams måne.",s:"Boken s. 24, häftet"},
-{t:"symbol",sym:"☸",q:"Vilken religions symbol är detta?",a:"Buddhismen – hjulet med åtta ekrar (dharmachakra)",w:["Hinduismen – Om","Kristendomen – korset","Islam – månskäran"],e:"Hjulets åtta ekrar.",s:"Boken s. 24, häftet"},
-{t:"symbol",sym:"ॐ",q:"Vilken religions symbol är detta?",a:"Hinduismen – Om (Aum)",w:["Buddhismen – hjulet","Judendomen – Davidsstjärnan","Islam – månskäran"],e:"Om är ett heligt ljud och tecken i hinduismen.",s:"Boken s. 24, häftet"},
-{t:"symbol",q:"Hur många ekrar har buddhismens hjul?",a:"Åtta",w:["Sex","Fem","Tolv"],e:"Hjulet med åtta ekrar.",s:"Boken s. 24"},
-{t:"symbol",q:"Vad heter judendomens symbol?",a:"Davidsstjärnan",w:["Korset","Månskäran","Om"],e:"Kristendom – korset, judendom – Davidsstjärnan, islam – månskäran, hinduism – Om, buddhism – hjulet.",s:"Häftet"},
-{t:"symbol",q:"Vilken symbol hör till hinduismen?",a:"Om (Aum)",w:["Hjulet med åtta ekrar","Davidsstjärnan","Korset"],e:"Om skrivs med ett tecken från sanskrit.",s:"Boken s. 24, häftet"}
+"use strict";
+/* ================= DATA ================= */
+// [tyska, svenska, genus] genus: der/die/das/pl eller ''
+const VOCAB = [
+ {id:'1S', title:'Kap 1 – Bildord på campingen', src:'Textboken s. 4–5', words:[
+  ['Sommer','sommar','der'],['Sonne','sol','die'],['Wohnwagen','husvagn','der'],['Segelboot','segelbåt','das'],
+  ['See','sjö','der'],['Eis','glass','das'],['Surfbrett','surfbräda','das'],['Campingplatz','campingplats','der'],
+  ['Zelt','tält','das'],['Kanu','kanot','das'],['Picknick','picknick','das'],['Stuhl','stol','der'],
+  ['Strand','strand','der'],['Blume','blomma','die'],['Sommerferien','sommarlov','pl'],['Wasser','vatten','das']]},
+ {id:'1A', title:'1A Neue Freunde', src:'Textboken s. 6–7 + ordlistan s. 116', words:[
+  ['Was machst du hier?','Vad gör du här?'],['Ferien','semester; lov','pl'],['Ich auch.','Jag också.'],
+  ['Wie heißt du?','Vad heter du?'],['Ich heiße …','Jag heter …'],['Mein Name ist …','Mitt namn är …'],
+  ['Wie alt bist du?','Hur gammal är du?'],['Ich bin 14 Jahre alt.','Jag är 14 år gammal.'],
+  ['Wo wohnst du?','Var bor du?'],['Ich wohne in Wien.','Jag bor i Wien.'],
+  ['Woher kommst du?','Varifrån kommer du?'],['Ich komme aus Schweden.','Jag kommer från Sverige.'],
+  ['Und du?','Och du?'],['nein','nej'],['auch','också'],['hier','här']]},
+ {id:'1B', title:'1B Hallo, ich bin …!', src:'Textboken s. 8–9 + ordlistan s. 116', words:[
+  ['groß','stor'],['ganz OK','helt ok'],['Schulchor','skolkör','der'],['ich mag','jag gillar'],
+  ['Schokoladeneis','chokladglass','das'],['Computerspiele','datorspel','pl'],['Lieblingsspiel','favoritspel','das'],
+  ['Lieblingsessen','favoriträtt; favoritmat','das'],['Geschwister','syskon','pl'],['schwarz','svart'],['weiß','vit'],
+  ['Ich liebe Reisen.','Jag älskar resor.'],['Steckbrief','beskrivning','der'],['Alter','ålder','das'],['Wohnort','bostadsort','der'],
+  ['nicht','inte'],['Schule','skola','die'],['Lieblingsfach','favoritämne','das'],['Bruder','bror','der'],
+  ['Schwester','syster','die'],['Katze','katt','die'],['Musik','musik','die'],['Essen','mat','das'],
+  ['Hobby','hobby; fritidsintresse','das'],['Lieblingsland','favoritland','das'],['Klasse','klass','die']]},
+ {id:'1C', title:'1C Mein Urlaubsblogg', src:'Textboken s. 10–11 + ordlistan s. 116', words:[
+  ['Urlaub','semester','der'],['meine Eltern','mina föräldrar'],['Freundin','väninna; kompis','die'],
+  ['Ich mache Urlaub.','Jag är på semester.'],['endlich','äntligen'],['schlafen','sova'],['Wetter','väder','das'],
+  ['auch nicht','inte heller'],['den ganzen Tag','hela dagen'],['Luftmatratze','luftmadrass','die'],['Loch','hål','das'],
+  ['zusammen','tillsammans'],['echt eng','verkligen trångt'],['wir müssen … reparieren','vi måste laga …'],
+  ['Tischtennis','bordtennis','das'],['mit ein paar netten Jungs','med ett par trevliga killar'],
+  ['Sehen auch noch gut aus!','De är dessutom snygga!'],['Regen','regn','der'],['bei','hos'],
+  ['nach drei Stunden','efter tre timmar'],['wirklich','verkligen'],['langweilig','långtråkigt'],
+  ['einkaufen gehen','gå och shoppa'],['das ganze Zelt','hela tältet'],['nass','blött; blöt'],['Schlafsack','sovsäck','der'],
+  ['zum Glück','tack och lov'],['scheint die Sonne','skiner solen'],['wieder','igen'],
+  ['dann können wir alles trocknen','då kan vi torka allt'],['vielleicht','kanske'],['treffen wir','träffar vi'],
+  ['heiß','hett; varm'],['nach Stuttgart zurück','tillbaka till Stuttgart'],['morgen','i morgon'],
+  ['beginnt die Schule wieder','börjar skolan igen'],['auf jeden Fall','i vilket fall; hur som helst'],
+  ['Spiel','spel; match','das'],['kalt','kall; kallt']]},
+ {id:'1L', title:'Länder och favoriter', src:'Häftet s. 9 (B8)', words:[
+  ['Schweden','Sverige'],['Norwegen','Norge'],['Dänemark','Danmark'],['Finnland','Finland'],['Deutschland','Tyskland'],
+  ['Österreich','Österrike'],['die Schweiz','Schweiz'],['Italien','Italien'],['Spanien','Spanien'],['Frankreich','Frankrike'],
+  ['Tiere','djur','pl'],['Reiten','ridning'],['Skifahren','skidåkning; åka skidor'],['Gitarre spielen','spela gitarr'],
+  ['Klavier spielen','spela piano'],['Wurst','korv','die'],['Suppe','soppa','die'],['Fußball','fotboll','der']]},
+ {id:'2S', title:'Skolämnen', src:'Textboken s. 15', words:[
+  ['Mathematik','matematik'],['Mathe','matte'],['Geschichte','historia'],['Erdkunde','geografi'],['Englisch','engelska'],
+  ['Deutsch','tyska'],['Schwedisch','svenska'],['Sport','idrott'],['Musik','musik'],['Kunst','bild; konst']]},
+ {id:'2A', title:'2A In der Pause', src:'Textboken s. 16–17 + ordlistan s. 116–117', words:[
+  ['Englischstunde','engelsklektionen','die'],['große Pause','långrasten','die'],['auf dem Schulhof','på skolgården'],
+  ['treffen sich','träffas'],['einige','några'],['Schüler','elever','pl'],['planen','planera'],['Nachmittag','eftermiddag','der'],
+  ['neue Freunde','nya vänner'],['Zwillinge','tvillingar','pl'],['Parallelklasse','parallellklass','die'],
+  ['Was macht ihr?','Vad gör ni?'],['nach der Schule','efter skolan'],['Schwimmbad','simhall; bad','das'],
+  ['Warum nicht?','Varför inte?'],['Heute ist ja eine Affenhitze!','Idag är det ju stekhett!'],
+  ['Wann treffen wir uns?','När träffas vi?'],['wie viele Stunden','hur många lektioner'],['noch','till; ytterligare'],
+  ['am Eingang','vid ingången'],['vor','framför'],['warten','vänta'],['schon','redan'],['denn','då'],
+  ['Entschuldigung','ursäkta'],['verspätet','försenad'],['Schon okay!','Det är OK!; Inga problem!'],
+  ['Gehen wir hinein?','Ska vi gå in?'],['sofort','direkt; med detsamma'],
+  ['Es ist zehn Uhr.','Klockan är tio.'],['Die Englischstunde ist zu Ende.','Engelsklektionen är slut.'],
+  ['Das hier ist Anton.','Det här är Anton.'],['Ja, das passt!','Ja, det blir bra!'],['Bis dann!','Vi ses!'],
+  ['Tschüss!','Hej då!']]},
+ {id:'2B', title:'2B Sport mit Klasse 7B', src:'Textboken s. 18–19 + ordlistan s. 117', words:[
+  ['Regeln','regler','pl'],['Spieler','spelare','der'],['Mannschaft','lag','die'],['Punkte','poäng','pl'],
+  ['Los geht’s!','Nu kör vi!'],['zuerst','först'],['aufwärmen','värma upp'],['Ratet!','Gissa!'],
+  ['jede Mannschaft','varje lag'],['gut geraten','bra gissat'],['dürfen','få lov'],['sogar','till och med'],
+  ['auf dem Feld','på planen'],['Wie lange dauert …?','Hur länge pågår …?; Hur länge varar …?'],['viermal zwölf','fyra gånger tolv'],
+  ['Toll!','Kul!'],['laufen','springa'],['klein','liten'],['heute','idag'],['Feld','plan','das'],['Lieblingssport','favoritsport','der']]},
+ {id:'2C', title:'2C Die Mathestunde', src:'Ordlistan s. 117', words:[
+  ['Jetzt fangen wir an.','Nu börjar vi.'],['beginnen wir','börjar vi'],['ich habe … vergessen','jag har glömt …'],
+  ['zu zweit','två och två'],['Setz dich!','Sätt dig!'],['neben','bredvid'],['wir lösen','vi löser'],
+  ['Aufgabe','uppgift','die'],['Wer möchte an die Tafel?','Vem vill gå fram till tavlan?'],['ich verstehe','jag förstår'],
+  ['Bei der Klammer?','Vid parentesen?'],['genau','precis'],['helfen','hjälpa'],['Gut gemacht.','Bra gjort.'],
+  ['Lest bitte.','Var snälla och läs.'],['Wann ist die Stunde aus?','När är lektionen slut?'],['Wartet!','Vänta!'],
+  ['Hausaufgabe','läxa','die'],['Schönes Wochenende!','Trevlig helg!'],['Danke, gleichfalls.','Tack detsamma.']]}
 ];
 
-/* ---------- Begreppskort ---------- */
-const CARDS = [
-["Religion","Från latin: dyrka gud, binda samman, känna förpliktelse eller ha respekt för det heliga.","s. 9"],
-["Livsåskådning","Ett sätt att se på livet och svara på livsfrågorna – kan vara religiöst eller icke-religiöst.","s. 8–9"],
-["Sekulariserad","Religionen har inte så stor roll i ens liv.","s. 8"],
-["Världsligt","Det vi kan uppfatta och förstå med våra sinnen.","s. 9"],
-["Andligt","T.ex. en osynlig makt, en gud eller tron på att människan har en själ.","s. 9"],
-["Subjektiv / objektiv","Subjektiv = personlig. Objektiv = utan att ta ställning. Undervisningen ska vara objektiv.","s. 8"],
-["Teism","Tro på en personlig gud som skapat världen och kan ingripa och påverka livet. (theos = gud, grekiska)","s. 16"],
-["Deism","Gud skapade universum med naturlagar och lämnade det sedan att fungera själv. Vanligt på upplysningstiden.","s. 16"],
-["Panteism","Gud eller det gudomliga finns närvarande i allt. (pan = allt) Vanligt i naturreligioner och hinduism.","s. 16"],
-["Ateism","Det finns ingen gud eller gudomlig makt alls. (utan gud)","s. 16"],
-["Agnosticism","Det går varken att bevisa att gud finns eller inte finns – man tar inte ställning. (obekant, hemlig)","s. 16"],
-["Monoteism","Tro på en enda, allsmäktig gud. T.ex. judendom, kristendom, islam.","s. 15"],
-["Polyteism","Tro på många gudar och ofta en andevärld. Vanligt i naturreligioner.","s. 15"],
-["Reinkarnation","Återfödelse: själen eller jaget återföds i en ny kropp. Hinduism och buddhism.","s. 17"],
-["Allsmäktig","Har all makt.","s. 15"],
-["Centrala tankar","En religions svar på de existentiella frågorna och hur den ser på gud – religionens lära.","s. 15"],
-["Etik och moral","Förhållningssätt till vad som är rätt och fel.","s. 15"],
-["Världsreligioner","Hinduism, buddhism, judendom, kristendom och islam – stora religioner med anhängare på många platser i världen.","s. 12"],
-["Förhistorisk tid","Tiden som det inte finns några skriftliga källor eller bilder ifrån.","s. 10"],
-["Historisk tid","Tiden när människor började använda bild- och skriftspråk.","s. 11"],
-["Källor","Det forskare använder för att få kunskap: grottmålningar, gravfynd, papyrusrullar, myter, religiösa texter.","s. 10"],
-["Urkund","En religions heliga skrift: Tora, Bibeln, Koranen, Veda, sutrorna/Tripitaka.","s. 14"],
-["Myt","Helig berättelse som vill förklara tillvaron och varför saker sker.","s. 14"],
-["Skapelsemyt","Berättelse om hur världen och människorna skapades.","s. 14"],
-["Profet","Person utvald av gud som förutspår framtiden.","s. 14"],
-["Bokstavstroende","Uppfattar allt i urkunden som sant och kan inte tänka sig att omtolka det.","s. 14"],
-["Rit / ritual","Handling som återkommer i ungefär samma form vid särskilda tillfällen.","s. 21"],
-["Övergångsrit","Rit som markerar en förändring i livet: dop, bröllop, begravning.","s. 21"],
-["Bön","Ett sätt att söka kontakt med sin gud eller det gudomliga.","s. 22"],
-["Offer","Att avstå från något man vill ha eller behöver, t.ex. djur, växter eller pengar.","Häftet"],
-["Gudstjänst","När många samlas i gemensam tillbedjan av sin gud eller sina gudar.","Häftet"],
-["Levnadsregler","Bud och regler för hur man bör leva.","s. 20"],
-["Historisk högtid","Högtid kopplad till en historisk händelse, t.ex. judiska Purim.","s. 22"],
-["Vallfärdshögtid","Man reser till en särskild plats för att fira, t.ex. Kumbha Mela.","s. 22"],
-["Heligt","Upphöjt och mer betydelsefullt än allt annat. Fornnordiska: det som inte får skadas.","s. 18–19"],
-["Vanhelga","Att inte respektera det heliga.","s. 19"]
+const QWORDS = [
+  ['Wie?','Hur?','Wie heißt du? = Vad heter du? (på svenska säger vi "vad")'],
+  ['Was?','Vad?','Was machst du hier?'],['Wo?','Var?','Wo wohnst du?'],['Woher?','Varifrån?','Woher kommst du?'],
+  ['Wann?','När?','Wann treffen wir uns?'],['Warum?','Varför?','Warum nicht?'],['Wie viele?','Hur många?','Wie viele Stunden habt ihr noch?'],
+  ['Wie alt?','Hur gammal?','Wie alt bist du?'],['Wie lange?','Hur länge?','Wie lange dauert ein Spiel?'],['Wie oft?','Hur ofta?','Wie oft gehst du schwimmen?'],
+  ['Wie spät ist es?','Hur mycket är klockan?','= Wie viel Uhr ist es?']
+];
+// Lucktexter från häftet s. 4 och s. 15
+const QFILL = [
+  ['___ wohnst du?','Ich wohne in Schweden.','Wo'],['___ alt bist du?','Ich bin 14 Jahre alt.','Wie'],
+  ['___ machst du?','Ich spiele Computerspiele.','Was'],['___ kommst du?','Ich komme aus Schweden.','Woher'],
+  ['___ heißt du?','Ich heiße Anton.','Wie'],['___ spielst du gern?','Ich spiele gern Handball.','Was'],
+  ['___ liegt Lübeck?','In Norddeutschland.','Wo'],['___ ist das?','Das ist ein Foto.','Was'],
+  ['___ treffen wir uns?','Um halb drei.','Wann'],['___ machst du?','Ich spiele Gitarre.','Was'],
+  ['___ sprichst du Deutsch?','Ich komme aus Deutschland.','Warum'],['___ Stunden habt ihr noch?','Zwei. Sport und Geschichte.','Wie viele'],
+  ['___ liegt das Schwimmbad?','In der Badestraße.','Wo'],['___ oft gehst du schwimmen?','Jeden Tag.','Wie'],
+  ['___ lange dauert ein Spiel?','Viermal zwölf Minuten.','Wie'],['___ Spieler sind in einer Mannschaft?','Sechs.','Wie viele'],
+  ['___ machen wir heute?','Wir spielen Basketball.','Was'],['___ wohnst du?','Ich wohne in Wien.','Wo']
+];
+const QW_ALL = ['Wie','Was','Wo','Woher','Wann','Warum','Wie viele'];
+
+// Presentera dig
+const PRES_Q = [ // [fråga sv, fråga de, svar-exempel de]
+  ['Vad heter du?','Wie heißt du?','Ich heiße Sandra.'],
+  ['Hur gammal är du?','Wie alt bist du?','Ich bin 14 Jahre alt.'],
+  ['Var bor du?','Wo wohnst du?','Ich wohne in München.'],
+  ['Varifrån kommer du?','Woher kommst du?','Ich komme aus Deutschland.'],
+  ['Vad gör du här?','Was machst du hier?','Ferien.'],
+  ['Vad är ditt favoritämne?','Was ist dein Lieblingsfach?','Mein Lieblingsfach ist Musik.'],
+  ['Vad är din favoritmat?','Was ist dein Lieblingsessen?','Mein Lieblingsessen ist Pizza.'],
+  ['Vad är ditt favoritland?','Was ist dein Lieblingsland?','Mein Lieblingsland ist Italien.'],
+  ['Vad är din favoritsport?','Was ist dein Lieblingssport?','Mein Lieblingssport ist Basketball.'],
+  ['Vad spelar du gärna?','Was spielst du gern?','Ich spiele gern Handball.']
+];
+const PRES_SENT = [ // svenska -> tyska (accepterade svar)
+  ['Jag heter Anton.',['Ich heiße Anton.','Ich bin Anton.','Mein Name ist Anton.']],
+  ['Mitt namn är Sabine.',['Mein Name ist Sabine.']],
+  ['Jag är 13 år gammal.',['Ich bin 13 Jahre alt.','Ich bin dreizehn Jahre alt.']],
+  ['Jag bor i Stockholm.',['Ich wohne in Stockholm.']],
+  ['Jag kommer från Sverige.',['Ich komme aus Schweden.']],
+  ['Jag gillar musik.',['Ich mag Musik.']],
+  ['Jag tycker om musik.',['Ich mag Musik.']],
+  ['Mitt favoritämne är tyska.',['Mein Lieblingsfach ist Deutsch.']],
+  ['Min skola är stor.',['Meine Schule ist groß.']],
+  ['Min skola är inte stor.',['Meine Schule ist nicht groß.']],
+  ['Min favoritmat är pizza.',['Mein Lieblingsessen ist Pizza.']],
+  ['Jag gillar chokladglass.',['Ich mag Schokoladeneis.']],
+  ['Jag har två syskon.',['Ich habe zwei Geschwister.']],
+  ['Jag har en bror och en syster.',['Ich habe einen Bruder und eine Schwester.']],
+  ['Min bror heter Markus.',['Mein Bruder heißt Markus.']],
+  ['Min syster heter Ulrike.',['Meine Schwester heißt Ulrike.']],
+  ['Jag går i klass 7B.',['Ich gehe in Klasse 7B.','Ich gehe in die Klasse 7B.']],
+  ['Jag älskar resor.',['Ich liebe Reisen.']],
+  ['Mitt favoritland är Italien.',['Mein Lieblingsland ist Italien.']],
+  ['Min hobby är att spela gitarr.',['Mein Hobby ist Gitarre spielen.']],
+  ['Svart och vit.',['Schwarz und weiß.']],
+  ['Jag också.',['Ich auch.']]
+];
+const GREET = [
+  ['Hallo!','hälsning','Hej!'],['Hi!','hälsning','Hej!'],['Servus!','hälsning','Hej! (södra Tyskland/Österrike)'],
+  ['Salü!','hälsning','Hej! (Schweiz)'],['Tschüss!','avsked','Hej då!'],['Ciao!','avsked','Hej då!'],['Bis dann!','avsked','Vi ses!']
 ];
 
-/* ---------- Arbetsfrågorna ---------- */
-const WRITTEN = [
-{q:"Fråga 1. Förklara följande ord/begrepp: sekulariserade, teism, deism, panteism, ateism, agnosticism, monoteism, polyteism, reinkarnation.",
- a:`<ul>
- <li><b>Sekulariserade:</b> religionen har inte så stor roll i människornas liv.</li>
- <li><b>Teism:</b> tro på en personlig gud som har skapat världen och som kan ingripa och påverka livet.</li>
- <li><b>Deism:</b> gud har skapat universum med naturlagar och sedan lämnat det att fungera av sig självt.</li>
- <li><b>Panteism:</b> gud eller det gudomliga finns närvarande i allt.</li>
- <li><b>Ateism:</b> det finns ingen gud eller gudomlig makt alls.</li>
- <li><b>Agnosticism:</b> det går varken att bevisa att gud finns eller inte finns, därför tar man inte ställning.</li>
- <li><b>Monoteism:</b> tro på en enda gud som är allsmäktig.</li>
- <li><b>Polyteism:</b> tro på flera gudar, ofta också på en andevärld.</li>
- <li><b>Reinkarnation:</b> att själen eller jaget återföds i en ny kropp efter döden.</li></ul>`,s:"Boken s. 8, 15–17"},
-{q:"Fråga 2. Vilka fem religioner räknas som världsreligioner?",
- a:"Hinduism, buddhism, judendom, kristendom och islam.",s:"Boken s. 12"},
-{q:"Fråga 3. Vad är det som gör att man räknar dessa fem religioner som världsreligioner?",
- a:"De är stora religioner med anhängare på många platser runt om i världen.",s:"Boken s. 12"},
-{q:"Fråga 4. När brukar man tala om förhistorisk tid? När utspelar sig den förhistoriska tiden?",
- a:"Förhistorisk tid är den tid i historien som det inte finns några skriftliga källor eller bilder ifrån, alltså tiden innan människor började använda skriftspråk.<p class='small muted'>Tips (inte från boken): Skriften uppstod för ungefär 5 000 år sedan i Mesopotamien och Egypten. I Sverige räknas förhistorisk tid ofta fram till slutet av vikingatiden, omkring år 1050.</p>",s:"Boken s. 10"},
-{q:"Fråga 5. Hur får vi kunskap om hur det religiösa livet såg ut under förhistorisk tid?",
- a:"Genom att jämföra fynd av föremål, benrester, lämningar av bosättningar och gravar från olika platser på jorden. Att människor lade tid och omsorg på att begrava sina döda tyder t.ex. på att de trodde på en tillvaro efter döden (t.ex. Hagadösen i Bohuslän).",s:"Boken s. 10"},
-{q:"Fråga 6. När brukar man tala om historisk tid? När utspelar sig den historiska tiden?",
- a:"Historisk tid är tiden från att människor började använda bild- och skriftspråk och fram till idag.",s:"Boken s. 11"},
-{q:"Fråga 7. Hur får vi kunskap om hur det religiösa livet såg ut under historisk tid?",
- a:"Förutom arkeologiska fynd finns grottmålningar, hällristningar, stentavlor och papyrusrullar med religiösa texter. Ju närmare vår egen tid, desto fler skriftliga källor finns. Forskarna måste då avgöra vem som skrivit texterna, när och varför.",s:"Boken s. 11"},
-{q:"Fråga 8. Vad är urkunder för något? Ge exempel på fem urkunder.",
- a:`Urkunder är religionernas heliga skrifter. De beskriver religionens lära och lagar men innehåller också myter.
- <ul><li>Judendomen – Tora</li><li>Kristendomen – Bibeln</li><li>Islam – Koranen</li><li>Hinduismen – Veda</li><li>Buddhismen – sutrorna (Tripitaka)</li></ul>`,s:"Boken s. 14"},
-{q:"Fråga 9. Vad är en skapelsemyt?",
- a:"En helig berättelse om hur världen och människorna har skapats. Nästan alla religioner har skapelsemyter.",s:"Boken s. 14"},
-{q:"Fråga 10. Vad är en bokstavstroende för något?",
- a:"En troende som uppfattar allt i urkunden som sant och inte kan tänka sig att omtolka eller ändra något. Andra troende läser urkunden mer bildligt eller symboliskt och tolkar den utifrån dagens kunskap.",s:"Boken s. 14"},
-{q:"Fråga 11. Religionen har påverkat vårt samhälle på många sätt. Ge exempel (tideräkningen, sjudagarsveckan, festtraditionen, förnamn, seder och bruk, konst och lagstiftning).",
- a:`<ul>
- <li><b>Tideräkningen:</b> utgår från den gregorianska kalendern. Årtalet visar hur många år som gått sedan man antog att Jesus föddes.</li>
- <li><b>Sjudagarsveckan:</b> enligt skapelseberättelsen skapade Gud världen på sex dagar och vilade den sjunde. Jesus uppstod på en söndag, som därför är helgdag.</li>
- <li><b>Festtraditionen:</b> jul (Jesu födelse), nyår (Jesus omskärs och får sitt namn), påsk (Jesus korsfästs och uppstår), Kristi himmelsfärd (40 dagar efter påsk), pingst (anden kommer till lärjungarna, 50 dagar efter påsk), midsommar (Johannes döparen).</li>
- <li><b>Förnamn:</b> många har bibliskt ursprung, t.ex. Sara, Maria, Johanna, Jonas, Thomas, Markus, Mikael.</li>
- <li><b>Seder och bruk:</b> livets milstolpar – dop, konfirmation, vigsel och begravning.</li>
- <li><b>Konst:</b> de första böckerna var kyrkliga och bibelöversättningar påverkade skriftspråket; kyrkspel lärde ut kristendomen; filmer som Prinsen av Egypten; konstnärer som Michelangelo, Leonardo da Vinci och Rafaello; musik av Bach, Händel och Beethoven, psalmer och gospel; arkitektur som kyrkor.</li>
- <li><b>Lagstiftning:</b> lagarna har påverkats av de tio budorden. Socialservicen har sitt ursprung i kyrkans fattigvård, och kyrkan krävde läskunnighet så att alla skulle kunna läsa Bibeln.</li></ul>`,s:"Häftet: Bibelns betydelse i kulturen och samhället"},
-{q:"Fråga 12. Inom religiöst finns det flera saker, handlingar och levnadsregler som förenar människor. Få med: riter, övergångsriter, bön, byggnader och platser, offer, heliga skrifter.",
- a:`<ul>
- <li><b>Riter:</b> handlingar som återkommer i ungefär samma form vid särskilda tillfällen. De ger gemenskap.</li>
- <li><b>Övergångsriter:</b> markerar en förändring i livet och görs bara en eller några gånger: dop, konfirmation, bröllop, begravning.</li>
- <li><b>Bön:</b> ett sätt att söka kontakt med sin gud – för att tacka, be om hjälp eller hitta ro. Muslimer går ner på knä med pannan mot marken, kristna knäpper händerna, judar ber ofta stående.</li>
- <li><b>Byggnader och platser:</b> kyrkor, synagogor, moskéer och tempel där man ber, offrar och firar gudstjänst. Heliga platser: Mekka, Jerusalem, Ganges, berget Fuji.</li>
- <li><b>Offer:</b> att avstå från något man vill ha eller behöver, t.ex. djur, växter eller pengar.</li>
- <li><b>Heliga skrifter:</b> myterna har skrivits ner och samlats i heliga skrifter, t.ex. Bibeln, Koranen och Tora. Där kan man läsa om religionen och dess regler.</li></ul>`,s:"Boken s. 20–24, häftet"},
-{q:"Fråga 13. Vilka är symbolerna för världsreligionerna?",
- a:`<ul><li><span style="font-size:1.4em">✝</span> Kristendomen – korset</li>
- <li><span style="font-size:1.4em">✡</span> Judendomen – Davidsstjärnan</li>
- <li><span style="font-size:1.4em">☪</span> Islam – månskäran (halvmånen)</li>
- <li><span style="font-size:1.4em">ॐ</span> Hinduismen – Om (Aum)</li>
- <li><span style="font-size:1.4em">☸</span> Buddhismen – hjulet med åtta ekrar (dharmachakra)</li></ul>`,s:"Boken s. 24, häftet"}
+const DAYS = [['Montag','måndag'],['Dienstag','tisdag'],['Mittwoch','onsdag'],['Donnerstag','torsdag'],['Freitag','fredag'],['Samstag','lördag'],['Sonntag','söndag']];
+const BLOG = [ // vad hände vilken dag (Petras blogg, s. 10–11)
+  ['Tältet står äntligen uppe. Föräldrarna sover i husvagnen.',0],
+  ['Superväder! Petra och Amelie är på stranden hela dagen.',1],
+  ['Amelies luftmadrass har ett hål – de måste ligga på samma madrass.',2],
+  ['De spelar bordtennis med ett par trevliga killar.',3],
+  ['Det regnar. De spelar spel i husvagnen. Petra vill gå och shoppa.',4],
+  ['Tältet och sovsäcken är blöta. De köper glass vid kiosken.',5],
+  ['Solen skiner. De åker tillbaka till Stuttgart – i morgon börjar skolan.',6]
 ];
 
-/* ---------- Hjälpfunktioner ---------- */
-const $ = s => document.querySelector(s);
+const VERBS = [ // inf, sv inf, ich, du, er/sie/es, sv presens, typ
+  ['wohnen','bo','wohne','wohnst','wohnt','bor','r'],['kommen','komma','komme','kommst','kommt','kommer','r'],
+  ['heißen','heta','heiße','heißt','heißt','heter','s'],['machen','göra','mache','machst','macht','gör','r'],
+  ['spielen','spela','spiele','spielst','spielt','spelar','r'],['gehen','gå','gehe','gehst','geht','går','r'],
+  ['hören','höra; lyssna på','höre','hörst','hört','hör','r'],['singen','sjunga','singe','singst','singt','sjunger','r'],
+  ['lieben','älska','liebe','liebst','liebt','älskar','r'],['reisen','resa','reise','reist','reist','reser','s'],
+  ['planen','planera','plane','planst','plant','planerar','r'],['warten','vänta','warte','wartest','wartet','väntar','s'],
+  ['kaufen','köpa','kaufe','kaufst','kauft','köper','r'],['schwimmen','simma','schwimme','schwimmst','schwimmt','simmar','r'],
+  ['verstehen','förstå','verstehe','verstehst','versteht','förstår','r'],['lösen','lösa','löse','löst','löst','löser','s'],
+  ['schlafen','sova','schlafe','schläfst','schläft','sover','o'],['treffen','träffa','treffe','triffst','trifft','träffar','o'],
+  ['laufen','springa','laufe','läufst','läuft','springer','o'],['helfen','hjälpa','helfe','hilfst','hilft','hjälper','o'],
+  ['essen','äta','esse','isst','isst','äter','o'],['sprechen','tala','spreche','sprichst','spricht','talar','o'],
+  ['sein','vara','bin','bist','ist','är','o'],['haben','ha','habe','hast','hat','har','o'],['mögen','gilla','mag','magst','mag','gillar','o']
+];
+const SUBJ3 = [['er','han'],['sie','hon'],['es','den/det'],['Sandra','Sandra'],['Anton','Anton'],['mein Bruder','min bror'],['meine Schwester','min syster'],['Armin','Armin']];
+
+const TEXTS = [
+  {t:'1A Neue Freunde (s. 6)', q:[
+    ['Simone och Jasmin är båda på semester.',true,'– Was machst du hier? – Ferien. Und du? – Ich auch.'],
+    ['Sabine är 13 år gammal.',false,'Sabine: "Ich bin 14 Jahre alt." Oliver är 13.'],
+    ['Oliver bor i Zürich i Schweiz.',true,'"Nein, ich wohne in Zürich, in der Schweiz."'],
+    ['Sabine bor i Wien.',true,'"Ich wohne in Wien."'],
+    ['Alice kommer från Tyskland.',false,'Alice: "Ich komme aus Schweden." Lukas kommer från Tyskland.'],
+    ['Lukas kommer från Tyskland.',true,'"Ich komme aus Deutschland."']]},
+  {t:'1B Hallo, ich bin …! (Sandra, s. 8–9)', q:[
+    ['Sandra kommer från Tyskland.',true,'"… ich komme aus Deutschland."'],
+    ['Sandra bor i Berlin.',false,'Hon bor i München.'],
+    ['Sandra går i klass 6B.',false,'Hon går i klass 7B.'],
+    ['Sandras favoritämne är matte.',false,'"Mein Lieblingsfach ist Musik."'],
+    ['Sandra gillar vaniljglass.',false,'Hon gillar chokladglass – "Schokoladeneis".'],
+    ['Sandra har två syskon.',true,'En bror (Christian, 7 år) och en syster (Jana, 16 år).'],
+    ['Sandras katt är brun.',false,'Katten Mitzi är "schwarz und weiß" – svart och vit.'],
+    ['Sandras favoritland är Italien.',true,'"… mein Lieblingsland ist Italien."'],
+    ['Sandra sjunger i skolkören.',true,'"… ich singe auch im Schulchor."'],
+    ['Sandras favoritmat är pizza.',true,'"Mein Lieblingsessen ist Pizza."']]},
+  {t:'2A In der Pause (s. 16)', q:[
+    ['Klockan är tio när den stora rasten börjar.',true,'"Es ist zehn Uhr."'],
+    ['Anton och Frank är tvillingar.',true,'"Sie sind Zwillinge und gehen in die Parallelklasse, in die 7A."'],
+    ['De ska gå till simhallen efter skolan.',true,'"Gehen wir alle zusammen ins Schwimmbad?"'],
+    ['De ska träffas klockan halv fyra.',false,'"um halb drei" = halv tre (14.30) vid ingången.'],
+    ['Det är kallt ute.',false,'"Heute ist ja eine Affenhitze!" – det är stekhett.'],
+    ['Anton och Frank kommer för sent för att bussen var försenad.',true,'"… aber der Bus war verspätet."'],
+    ['Christa och Caro har engelska och matte kvar.',false,'De har "Deutsch und Sport" kvar.']]},
+  {t:'2B Sport mit Klasse 7B (s. 18–19)', q:[
+    ['Det är sex spelare i ett volleybollag.',true,'Erkan: "Sechs."'],
+    ['Man måste göra 21 poäng i volleyboll (enligt texten).',true,'Anna: "21." – "Richtig."'],
+    ['I handboll får sju spelare vara på planen.',true,'"… sieben Spieler auf dem Feld."'],
+    ['Ett lag i basket har sex spelare.',false,'"Jede Mannschaft hat fünf Spieler."'],
+    ['En basketmatch är fyra gånger tolv minuter.',true,'"Viermal zwölf Minuten."'],
+    ['Ninas favoritsport är fotboll.',false,'"Toll! Mein Lieblingssport!" – Basketball.'],
+    ['De värmer upp genom att springa i fem minuter.',true,'"Fünf Minuten laufen!"']]}
+];
+
+/* ================= HJÄLPFUNKTIONER ================= */
+const $ = (s, el=document) => el.querySelector(s);
+const app = $('#app');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const rnd = n => Math.floor(Math.random()*n);
+const pick = a => a[rnd(a.length)];
+const shuffle = a => { a = a.slice(); for (let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]];} return a; };
 const store = {
-  get(k,d){try{const v=localStorage.getItem("relquiz:"+k);return v===null?d:JSON.parse(v)}catch(e){return d}},
-  set(k,v){try{localStorage.setItem("relquiz:"+k,JSON.stringify(v))}catch(e){}}
+  get(k, d){ try{ const v = localStorage.getItem('tyska.'+k); return v==null? d : JSON.parse(v);}catch(e){return d;} },
+  set(k, v){ try{ localStorage.setItem('tyska.'+k, JSON.stringify(v)); }catch(e){} }
 };
-const shuffle = a => {a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
-const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function show(id){["start","quiz","result","cards","write"].forEach(s=>$("#"+s).classList.toggle("hidden",s!==id));window.scrollTo(0,0)}
-
-/* ---------- Tema ---------- */
-(function(){const t=store.get("theme",null);if(t)document.documentElement.dataset.theme=t})();
-$("#themeBtn").onclick=()=>{
-  const cur=document.documentElement.dataset.theme||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
-  const next=cur==="dark"?"light":"dark";document.documentElement.dataset.theme=next;store.set("theme",next);
-};
-
-/* ---------- Start ---------- */
-let selTopics=new Set(store.get("topics",Object.keys(TOPICS)));
-let qCount=store.get("count",20);
-function renderChips(){
-  const box=$("#topicChips");box.innerHTML="";
-  for(const [k,v] of Object.entries(TOPICS)){
-    const n=Q.filter(q=>q.t===k).length;
-    const b=document.createElement("button");b.className="chip";b.textContent=`${v} · ${n}`;
-    b.setAttribute("aria-pressed",selTopics.has(k));
-    b.onclick=()=>{selTopics.has(k)?selTopics.delete(k):selTopics.add(k);store.set("topics",[...selTopics]);renderChips()};
-    box.appendChild(b);
+function norm(s){
+  return String(s).toLowerCase().replace(/[’`´]/g,"'").replace(/\.\.\.|…/g,' ')
+    .replace(/[?!.,;:"„“”()¿¡–-]/g,' ').replace(/\s+/g,' ').trim();
+}
+function fold(s){ return s.replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss'); }
+function stripCase(s){ return String(s).replace(/[’`´]/g,"'").replace(/\.\.\.|…/g,' ').replace(/[?!.,;:"„“”()¿¡–-]/g,' ').replace(/\s+/g,' ').trim(); }
+function lev(a,b){
+  const m=a.length,n=b.length; if(!m) return n; if(!n) return m;
+  let prev=Array.from({length:n+1},(_,i)=>i);
+  for(let i=1;i<=m;i++){ const cur=[i]; for(let j=1;j<=n;j++){ cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1)); } prev=cur; }
+  return prev[n];
+}
+// returnerar {ok:bool, level:'ok'|'case'|'fold'|'near'|'bad', note}
+function checkTyped(input, answers, opts={}){
+  const ni = norm(input);
+  if(!ni) return {ok:false, level:'bad'};
+  for(const a of answers){
+    if(norm(a) === ni){
+      if(opts.caseMatters!==false && stripCase(a) !== stripCase(input) && /[A-ZÄÖÜ]/.test(a.slice(1)+ (opts.firstCap? a[0]:''))){
+        return {ok:true, level:'case', note:'Rätt! Men tänk på stor bokstav – på tyska skrivs alla substantiv (och veckodagar) med stor bokstav.'};
+      }
+      return {ok:true, level:'ok'};
+    }
   }
-  const n=Q.filter(q=>selTopics.has(q.t)).length;
-  $("#topicCount").textContent=`${n} frågor valda`;
-  document.querySelectorAll("#countChips .chip").forEach(c=>c.setAttribute("aria-pressed",+c.dataset.n===qCount));
-  const best=store.get("best",null);
-  $("#best").textContent=best?`Ditt bästa resultat hittills: ${best.p} % (${best.s}/${best.n})`:"";
-}
-$("#allTopics").onclick=()=>{selTopics=new Set(Object.keys(TOPICS));store.set("topics",[...selTopics]);renderChips()};
-document.querySelectorAll("#countChips .chip").forEach(c=>c.onclick=()=>{qCount=+c.dataset.n;store.set("count",qCount);renderChips()});
-document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>{
-  const m=b.dataset.mode;
-  if(m==="quiz")startQuiz();
-  if(m==="cards")startCards();
-  if(m==="write")startWrite();
-});
-$("#home").onclick=()=>{renderChips();show("start")};
-
-/* ---------- Quiz ---------- */
-let run=null;
-function startQuiz(list){
-  let pool=list||shuffle(Q.filter(q=>selTopics.has(q.t)));
-  if(!pool.length){alertBox();return}
-  if(!list)pool=pool.slice(0,qCount);
-  run={qs:pool,i:0,score:0,missed:[],answered:false};
-  show("quiz");renderQ();
-}
-function alertBox(){$("#topicCount").textContent="Välj minst ett område först.";}
-function renderQ(){
-  const q=run.qs[run.i];run.answered=false;
-  $("#qTopic").textContent=TOPICS[q.t];
-  $("#qNum").textContent=`${run.i+1} / ${run.qs.length}`;
-  $("#qBar").style.width=(run.i/run.qs.length*100)+"%";
-  $("#qSym").classList.toggle("hidden",!q.sym);$("#qSym").textContent=q.sym||"";
-  $("#qText").textContent=q.q;
-  const opts=shuffle([q.a,...q.w]);run.opts=opts;
-  const box=$("#qOpts");box.innerHTML="";
-  opts.forEach((o,ix)=>{
-    const b=document.createElement("button");b.className="opt";
-    b.innerHTML=`<span class="k">${ix+1}</span><span>${esc(o)}</span>`;
-    b.onclick=()=>answer(ix);box.appendChild(b);
-  });
-  $("#qFb").className="feedback hidden";
-  $("#qNext").disabled=true;
-  $("#qNext").textContent=run.i===run.qs.length-1?"Se resultat":"Nästa";
-}
-function answer(ix){
-  if(run.answered)return;run.answered=true;
-  const q=run.qs[run.i];const right=run.opts[ix]===q.a;
-  const btns=[...document.querySelectorAll("#qOpts .opt")];
-  btns.forEach((b,i)=>{b.disabled=true;if(run.opts[i]===q.a)b.classList.add("ok");else if(i===ix)b.classList.add("bad")});
-  if(right)run.score++;else run.missed.push({q,given:run.opts[ix]});
-  const fb=$("#qFb");fb.className="feedback "+(right?"ok":"bad");
-  fb.innerHTML=`<b class="${right?"ok":"bad"}">${right?"Rätt!":"Inte riktigt."}</b> ${right?"":"Rätt svar: <b>"+esc(q.a)+"</b>. "}${esc(q.e)}<div class="src">Källa: ${esc(q.s)}</div>`;
-  $("#qNext").disabled=false;$("#qNext").focus();
-}
-$("#qNext").onclick=()=>{if(!run.answered)return;run.i++;if(run.i>=run.qs.length)finish();else renderQ()};
-function finish(){
-  const n=run.qs.length,s=run.score,p=Math.round(s/n*100);
-  $("#rScore").textContent=`${s} / ${n}  ·  ${p} %`;
-  $("#rMsg").textContent=p===100?"Fullpott! Du är redo för provet.":p>=80?"Riktigt bra! Kolla igenom de få du missade.":p>=50?"Bra jobbat. Öva på de du missade så sitter det snart.":"Det här behöver lite mer övning. Testa begreppskorten och kör igen.";
-  const best=store.get("best",null);
-  if(n>=10&&(!best||p>best.p))store.set("best",{p,s,n});
-  const box=$("#rMiss");box.innerHTML="";
-  $("#rMissCard").classList.toggle("hidden",!run.missed.length);
-  $("#rRetry").classList.toggle("hidden",!run.missed.length);
-  run.missed.forEach(m=>{
-    const d=document.createElement("div");d.className="miss";
-    d.innerHTML=`<div><b>${esc(m.q.q)}</b>${m.q.sym?` <span style="font-size:1.4em">${m.q.sym}</span>`:""}</div>
-      <div class="small">Ditt svar: <span style="color:var(--bad)">${esc(m.given)}</span></div>
-      <div class="small">Rätt svar: <span style="color:var(--ok)">${esc(m.q.a)}</span></div>
-      <div class="src">${esc(m.q.e)} · ${esc(m.q.s)}</div>`;
-    box.appendChild(d);
-  });
-  show("result");
-}
-$("#rRetry").onclick=()=>startQuiz(shuffle(run.missed.map(m=>m.q)));
-$("#rNew").onclick=()=>startQuiz();
-$("#rHome").onclick=()=>{renderChips();show("start")};
-
-/* ---------- Begreppskort ---------- */
-let deck=[],ci=0;
-function startCards(){deck=CARDS.slice();ci=0;show("cards");renderCard()}
-function renderCard(){
-  const [t,d,s]=deck[ci];
-  $("#flip").classList.remove("on");
-  $("#cTerm").textContent=t;$("#cTerm2").textContent=t;$("#cDef").textContent=d;$("#cSrc").textContent=s.startsWith("s.")?"Boken "+s:s;
-  $("#cNum").textContent=`${ci+1} / ${deck.length}`;$("#cTopic").textContent="Begreppskort";
-}
-const flip=()=>$("#flip").classList.toggle("on");
-$("#flip").onclick=flip;
-$("#cNext").onclick=()=>{ci=(ci+1)%deck.length;renderCard()};
-$("#cPrev").onclick=()=>{ci=(ci-1+deck.length)%deck.length;renderCard()};
-$("#cShuffle").onclick=()=>{deck=shuffle(deck);ci=0;renderCard()};
-
-/* ---------- Arbetsfrågor ---------- */
-function startWrite(){
-  const box=$("#wList");box.innerHTML="";
-  WRITTEN.forEach((w,i)=>{
-    const d=document.createElement("details");
-    d.innerHTML=`<summary>${esc(w.q)}</summary>
-      <textarea placeholder="Skriv ditt svar här …" aria-label="Ditt svar"></textarea>
-      <div class="row" style="margin:10px 0"><button class="btn ghost">Visa modellsvar</button></div>
-      <div class="model">${w.a}<div class="src">Källa: ${esc(w.s)}</div></div>`;
-    const ta=d.querySelector("textarea");ta.value=store.get("w"+i,"");
-    ta.oninput=()=>store.set("w"+i,ta.value);
-    const btn=d.querySelector(".btn"),mod=d.querySelector(".model");
-    btn.onclick=()=>{mod.classList.toggle("show");btn.textContent=mod.classList.contains("show")?"Dölj modellsvar":"Visa modellsvar"};
-    box.appendChild(d);
-  });
-  show("write");
-}
-
-/* ---------- Tangentbord ---------- */
-document.addEventListener("keydown",e=>{
-  if(e.target.tagName==="TEXTAREA")return;
-  if(!$("#quiz").classList.contains("hidden")){
-    const n=parseInt(e.key,10);
-    if(n>=1&&n<=4&&!run.answered){answer(n-1)}
-    else if(e.key==="Enter"&&run.answered){e.preventDefault();$("#qNext").click()}
-  } else if(!$("#cards").classList.contains("hidden")){
-    if(e.key===" "||e.key==="Enter"){e.preventDefault();flip()}
-    if(e.key==="ArrowRight")$("#cNext").click();
-    if(e.key==="ArrowLeft")$("#cPrev").click();
+  for(const a of answers){ if(fold(norm(a)) === fold(ni)) return {ok:true, level:'fold', note:'Rätt, men stava med ä, ö, ü och ß som på tyska.'}; }
+  for(const a of answers){
+    const na = norm(a), d = lev(na, ni);
+    if((na.length>=4 && d<=1) || (na.length>=10 && d<=2)) return {ok:false, level:'near', note:'Nästan! Kolla stavningen.'};
   }
+  return {ok:false, level:'bad'};
+}
+function splitAlts(s){ // "simhall; bad" -> ["simhall; bad","simhall","bad"]
+  const out = [s]; s.split(';').forEach(p=>{ p=p.trim(); if(p) out.push(p); });
+  return out.map(x=>x.replace(/^här:\s*/,''));
+}
+function deFull(w){ return (w[2] && w[2]!=='pl') ? w[2]+' '+w[0] : w[0]; }
+function deHtml(w){
+  if(w[2]==='der'||w[2]==='die'||w[2]==='das') return `<span class="art-${w[2]}">${w[2]}</span> ${esc(w[0])}`;
+  if(w[2]==='pl') return `${esc(w[0])} <span class="muted" style="font-weight:400">(plural)</span>`;
+  return esc(w[0]);
+}
+function deAnswers(w){
+  const a = [w[0]];
+  if(w[2] && w[2]!=='pl') a.push(w[2]+' '+w[0]);
+  if(w[2]==='pl') a.push('die '+w[0]);
+  if(w[0].startsWith('die ')) a.push(w[0].slice(4));
+  return a;
+}
+/* Tal */
+const U=['null','eins','zwei','drei','vier','fünf','sechs','sieben','acht','neun','zehn','elf','zwölf','dreizehn','vierzehn','fünfzehn','sechzehn','siebzehn','achtzehn','neunzehn'];
+const T={2:'zwanzig',3:'dreißig',4:'vierzig',5:'fünfzig',6:'sechzig',7:'siebzig',8:'achtzig',9:'neunzig'};
+function num(n){
+  if(n<20) return U[n]; if(n===100) return 'einhundert';
+  const t=Math.floor(n/10), u=n%10; return u===0 ? T[t] : (u===1?'ein':U[u])+'und'+T[t];
+}
+function numAnswers(n){ const a=[num(n)]; if(n===100) a.push('hundert'); if(n===1) a.push('ein'); return a; }
+/* Klockan */
+const SVH=['','ett','två','tre','fyra','fem','sex','sju','åtta','nio','tio','elva','tolv'];
+function h12(h){ h=h%12; return h===0?12:h; }
+function timeDe(h,m){ // h 1-12
+  const n=h12(h+1), hw=U[h12(h)], nw=U[n];
+  switch(m){
+    case 0: return (h12(h)===1?'ein':hw)+' Uhr';
+    case 5: return 'fünf nach '+hw; case 10: return 'zehn nach '+hw; case 15: return 'Viertel nach '+hw;
+    case 20: return 'zwanzig nach '+hw; case 25: return 'fünf vor halb '+nw; case 30: return 'halb '+nw;
+    case 35: return 'fünf nach halb '+nw; case 40: return 'zwanzig vor '+nw; case 45: return 'Viertel vor '+nw;
+    case 50: return 'zehn vor '+nw; case 55: return 'fünf vor '+nw;
+  }
+}
+function timeSv(h,m){
+  const hw=SVH[h12(h)], nw=SVH[h12(h+1)];
+  return ({0:'klockan '+hw,5:'fem över '+hw,10:'tio över '+hw,15:'kvart över '+hw,20:'tjugo över '+hw,25:'fem i halv '+nw,
+    30:'halv '+nw,35:'fem över halv '+nw,40:'tjugo i '+nw,45:'kvart i '+nw,50:'tio i '+nw,55:'fem i '+nw})[m];
+}
+function timeAnswers(h,m,prefix){
+  const base=[timeDe(h,m)];
+  if(m===0 && h12(h)===1) base.push('eins Uhr','eins');
+  if(m===0) base.push(U[h12(h)]);
+  const out=[];
+  base.forEach(b=>{ if(prefix){ out.push(prefix+' '+b); } else { out.push(b,'Es ist '+b); } });
+  return out;
+}
+const pad=n=>String(n).padStart(2,'0');
+function clockSvg(h,m){
+  const ha=((h%12)+m/60)*30, ma=m*6;
+  let ticks='', nums='';
+  for(let i=0;i<60;i++){ const a=i*6*Math.PI/180, r1=i%5?88:82, r2=92;
+    ticks+=`<line x1="${100+r1*Math.sin(a)}" y1="${100-r1*Math.cos(a)}" x2="${100+r2*Math.sin(a)}" y2="${100-r2*Math.cos(a)}" stroke="currentColor" stroke-width="${i%5?1:2.5}" opacity="${i%5?.45:.9}"/>`; }
+  for(let i=1;i<=12;i++){ const a=i*30*Math.PI/180; nums+=`<text x="${100+70*Math.sin(a)}" y="${100-70*Math.cos(a)+6}" text-anchor="middle" font-size="16" fill="currentColor">${i}</text>`; }
+  return `<svg class="clock" viewBox="0 0 200 200" role="img" aria-label="En klocka"><circle cx="100" cy="100" r="96" fill="var(--card)" stroke="var(--accent)" stroke-width="5"/>${ticks}${nums}
+  <line x1="100" y1="100" x2="${100+45*Math.sin(ha*Math.PI/180)}" y2="${100-45*Math.cos(ha*Math.PI/180)}" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+  <line x1="100" y1="100" x2="${100+74*Math.sin(ma*Math.PI/180)}" y2="${100-74*Math.cos(ma*Math.PI/180)}" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="100" cy="100" r="5" fill="var(--accent)"/></svg>`;
+}
+/* Tal-uppläsning */
+let deVoice=null;
+function loadVoices(){ try{ const v=speechSynthesis.getVoices(); deVoice = v.find(x=>/^de(-|_|$)/i.test(x.lang)) || null; }catch(e){} }
+if('speechSynthesis' in window){ loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+function canSpeak(){ return 'speechSynthesis' in window; }
+function say(text){
+  if(!canSpeak()) return;
+  try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text.replace(/…/g,'')); u.lang='de-DE'; if(deVoice) u.voice=deVoice; u.rate=.85; speechSynthesis.speak(u);}catch(e){}
+}
+function speakBtn(text){ return canSpeak()? `<button class="speak" data-say="${esc(text)}" title="Lyssna" aria-label="Lyssna">🔊</button>`:''; }
+document.addEventListener('click', e=>{ const b=e.target.closest('[data-say]'); if(b){ e.preventDefault(); say(b.dataset.say);} });
+
+/* ================= FRÅGEGENERATORER ================= */
+function mcFrom(correct, pool, n=4){
+  const opts=[correct]; const p=shuffle(pool.filter(x=>norm(x)!==norm(correct)));
+  for(const x of p){ if(opts.length>=n) break; if(!opts.some(o=>norm(o)===norm(x))) opts.push(x); }
+  return shuffle(opts);
+}
+function allWords(ids){ return VOCAB.filter(s=>!ids||ids.includes(s.id)).flatMap(s=>s.words.map(w=>({w,sec:s}))); }
+
+function qVocab(item, dir, mode, poolWords){
+  const w=item.w;
+  if(dir==='de-sv'){
+    const correct=w[1];
+    if(mode==='mc'){
+      const opts=mcFrom(correct, poolWords.map(x=>x.w[1]));
+      return {kind:'mc', label:item.sec.title, prompt:`${deHtml(w)} ${speakBtn(deFull(w))}`, hint:'Vad betyder det på svenska?', options:opts, answer:correct, correct:correct, say:deFull(w)};
+    }
+    return {kind:'type', label:item.sec.title, prompt:`${deHtml(w)} ${speakBtn(deFull(w))}`, hint:'Skriv på svenska.', answers:splitAlts(correct), correct:correct, caseMatters:false, say:deFull(w)};
+  } else {
+    const correct=deFull(w);
+    if(mode==='mc'){
+      const opts=mcFrom(correct, poolWords.map(x=>deFull(x.w)));
+      return {kind:'mc', label:item.sec.title, prompt:esc(w[1]), hint:'Vad heter det på tyska?', options:opts, answer:correct, correct:correct, say:correct};
+    }
+    return {kind:'type', label:item.sec.title, prompt:esc(w[1]), hint:'Skriv på tyska.'+(w[2]&&w[2]!=='pl'?' (Artikeln der/die/das får du ta med, men det behövs inte.)':''), answers:deAnswers(w), correct:correct, say:correct, firstCap:!!w[2]};
+  }
+}
+function qGenus(item){
+  const w=item.w;
+  return {kind:'mc', label:'der, die eller das?', prompt:`___ ${esc(w[0])}`, hint:`(${esc(w[1])})`, options:['der','die','das'], answer:w[2], correct:w[2]+' '+w[0], say:w[2]+' '+w[0], keepOrder:true,
+    explain:'Färgerna i ordlistan: blått = der, rött = die, grönt = das.'};
+}
+/* Frågeord */
+function genQwords(){
+  const t=rnd(4);
+  if(t===0){ const q=pick(QWORDS); return {kind:'type', label:'Frågeord', prompt:esc(q[1]), hint:'Skriv frågeordet på tyska.', answers:[q[0]], correct:q[0], firstCap:true, explain:q[2], say:q[0]}; }
+  if(t===1){ const q=pick(QWORDS); return {kind:'mc', label:'Frågeord', prompt:`${esc(q[0])} ${speakBtn(q[0])}`, hint:'Vad betyder frågeordet?', options:mcFrom(q[1],QWORDS.map(x=>x[1])), answer:q[1], correct:q[1], explain:q[2]}; }
+  const f=pick(QFILL);
+  const full=f[0].replace('___',f[2]);
+  if(t===2) return {kind:'mc', label:'Frågeord – lucktext', prompt:esc(f[0]), hint:'Svar: <i>'+esc(f[1])+'</i>', options:QW_ALL.slice(), keepOrder:true, answer:f[2], correct:full, say:full};
+  return {kind:'type', label:'Frågeord – lucktext', prompt:esc(f[0]), hint:'Svar: <i>'+esc(f[1])+'</i> – skriv frågeordet som saknas.', answers:[f[2]], correct:full, say:full, firstCap:true};
+}
+/* Presentera dig */
+function genPres(){
+  const t=rnd(5);
+  if(t===0){ const q=pick(PRES_Q); return {kind:'type', label:'Presentera dig – frågor', prompt:esc(q[0]), hint:'Skriv frågan på tyska.', answers:[q[1]], correct:q[1], say:q[1], firstCap:true}; }
+  if(t===1){ const q=pick(PRES_Q); return {kind:'mc', label:'Presentera dig – fråga & svar', prompt:`${esc(q[1])} ${speakBtn(q[1])}`, hint:'Vilket svar passar till frågan?', options:mcFrom(q[2],PRES_Q.map(x=>x[2])), answer:q[2], correct:q[2]}; }
+  if(t===2){ const q=pick(PRES_Q); return {kind:'mc', label:'Presentera dig – fråga & svar', prompt:`<i>${esc(q[2])}</i>`, hint:'Vilken fråga hör till svaret?', options:mcFrom(q[1],PRES_Q.map(x=>x[1])), answer:q[1], correct:q[1]}; }
+  if(t===3){ const g=pick(GREET); return {kind:'mc', label:'Hälsningar', prompt:`${esc(g[0])} ${speakBtn(g[0])}`, hint:'Säger man det när man kommer eller när man går?', options:['När man hälsar (hej)','När man går (hej då)'], keepOrder:true, answer:g[1]==='hälsning'?'När man hälsar (hej)':'När man går (hej då)', correct:g[0]+' = '+g[2]}; }
+  const s=pick(PRES_SENT); return {kind:'type', label:'Presentera dig – översätt', prompt:esc(s[0]), hint:'Skriv meningen på tyska.', answers:s[1], correct:s[1][0], say:s[1][0], firstCap:true};
+}
+/* Veckodagar */
+function genDays(){
+  const t=rnd(5), i=rnd(7), d=DAYS[i];
+  if(t===0) return {kind:'type', label:'Veckodagar', prompt:esc(d[1]), hint:'Skriv på tyska (stor bokstav!).', answers:[d[0]], correct:d[0], say:d[0], firstCap:true};
+  if(t===1) return {kind:'mc', label:'Veckodagar', prompt:`${esc(d[0])} ${speakBtn(d[0])}`, hint:'Vilken dag är det?', options:mcFrom(d[1],DAYS.map(x=>x[1])), answer:d[1], correct:d[0]+' = '+d[1]};
+  if(t===2){ const n=DAYS[(i+1)%7]; return {kind:'type', label:'Veckodagar – ordning', prompt:`Vilken dag kommer efter <b>${esc(d[0])}</b>?`, hint:'Skriv på tyska.', answers:[n[0]], correct:n[0], say:n[0], firstCap:true}; }
+  if(t===3){ const p=DAYS[(i+6)%7]; return {kind:'mc', label:'Veckodagar – ordning', prompt:`Vilken dag kommer före <b>${esc(d[0])}</b>?`, options:mcFrom(p[0],DAYS.map(x=>x[0])), answer:p[0], correct:p[0]}; }
+  const b=pick(BLOG); return {kind:'mc', label:'Petras semesterblogg (s. 10–11)', prompt:esc(b[0]), hint:'Vilken dag hände det?', options:DAYS.map(x=>x[0]), keepOrder:true, answer:DAYS[b[1]][0], correct:DAYS[b[1]][0]+' ('+DAYS[b[1]][1]+')'};
+}
+/* Siffror */
+function numPick(){ const r=Math.random(); if(r<.45) return rnd(21); if(r<.6) return pick([16,17,60,70,30,61,71,66,77,13,31,100,21,1]); return 21+rnd(80); }
+function genNums(){
+  const t=rnd(4), n=numPick(), w=num(n);
+  if(t===0) return {kind:'type', label:'Siffror 0–100', prompt:`<span class="big">${n}</span>`, hint:'Skriv talet med bokstäver på tyska.', answers:numAnswers(n), correct:w, say:w, caseMatters:false};
+  if(t===1) return {kind:'type', label:'Siffror 0–100', prompt:`${esc(w)} ${speakBtn(w)}`, hint:'Skriv talet med siffror.', answers:[String(n)], correct:String(n)+' = '+w, caseMatters:false};
+  if(t===2 && canSpeak()) return {kind:'type', label:'Siffror – hörförståelse', prompt:`Lyssna! ${speakBtn(w)}`, hint:'Tryck på 🔊 och skriv talet med siffror.', answers:[String(n)], correct:String(n)+' = '+w, caseMatters:false, autoSay:w};
+  const near=[n+1,n-1,n+10,n-10,(n%10)*10+Math.floor(n/10),n+6,n-4].filter(x=>x>=0&&x<=100&&x!==n);
+  const opts=shuffle([n,...shuffle([...new Set(near)]).slice(0,3)]).map(num);
+  return {kind:'mc', label:'Siffror 0–100', prompt:`<span class="big">${n}</span>`, hint:'Vilket är rätt?', options:opts, answer:w, correct:w, say:w};
+}
+/* Klockan */
+function randTime(){ return [1+rnd(12), pick([0,0,15,30,30,45,5,10,20,25,35,40,50,55])]; }
+function timeDistractors(h,m){
+  const c=timeDe(h,m), set=new Set([c]);
+  const cands=[];
+  if(m===30){ cands.push('halb '+U[h12(h)]); }
+  if(m===15) cands.push('Viertel vor '+U[h12(h)]); if(m===45) cands.push('Viertel nach '+U[h12(h+1)]);
+  if(m>0 && m!==30) cands.push(timeDe(h,60-m===60?0:60-m));
+  if(m===25) cands.push('fünf nach halb '+U[h12(h+1)]); if(m===35) cands.push('fünf vor halb '+U[h12(h+1)]);
+  cands.push(timeDe(h+1,m), timeDe(h,(m+30)%60), timeDe(h+11,m));
+  const out=[];
+  for(const x of shuffle(cands)){ if(!set.has(x)){ set.add(x); out.push(x);} if(out.length===3) break; }
+  while(out.length<3){ const [a,b]=randTime(); const x=timeDe(a,b); if(!set.has(x)){set.add(x);out.push(x);} }
+  return shuffle([c,...out]);
+}
+const UM_ACTS = [['Wann geht Armin ins Schwimmbad?','gå till simhallen'],['Wann spielt Armin Computerspiele?','spela datorspel'],['Wann singt Armin im Schulchor?','sjunga i skolkören'],
+  ['Wann spielt Armin Handball?','spela handboll'],['Wann hört Armin Musik?','lyssna på musik'],['Wann isst Armin eine Pizza?','äta pizza'],['Wann spielt Armin Gitarre?','spela gitarr'],
+  ['Wann treffen wir uns?','träffas'],['Wann kommst du?','komma'],['Wann beginnt die Schule?','skolan börjar']];
+function genClock(){
+  const t=rnd(6); const [h,m]=randTime(); const de=timeDe(h,m);
+  const dig = (hh,mm)=>pad(h12(hh))+':'+pad(mm);
+  if(t===0) return {kind:'mc', label:'Klockan – Wie spät ist es?', prompt:clockSvg(h,m), hint:'Wie viel Uhr ist es? Välj rätt.', options:timeDistractors(h,m), answer:de, correct:'Es ist '+de, say:'Es ist '+de, explain:'På svenska: '+timeSv(h,m)+'.'};
+  if(t===1) return {kind:'type', label:'Klockan – skriv', prompt:clockSvg(h,m), hint:'Wie spät ist es? Skriv på tyska (t.ex. "Viertel nach vier").', answers:timeAnswers(h,m), correct:'Es ist '+de, say:'Es ist '+de, caseMatters:false, explain:'På svenska: '+timeSv(h,m)+'.'};
+  if(t===2) return {kind:'type', label:'Klockan – översätt', prompt:'Klockan är '+esc(timeSv(h,m).replace(/^klockan /,''))+'.', hint:'Skriv på tyska: Es ist …', answers:timeAnswers(h,m), correct:'Es ist '+de, say:'Es ist '+de, caseMatters:false};
+  if(t===3){ const opts=shuffle([[h,m],[h+1,m],[h,(m+30)%60],[h, m===0?30:(60-m)%60]]).map(([a,b])=>dig(a,b));
+    const uniq=[...new Set(opts)]; while(uniq.length<4){ const [a,b]=randTime(); const x=dig(a,b); if(!uniq.includes(x)) uniq.push(x); }
+    return {kind:'mc', label:'Klockan – förstå', prompt:`Es ist ${esc(de)}. ${speakBtn('Es ist '+de)}`, hint:'Vilken tid är det?', options:shuffle(uniq), answer:dig(h,m), correct:dig(h,m)+' = '+de};
+  }
+  if(t===4){ const a=pick(UM_ACTS); const hh=(h12(h)%12)+(Math.random()<.5?12:0);
+    return {kind:'type', label:'Klockan med "um"', prompt:`${esc(a[0])} <span class="muted">(${pad(hh)}:${pad(m)})</span>`, hint:'Svara med <b>um</b> + klockslag, t.ex. "Um halb drei."', answers:timeAnswers(h,m,'Um'), correct:'Um '+de+'.', say:'Um '+de, caseMatters:false, checkUm:true,
+      explain:'När något händer en viss tid använder man <b>um</b>: Wann? – Um '+esc(de)+'.'}; }
+  const um=Math.random()<.5;
+  const prompt = um ? pick([`Wir treffen uns ___ ${de}.`,`Die Schule beginnt ___ ${de}.`,`Wann kommst du? – ___ ${de}.`,`Armin spielt ___ ${de} Handball.`])
+                    : pick([`Wie spät ist es? – ___ ${de}.`,`Wie viel Uhr ist es? – ___ ${de}.`]);
+  return {kind:'mc', label:'Es ist eller um?', prompt:esc(prompt), hint:'Vilket passar i luckan?', options:['Es ist','um'], keepOrder:true, answer:um?'um':'Es ist', correct:prompt.replace('___', um?'um':'Es ist'),
+    explain: um?'<b>um</b> = "klockan" när något händer (Wann? – Um …).':'<b>Es ist …</b> = "Klockan är …" (svar på Wie spät ist es?).'};
+}
+/* Verb */
+function genVerb(onlyRegular){
+  const pool = onlyRegular? VERBS.filter(v=>v[6]!=='o') : VERBS;
+  const v=pick(pool); const p=rnd(3);
+  let subj, svSubj, form;
+  if(p===0){ subj='ich'; svSubj='jag'; form=v[2]; }
+  else if(p===1){ subj='du'; svSubj='du'; form=v[3]; }
+  else { const s=pick(SUBJ3); subj=s[0]; svSubj=s[1]; form=v[4]; }
+  const S = subj.charAt(0).toUpperCase()+subj.slice(1);
+  const note = v[6]==='o'? 'Oregelbundet verb – lär dig formerna utantill.' : v[6]==='s' ? (/(t)en$/.test(v[0])? 'Stammen slutar på -t, därför -est/-et.' : 'Stammen slutar på s/ß – du-formen får bara -t.') : 'Stam + -e (ich), -st (du), -t (er/sie/es).';
+  const table = `${esc(v[0])}: ich ${esc(v[2])}, du ${esc(v[3])}, er/sie/es ${esc(v[4])}`;
+  if(Math.random()<.7) return {kind:'type', label:'Verbböjning i singular', prompt:`${esc(S)} ___ <span class="muted">(${esc(v[0])})</span>`, hint:`= ${esc(svSubj)} ${esc(v[5])}. Skriv rätt form av verbet.`, answers:[form, subj+' '+form], correct:S+' '+form, say:S+' '+form, caseMatters:false, explain:note+' '+table};
+  const opts=[...new Set([v[2],v[3],v[4],v[0]])];
+  while(opts.length<4) opts.push(v[0].replace(/en$/,'et'));
+  return {kind:'mc', label:'Verbböjning i singular', prompt:`${esc(S)} ___ <span class="muted">(${esc(v[0])})</span>`, hint:`= ${esc(svSubj)} ${esc(v[5])}`, options:shuffle(opts), answer:form, correct:S+' '+form, say:S+' '+form, explain:note+' '+table};
+}
+/* Texter */
+function genText(){
+  const tx=pick(TEXTS), q=pick(tx.q);
+  return {kind:'mc', label:'Läsförståelse – '+tx.t, prompt:esc(q[0]), hint:'Stämmer det enligt texten?', options:['Rätt','Fel'], keepOrder:true, answer:q[1]?'Rätt':'Fel', correct:q[1]?'Rätt':'Fel', explain:esc(q[2])};
+}
+
+/* ================= QUIZMOTOR ================= */
+let session=null;
+function startQuiz(title, makeQuestions, opts={}){
+  const qs = makeQuestions();
+  session = {title, queue:qs.map(q=>({...q, first:true})), total:qs.length, idx:0, right:0, done:0, mistakes:[], retry:opts.retry!==false, key:opts.key, again:()=>startQuiz(title, makeQuestions, opts), back:opts.back||home};
+  showQ();
+}
+function showQ(){
+  const s=session; const q=s.queue[s.idx];
+  if(!q){ return showResult(); }
+  const progress = Math.round(100*s.done/s.total);
+  let body='';
+  if(q.kind==='mc'){
+    const opts = q.keepOrder? q.options : q.options;
+    body = `<div class="opts">${opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="k">${i+1}</span>${esc(o)}</button>`).join('')}</div>`;
+  } else {
+    body = `<form class="answer-row" id="af" autocomplete="off"><input type="text" id="ans" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Skriv ditt svar…" aria-label="Svar"><button class="btn primary" type="submit">Svara</button></form>
+    <div class="row" style="margin-top:8px">${['ä','ö','ü','ß'].map(c=>`<button class="btn small" data-ch="${c}" type="button">${c}</button>`).join('')}</div>`;
+  }
+  app.innerHTML = `<button class="link back" id="quit">← Avsluta</button>
+  <div class="card">
+    <div class="qhead"><span>${esc(q.label||s.title)}</span><span>${s.done+1} / ${s.total}${q.first?'':' · repetition'}</span></div>
+    <div class="bar"><i style="width:${progress}%"></i></div>
+    <div class="prompt">${q.prompt}</div>
+    ${q.hint?`<div class="hint">${q.hint}</div>`:''}
+    ${body}
+    <div id="fb"></div>
+  </div>`;
+  $('#quit').onclick = ()=>{ if(s.done===0 || confirmQuit()) s.back(); };
+  if(q.kind==='mc'){
+    app.querySelectorAll('.opt').forEach(b=> b.onclick = ()=> answerMC(+b.dataset.i));
+  } else {
+    const inp=$('#ans'); setTimeout(()=>inp.focus(),30);
+    $('#af').onsubmit = e=>{ e.preventDefault(); if(q._answered) return next(); answerType(inp.value); };
+    app.querySelectorAll('[data-ch]').forEach(b=> b.onclick=()=>{ const p=inp.selectionStart??inp.value.length; inp.value=inp.value.slice(0,p)+b.dataset.ch+inp.value.slice(inp.selectionEnd??p); inp.focus(); inp.setSelectionRange(p+1,p+1); });
+  }
+  if(q.autoSay) setTimeout(()=>say(q.autoSay),250);
+}
+function confirmQuit(){ return true; }
+function feedback(ok, q, extra, level){
+  const cls = ok ? (level==='case'||level==='fold'?'warn':'ok') : (level==='near'?'warn':'bad');
+  const head = ok ? 'Rätt! 🎉' : (level==='near'?'Nästan…':'Inte riktigt.');
+  const fb=$('#fb');
+  fb.innerHTML = `<div class="fb ${cls}"><div><b>${head}</b> ${extra?esc(extra):''}</div>
+    ${!ok||level==='case'||level==='fold'?`<div class="exp">Rätt svar: <span class="corr">${esc(q.correct)}</span> ${q.say?speakBtn(q.say):''}</div>`:(q.say?`<div class="exp">${esc(q.correct)} ${speakBtn(q.say)}</div>`:'')}
+    ${q.explain?`<div class="exp">${q.explain}</div>`:''}
+  </div>
+  <div class="row" style="margin-top:12px">
+    <button class="btn primary" id="nextBtn">Nästa →</button>
+    ${!ok && q.kind==='type'?'<button class="btn small ghost" id="override">Jag hade rätt – räkna det</button>':''}
+  </div>`;
+  $('#nextBtn').onclick = next;
+  const ov=$('#override'); if(ov) ov.onclick=()=>{ q._override=true; registerResult(q,true,true); next(); };
+  setTimeout(()=>$('#nextBtn').focus(),20);
+}
+function registerResult(q, ok, override){
+  const s=session;
+  if(override){ // ångra felmarkering
+    if(q.first){ s.right++; s.mistakes.pop(); }
+    s.queue = s.queue.filter(x=>x!==q._retryCopy);
+    return;
+  }
+  if(q.first){ if(ok) s.right++; else s.mistakes.push(q); }
+  if(!ok && s.retry && q.first){ const copy={...q, first:false, _answered:false}; q._retryCopy=copy; const pos=Math.min(s.queue.length, s.idx+3); s.queue.splice(pos,0,copy); }
+}
+function answerMC(i){
+  const q=session.queue[session.idx]; if(q._answered) return; q._answered=true;
+  const chosen=q.options[i], ok = chosen===q.answer;
+  app.querySelectorAll('.opt').forEach((b,j)=>{ b.disabled=true; if(q.options[j]===q.answer) b.classList.add('right'); else if(j===i) b.classList.add('wrong'); });
+  registerResult(q, ok);
+  feedback(ok, q, '', ok?'ok':'bad');
+}
+function answerType(val){
+  const q=session.queue[session.idx];
+  if(!val.trim()) return;
+  q._answered=true;
+  let r = checkTyped(val, q.answers, {caseMatters:q.caseMatters, firstCap:q.firstCap});
+  let extra = r.note||'';
+  if(q.checkUm && !r.ok){
+    const r2 = checkTyped('Um '+val, q.answers, {caseMatters:false});
+    if(r2.ok){ r={ok:false, level:'near'}; extra='Du glömde "um"! Wann? – Um …'; }
+  }
+  $('#ans').readOnly=true;
+  registerResult(q, r.ok);
+  feedback(r.ok, q, extra, r.level);
+}
+function next(){ const s=session; s.done++; s.idx++; if(s.idx>=s.queue.length) return showResult(); s.total=Math.max(s.total, s.queue.length); showQ(); }
+function showResult(){
+  const s=session; const firstTotal=s.queue.filter(q=>q.first).length; const pct=Math.round(100*s.right/firstTotal);
+  if(s.key){ const best=store.get('best',{}); if(!best[s.key]||pct>best[s.key]) {best[s.key]=pct; store.set('best',best);} }
+  const msg = pct>=90?'Jättebra! Du kan det här. 🌟':pct>=70?'Bra jobbat! Öva lite till på det du missade.':pct>=50?'Halvvägs! Kör en gång till.':'Fortsätt öva – läs genomgången och försök igen.';
+  app.innerHTML = `<div class="card">
+    <h2>${esc(s.title)} – klart!</h2>
+    <p class="score">${s.right} / ${firstTotal}</p>
+    <p>${msg}</p>
+    <div class="row"><button class="btn primary" id="again">Kör igen</button><button class="btn" id="home">Till startsidan</button></div>
+    ${s.mistakes.length?`<h3>Det här blev fel – repetera</h3><ul class="mist">${s.mistakes.map(q=>`<li><div class="muted" style="font-size:.85rem">${esc(q.label||'')}</div><div>${q.prompt.replace(/<svg[\s\S]*<\/svg>/,'(klockan)')}</div><div>→ <b>${esc(q.correct)}</b> ${q.say?speakBtn(q.say):''}</div></li>`).join('')}</ul>`:''}
+  </div>`;
+  $('#again').onclick=s.again; $('#home').onclick=s.back;
+}
+document.addEventListener('keydown', e=>{
+  if(!session || !document.querySelector('.opt')) return;
+  const q=session.queue[session.idx]; if(!q) return;
+  if(q._answered && e.key==='Enter'){ const nb=$('#nextBtn'); if(nb && document.activeElement!==nb){ e.preventDefault(); next(); } return; }
+  const n=parseInt(e.key,10); if(!q._answered && n>=1 && n<=q.options.length) answerMC(n-1);
 });
 
-renderChips();
+/* ================= SIDOR ================= */
+const TOPICS = [
+  {id:'glosor', em:'📚', name:'Glosor', desc:'Alla ord från ordlistan s. 116–117 + bildorden'},
+  {id:'fragor', em:'❓', name:'Frågeord', desc:'Wie? Was? Wo? Woher? Wann? Warum? Wie viele?'},
+  {id:'pres', em:'👋', name:'Presentera dig', desc:'Fråga och berätta: namn, ålder, bostad …'},
+  {id:'dagar', em:'📅', name:'Veckodagar', desc:'Montag – Sonntag + Petras blogg'},
+  {id:'tal', em:'🔢', name:'Siffror 0–100', desc:'0–20 på s. 5, sedan upp till 100'},
+  {id:'klocka', em:'🕒', name:'Klockan + um', desc:'Wie spät ist es? Um halb drei.'},
+  {id:'verb', em:'✏️', name:'Verbböjning', desc:'ich wohne, du wohnst, er wohnt'},
+  {id:'text', em:'📖', name:'Texterna', desc:'Rätt eller fel? Om textbokens texter'},
+  {id:'genus', em:'🎨', name:'der, die, das', desc:'Substantivens genus (färgerna i ordlistan)'}
+];
+function bestFor(k){ const b=store.get('best',{})[k]; return b!=null? `Bästa: ${b} %`:''; }
+function home(){
+  session=null; window.scrollTo(0,0);
+  app.innerHTML = `<p class="muted" style="margin-top:0">Välj ett område. Börja gärna med <b>Läs</b> och kör sedan övningarna. Det du svarar fel på kommer tillbaka lite senare.</p>
+  <div class="grid">
+    <button class="tile exam" data-t="prov"><span class="em">🎯</span><b>Provträning</b><small>Blandade frågor från allt – som ett prov</small><span class="best">${bestFor('prov')}</span></button>
+    ${TOPICS.map(t=>`<button class="tile" data-t="${t.id}"><span class="em">${t.em}</span><b>${t.name}</b><small>${t.desc}</small><span class="best">${bestFor(t.id)}</span></button>`).join('')}
+    <button class="tile" data-t="steck"><span class="em">🪪</span><b>Das bin ich!</b><small>Skriv din egen presentation på tyska</small></button>
+  </div>`;
+  app.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>open(b.dataset.t));
+}
+function open(id){ window.scrollTo(0,0); ({glosor:pageVocab, fragor:pageQ, pres:pagePres, dagar:pageDays, tal:pageNums, klocka:pageClock, verb:pageVerb, text:pageText, genus:pageGenus, prov:pageExam, steck:pageSteck})[id](); }
+function topicPage(id, title, theoryHtml, exercises){
+  app.innerHTML = `<button class="link back" id="bk">← Startsidan</button>
+  <div class="card"><h2>${title}</h2><div class="row" style="margin-top:8px">${exercises.map((e,i)=>`<button class="btn ${i===0?'primary':''}" data-x="${i}">${e[0]}</button>`).join('')}</div></div>
+  <div class="card theory"><h3 style="margin-top:0">Läs – genomgång</h3>${theoryHtml}</div>`;
+  $('#bk').onclick=home;
+  app.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>{ const e=exercises[+b.dataset.x]; startQuiz(title+' – '+e[0], ()=>Array.from({length:e[2]||15}, e[1]), {key:id, back:()=>open(id)}); });
+}
+
+function pageQ(){
+  topicPage('fragor','Frågeord', `
+    <table><tr><th>Tyska</th><th>Svenska</th><th>Exempel</th></tr>${QWORDS.map(q=>`<tr><td class="de">${esc(q[0])} ${speakBtn(q[0])}</td><td>${esc(q[1])}</td><td class="muted">${esc(q[2])}</td></tr>`).join('')}</table>
+    <div class="tip"><b>Se upp:</b> <i>Wie heißt du?</i> = Vad heter du? (inte "Was"). <i>Wo</i> = var, men <i>wer</i> = vem. <i>Woher</i> = varifrån.</div>`,
+    [['Blandat',genQwords,15],['Lucktexter',()=>{let q;do{q=genQwords();}while(!/lucktext/.test(q.label));return q;},12]]);
+}
+function pagePres(){
+  topicPage('pres','Presentera dig', `
+    <h3>Frågor och svar</h3>
+    <table>${PRES_Q.map(q=>`<tr><td>${esc(q[0])}</td><td class="de">${esc(q[1])} ${speakBtn(q[1])}</td><td class="muted">${esc(q[2])}</td></tr>`).join('')}</table>
+    <h3>Så kan du säga vad du heter</h3>
+    <div class="ex">Ich heiße Sandra. · Ich bin Sandra. · Mein Name ist Sandra.</div>
+    <h3>Hälsningar</h3>
+    <div class="kv">${GREET.map(g=>`<span class="de">${esc(g[0])}</span><span>${esc(g[2])}</span>`).join('')}</div>
+    <h3>Mönster att lära sig</h3>
+    <div class="ex">Ich komme <b>aus</b> Schweden. (från)<br>Ich wohne <b>in</b> Stockholm. (i)<br>Ich bin 14 <b>Jahre alt</b>.<br>Mein Lieblingsfach <b>ist</b> Deutsch.<br>Ich <b>mag</b> Musik. (jag gillar)<br>Ich habe <b>einen</b> Bruder und <b>eine</b> Schwester.</div>`,
+    [['Blandat',genPres,15],['Översätt meningar',()=>{const s=pick(PRES_SENT);return {kind:'type',label:'Presentera dig – översätt',prompt:esc(s[0]),hint:'Skriv meningen på tyska.',answers:s[1],correct:s[1][0],say:s[1][0],firstCap:true};},12]]);
+}
+function pageDays(){
+  topicPage('dagar','Veckodagar', `
+    <table>${DAYS.map(d=>`<tr><td class="de">${d[0]} ${speakBtn(d[0])}</td><td>${d[1]}</td></tr>`).join('')}</table>
+    <div class="tip">Veckodagar skrivs med <b>stor bokstav</b> på tyska. Alla slutar på <b>-tag</b> utom <b>Mittwoch</b>.</div>`,
+    [['Blandat',genDays,14]]);
+}
+function pageNums(){
+  const row=(a,b)=>Array.from({length:b-a+1},(_,i)=>a+i).map(n=>`<span class="pill">${n} <b>${num(n)}</b></span>`).join('');
+  topicPage('tal','Siffror 0–100', `
+    <h3>0–20 (häftet s. 5)</h3><div>${row(0,20)}</div>
+    <h3>Tiotal (häftet s. 20)</h3><div>${[30,40,50,60,70,80,90,100].map(n=>`<span class="pill">${n} <b>${num(n)}</b></span>`).join('')}</div>
+    <h3>Regler</h3>
+    <div class="ex">-ton heter <b>-zehn</b>: vierzehn, fünfzehn …<br>-tio heter <b>-zig</b>: vierzig, fünfzig … men <b>dreißig</b> (30) med ß!<br>
+    21 = <b>ein</b>und<b>zwanzig</b> – först entalet, sedan <i>und</i>, sist tiotalet: 45 = fünfundvierzig.</div>
+    <div class="tip"><b>Fällor:</b> sechs → <b>sech</b>zehn, <b>sech</b>zig (s:et försvinner) · sieben → <b>sieb</b>zehn, <b>sieb</b>zig (en försvinner) · 1 = eins, men 21 = <b>ein</b>undzwanzig.</div>`,
+    [['Blandat',genNums,15],['Bara 0–20',()=>{const n=rnd(21);return Math.random()<.5?{kind:'type',label:'Siffror 0–20',prompt:`<span class="big">${n}</span>`,hint:'Skriv på tyska.',answers:numAnswers(n),correct:num(n),say:num(n),caseMatters:false}:{kind:'mc',label:'Siffror 0–20',prompt:`${num(n)} ${speakBtn(num(n))}`,hint:'Vilket tal?',options:shuffle([n,...shuffle([...Array(21).keys()].filter(x=>x!==n)).slice(0,3)]).map(String),answer:String(n),correct:n+' = '+num(n)};},15],
+     ...(canSpeak()?[['Hörförståelse',()=>{const n=numPick();return {kind:'type',label:'Siffror – hörförståelse',prompt:`Lyssna! ${speakBtn(num(n))}`,hint:'Tryck på 🔊 och skriv talet med siffror.',answers:[String(n)],correct:n+' = '+num(n),autoSay:num(n),caseMatters:false};},12]]:[])]);
+}
+function pageClock(){
+  const ex=[[4,0],[4,5],[4,10],[4,15],[4,20],[4,25],[4,30],[4,35],[4,40],[4,45],[4,50],[4,55]];
+  topicPage('klocka','Klockan + um', `
+    <div class="ex"><b>Wie viel Uhr ist es?</b> / <b>Wie spät ist es?</b> = Hur mycket är klockan?<br>Svar: <b>Es ist …</b> = Klockan är …</div>
+    <div class="kv"><span class="de">nach</span><span>över</span><span class="de">vor</span><span>i</span><span class="de">Viertel</span><span>kvart</span><span class="de">halb</span><span>halv</span></div>
+    <h3>Klockan från 4 till 5 (häftet s. 16)</h3>
+    <table>${ex.map(([h,m])=>`<tr><td>${pad(h)}:${pad(m)}</td><td class="de">${timeDe(h,m)} ${speakBtn('Es ist '+timeDe(h,m))}</td><td class="muted">${timeSv(h,m)}</td></tr>`).join('')}</table>
+    <div class="tip"><b>halb</b> fungerar som på svenska: <b>halb fünf</b> = halv fem = 4:30 (inte 5:30!).<br>Hel timme: <b>Es ist vier Uhr.</b> Men klockan ett: <b>ein Uhr</b> (inte "eins Uhr").</div>
+    <h3>um = klockan (när något händer)</h3>
+    <div class="ex">Wann treffen wir uns? – <b>Um</b> halb drei.<br>Wann kommst du? – Ich komme <b>um</b> zehn Uhr.<br>Wann spielt Armin Computerspiele? – <b>Um</b> drei Uhr.</div>
+    <p class="muted">Klockan 14:00 säger man oftast <i>zwei Uhr</i> i vardagligt tal.</p>`,
+    [['Blandat',genClock,15],['Läs av klockan',()=>{let q;do{q=genClock();}while(!/Wie spät|skriv/.test(q.label));return q;},12],['Övning med um',()=>{let q;do{q=genClock();}while(!/um/i.test(q.label));return q;},10]]);
+}
+function pageVerb(){
+  topicPage('verb','Verbböjning i singular', `
+    <p>Ta bort <b>-en</b> från infinitivet så får du <b>stammen</b>: wohn|en → wohn-. Lägg sedan till ändelsen:</p>
+    <table><tr><th>Person</th><th>Ändelse</th><th>wohnen (bo)</th><th>spielen (spela)</th></tr>
+    <tr><td>ich (jag)</td><td><b>-e</b></td><td>ich wohn<b>e</b></td><td>ich spiel<b>e</b></td></tr>
+    <tr><td>du (du)</td><td><b>-st</b></td><td>du wohn<b>st</b></td><td>du spiel<b>st</b></td></tr>
+    <tr><td>er / sie / es (han/hon/den)</td><td><b>-t</b></td><td>er wohn<b>t</b></td><td>sie spiel<b>t</b></td></tr></table>
+    <div class="tip"><b>Specialfall:</b> heißen, reisen, lösen → <i>du heißt, du reist</i> (bara -t, eftersom stammen slutar på s/ß).<br>warten → <i>du wartest, er wartet</i> (extra e).</div>
+    <h3>Oregelbundna – lär dig utantill</h3>
+    <div class="tbl-wrap"><table><tr><th>Infinitiv</th><th>ich</th><th>du</th><th>er/sie/es</th></tr>
+    ${VERBS.filter(v=>v[6]==='o').map(v=>`<tr><td>${v[0]} <span class="muted">(${v[1]})</span></td><td>${v[2]}</td><td>${v[3]}</td><td>${v[4]}</td></tr>`).join('')}</table></div>
+    <h3>Regelbundna verb från texterna</h3>
+    <div class="tbl-wrap"><table><tr><th>Infinitiv</th><th>ich</th><th>du</th><th>er/sie/es</th></tr>
+    ${VERBS.filter(v=>v[6]!=='o').map(v=>`<tr><td>${v[0]} <span class="muted">(${v[1]})</span></td><td>${v[2]}</td><td>${v[3]}</td><td>${v[4]}</td></tr>`).join('')}</table></div>`,
+    [['Alla verb',()=>genVerb(false),15],['Bara regelbundna',()=>genVerb(true),12]]);
+}
+function pageText(){
+  topicPage('text','Texterna', TEXTS.map(t=>`<p><b>${esc(t.t)}</b> – ${t.q.length} påståenden</p>`).join('')+'<p class="muted">Läs texterna i boken först, svara sedan Rätt eller Fel.</p>',
+    [['Rätt eller fel?',genText,15]]);
+}
+function pageGenus(){
+  const nouns=allWords().filter(x=>['der','die','das'].includes(x.w[2]));
+  topicPage('genus','der, die, das', `
+    <p>I ordlistan har substantiven olika färg: <b class="art-der">der</b> (blått), <b class="art-die">die</b> (rött), <b class="art-das">das</b> (grönt). Lär dig ordet <i>tillsammans</i> med artikeln!</p>
+    <div class="tip">Tips: ord på <b>-e</b> är ofta <b class="art-die">die</b> (die Sonne, die Schule, die Katze). Ord på <b>-in</b> om kvinnor är <b class="art-die">die</b> (die Freundin).</div>
+    <div>${nouns.map(x=>`<span class="pill"><span class="art-${x.w[2]}">${x.w[2]}</span> ${esc(x.w[0])}</span>`).join('')}</div>`,
+    [['Gissa artikeln',()=>qGenus(pick(nouns)),15]]);
+}
+
+/* Glosor */
+function pageVocab(){
+  const st=store.get('vocabSet',{secs:VOCAB.map(s=>s.id), dir:'sv-de', mode:'type', n:20});
+  app.innerHTML = `<button class="link back" id="bk">← Startsidan</button>
+  <div class="card"><h2>Glosor</h2>
+    <h3>Vilka avsnitt?</h3>
+    <div id="secs">${VOCAB.map(s=>`<label class="pill"><input type="checkbox" value="${s.id}" ${st.secs.includes(s.id)?'checked':''}>${esc(s.title)} <span class="muted">(${s.words.length})</span></label>`).join('')}</div>
+    <div class="row" style="margin-top:6px"><button class="btn small ghost" id="all">Markera alla</button><button class="btn small ghost" id="none">Avmarkera alla</button></div>
+    <h3>Riktning</h3>
+    <div class="row" id="dir">${[['sv-de','Svenska → tyska'],['de-sv','Tyska → svenska'],['mix','Blandat']].map(([v,l])=>`<label class="pill"><input type="radio" name="dir" value="${v}" ${st.dir===v?'checked':''}>${l}</label>`).join('')}</div>
+    <h3>Svarssätt</h3>
+    <div class="row">${[['type','Skriv svaret'],['mc','Flerval']].map(([v,l])=>`<label class="pill"><input type="radio" name="mode" value="${v}" ${st.mode===v?'checked':''}>${l}</label>`).join('')}</div>
+    <h3>Antal ord</h3>
+    <div class="row">${[10,20,40,0].map(v=>`<label class="pill"><input type="radio" name="n" value="${v}" ${st.n===v?'checked':''}>${v||'Alla'}</label>`).join('')}</div>
+    <div class="row" style="margin-top:16px"><button class="btn primary" id="go">Starta förhör</button><button class="btn" id="flash">Glosvändare (kort)</button><button class="btn" id="list">Visa ordlistan</button></div>
+  </div><div id="extra"></div>`;
+  $('#bk').onclick=home;
+  const read=()=>{ const s={secs:[...app.querySelectorAll('#secs input:checked')].map(i=>i.value), dir:app.querySelector('input[name=dir]:checked').value, mode:app.querySelector('input[name=mode]:checked').value, n:+app.querySelector('input[name=n]:checked').value}; store.set('vocabSet',s); return s; };
+  $('#all').onclick=()=>app.querySelectorAll('#secs input').forEach(i=>i.checked=true);
+  $('#none').onclick=()=>app.querySelectorAll('#secs input').forEach(i=>i.checked=false);
+  $('#go').onclick=()=>{ const s=read(); const pool=allWords(s.secs); if(!pool.length) return alertBox('Välj minst ett avsnitt.');
+    startQuiz('Glosor', ()=>{ const items=shuffle(pool).slice(0, s.n||pool.length); return items.map(it=>{ const d=s.dir==='mix'?pick(['sv-de','de-sv']):s.dir; return qVocab(it,d,s.mode,allWords(s.secs).filter(x=>x.sec.id===it.sec.id).length>=4?allWords(s.secs).filter(x=>x.sec.id===it.sec.id):pool); }); }, {key:'glosor', back:pageVocab}); };
+  $('#list').onclick=()=>{ const s=read(); $('#extra').innerHTML = VOCAB.filter(x=>s.secs.includes(x.id)).map(sec=>`<div class="card"><h3 style="margin-top:0">${esc(sec.title)} <span class="muted" style="font-weight:400;font-size:.85rem">· ${esc(sec.src)}</span></h3><table>${sec.words.map(w=>`<tr><td class="de">${deHtml(w)} ${speakBtn(deFull(w))}</td><td>${esc(w[1])}</td></tr>`).join('')}</table></div>`).join(''); $('#extra').scrollIntoView({behavior:'smooth'}); };
+  $('#flash').onclick=()=>{ const s=read(); const pool=shuffle(allWords(s.secs)); if(!pool.length) return alertBox('Välj minst ett avsnitt.'); flashcards(pool, s.dir); };
+}
+function alertBox(msg){ const e=$('#extra'); if(e) e.innerHTML=`<div class="fb bad">${esc(msg)}</div>`; }
+function flashcards(pool, dir){
+  let i=0, flipped=false, known=0; const again=[];
+  const render=()=>{
+    if(i>=pool.length){
+      app.innerHTML=`<div class="card"><h2>Klart!</h2><p>Du kunde <b>${known}</b> av ${known+again.length}.</p><div class="row">${again.length?'<button class="btn primary" id="rep">Öva på de '+again.length+' du inte kunde</button>':''}<button class="btn" id="bk">Tillbaka</button></div></div>`;
+      $('#bk').onclick=pageVocab; const r=$('#rep'); if(r) r.onclick=()=>flashcards(shuffle(again),dir); return; }
+    const it=pool[i], w=it.w; const d = dir==='mix'? (i%2?'de-sv':'sv-de') : dir;
+    const front = d==='de-sv'? deHtml(w) : esc(w[1]), back = d==='de-sv'? esc(w[1]) : deHtml(w);
+    app.innerHTML=`<button class="link back" id="bk">← Avsluta</button>
+    <div class="card"><div class="qhead"><span>${esc(it.sec.title)}</span><span>${i+1} / ${pool.length}</span></div>
+      <div class="flash" id="fc">${flipped? `<div>${front}</div><div style="color:var(--accent)">${back}</div>${speakBtn(deFull(w))}` : `<div>${front}</div><small>Tryck för att vända (eller mellanslag)</small>`}</div>
+      <div class="row" style="justify-content:center;margin-top:12px">${flipped?'<button class="btn" id="no">✗ Kunde inte</button><button class="btn primary" id="yes">✓ Kunde</button>':'<button class="btn primary" id="flip">Vänd</button>'}</div></div>`;
+    $('#bk').onclick=()=>{document.onkeydown=null; pageVocab();};
+    const flip=()=>{ flipped=true; render(); if(d==='sv-de') say(deFull(w)); };
+    const go=k=>{ if(k) known++; else again.push(it); i++; flipped=false; render(); };
+    $('#fc').onclick=()=>{ if(!flipped) flip(); };
+    if(flipped){ $('#yes').onclick=()=>go(true); $('#no').onclick=()=>go(false); } else $('#flip').onclick=flip;
+    document.onkeydown=e=>{ if(!document.getElementById('fc')){document.onkeydown=null;return;} if(e.key===' '&&!flipped){e.preventDefault();flip();} else if(flipped&&(e.key==='ArrowRight'||e.key==='j')) go(true); else if(flipped&&(e.key==='ArrowLeft'||e.key==='n')) go(false); };
+  };
+  render();
+}
+/* Provträning */
+function pageExam(){
+  app.innerHTML=`<button class="link back" id="bk">← Startsidan</button>
+  <div class="card"><h2>🎯 Provträning</h2>
+  <p>25 blandade frågor från allt som ingår i provet: glosor, frågeord, presentera dig, veckodagar, siffror, klockan, verb och texterna.</p>
+  <p class="muted">I provläget kommer felsvar <b>inte</b> tillbaka under tiden – du får se allt du missade i slutet.</p>
+  <button class="btn primary" id="go">Starta provet</button></div>`;
+  $('#bk').onclick=home;
+  $('#go').onclick=()=>startQuiz('Provträning', ()=>{
+    const all=allWords(); const qs=[];
+    shuffle(all).slice(0,5).forEach(it=>qs.push(qVocab(it,'sv-de','type',all)));
+    shuffle(all).slice(0,3).forEach(it=>qs.push(qVocab(it,'de-sv','mc',all)));
+    for(let i=0;i<3;i++) qs.push(genQwords());
+    for(let i=0;i<3;i++) qs.push(genPres());
+    for(let i=0;i<2;i++) qs.push(genDays());
+    for(let i=0;i<3;i++) qs.push(genNums());
+    for(let i=0;i<3;i++) qs.push(genClock());
+    for(let i=0;i<2;i++) qs.push(genVerb(false));
+    qs.push(genText());
+    return shuffle(qs);
+  }, {key:'prov', retry:false, back:pageExam});
+}
+/* Das bin ich */
+function pageSteck(){
+  const d=store.get('steck',{name:'',age:13,ort:'',land:'Schweden',fach:'Deutsch',essen:'Pizza',mag:'Computerspiele',gesch:'einen Bruder und eine Schwester'});
+  const sel=(id,arr,v)=>`<select id="${id}">${arr.map(x=>`<option ${x===v?'selected':''}>${esc(x)}</option>`).join('')}</select>`;
+  app.innerHTML=`<button class="link back" id="bk">← Startsidan</button>
+  <div class="card"><h2>🪪 Das bin ich!</h2><p class="muted">Fyll i om dig själv så skriver appen en presentation på tyska (som övning B8 i häftet). Läs den högt och lär dig den!</p>
+  <div class="form2">
+   <label>Namn<input type="text" id="name" value="${esc(d.name)}" placeholder="t.ex. Anton"></label>
+   <label>Ålder<input type="number" id="age" min="5" max="99" value="${esc(d.age)}"></label>
+   <label>Jag bor i (stad)<input type="text" id="ort" value="${esc(d.ort)}" placeholder="t.ex. Göteborg"></label>
+   <label>Jag kommer från${sel('land',['Schweden','Norwegen','Dänemark','Finnland','Deutschland','Österreich','der Schweiz','Italien','Spanien','Frankreich'],d.land)}</label>
+   <label>Favoritämne${sel('fach',['Deutsch','Englisch','Schwedisch','Mathe','Sport','Musik','Geschichte','Erdkunde','Kunst'],d.fach)}</label>
+   <label>Favoritmat${sel('essen',['Pizza','Spaghetti','Wurst','Hamburger','Suppe','Schokoladeneis'],d.essen)}</label>
+   <label>Jag gillar${sel('mag',['Computerspiele','Fußball','Tennis','Eishockey','Hallenhockey','Skifahren','Tiere','Reiten','Musik','Gitarre spielen','Klavier spielen'],d.mag)}</label>
+   <label>Syskon${sel('gesch',['keine Geschwister','einen Bruder','eine Schwester','einen Bruder und eine Schwester','zwei Brüder','zwei Schwestern','zwei Geschwister','drei Geschwister'],d.gesch)}</label>
+  </div>
+  <h3>Din text</h3><div class="ex" id="out" style="font-size:1.08rem;line-height:1.7"></div>
+  <div class="row">${canSpeak()?'<button class="btn" id="read">🔊 Läs upp</button>':''}</div></div>`;
+  $('#bk').onclick=home;
+  const gen=()=>{
+    const v=id=>$('#'+id).value.trim(); const age=Math.max(0,Math.min(100,parseInt(v('age'))||0));
+    const nd={name:v('name'),age,ort:v('ort'),land:v('land'),fach:v('fach'),essen:v('essen'),mag:v('mag'),gesch:v('gesch')}; store.set('steck',nd);
+    const g = nd.gesch==='keine Geschwister' ? 'Ich habe keine Geschwister.' : 'Ich habe '+nd.gesch+'.';
+    const txt=`Hallo! Ich heiße ${nd.name||'…'}. Ich bin ${age<=100?num(age):age} (${age}) Jahre alt. Ich wohne in ${nd.ort||'…'}. Ich komme aus ${nd.land}. ${g} Mein Lieblingsfach ist ${nd.fach}. Mein Lieblingsessen ist ${nd.essen}. Ich mag ${nd.mag}. Tschüss!`;
+    $('#out').textContent=txt; return txt.replace(/\(\d+\) /,'');
+  };
+  app.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',gen));
+  const r=$('#read'); if(r) r.onclick=()=>say(gen());
+  gen();
+}
+/* Tema */
+(function(){ const t=store.get('theme',null); if(t) document.documentElement.dataset.theme=t;
+  $('#themeBtn').onclick=()=>{ const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches; const n=dark?'light':'dark'; document.documentElement.dataset.theme=n; store.set('theme',n); };
+})();
+home();
 </script>
 </body>
 </html>
