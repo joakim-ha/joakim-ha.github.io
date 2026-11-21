@@ -439,6 +439,51 @@ function mcFrom(correct, pool, n=4){
   for(const x of p){ if(opts.length>=n) break; if(!opts.some(o=>norm(o)===norm(x))) opts.push(x); }
   return shuffle(opts);
 }
+/* Svårare flerval: "nästan rätt"-alternativ (fel verbform, fel frågeord, fel ordföljd, fel artikel …) */
+const MUT_DE = {
+  wie:['was','wo'], was:['wie','wo'], wo:['woher','was'], woher:['wo','wie'], wann:['wie','wo'], warum:['was','wann'],
+  heißt:['heiße','heißen'], heiße:['heißt','heißen'], bin:['bist','ist','habe'], bist:['bin','ist'], ist:['bin','bist'],
+  wohnst:['wohnt','wohne'], wohne:['wohnst','wohnt'], wohnt:['wohne','wohnst'], kommst:['kommt','komme'], komme:['kommst','kommt'], kommt:['komme','kommst'],
+  machst:['macht','mache'], macht:['machst','mache'], mache:['machst','macht'], spielst:['spielt','spiele'], spiele:['spielst','spielt'], spielt:['spiele','spielst'],
+  mag:['magst','mage'], habe:['hast','hat','bin'], hast:['habe','hat'], hat:['habe','hast'], gehe:['gehst','geht'], geht:['gehe','gehst'], liebe:['liebst','liebt'],
+  treffen:['trefft','treffe'], müssen:['muss','müsst'], können:['kann','könnt'], sind:['ist','bin'],
+  aus:['in','von'], in:['aus','nach'], nach:['in','aus'], mein:['meine','meinen'], meine:['mein','meinen'], dein:['deine','mein'],
+  einen:['eine','ein'], eine:['einen','ein'], ein:['eine','einen'], jahre:['jahr'], nicht:['kein'], kein:['nicht'], auch:['noch'],
+  du:['ihr'], ihr:['du'], wir:['ihr'], der:['die','das'], die:['der','das'], das:['der','die'], dem:['der','den'], den:['dem','die'],
+  lieblingsfach:['lieblingsessen','lieblingsspiel'], lieblingsessen:['lieblingsfach'], lieblingsland:['lieblingsfach'], lieblingssport:['lieblingsspiel'],
+  groß:['klein'], klein:['groß'], heute:['morgen'], morgen:['heute'], schon:['noch'], noch:['schon']
+};
+const MUT_SV = {
+  vad:['hur','var'], hur:['vad','var'], var:['varifrån','vad'], varifrån:['var','vart'], när:['var','hur'], varför:['vad','när'],
+  jag:['du'], du:['ni','jag'], ni:['du','vi'], vi:['ni'], från:['i','till'], i:['från','på'], är:['har'], har:['är'],
+  inte:['också'], också:['inte'], min:['mitt','mina'], mitt:['min'], mina:['min'], igen:['redan'], redan:['igen'],
+  efter:['före'], före:['efter'], tre:['två'], två:['tre'], stor:['liten'], liten:['stor'], idag:['i morgon'], morgon:['kväll']
+};
+function capLike(src, w){ return /^[A-ZÄÖÜ]/.test(src) ? w.charAt(0).toUpperCase()+w.slice(1) : w; }
+function mutations(sentence, lang){
+  const m = String(sentence).match(/^(.*?)([?!.]*)$/); const body=m[1], end=m[2];
+  const toks = body.split(' '); const map = lang==='de'?MUT_DE:MUT_SV; const out=[];
+  toks.forEach((t,i)=>{ const core=t.replace(/[,]$/,''), comma=t.endsWith(',')?',':''; const alts=map[core.toLowerCase()];
+    if(alts) alts.forEach(a=>{ const c=toks.slice(); c[i]=capLike(core,a)+comma; out.push(c.join(' ')+end); }); });
+  if(lang==='de' && toks.length>=3){
+    if(end==='?'){ const i=toks.findIndex((t,k)=>k>0 && /^(du|ihr|wir)$/i.test(t)); if(i>1){ const c=toks.slice(); [c[i-1],c[i]]=[c[i],c[i-1]]; out.push(c.join(' ')+end); } }
+    else { const c=toks.slice(); const v=c.splice(1,1)[0]; c.push(v); out.push(c.join(' ')+end); }
+  }
+  return [...new Set(out)];
+}
+function similarity(a,b){ const wa=a.split(' ').length, wb=b.split(' ').length;
+  return Math.abs(wa-wb)*3 + (/[?!.]$/.test(a)!==/[?!.]$/.test(b)?3:0) + Math.abs(a.length-b.length)/5 + (/^[A-ZÄÖÜ]/.test(a)!==/^[A-ZÄÖÜ]/.test(b)?1:0); }
+function hardOptions(correct, pool, lang, opt={}){
+  const n=4, bad=new Set([norm(correct), ...(opt.exclude||[]).map(norm)]); const opts=[correct];
+  const add=x=>{ if(opts.length<n && !bad.has(norm(x)) && !opts.some(o=>o===x)){ opts.push(x); bad.add(norm(x)); } };
+  if(opt.art){ ['der','die','das'].filter(a=>a!==opt.art).forEach(a=>{ if(Math.random()<.6) add(a+' '+opt.noun); }); }
+  const words = correct.split(' ').length;
+  if(words>=2){ shuffle(mutations(correct, lang)).slice(0, words>=3?3:2).forEach(add); }
+  const similar = pool.filter(x=>!bad.has(norm(x))).map(x=>[x, similarity(x,correct)+Math.random()*1.5]).sort((a,b)=>a[1]-b[1]).slice(0,6).map(x=>x[0]);
+  shuffle(similar).forEach(add);
+  if(opts.length<n) shuffle(pool).forEach(add);
+  return shuffle(opts);
+}
 function allWords(ids){ return VOCAB.filter(s=>!ids||ids.includes(s.id)).flatMap(s=>s.words.map(w=>({w,sec:s}))); }
 
 function qVocab(item, dir, mode, poolWords){
@@ -446,14 +491,14 @@ function qVocab(item, dir, mode, poolWords){
   if(dir==='de-sv'){
     const correct=w[1];
     if(mode==='mc'){
-      const opts=mcFrom(correct, poolWords.map(x=>x.w[1]));
+      const opts=hardOptions(correct, poolWords.map(x=>x.w[1]), 'sv');
       return {kind:'mc', label:item.sec.title, prompt:`${deHtml(w)} ${speakBtn(deFull(w))}`, hint:'Vad betyder det på svenska?', options:opts, answer:correct, correct:correct, say:deFull(w)};
     }
     return {kind:'type', label:item.sec.title, prompt:`${deHtml(w)} ${speakBtn(deFull(w))}`, hint:'Skriv på svenska.', answers:splitAlts(correct), correct:correct, caseMatters:false, say:deFull(w)};
   } else {
     const correct=deFull(w);
     if(mode==='mc'){
-      const opts=mcFrom(correct, poolWords.map(x=>deFull(x.w)));
+      const opts=hardOptions(correct, poolWords.map(x=>deFull(x.w)), 'de', (w[2]&&w[2]!=='pl')?{art:w[2], noun:w[0]}:{});
       return {kind:'mc', label:item.sec.title, prompt:esc(w[1]), hint:'Vad heter det på tyska?', options:opts, answer:correct, correct:correct, say:correct};
     }
     return {kind:'type', label:item.sec.title, prompt:esc(w[1]), hint:'Skriv på tyska.'+(w[2]&&w[2]!=='pl'?' (Artikeln der/die/das får du ta med, men det behövs inte.)':''), answers:deAnswers(w), correct:correct, say:correct, firstCap:!!w[2]};
@@ -476,10 +521,11 @@ function genQwords(){
 }
 /* Presentera dig */
 function genPres(){
-  const t=rnd(5);
+  const t=rnd(7);
+  if(t===5||t===6){ const s=pick(PRES_SENT); return {kind:'mc', label:'Presentera dig – översätt', prompt:esc(s[0]), hint:'Vilken mening är helt rätt på tyska? Titta noga på verbform, ordföljd och småord.', options:hardOptions(s[1][0], PRES_SENT.map(x=>x[1][0]), 'de', {exclude:s[1]}), answer:s[1][0], correct:s[1][0], say:s[1][0]}; }
   if(t===0){ const q=pick(PRES_Q); return {kind:'type', label:'Presentera dig – frågor', prompt:esc(q[0]), hint:'Skriv frågan på tyska.', answers:[q[1]], correct:q[1], say:q[1], firstCap:true}; }
-  if(t===1){ const q=pick(PRES_Q); return {kind:'mc', label:'Presentera dig – fråga & svar', prompt:`${esc(q[1])} ${speakBtn(q[1])}`, hint:'Vilket svar passar till frågan?', options:mcFrom(q[2],PRES_Q.map(x=>x[2])), answer:q[2], correct:q[2]}; }
-  if(t===2){ const q=pick(PRES_Q); return {kind:'mc', label:'Presentera dig – fråga & svar', prompt:`<i>${esc(q[2])}</i>`, hint:'Vilken fråga hör till svaret?', options:mcFrom(q[1],PRES_Q.map(x=>x[1])), answer:q[1], correct:q[1]}; }
+  if(t===1){ const q=pick(PRES_Q); return {kind:'mc', label:'Presentera dig – fråga & svar', prompt:`${esc(q[1])} ${speakBtn(q[1])}`, hint:'Vilket svar passar till frågan?', options:hardOptions(q[2],PRES_Q.map(x=>x[2]),'de'), answer:q[2], correct:q[2]}; }
+  if(t===2){ const q=pick(PRES_Q); return {kind:'mc', label:'Presentera dig – fråga & svar', prompt:`<i>${esc(q[2])}</i>`, hint:'Vilken fråga hör till svaret?', options:hardOptions(q[1],PRES_Q.map(x=>x[1]),'de'), answer:q[1], correct:q[1]}; }
   if(t===3){ const g=pick(GREET); return {kind:'mc', label:'Hälsningar', prompt:`${esc(g[0])} ${speakBtn(g[0])}`, hint:'Säger man det när man kommer eller när man går?', options:['När man hälsar (hej)','När man går (hej då)'], keepOrder:true, answer:g[1]==='hälsning'?'När man hälsar (hej)':'När man går (hej då)', correct:g[0]+' = '+g[2]}; }
   const s=pick(PRES_SENT); return {kind:'type', label:'Presentera dig – översätt', prompt:esc(s[0]), hint:'Skriv meningen på tyska.', answers:s[1], correct:s[1][0], say:s[1][0], firstCap:true};
 }
